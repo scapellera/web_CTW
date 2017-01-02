@@ -3,7 +3,7 @@
 include_once "conexion.php";
 
 function verificar_login($user,$password,&$result) {
-    $sql = "SELECT * FROM LOGIN WHERE user = '$user' and password = '$password'";
+    $sql = "SELECT * FROM usuarios WHERE user = '$user' and password = '$password'";
     $rec = mysql_query($sql);
     $count = 0;
 
@@ -32,7 +32,7 @@ if(!isset($_SESSION['userid']))
         {
             /*$_SESSION['userid'] = $result->ID_USUARIO;*/
             $_SESSION["login_done"] = true;
-            header("location:/web/index.php");
+            header("location:./web/index.php");
 
         }
         else
@@ -44,8 +44,8 @@ if(!isset($_SESSION['userid']))
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/assets/css/login.css">
-<script src="/assets/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="./assets/css/login.css">
+<script src="./assets/js/login.js"></script>
 
 
 <div class="login-page">

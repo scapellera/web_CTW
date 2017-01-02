@@ -2,9 +2,9 @@
   function connect(){
 
       $servername = "localhost";
-      $username = "admin";
-      $password = "CTW12345aA";
-      $dbname = "CTW_db";
+      $username = "root";
+      $password = "";
+      $dbname = "CTW_DATABASE_TEST";
 
       // Create connection
       $conn = new mysqli($servername, $username, $password, $dbname);
@@ -103,7 +103,7 @@
   }
 function selectFormulari(){
     $conn = connect();
-    $sql = "SELECT * FROM formulari";
+    $sql = "SELECT * FROM usuarios";
     $data = $conn->query($sql);
     close($conn);
     return $data;
