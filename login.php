@@ -3,7 +3,7 @@
 include_once "conexion.php";
 
 function verificar_login($user,$password,&$result) {
-    $sql = "SELECT * FROM usuarios WHERE user = '$user' and password = '$password'";
+    $sql = "SELECT * FROM USUARIOS WHERE user = '$user' and password = '$password'";
     $rec = mysql_query($sql);
     $count = 0;
 

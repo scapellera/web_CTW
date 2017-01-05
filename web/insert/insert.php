@@ -118,12 +118,12 @@ s0.parentNode.insertBefore(s1,s0);
 
             <ul class="nav">
                 <li >
-                    <a href="clientes.php">
+                    <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
@@ -135,7 +135,7 @@ s0.parentNode.insertBefore(s1,s0);
                         <p>Contactos</p>
                     </a>
                 </li>
-                <!--<li>
+                <li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>
