@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -18,19 +19,6 @@ if($_SESSION["login_done"]==true){
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5847f0b6fccdfa3ec8524c16/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -99,12 +87,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -117,13 +100,19 @@ s0.parentNode.insertBefore(s1,s0);
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="clientes.php">
+                <li >
+                    <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
+                    <a href="insert_sedes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Sedes</p>
+                    </a>
+                </li>
+                <!--<li>
                     <a href="articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
@@ -135,7 +124,7 @@ s0.parentNode.insertBefore(s1,s0);
                         <p>Contactos</p>
                     </a>
                 </li>
-                <!--<li>
+                <li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>
@@ -249,23 +238,63 @@ s0.parentNode.insertBefore(s1,s0);
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="" method="post">
-                            <h3>Clientes - Insert</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
+                            <h3>Sedes - Insert</h3>
+                            <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
+                            
                             <fieldset>
-                              <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+                            <?php $data = select_nif_empresa_clientes(); ?>
+                            <select name="select_box_nif_empresa" class="select_box">
+                              <option value="" disabled selected>NIF cliente...</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo $row['NIF_EMPRESA']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+
+                            <fieldset>
+                              <input placeholder="Nombre sede" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                              <input placeholder="Ciudad sede" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
+                              <input placeholder="Código postal sede" name="codigo_postal" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
+                              <input placeholder="Calle sede" name="calle" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                              <input placeholder="Número sede" name="numero" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Ubicacion de la sede (no es obligatorio)" name="ubicacion" type="text">
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Teléfono sede" name="telefono" type="text"  required>
+                            
+                            <fieldset>
+                            <?php $data = select_pais_paises(); ?>
+                            <select name="select_box_pais" class="select_box">
+                              <option value="" disabled selected>País...</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -86,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -104,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active">
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -117,6 +113,12 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <!--<li>
+                    <a href="articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Articulos</p>
+                    </a>
+                </li>
+                <li>
                     <a href="contactos">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
@@ -233,10 +235,80 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                            <img class="wallpaper" src="../assets/img/insert.jpg">      
-                                                            
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
+                            <h3>Clientes - Insert</h3>
+                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                            <fieldset>
+                              <input placeholder="NIF empresa" name="nif_empresa" type="text" autofocus>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Nombre completo" name="nombre_completo" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Teléfono" name="telefono" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Correo electrónico" name="email" type="email"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Ciudad facturacion" name="ciudad_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Código postal facturación" name="codigo_postal_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Calle_facturación" name="calle_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número facturación" name="numero_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Ciudad envio" name="ciudad_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Código postal envio" name="codigo_postal_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Calle envio" name="calle_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número envio" name="numero_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="IBAN" name="iban" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="SEPA" name="sepa" type="text" required>
+                            </fieldset>
+                            <fieldset>
+                            <?php $data = select_pais_paises(); ?>
+                            <select name="select_box_pais" class="select_box">
+                              <option value="" disabled selected>País...</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>
