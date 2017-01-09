@@ -29,7 +29,7 @@ $pais = $_POST['select_box_pais'];
 
 
 
-$prefijo = select_prefijo_pais($pais);
+$prefijo = select_prefijo_paises($pais);
 
 
 //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.

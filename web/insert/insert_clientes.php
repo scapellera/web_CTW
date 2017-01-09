@@ -281,7 +281,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="SEPA" name="sepa" type="text" required>
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_pais(); ?>
+                            <?php $data = select_pais_paises(); ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>País...</option>
                               <?php

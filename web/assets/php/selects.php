@@ -1,5 +1,5 @@
 <?php
-function select_pais(){
+function select_pais_paises(){
     $conn = connect();
     $sql = "SELECT * FROM PAISES";
     $data = $conn->query($sql);
@@ -7,7 +7,7 @@ function select_pais(){
     return $data;
   }
 
-  function select_prefijo_pais($pais){
+  function select_prefijo_paises($pais){
     $conn = connect();
     $sql = "SELECT prefijo FROM PAISES WHERE PAIS = '".$pais."'";
     $data = $conn->query($sql);
