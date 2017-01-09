@@ -7,7 +7,7 @@ function select_pais_paises(){
     return $data;
   }
 
-  function select_prefijo_paises($pais){
+function select_prefijo_paises($pais){
     $conn = connect();
     $sql = "SELECT prefijo FROM PAISES WHERE PAIS = '".$pais."'";
     $data = $conn->query($sql);
@@ -15,6 +15,14 @@ function select_pais_paises(){
 	$prefijo = $row['prefijo'];
     close($conn);
     return $prefijo;
+  }
+
+function select_nif_empresa_clientes(){
+    $conn = connect();
+    $sql = "SELECT * FROM CLIENTES";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
   }
 
 ?>

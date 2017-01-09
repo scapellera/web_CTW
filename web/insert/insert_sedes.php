@@ -100,13 +100,13 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li >
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="insert_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
@@ -238,54 +238,48 @@ if($_SESSION["login_done"]==true){
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
-                            <h3>Clientes - Insert</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
+                            <h3>Sedes - Insert</h3>
+                            <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
+                            
                             <fieldset>
-                              <input placeholder="NIF empresa" name="nif_empresa" type="text" autofocus>
+                            <?php $data = select_nif_empresa_clientes(); ?>
+                            <select name="select_box_nif_empresa" class="select_box">
+                              <option value="" disabled selected>NIF cliente...</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo $row['NIF_EMPRESA']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+
+                            <fieldset>
+                              <input placeholder="Nombre sede" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text"  required>
+                              <input placeholder="Ciudad sede" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo" name="nombre_completo" type="text"  required>
+                              <input placeholder="Código postal sede" name="codigo_postal" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono" name="telefono" type="text"  required>
+                              <input placeholder="Calle sede" name="calle" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico" name="email" type="email"  required>
+                              <input placeholder="Número sede" name="numero" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad facturacion" name="ciudad_facturacion" type="text"  required>
+                              <input placeholder="Ubicacion de la sede (no es obligatorio)" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal facturación" name="codigo_postal_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle_facturación" name="calle_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número facturación" name="numero_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad envio" name="ciudad_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal envio" name="codigo_postal_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle envio" name="calle_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número envio" name="numero_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="IBAN" name="iban" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="SEPA" name="sepa" type="text" required>
-                            </fieldset>
+                              <input placeholder="Teléfono sede" name="telefono" type="text"  required>
+                            
                             <fieldset>
                             <?php $data = select_pais_paises(); ?>
                             <select name="select_box_pais" class="select_box">
