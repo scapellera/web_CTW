@@ -19,19 +19,6 @@ if($_SESSION["login_done"]==true){
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5847f0b6fccdfa3ec8524c16/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -294,7 +281,7 @@ s0.parentNode.insertBefore(s1,s0);
                               <input placeholder="SEPA" name="sepa" type="text" required>
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_insert_pais(); ?>
+                            <?php $data = select_pais(); ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>País...</option>
                               <?php

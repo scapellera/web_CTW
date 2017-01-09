@@ -1,5 +1,5 @@
 <?php
-function select_insert_pais(){
+function select_pais(){
     $conn = connect();
     $sql = "SELECT * FROM PAISES";
     $data = $conn->query($sql);
