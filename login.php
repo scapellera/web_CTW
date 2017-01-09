@@ -111,5 +111,3 @@ form.login div input[type="submit"] {
 	echo '<a href="logout.php">Logout</a>';
 }
 ?>
-
-pppp
