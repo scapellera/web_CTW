@@ -251,7 +251,7 @@ if($_SESSION["login_done"]==true){
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo $row['NIF_EMPRESA']?></option>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[NIF_EMPRESA] ($row[nombre_completo])";?></option>
                             <?php   
                                     }       
                                 }
