@@ -116,13 +116,13 @@ if($_SESSION["login_done"]==true){
                         <p>Sedes</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="contactos">
+                <li>
+                    <a href="insert_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>

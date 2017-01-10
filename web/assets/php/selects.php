@@ -1,5 +1,5 @@
 <?php
-function select_pais_paises(){
+function select_all_paises(){
     $conn = connect();
     $sql = "SELECT * FROM PAISES";
     $data = $conn->query($sql);
@@ -17,9 +17,17 @@ function select_prefijo_paises($pais){
     return $prefijo;
   }
 
-function select_nif_empresa_clientes(){
+function select_all_clientes(){
     $conn = connect();
     $sql = "SELECT * FROM CLIENTES";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
+
+function select_all_sedes(){
+    $conn = connect();
+    $sql = "SELECT * FROM SEDES";
     $data = $conn->query($sql);
     close($conn);
     return $data;
