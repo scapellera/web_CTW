@@ -2,8 +2,8 @@
   function connect(){
 
       $servername = "localhost";
-      $username = "root";
-      $password = "";
+      $username = "admin";
+      $password = "CTW12345aA";
       $dbname = "CTW_DATABASE_TEST";
 
       // Create connection
