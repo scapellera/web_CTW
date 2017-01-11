@@ -95,7 +95,7 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <img src="../assets/img/ctw_logo.gif" alt="CTW Logo">
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 

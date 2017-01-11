@@ -1,7 +1,9 @@
 <?php
 function select_all_paises(){
     $conn = connect();
-    $sql = "SELECT * FROM PAISES";
+    $sql = "SELECT * 
+    FROM PAISES
+    ORDER BY PAIS asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -19,7 +21,9 @@ function select_prefijo_paises($pais){
 
 function select_all_clientes(){
     $conn = connect();
-    $sql = "SELECT * FROM CLIENTES";
+    $sql = "SELECT * 
+    FROM CLIENTES
+    ORDER BY nombre_completo asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -27,7 +31,10 @@ function select_all_clientes(){
 
 function select_all_sedes(){
     $conn = connect();
-    $sql = "SELECT * FROM SEDES";
+    $sql = "SELECT * 
+    FROM SEDES S, CLIENTES C
+    WHERE S.NIF_cliente = C.NIF_EMPRESA
+    ORDER BY C.nombre_comercial, S.nombre asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;

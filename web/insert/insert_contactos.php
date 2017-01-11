@@ -95,7 +95,7 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <img src="../assets/img/ctw_logo.gif" alt="CTW Logo">
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
@@ -245,8 +245,8 @@ if($_SESSION["login_done"]==true){
 
                         <div class="container">  
                           <form id="contact" action="../assets/php/post/post_contactos.php" method="post">
-                            <h3>Sedes - Insert</h3>
-                            <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
+                            <h3>Contactos - Insert</h3>
+                            <h4>Rellene el formulario para añadir una nuevo contacto a una sede ya añadida.</h4>
                             
                             <fieldset>
                               <input placeholder="Nombre contacto*" name="nombre" type="text"  required>
@@ -260,7 +260,7 @@ if($_SESSION["login_done"]==true){
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['ID_SEDE']?>"><?php echo "$row[nombre]";?></option>
+                                    <option value="<?php echo $row['ID_SEDE']?>"><?php echo "$row[nombre_comercial] - $row[nombre]";?></option>
                             <?php   
                                     }       
                                 }

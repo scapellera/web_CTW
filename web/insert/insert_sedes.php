@@ -95,7 +95,7 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <img src="../assets/img/ctw_logo.gif" alt="CTW Logo">
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
@@ -257,7 +257,7 @@ if($_SESSION["login_done"]==true){
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[NIF_EMPRESA] ($row[nombre_completo])";?></option>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
                             <?php   
                                     }       
                                 }
