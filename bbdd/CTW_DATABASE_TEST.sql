@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-01-2017 a las 13:59:42
+-- Tiempo de generación: 12-01-2017 a las 13:08:59
 -- Versión del servidor: 5.5.52-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -40,6 +40,18 @@ CREATE TABLE `ARTICULO` (
   `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_de_alta` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
+--
+
+CREATE TABLE `ASIGNAR_USUARIO_PROVEEDOR` (
+  `NUM_DETALLE_PROVEEDOR` int(4) NOT NULL,
+  `ID_usuario` int(5) NOT NULL,
+  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -86,6 +98,7 @@ CREATE TABLE `CLIENTE` (
 
 INSERT INTO `CLIENTE` (`NIF_EMPRESA`, `nombre_comercial`, `nombre_completo`, `telefono`, `email`, `ciudad_facturacion`, `codigo_postal_facturacion`, `calle_facturacion`, `numero_facturacion`, `ciudad_envio`, `codigo_postal_envio`, `calle_envio`, `numero_envio`, `IBAN`, `SEPA`, `pais`, `prefijo`) VALUES
 ('23415624G', 'ARKHE', 'RIRLEY S.L', 933201263, 'rirley@gmail.com', 'Barcelona', '08008', 'calle hotel W', '101', 'Barcelona', '08008', 'calle hotel W', '101', 'ES242100322143454321', 1, 'Eslovenia', 386),
+('44512378G', 'BETARQ', 'BETARQ ARQUITECTOS S.L', 931804172, 'betarq@gmail.com', 'Barcelona', '08008', 'Balmes', '78', 'Barcelona', '08008', 'Balmes', '78', 'ES211000345576429841', 1, 'Alemania', 49),
 ('45327163G', 'LIUJO', 'LIUJO S.L', 912804170, 'liujo@gmail.com', 'Milán', '12234', 'Plaza Italia', '33', 'Madrid', '08024', 'Calle mallorca', '33', 'ES333410234578922345', 1, 'Italia', 39),
 ('bb', 'bb', 'bb', 4444, 'bb@ggg', 'bb', 'bb', 'bb', 'bb', 'bbb', 'bb', 'bb', 'bb', 'bbbb', 1, 'Angola', 244),
 ('cc', 'cc', 'cc', 333, 'cc@ccc', 'cc', 'cc', 'cc', 'cc', 'cc', 'ccc', 'cc', 'cc', 'cc', 1, 'Armenia', 374),
@@ -115,55 +128,9 @@ CREATE TABLE `CONTACTO` (
 
 INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `telefono`, `pais`, `prefijo`, `extension`) VALUES
 (1, 'Andrés Palomares', 7, 'Informatico', 'apalomares@thearkhe.es', 912345712, 'Albania', 355, 107),
-(2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `DETALLE_COMPRA`
---
-
-CREATE TABLE `DETALLE_COMPRA` (
-  `NUM_DETALLE_ARTICULO` int(4) NOT NULL,
-  `ID_articulo` int(5) NOT NULL,
-  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `DETALLE_PERSONAL`
---
-
-CREATE TABLE `DETALLE_PERSONAL` (
-  `NUM_DETALLE_PERSONAL` int(4) NOT NULL,
-  `ID_contacto` int(5) NOT NULL,
-  `ID_sede` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `DETALLE_PROVEEDOR`
---
-
-CREATE TABLE `DETALLE_PROVEEDOR` (
-  `NUM_DETALLE_PROVEEDOR` int(4) NOT NULL,
-  `ID_usuario` int(5) NOT NULL,
-  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `DETALLE_SEDE`
---
-
-CREATE TABLE `DETALLE_SEDE` (
-  `NUM_DETALLE_SEDE` int(4) NOT NULL,
-  `ID_sede` int(5) NOT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+(2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77),
+(3, 'Sergio', 9, 'DIrector General ', 'sergio.eldirector@betarq.', 608232526, 'Aruba', 297, NULL),
+(4, 'Erika', 7, 'Secretaria', 'Erika@thearkhe.es', 934912341, 'Bahamas', 1242, 102);
 
 -- --------------------------------------------------------
 
@@ -202,6 +169,23 @@ CREATE TABLE `MAYORISTA` (
   `email_comercial` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `prefijo` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MINUTAJE`
+--
+
+CREATE TABLE `MINUTAJE` (
+  `ID_MINUTAJE` int(4) NOT NULL,
+  `fecha` date NOT NULL,
+  `horas` float NOT NULL,
+  `ID_servicio` int(4) NOT NULL,
+  `ID_usuario` int(4) NOT NULL,
+  `ID_sede` int(5) DEFAULT NULL,
+  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `facturado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -479,22 +463,6 @@ CREATE TABLE `PIE_FACTURA` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `SALIDA`
---
-
-CREATE TABLE `SALIDA` (
-  `ID_FECHA` int(4) NOT NULL,
-  `fecha` date NOT NULL,
-  `horas` int(10) NOT NULL,
-  `ID_servicio` int(4) NOT NULL,
-  `ID_usuario` int(4) NOT NULL,
-  `ID_sede` int(5) NOT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `SEDE`
 --
 
@@ -524,7 +492,8 @@ INSERT INTO `SEDE` (`ID_SEDE`, `NIF_cliente`, `nombre`, `ubicacion`, `ciudad`, `
 (5, 'dd', 'dd', 'ddddddd', 'dd', 'dd', 'dd', 'dd', 111, 'Albania', 355),
 (6, 'dd', 'patata', 'asd', 'ads', 'ads', 'asd', 'asd', 555555, 'Jordania', 962),
 (7, '23415624G', 'The Arkhe Madrid', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242),
-(8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34);
+(8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34),
+(9, '44512378G', 'Betarq Barcelona', 'Bajos', 'Barcelona', '08002', 'Mallorca', '145', 937841273, 'Argentina', 54);
 
 -- --------------------------------------------------------
 
@@ -537,7 +506,7 @@ CREATE TABLE `SERVICIO` (
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
   `precio` float NOT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL
+  `NIF_empresa` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -575,9 +544,10 @@ CREATE TABLE `TRONCO_FACTURA_ARTICULO` (
 CREATE TABLE `TRONCO_FACTURA_SERVICIO` (
   `ID_TRONCO_FACTURA_SERVICIO` int(5) NOT NULL,
   `ID_factura` int(5) NOT NULL,
-  `ID_servicio` int(5) DEFAULT NULL,
-  `horas` int(5) NOT NULL,
-  `sumaprecio` float NOT NULL
+  `ID_minutaje` int(4) NOT NULL,
+  `nombre_servicio` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `horas` float NOT NULL,
+  `precio` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -615,6 +585,14 @@ ALTER TABLE `ARTICULO`
   ADD KEY `fk_nif_cliente_articulos` (`NIF_cliente`);
 
 --
+-- Indices de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
+--
+ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
+  ADD PRIMARY KEY (`NUM_DETALLE_PROVEEDOR`),
+  ADD KEY `fk_ID_usuario_detalle_proveedor` (`ID_usuario`),
+  ADD KEY `fk_NIF_mayorista_detalle_proveedor` (`NIF_mayorista`);
+
+--
 -- Indices de la tabla `CABECERA_FACTURA`
 --
 ALTER TABLE `CABECERA_FACTURA`
@@ -638,38 +616,6 @@ ALTER TABLE `CONTACTO`
   ADD KEY `fk_pais_contacto` (`pais`);
 
 --
--- Indices de la tabla `DETALLE_COMPRA`
---
-ALTER TABLE `DETALLE_COMPRA`
-  ADD PRIMARY KEY (`NUM_DETALLE_ARTICULO`),
-  ADD KEY `fk_ID_articulo_detalle_compra` (`ID_articulo`),
-  ADD KEY `fk_NIF_mayorista_detalle_compra` (`NIF_mayorista`);
-
---
--- Indices de la tabla `DETALLE_PERSONAL`
---
-ALTER TABLE `DETALLE_PERSONAL`
-  ADD PRIMARY KEY (`NUM_DETALLE_PERSONAL`),
-  ADD KEY `fk_ID_sede_detalle_personal` (`ID_sede`),
-  ADD KEY `fk_ID_contacto_detalle_personal` (`ID_contacto`);
-
---
--- Indices de la tabla `DETALLE_PROVEEDOR`
---
-ALTER TABLE `DETALLE_PROVEEDOR`
-  ADD PRIMARY KEY (`NUM_DETALLE_PROVEEDOR`),
-  ADD KEY `fk_ID_usuario_detalle_proveedor` (`ID_usuario`),
-  ADD KEY `fk_NIF_mayorista_detalle_proveedor` (`NIF_mayorista`);
-
---
--- Indices de la tabla `DETALLE_SEDE`
---
-ALTER TABLE `DETALLE_SEDE`
-  ADD PRIMARY KEY (`NUM_DETALLE_SEDE`),
-  ADD KEY `fk_ID_sede_detalle_sede` (`ID_sede`),
-  ADD KEY `fk_NIF_empresa_detalle_sede` (`NIF_cliente`);
-
---
 -- Indices de la tabla `FACTURA`
 --
 ALTER TABLE `FACTURA`
@@ -689,6 +635,16 @@ ALTER TABLE `MAYORISTA`
   ADD KEY `fk_pais_mayorista` (`pais`);
 
 --
+-- Indices de la tabla `MINUTAJE`
+--
+ALTER TABLE `MINUTAJE`
+  ADD PRIMARY KEY (`ID_MINUTAJE`),
+  ADD KEY `fk_ID_servicio_fecha` (`ID_servicio`),
+  ADD KEY `fk_NIF_cliente_fecha` (`NIF_cliente`),
+  ADD KEY `fk_ID_sede_fecha` (`ID_sede`),
+  ADD KEY `fk_ID_usuario_fecha` (`ID_usuario`);
+
+--
 -- Indices de la tabla `PAIS`
 --
 ALTER TABLE `PAIS`
@@ -703,16 +659,6 @@ ALTER TABLE `PIE_FACTURA`
   ADD KEY `fk_ID_IVA` (`IVA`);
 
 --
--- Indices de la tabla `SALIDA`
---
-ALTER TABLE `SALIDA`
-  ADD PRIMARY KEY (`ID_FECHA`),
-  ADD KEY `fk_ID_servicio_fecha` (`ID_servicio`),
-  ADD KEY `fk_NIF_cliente_fecha` (`NIF_cliente`),
-  ADD KEY `fk_ID_sede_fecha` (`ID_sede`),
-  ADD KEY `fk_ID_usuario_fecha` (`ID_usuario`);
-
---
 -- Indices de la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
@@ -725,7 +671,7 @@ ALTER TABLE `SEDE`
 --
 ALTER TABLE `SERVICIO`
   ADD PRIMARY KEY (`ID_SERVICIO`),
-  ADD KEY `fk_nif_empresa_servicios` (`NIF_cliente`);
+  ADD KEY `NIF_empresa` (`NIF_empresa`);
 
 --
 -- Indices de la tabla `STOCK`
@@ -746,8 +692,8 @@ ALTER TABLE `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
   ADD PRIMARY KEY (`ID_TRONCO_FACTURA_SERVICIO`),
-  ADD KEY `fk_ID_factura_tronco_factura_servicios` (`ID_factura`),
-  ADD KEY `fk_ID_servicio_tronco_factura_servicios` (`ID_servicio`);
+  ADD UNIQUE KEY `ID_minutaje` (`ID_minutaje`),
+  ADD KEY `fk_ID_factura_tronco_factura_servicios` (`ID_factura`);
 
 --
 -- Indices de la tabla `USUARIO`
@@ -765,6 +711,11 @@ ALTER TABLE `USUARIO`
 ALTER TABLE `ARTICULO`
   MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
+--
+ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
+  MODIFY `NUM_DETALLE_PROVEEDOR` int(4) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `CABECERA_FACTURA`
 --
 ALTER TABLE `CABECERA_FACTURA`
@@ -773,27 +724,7 @@ ALTER TABLE `CABECERA_FACTURA`
 -- AUTO_INCREMENT de la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `DETALLE_COMPRA`
---
-ALTER TABLE `DETALLE_COMPRA`
-  MODIFY `NUM_DETALLE_ARTICULO` int(4) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `DETALLE_PERSONAL`
---
-ALTER TABLE `DETALLE_PERSONAL`
-  MODIFY `NUM_DETALLE_PERSONAL` int(4) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `DETALLE_PROVEEDOR`
---
-ALTER TABLE `DETALLE_PROVEEDOR`
-  MODIFY `NUM_DETALLE_PROVEEDOR` int(4) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `DETALLE_SEDE`
---
-ALTER TABLE `DETALLE_SEDE`
-  MODIFY `NUM_DETALLE_SEDE` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `FACTURA`
 --
@@ -808,7 +739,7 @@ ALTER TABLE `PIE_FACTURA`
 -- AUTO_INCREMENT de la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
-  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
@@ -842,6 +773,13 @@ ALTER TABLE `ARTICULO`
   ADD CONSTRAINT `fk_nif_cliente_articulos` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
 
 --
+-- Filtros para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
+--
+ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
+  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
+  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
+
+--
 -- Filtros para la tabla `CABECERA_FACTURA`
 --
 ALTER TABLE `CABECERA_FACTURA`
@@ -862,38 +800,19 @@ ALTER TABLE `CONTACTO`
   ADD CONSTRAINT `fk_pais_contacto` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
 
 --
--- Filtros para la tabla `DETALLE_COMPRA`
---
-ALTER TABLE `DETALLE_COMPRA`
-  ADD CONSTRAINT `fk_ID_articulo_detalle_compra` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`),
-  ADD CONSTRAINT `fk_NIF_mayorista_detalle_compra` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
-
---
--- Filtros para la tabla `DETALLE_PERSONAL`
---
-ALTER TABLE `DETALLE_PERSONAL`
-  ADD CONSTRAINT `fk_ID_contacto_detalle_personal` FOREIGN KEY (`ID_contacto`) REFERENCES `CONTACTO` (`ID_CONTACTO`),
-  ADD CONSTRAINT `fk_ID_sede_detalle_personal` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`);
-
---
--- Filtros para la tabla `DETALLE_PROVEEDOR`
---
-ALTER TABLE `DETALLE_PROVEEDOR`
-  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
-  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
-
---
--- Filtros para la tabla `DETALLE_SEDE`
---
-ALTER TABLE `DETALLE_SEDE`
-  ADD CONSTRAINT `fk_ID_sede_detalle_sede` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`),
-  ADD CONSTRAINT `fk_NIF_empresa_detalle_sede` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
-
---
 -- Filtros para la tabla `MAYORISTA`
 --
 ALTER TABLE `MAYORISTA`
   ADD CONSTRAINT `fk_pais_mayorista` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
+
+--
+-- Filtros para la tabla `MINUTAJE`
+--
+ALTER TABLE `MINUTAJE`
+  ADD CONSTRAINT `fk_ID_sede_fecha` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`),
+  ADD CONSTRAINT `fk_ID_servicio_fecha` FOREIGN KEY (`ID_servicio`) REFERENCES `SERVICIO` (`ID_SERVICIO`),
+  ADD CONSTRAINT `fk_ID_usuario_fecha` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
+  ADD CONSTRAINT `fk_NIF_empresa_fecha` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
 
 --
 -- Filtros para la tabla `PIE_FACTURA`
@@ -901,15 +820,6 @@ ALTER TABLE `MAYORISTA`
 ALTER TABLE `PIE_FACTURA`
   ADD CONSTRAINT `fk_ID_IVA` FOREIGN KEY (`IVA`) REFERENCES `IVA` (`IVA`),
   ADD CONSTRAINT `fk_ID_factura_pie_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`);
-
---
--- Filtros para la tabla `SALIDA`
---
-ALTER TABLE `SALIDA`
-  ADD CONSTRAINT `fk_ID_sede_fecha` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`),
-  ADD CONSTRAINT `fk_ID_servicio_fecha` FOREIGN KEY (`ID_servicio`) REFERENCES `SERVICIO` (`ID_SERVICIO`),
-  ADD CONSTRAINT `fk_ID_usuario_fecha` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
-  ADD CONSTRAINT `fk_NIF_cliente_fecha` FOREIGN KEY (`NIF_cliente`) REFERENCES `SEDE` (`NIF_cliente`);
 
 --
 -- Filtros para la tabla `SEDE`
@@ -922,7 +832,7 @@ ALTER TABLE `SEDE`
 -- Filtros para la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  ADD CONSTRAINT `fk_nif_empresa_servicios` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+  ADD CONSTRAINT `FK_NIF_empresa_servicio` FOREIGN KEY (`NIF_empresa`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
 
 --
 -- Filtros para la tabla `TRONCO_FACTURA_ARTICULO`
@@ -936,7 +846,7 @@ ALTER TABLE `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
   ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`),
-  ADD CONSTRAINT `fk_ID_servicio_tronco_factura_servicios` FOREIGN KEY (`ID_servicio`) REFERENCES `SERVICIO` (`ID_SERVICIO`);
+  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
