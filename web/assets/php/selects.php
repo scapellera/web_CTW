@@ -1,17 +1,17 @@
 <?php
-function select_all_paises(){
+function select_all_pais(){
     $conn = connect();
     $sql = "SELECT * 
-    FROM PAISES
+    FROM PAIS
     ORDER BY PAIS asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
   }
 
-function select_prefijo_paises($pais){
+function select_prefijo_pais($pais){
     $conn = connect();
-    $sql = "SELECT prefijo FROM PAISES WHERE PAIS = '".$pais."'";
+    $sql = "SELECT prefijo FROM PAIS WHERE PAIS = '".$pais."'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
 	$prefijo = $row['prefijo'];
@@ -19,20 +19,20 @@ function select_prefijo_paises($pais){
     return $prefijo;
   }
 
-function select_all_clientes(){
+function select_all_cliente(){
     $conn = connect();
     $sql = "SELECT * 
-    FROM CLIENTES
+    FROM CLIENTE
     ORDER BY nombre_completo asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
   }
 
-function select_all_sedes(){
+function select_all_sede(){
     $conn = connect();
     $sql = "SELECT * 
-    FROM SEDES S, CLIENTES C
+    FROM SEDE S, CLIENTE C
     WHERE S.NIF_cliente = C.NIF_EMPRESA
     ORDER BY C.nombre_comercial, S.nombre asc";
     $data = $conn->query($sql);

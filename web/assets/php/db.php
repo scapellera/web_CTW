@@ -104,7 +104,7 @@
   }
 function selectFormulari(){
     $conn = connect();
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuario";
     $data = $conn->query($sql);
     close($conn);
     return $data;

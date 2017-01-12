@@ -249,7 +249,7 @@ if($_SESSION["login_done"]==true){
                             <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
                             
                             <fieldset>
-                            <?php $data = select_all_clientes(); ?>
+                            <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box">
                               <option value="" disabled selected>Selecciona NIF cliente*</option>
                               <?php
@@ -287,7 +287,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Teléfono sede*" name="telefono" type="text"  required>
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_all_paises(); ?>
+                            <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>Selecciona País*</option>
                               <?php

@@ -19,14 +19,23 @@ $extension = $_POST['extension'];
 
 
 
-$prefijo = select_prefijo_paises($pais);
+$prefijo = select_prefijo_pais($pais);
 
 
 //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 $conn = connect();
+if($extension==''){
 
-$sql = "INSERT INTO CONTACTOS (nombre, ID_sede, cargo, email, telefono, pais, prefijo, extension)
-VALUES ('$nombre', '$ID_sede', '$cargo', '$email', '$telefono', '$pais', $prefijo, $extension)";
+$sql = "INSERT INTO CONTACTO (nombre, ID_sede, cargo, email, telefono, pais, prefijo)
+VALUES ('$nombre', '$ID_sede', '$cargo', '$email', '$telefono', '$pais', $prefijo)";	
+
+}else{
+
+$sql = "INSERT INTO CONTACTO (nombre, ID_sede, cargo, email, telefono, pais, prefijo, extension)
+VALUES ('$nombre', '$ID_sede', '$cargo', '$email', '$telefono', '$pais', $prefijo, $extension)";	
+
+}
+
     
 
 
@@ -34,7 +43,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Nuevo cliente añadido correctamente! En 5 segudos será redireccionado...";
 ?>
     <script>
-	function redireccionar(){window.location="../../../insert/insert_sedes.php";} 
+	function redireccionar(){window.location="../../../insert/insert_contactos.php";} 
 	setTimeout ("redireccionar()", 5000);
 	</script>
 

@@ -252,7 +252,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Nombre contacto*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_all_sedes(); ?>
+                            <?php $data = select_all_sede(); ?>
                             <select name="select_box_id_sede" class="select_box">
                               <option value="" disabled selected>Selecciona la sede*</option>
                               <?php
@@ -280,7 +280,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Extensión" name="extension" type="text">
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_all_paises(); ?>
+                            <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>Selecciona País*</option>
                               <?php
