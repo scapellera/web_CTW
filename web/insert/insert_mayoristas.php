@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -86,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -104,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active">
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -141,12 +137,30 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
+                    <a href="insert_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
+                <li>
                     <a href="insert_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
                     </a>
                 </li>
                 <!--<li>
+                    <a href="articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Articulos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="contactos">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>
@@ -257,10 +271,59 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                            <img class="wallpaper" src="../assets/img/insert.jpg">      
-                                                            
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_mayoristas.php" method="post">
+                            <h3>Mayoristas - Insert</h3>
+                            <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
+                            <fieldset>
+                              <input placeholder="NIF mayorista*" name="nif_mayorista" type="text" autofocus>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Nombre empresa*" name="nombre_empresa" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Teléfono empresa*" name="telefono_empresa" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Teléfono comercial*" name="telefono_comercial" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Extensión teléfono comercial*" name="extension_telefono_comercial" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Correo electrónico empresa*" name="email_empresa" type="email"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Correo electrónico personal*" name="email_comercial" type="email"  required>
+                            </fieldset>
+                            <fieldset>
+                            <?php $data = select_all_pais(); ?>
+                            <select name="select_box_pais" class="select_box">
+                              <option value="" disabled selected>Selecciona País*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>

@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -86,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -104,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active">
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -141,12 +137,30 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
+                    <a href="insert_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
+                <li>
                     <a href="insert_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
                     </a>
                 </li>
                 <!--<li>
+                    <a href="articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Articulos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="contactos">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
                         <p>Typography</p>
@@ -257,10 +271,43 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                            <img class="wallpaper" src="../assets/img/insert.jpg">      
-                                                            
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_articulos.php" method="post">
+                            <h3>Mayoristas - Insert</h3>
+                            <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
+                            <fieldset>
+                              <input placeholder="Nombre artículo*" name="nombre" type="text" autofocus>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Descripción*" name="descripcion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Código producto del mayorista*" name="codigo_producto_mayorista" type="text">
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Precio*" name="precio" type="float"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Cantidad*" name="cantidad" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Ubicación*" name="ubicacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>

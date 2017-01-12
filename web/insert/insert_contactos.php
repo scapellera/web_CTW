@@ -118,6 +118,36 @@ if($_SESSION["login_done"]==true){
                         <p>Contactos</p>
                     </a>
                 </li>
+                <li>
+                    <a href="insert_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Articulos</p>
+                    </a>
+                </li>
                 <!--<li>
                     <a href="articulos.php">
                         <i class="pe-7s-pen"></i>
