@@ -100,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -118,7 +118,7 @@ if($_SESSION["login_done"]==true){
                         <p>Contactos</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="insert_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
@@ -278,28 +278,28 @@ if($_SESSION["login_done"]==true){
                             <h3>Mayoristas - Insert</h3>
                             <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
                             <fieldset>
-                              <input placeholder="NIF mayorista*" name="nif_mayorista" type="text" autofocus>
+                              <input placeholder="NIF mayorista*" name="NIF_mayorista" type="text" autofocus>
                             </fieldset>
                             <fieldset>
                               <input placeholder="Nombre empresa*" name="nombre_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text">
                             </fieldset>
                             <fieldset>
                               <input placeholder="Teléfono empresa*" name="telefono_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono comercial*" name="telefono_comercial" type="text"  required>
+                              <input placeholder="Teléfono comercial" name="telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Extensión teléfono comercial*" name="extension_telefono_comercial" type="text"  required>
+                              <input placeholder="Extensión teléfono comercial" name="extension_telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
                               <input placeholder="Correo electrónico empresa*" name="email_empresa" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico personal*" name="email_comercial" type="email"  required>
+                              <input placeholder="Correo electrónico comercial" name="email_comercial" type="email">
                             </fieldset>
                             <fieldset>
                             <?php $data = select_all_pais(); ?>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.3
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 12-01-2017 a las 13:08:59
--- Versión del servidor: 5.5.52-MariaDB
--- Versión de PHP: 5.6.23
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-01-2017 a las 14:22:16
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -161,9 +161,9 @@ CREATE TABLE `IVA` (
 CREATE TABLE `MAYORISTA` (
   `NIF_MAYORISTA` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `nombre_empresa` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre_comercial` int(9) DEFAULT NULL,
+  `nombre_comercial` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono_empresa` int(9) NOT NULL,
-  `telefono_comercial` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `telefono_comercial` int(9) DEFAULT NULL,
   `extension_telefono_comercial` int(8) DEFAULT NULL,
   `email_empresa` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `email_comercial` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -509,6 +509,13 @@ CREATE TABLE `SERVICIO` (
   `NIF_empresa` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `SERVICIO`
+--
+
+INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_empresa`) VALUES
+(2, 'reparar', 'arreglar pc y otros', 44, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -569,7 +576,11 @@ CREATE TABLE `USUARIO` (
 
 INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`) VALUES
 (1, 'usuario1', 'usu1', 'usu1'),
-(2, 'usuario2', 'usu2', 'usu2');
+(2, 'usuario2', 'usu2', 'usu2'),
+(3, '"usuario3"', '"usu3"', '"usu3"'),
+(4, 'usuario4', 'usu4', 'usu4'),
+(5, 'usuario5', 'usu5', 'usu5'),
+(6, 'usuario6', 'usu6', 'e13d3e2323bdfbf8a95ed05a9');
 
 --
 -- Índices para tablas volcadas
@@ -744,7 +755,7 @@ ALTER TABLE `SEDE`
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `TRONCO_FACTURA_ARTICULO`
 --
@@ -759,7 +770,7 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
 -- AUTO_INCREMENT de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --

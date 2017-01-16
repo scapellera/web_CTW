@@ -100,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -124,7 +124,7 @@ if($_SESSION["login_done"]==true){
                         <p>Mayoristas</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="insert_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>

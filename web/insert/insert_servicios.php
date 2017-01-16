@@ -100,7 +100,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -130,7 +130,7 @@ if($_SESSION["login_done"]==true){
                         <p>Usuarios</p>
                     </a>
                 </li>
-                <li>
+                <li  class="active">
                     <a href="insert_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
@@ -284,12 +284,12 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Descripcion" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Precio*" name="precio" type="float"  required>
+                              <input placeholder="Precio*" name="precio" type="text"  required>
                             </fieldset>
                             <fieldset>
                             <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box">
-                              <option value="" disabled selected>Selecciona NIF cliente</option>
+                              <option value="">Selecciona NIF cliente</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
