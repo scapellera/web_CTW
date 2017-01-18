@@ -100,6 +100,12 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>INICIO</p>
+                    </a>
+                </li>
                 <li >
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
@@ -156,7 +162,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Insertar contacto</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,7 +233,7 @@ if($_SESSION["login_done"]==true){
 
                         <div class="container">  
                           <form id="contact" action="../assets/php/post/post_contactos.php" method="post">
-                            <h3>Contactos - Insert</h3>
+                            <h3>Insertar contacto</h3>
                             <h4>Rellene el formulario para añadir una nuevo contacto a una sede ya añadida.</h4>
                             
                             <fieldset>

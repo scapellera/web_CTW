@@ -100,7 +100,13 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>INICIO</p>
+                    </a>
+                </li>
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -137,7 +143,7 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
-                <li>
+                <li class="active">
                     <a href="insert_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
@@ -157,7 +163,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Insertar artículo</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -228,16 +234,48 @@ if($_SESSION["login_done"]==true){
 
                         <div class="container">  
                           <form id="contact" action="../assets/php/post/post_articulos.php" method="post">
-                            <h3>Mayoristas - Insert</h3>
-                            <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
+                            <h3>Insertar artículo</h3>
+                            <h4>Rellene el formulario para añadir un nuevo artículo</h4>
                             <fieldset>
                               <input placeholder="Nombre artículo*" name="nombre" type="text" autofocus>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Descripción*" name="descripcion" type="text"  required>
+                              <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código producto del mayorista*" name="codigo_producto_mayorista" type="text">
+                            <?php $data = select_all_stock(); ?>
+                            <select name="select_box_codigo_de_barras*" class="select_box">
+                              <option value="">Selecciona código de barras*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['CODIGO_DE_BARRAS']?>"><?php echo "$row[CODIGO_DE_BARRAS] ($row[cantidad_total])";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                            <?php $data = select_all_mayorista(); ?>
+                            <select name="select_box_nif_mayorista*" class="select_box">
+                              <option value="">Selecciona NIF mayorista*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_MAYORISTA']?>"><?php echo "$row[NIF_MAYORISTA] - $row[nombre_empresa] - $row[nombre_comercial]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
                             </fieldset>
                             <fieldset>
                               <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
@@ -252,7 +290,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ubicación*" name="ubicacion" type="text"  required>
+                              <input placeholder="Ubicación" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

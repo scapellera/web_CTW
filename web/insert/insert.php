@@ -57,6 +57,8 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    <!-- nuestro css -->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -104,7 +106,13 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li >
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>INICIO</p>
+                    </a>
+                </li>
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -138,6 +146,13 @@ if($_SESSION["login_done"]==true){
                     <a href="insert_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
+                    </a>
+                </li>
+                <li>
+                <li>
+                    <a href="insert_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Articulos</p>
                     </a>
                 </li>
             </ul>
@@ -223,7 +238,13 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
 
-                            <img class="wallpaper" src="../assets/img/insert.jpg">      
+                               <a href="insert_clientes.php" class="button">Añadir cliente</a>
+                               <a href="insert_sedes.php" class="button">Añadir sede</a>
+                               <a href="insert_contactos.php" class="button">Añadir contacto</a>
+                               <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
+                               <a href="insert_usuarios.php" class="button">Añadir usuario</a>
+                               <a href="insert_servicios.php" class="button">Añadir servicio</a>
+                               <a href="insert_articulos.php" class="button">Añadir artículo</a>
                                                             
                         </div>
                     </div>

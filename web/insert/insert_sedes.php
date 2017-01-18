@@ -100,6 +100,12 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>INICIO</p>
+                    </a>
+                </li>
                 <li >
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
@@ -157,7 +163,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -228,7 +234,7 @@ if($_SESSION["login_done"]==true){
 
                         <div class="container">  
                           <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
-                            <h3>Sedes - Insert</h3>
+                            <h3>Insertar sede</h3>
                             <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
                             
                             <fieldset>

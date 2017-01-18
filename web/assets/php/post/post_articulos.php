@@ -10,26 +10,41 @@ if($_SESSION["login_done"]==true){
 <?php
 #Declaramos las variables del formulario
 
-$nif_empresa = $_POST['nif_mayorista'];
-$nombre_empresa = $_POST['nombre_empresa'];
-$nombre_comercial = $_POST['nombre_comercial'];
-$telefono_empresa = $_POST['telefono_empresa'];
-$telefono_comercial = $_POST['telefono_comercial'];
-$extension_telefono_comercial = $_POST['extension_telefono_comercial'];
-$email_empresa = $_POST['email_empresa'];
-$email_comercial = $_POST['email_comercial'];
-$pais = $_POST['select_box_pais'];
+$nombre = $_POST['nombre'];
+$descripcion = $_POST['descripcion'];
+$codigo_de_barras = $_POST['select_box_codigo_de_barras'];
+$nif_mayorista = $_POST['select_box_nif_mayorista'];
+$codigo_producto_mayorista = $_POST['codigo_producto_mayorista'];
+$numero_de_serie = $_POST['numero_de_serie'];
+$precio = $_POST['precio'];
+$cantidad = $_POST['cantidad'];
+$numero_factura = $_POST['numero_factura'];
+$ubicacion = $_POST['ubicacion'];
 
+//Añadimos comillas a los varchars
+$nombre="\"$nombre\"";
+$descripcion="\"$descripcion\"";
+$codigo_de_barras="\"$codigo_de_barras\"";
+$nif_mayorista="\"$nif_mayorista\"";
+$codigo_producto_mayorista="\"$codigo_producto_mayorista\"";
+$numero_factura="\"$numero_factura\"";
+$ubicacion="\"$ubicacion\"";
 
-
-$prefijo = select_prefijo_pais($pais);
+//Si hay algun campo opcional no rellenado lo transforma en null
+if($descripcion == "\"\""){
+	$descripcion = 'null';
+}if($codigo_producto_mayorista == "\"\""){
+	$codigo_producto_mayorista = 'null';
+}if($ubicacion == "\"\""){
+	$ubicacion = 'null';
+}
 
 
 //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 $conn = connect();
 
-$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, pais, prefijo)
-VALUES ('$nif_mayorista', '$nombre_empresa', '$nombre_comercial', $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, '$email_empresa', '$email_comercial', '$pais', $prefijo)";
+$sql = "INSERT INTO ARTICULO (nombre, descripcion, codigo_de_barras, NIF_mayorista, codigo_producto_mayorista, numero_de_serie, precio, cantidad, numero_factura, ubicacion)
+VALUES ('$nombre', '$descripcion','$codigo_de_barras','$nif_mayorista', '$codigo_producto_mayorista', '$numero_de_serie', precio, cantidad, '$numero_factura', '$ubicacion')";
     
 
 
@@ -37,7 +52,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Nuevo mayorista añadido correctamente! En 5 segudos será redireccionado...";
 ?>
     <script>
-	function redireccionar(){window.location="../../../insert/insert_mayoristas.php";} 
+	function redireccionar(){window.location="../../../insert/insert_articulos.php";} 
 	setTimeout ("redireccionar()", 5000);
 	</script>
 
