@@ -137,59 +137,11 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
-                    <a href="insert_stock.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Stock</p>
-                    </a>
-                </li>
-                <li>
                     <a href="insert_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Articulos</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Articulos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="contactos">
-                        <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>-->
             </ul>
     	</div>
     </div>

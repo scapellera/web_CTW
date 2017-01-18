@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-01-2017 a las 14:22:16
+-- Tiempo de generación: 18-01-2017 a las 14:21:53
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -38,7 +38,6 @@ CREATE TABLE `ARTICULO` (
   `cantidad` int(3) NOT NULL,
   `numero_factura` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_de_alta` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -514,7 +513,8 @@ CREATE TABLE `SERVICIO` (
 --
 
 INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_empresa`) VALUES
-(2, 'reparar', 'arreglar pc y otros', 44, NULL);
+(2, 'reparar', 'arreglar pc y otros', 44, NULL),
+(3, 'Otro', 'servicio fuera de lo comun (Falta definir precio)', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -567,7 +567,7 @@ CREATE TABLE `USUARIO` (
   `ID_USUARIO` int(4) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `user` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `password` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -575,12 +575,9 @@ CREATE TABLE `USUARIO` (
 --
 
 INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`) VALUES
-(1, 'usuario1', 'usu1', 'usu1'),
-(2, 'usuario2', 'usu2', 'usu2'),
-(3, '"usuario3"', '"usu3"', '"usu3"'),
-(4, 'usuario4', 'usu4', 'usu4'),
-(5, 'usuario5', 'usu5', 'usu5'),
-(6, 'usuario6', 'usu6', 'e13d3e2323bdfbf8a95ed05a9');
+(10, 'usuario3', 'usu3', 'usu3'),
+(11, 'usuario1', 'usu1', '529113007b15005637b3dad6d9ba2f10'),
+(12, 'usuario2', 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2');
 
 --
 -- Índices para tablas volcadas
@@ -592,8 +589,7 @@ INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`) VALUES
 ALTER TABLE `ARTICULO`
   ADD PRIMARY KEY (`ID_ARTICULO`),
   ADD KEY `fk_NIF_mayorista_articulo` (`NIF_mayorista`),
-  ADD KEY `fk_codigo_de_barras_articulo` (`codigo_de_barras`),
-  ADD KEY `fk_nif_cliente_articulos` (`NIF_cliente`);
+  ADD KEY `fk_codigo_de_barras_articulo` (`codigo_de_barras`);
 
 --
 -- Indices de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
@@ -755,7 +751,7 @@ ALTER TABLE `SEDE`
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `TRONCO_FACTURA_ARTICULO`
 --
@@ -770,7 +766,7 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
 -- AUTO_INCREMENT de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Restricciones para tablas volcadas
 --
@@ -780,8 +776,7 @@ ALTER TABLE `USUARIO`
 --
 ALTER TABLE `ARTICULO`
   ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`),
-  ADD CONSTRAINT `fk_codigo_de_barras_articulo` FOREIGN KEY (`codigo_de_barras`) REFERENCES `STOCK` (`CODIGO_DE_BARRAS`),
-  ADD CONSTRAINT `fk_nif_cliente_articulos` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+  ADD CONSTRAINT `fk_codigo_de_barras_articulo` FOREIGN KEY (`codigo_de_barras`) REFERENCES `STOCK` (`CODIGO_DE_BARRAS`);
 
 --
 -- Filtros para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
