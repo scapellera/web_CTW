@@ -220,7 +220,7 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Nombre*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Descripción" name="descripcion" type="text"  required>
+                              <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
                               <input placeholder="Código de barras*" name="codigo_de_barras" type="text"  required>

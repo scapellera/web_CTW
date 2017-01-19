@@ -32,20 +32,10 @@ $numero_factura="\"$numero_factura\"";
 $ubicacion="\"$ubicacion\"";
 
 //Si hay algun campo opcional no rellenado lo transforma en null
-if($nombre == "\"\""){
-	$nombre = 'null';
-}if($descripcion == "\"\""){
+if($descripcion == "\"\""){
 	$descripcion = 'null';
-}if($codigo_de_barras == "\"\""){
-	$codigo_de_barras = 'null';
-}if($nif_mayorista == "\"\""){
-	$nif_mayorista = 'null';
 }if($codigo_producto_mayorista == "\"\""){
 	$codigo_producto_mayorista = 'null';
-}if($numero_de_serie == "\"\""){
-	$numero_de_serie = 'null';
-}if($numero_factura == "\"\""){
-	$numero_factura = 'null';
 }if($ubicacion == "\"\""){
 	$ubicacion = 'null';
 }
