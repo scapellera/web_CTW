@@ -234,7 +234,7 @@ if($_SESSION["login_done"]==true){
                         <div class="card">
 
                                <a href="insert_clientes.php" class="button">Añadir cliente</a>
-                               <a href="insert_sedes.php" class="button">Añadir sede</a>
+                               <a href="insert_sedes.php" class="button">Añadir <br> sede</a>
                                <a href="insert_contactos.php" class="button">Añadir contacto</a>
                                <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
                                <a href="insert_usuarios.php" class="button">Añadir usuario</a>
