@@ -106,41 +106,22 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                
                 <li>
-                    <a href="insert_clientes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
+                    <a href="../buscador/buscador.php">
+                        <i class="pe-7s-search"></i>
+                        <p>Buscador</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_sedes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
+                    <a href="../entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
                     </a>
                 </li>
-                <li>
-                    <a href="insert_contactos.php">
+                <li class="active">
+                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_mayoristas.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Mayoristas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_usuarios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_servicios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Servicios</p>
+                        <p>Insert</p>
                     </a>
                 </li>
                 

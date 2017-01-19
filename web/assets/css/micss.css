@@ -45,4 +45,14 @@
     top:1px;
 }
 
+.fondo {
+    height:500px;
+    width:500px;
+    background-color: white;
+}
 
+.pepe{
+    margin-left:100px;
+    margin-right:100000px;
+    margin-top:100000px;
+}

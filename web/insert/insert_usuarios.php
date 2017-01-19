@@ -99,8 +99,13 @@ if($_SESSION["login_done"]==true){
                  
             </div>
 
-            <ul class="nav">ç
-                
+            <ul class="nav">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
                 <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>

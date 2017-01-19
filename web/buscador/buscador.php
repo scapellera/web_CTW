@@ -106,41 +106,22 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                
-                <li>
-                    <a href="insert_clientes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
+                <li class="active">
+                    <a>
+                        <i class="pe-7s-search"></i>
+                        <p>Buscador</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_sedes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
+                    <a href="../entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_contactos.php">
+                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_mayoristas.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Mayoristas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_usuarios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_servicios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Servicios</p>
+                        <p>Insert</p>
                     </a>
                 </li>
                 
@@ -158,7 +139,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Buscador</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,12 +208,12 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
 
-                               <a href="insert_clientes.php" class="button">Añadir cliente</a>
-                               <a href="insert_sedes.php" class="button">Añadir <br> sede</a>
-                               <a href="insert_contactos.php" class="button">Añadir contacto</a>
-                               <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
-                               <a href="insert_usuarios.php" class="button">Añadir usuario</a>
-                               <a href="insert_servicios.php" class="button">Añadir servicio</a>
+                               <a href="buscador_clientes.php" class="button">Buscar cliente</a>
+                               <a href="buscador_sedes.php" class="button">Buscar <br> sede</a>
+                               <a href="buscador_contactos.php" class="button">Buscar contacto</a>
+                               <a href="buscador_mayoristas.php" class="button">Buscar mayorista</a>
+                               <a href="buscador_usuarios.php" class="button">Buscar usuario</a>
+                               <a href="buscador_servicios.php" class="button">Buscar servicio</a>
                                
                                                             
                         </div>
