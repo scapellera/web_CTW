@@ -45,12 +45,13 @@ if($descripcion == "\"\""){
 $conn = connect();
 
 $sql = "INSERT INTO ARTICULO (nombre, descripcion, codigo_de_barras, NIF_mayorista, codigo_producto_mayorista, numero_de_serie, precio, cantidad, numero_factura, ubicacion)
-VALUES ($nombre, $descripcion, $codigo_de_barras, $nif_mayorista, $codigo_producto_mayorista, $numero_de_serie, precio, cantidad, $numero_factura, $ubicacion)";
+VALUES ($nombre, $descripcion, $codigo_de_barras, $nif_mayorista, $codigo_producto_mayorista, $numero_de_serie, $precio, $cantidad, $numero_factura, $ubicacion)";
     
 
 
 if ($conn->query($sql) === TRUE) {
     echo "Nuevo mayorista añadido correctamente! En 5 segudos será redireccionado...";
+
 ?>
     <script>
 	function redireccionar(){window.location="../../../entrada_stock.php";} 
