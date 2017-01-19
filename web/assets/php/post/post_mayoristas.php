@@ -38,7 +38,7 @@ if($nombre_comercial == "\"\""){
 }if($extension_telefono_comercial == null){
 	$extension_telefono_comercial ='null';
 }if($email_comercial == "\"\""){
-	$email_comercial =null;
+	$email_comercial ='null';
 }
 
 

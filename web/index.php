@@ -102,16 +102,23 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="#">
+                <!--<li>
+                    <a href="lista_tareas.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Llista de tasques</p>
+                        <p>Lista de tareas</p>
                     </a>
-                </li>
+                </li>-->
+                
                 <li>
                     <a href="buscador.php">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
@@ -120,36 +127,8 @@ if($_SESSION["login_done"]==true){
                         <p>Insert</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>-->
+                
+                
             </ul>
     	</div>
     </div>
@@ -236,46 +215,7 @@ if($_SESSION["login_done"]==true){
 
 
 
-                                <!-- TABLA DATATABLE -->
-                                <?php $data = selectFormulari(); ?>
-                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Lloc incidéncia</th>
-                                            <th>Breu descripció</th>
-                                            <th>Importancia</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                        <?php $data = selectFormulari(); ?>
-                                        <?php
-                                        if ($data->num_rows > 0) {
-                                                 // output data of each row
-                                                 while($row = $data->fetch_assoc()) {
-                                                    $pk = $row['ID']; 
-                                        ?>
-                                        
-                                                        <tr>
-                                                            <td><a href="#" class="ID" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID'] ?></a></td>
-                                                            <td><a href="#" class="lloc_incidencia" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['lloc_incidencia']?> </a></td>
-                                                            <td><a href="#" class="breu_descripcio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['breu_descripcio']?> </a></td>
-                                                            <td><a> <?php echo $row['importancia']?> </a></td>
-                                                            
-                                                        </tr>
-                                        <?php
-                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
-                                                 }
-                                            } else {
-                                                 echo "0 results";
-                                            }
-
-                                        ?>
-                                        
-                                     
-                                    </tbody>
-                                </table>
+                                <!--CONTENIDO VA AQUI-->
                             
 
 

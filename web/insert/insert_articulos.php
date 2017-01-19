@@ -137,13 +137,7 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                <li>
-                <li class="active">
-                    <a href="insert_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Articulos</p>
-                    </a>
-                </li>
+                
             </ul>
     	</div>
     </div>
@@ -262,7 +256,7 @@ if($_SESSION["login_done"]==true){
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['NIF_MAYORISTA']?>"><?php echo "$row[NIF_MAYORISTA] - $row[nombre_empresa] - $row[nombre_comercial]";?></option>
+                                    <option value="<?php echo $row['NIF_MAYORISTA']?>"><?php echo "$row[nombre_empresa] - $row[NIF_MAYORISTA]";?></option>
                             <?php   
                                     }       
                                 }

@@ -143,13 +143,7 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                <li>
-                <li>
-                    <a href="insert_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Articulos</p>
-                    </a>
-                </li>
+                
             </ul>
     	</div>
     </div>
@@ -239,7 +233,7 @@ if($_SESSION["login_done"]==true){
                                <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
                                <a href="insert_usuarios.php" class="button">Añadir usuario</a>
                                <a href="insert_servicios.php" class="button">Añadir servicio</a>
-                               <a href="insert_articulos.php" class="button">Añadir artículo</a>
+                               
                                                             
                         </div>
                     </div>

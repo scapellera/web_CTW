@@ -137,12 +137,7 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="insert_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Articulos</p>
-                    </a>
-                </li>
+                
             </ul>
     	</div>
     </div>

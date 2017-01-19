@@ -40,21 +40,11 @@ function select_all_sede(){
     return $data;
   }
 
-  function select_all_stock(){
-    $conn = connect();
-    $sql = "SELECT * 
-    FROM STOCK
-    ORDER BY CODIGO_DE_BARRAS asc";
-    $data = $conn->query($sql);
-    close($conn);
-    return $data;
-  }
-
-   function select_all_mayorista(){
+    function select_all_mayorista(){
     $conn = connect();
     $sql = "SELECT * 
     FROM MAYORISTA
-    ORDER BY NIF_MAYORISTA asc";
+    ORDER BY nombre_empresa asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;

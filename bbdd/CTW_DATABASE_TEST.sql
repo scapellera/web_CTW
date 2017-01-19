@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2017 a las 14:21:53
+-- Tiempo de generación: 19-01-2017 a las 13:04:57
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -169,6 +169,14 @@ CREATE TABLE `MAYORISTA` (
   `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `prefijo` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `MAYORISTA`
+--
+
+INSERT INTO `MAYORISTA` (`NIF_MAYORISTA`, `nombre_empresa`, `nombre_comercial`, `telefono_empresa`, `telefono_comercial`, `extension_telefono_comercial`, `email_empresa`, `email_comercial`, `pais`, `prefijo`) VALUES
+('23815837G', 'Mediamarkt S.L', NULL, 936459238, NULL, NULL, 'mediamarkt@gmail.com', NULL, 'Eslovaquia', 421),
+('36340346F', 'Fnac', NULL, 932107712, NULL, NULL, 'fnac@gmail.com', NULL, 'Egipto', 20);
 
 -- --------------------------------------------------------
 
@@ -684,7 +692,8 @@ ALTER TABLE `SERVICIO`
 -- Indices de la tabla `STOCK`
 --
 ALTER TABLE `STOCK`
-  ADD PRIMARY KEY (`CODIGO_DE_BARRAS`);
+  ADD PRIMARY KEY (`CODIGO_DE_BARRAS`),
+  ADD UNIQUE KEY `CODIGO_DE_BARRAS` (`CODIGO_DE_BARRAS`);
 
 --
 -- Indices de la tabla `TRONCO_FACTURA_ARTICULO`
@@ -775,8 +784,7 @@ ALTER TABLE `USUARIO`
 -- Filtros para la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`),
-  ADD CONSTRAINT `fk_codigo_de_barras_articulo` FOREIGN KEY (`codigo_de_barras`) REFERENCES `STOCK` (`CODIGO_DE_BARRAS`);
+  ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
 
 --
 -- Filtros para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
@@ -839,6 +847,12 @@ ALTER TABLE `SEDE`
 --
 ALTER TABLE `SERVICIO`
   ADD CONSTRAINT `FK_NIF_empresa_servicio` FOREIGN KEY (`NIF_empresa`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+
+--
+-- Filtros para la tabla `STOCK`
+--
+ALTER TABLE `STOCK`
+  ADD CONSTRAINT `fk_codigo_de_barras_articulo` FOREIGN KEY (`CODIGO_DE_BARRAS`) REFERENCES `ARTICULO` (`codigo_de_barras`);
 
 --
 -- Filtros para la tabla `TRONCO_FACTURA_ARTICULO`
