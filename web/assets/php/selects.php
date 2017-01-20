@@ -40,7 +40,7 @@ function select_all_sede(){
     return $data;
   }
 
-    function select_all_mayorista(){
+function select_all_mayorista(){
     $conn = connect();
     $sql = "SELECT * 
     FROM MAYORISTA
@@ -49,6 +49,13 @@ function select_all_sede(){
     close($conn);
     return $data;
   }
-
+function select_all_stock(){
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM STOCK";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
 
 ?>

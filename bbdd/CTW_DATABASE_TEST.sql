@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2017 a las 13:04:57
+-- Tiempo de generación: 20-01-2017 a las 13:46:59
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -129,7 +129,8 @@ INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `t
 (1, 'Andrés Palomares', 7, 'Informatico', 'apalomares@thearkhe.es', 912345712, 'Albania', 355, 107),
 (2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77),
 (3, 'Sergio', 9, 'DIrector General ', 'sergio.eldirector@betarq.', 608232526, 'Aruba', 297, NULL),
-(4, 'Erika', 7, 'Secretaria', 'Erika@thearkhe.es', 934912341, 'Bahamas', 1242, 102);
+(4, 'Erika', 7, 'Secretaria', 'Erika@thearkhe.es', 934912341, 'Bahamas', 1242, 102),
+(5, 'peèeee', 3, 'kaáa', 'dfgdf@dfg', 435, 'Afganistán', 93, NULL);
 
 -- --------------------------------------------------------
 
@@ -522,7 +523,8 @@ CREATE TABLE `SERVICIO` (
 
 INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_empresa`) VALUES
 (2, 'reparar', 'arreglar pc y otros', 44, NULL),
-(3, 'Otro', 'servicio fuera de lo comun (Falta definir precio)', 0, NULL);
+(3, 'Otro', 'servicio fuera de lo comun (Falta definir precio)', 0, NULL),
+(4, 'gdfgeËé', NULL, 34, '45327163G');
 
 -- --------------------------------------------------------
 
@@ -725,7 +727,7 @@ ALTER TABLE `USUARIO`
 -- AUTO_INCREMENT de la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
@@ -740,7 +742,7 @@ ALTER TABLE `CABECERA_FACTURA`
 -- AUTO_INCREMENT de la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `FACTURA`
 --
@@ -760,7 +762,7 @@ ALTER TABLE `SEDE`
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `TRONCO_FACTURA_ARTICULO`
 --
