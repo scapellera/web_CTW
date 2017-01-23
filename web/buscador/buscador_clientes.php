@@ -31,7 +31,7 @@ if($_SESSION["login_done"]==true){
 
      <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <?php
     if($_SESSION["user_rol"]<=1){
@@ -91,8 +91,7 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-    <!--BOTON SEARCH BUSCADOR-->
-    <link rel="stylesheet" href="../assets/css/dataTables.bootstrap.min.css">
+
 
 
 </head>
@@ -152,18 +151,7 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="buscador_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Artículos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_stock.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Stock</p>
-                    </a>
-                </li>
+                
             </ul>
     	</div>
     </div>
