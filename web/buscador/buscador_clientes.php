@@ -33,8 +33,15 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../assets/js/editor/edit_cliente.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->

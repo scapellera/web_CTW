@@ -36,7 +36,7 @@ if(!isset($_SESSION['userid']))
         
         if(verificar_login($user,$password,$result) == 1)
         {
-            /*$_SESSION['userid'] = $result->ID_USUARIO;*/
+            $_SESSION['user_rol'] = $result->rol;
             $_SESSION["login_done"] = true;
             header("location:./web/index.php");
 
