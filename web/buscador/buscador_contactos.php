@@ -31,21 +31,14 @@ if($_SESSION["login_done"]==true){
 
      <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <?php
-    if($_SESSION["user_rol"]<=1){
-        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
-
-    }
-    
-    ?>
-    
+    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    <script type="text/javascript" src="../assets/js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../assets/table/tables.js"></script>
+    <script src="../table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -75,7 +68,6 @@ if($_SESSION["login_done"]==true){
     <!--TABLE_EDITOR.CSS-->
     <link href="../assets/css/table_editor.css" rel="stylesheet"/>
     <link href="../assets/css/table.css" rel="stylesheet"/>
-
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -92,8 +84,6 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-    <!--INPUT SEARCH BUSCADOR-->
-    <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 
 
 
@@ -118,7 +108,7 @@ if($_SESSION["login_done"]==true){
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="buscador_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -130,7 +120,7 @@ if($_SESSION["login_done"]==true){
                         <p>Sedes</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="buscador_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
@@ -160,7 +150,7 @@ if($_SESSION["login_done"]==true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -232,22 +222,23 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div >
-                        <div >
+                    <div class="col-md-12">
+                        <div class="card">
 
-                                <table id="buscador_cliente" class="table table-striped table-bordered">
+                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Nombre completo</th>
+                                            <th>Nombre empresa</th>
                                             <th>NIF empresa</th>
-                                            <th>Nombre comercial</th>
-                                            <th>País</th>
+                                            <th>Nombre del comercial</th>
                                             <th>Telefono</th>
-                                            <th>Prefijo</th>
                                             <th>Email</th>
+                                            <th>IBAN</th>
+                                            <th>SEPA</th>
+                                            <th>País</th>
                                             <th>Ciudad facturacion</th>
                                             <th>Codigo postal facturación</th>
                                             <th>Calle facturación</th>
@@ -256,8 +247,6 @@ if($_SESSION["login_done"]==true){
                                             <th>Codigo envio</th>
                                             <th>Calle envio</th>
                                             <th>Número envio</th>
-                                            <th>IBAN</th>
-                                            <th>SEPA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -271,34 +260,8 @@ if($_SESSION["login_done"]==true){
                                             if ($result->num_rows > 0) {
                                                  // output data of each row
                                                  while($row = $result->fetch_assoc()) {
-                                                    $pk = $row['NIF_EMPRESA'];
-
-                                        ?>
-                                                    <tr>    
-                                                        <td><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></td>
-                                                        <td><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></td>
-                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
-                                                        <td><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></td>
-                                                        <td><a href="#" class="ciudad_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_facturacion']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_facturacion']?> </a></td>
-                                                        <td><a href="#" class="calle_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_facturacion']?> </a></td>
-                                                        <td><a href="#" class="numero_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_facturacion']?> </a></td>
-                                                        <td><a href="#" class="ciudad_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_envio']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_envio']?> </a></td>
-                                                        <td><a href="#" class="calle_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_envio']?> </a></td>
-                                                        <td><a href="#" class="numero_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_envio']?> </a></td>
-                                                        <td><a href="#" class="IBAN" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['IBAN']?> </a></td>
-                                                        <td><a href="#" class="SEPA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['SEPA']?> </a></td>
-                                                           
-                                                           
-                                                            
-                                                    </tr>
-
-                                        <?php           /*echo"<tr>
-                                                            <td><a".$row["nombre_completo"]."</td>
+                                                    echo"<tr>
+                                                            <td>".$row["nombre_completo"]."</td>
                                                             <td>".$row["NIF_EMPRESA"]."</td>
                                                             <td>".$row["nombre_comercial"]."</td>
                                                             <td>".$row["telefono"]."</td>
@@ -314,7 +277,7 @@ if($_SESSION["login_done"]==true){
                                                             <td>".$row["codigo_postal_envio"]."</td>
                                                             <td>".$row["calle_envio"]."</td>
                                                             <td>".$row["numero_envio"]."</td>
-                                                        </tr>";*/
+                                                        </tr>";
                                                      /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
                                                  }
                                             } else {
