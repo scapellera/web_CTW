@@ -31,7 +31,7 @@ if($_SESSION["login_done"]==true){
 
      <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">-->
 
     <?php
     if($_SESSION["user_rol"]<=1){
@@ -75,6 +75,7 @@ if($_SESSION["login_done"]==true){
     <!--TABLE_EDITOR.CSS-->
     <link href="../assets/css/table_editor.css" rel="stylesheet"/>
     <link href="../assets/css/table.css" rel="stylesheet"/>
+
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -91,6 +92,7 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
+    <!--INPUT SEARCH BUSCADOR-->
 
 
 
