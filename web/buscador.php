@@ -96,16 +96,22 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li>
-                    <a href="index.php">
+                <!--<li>
+                    <a href="lista_tareas.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Llista de tasques</p>
+                        <p>Lista de tareas</p>
                     </a>
-                </li>
+                </li>-->
                 <li class="active">
                     <a href="#">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
@@ -114,42 +120,8 @@ if($_SESSION["login_done"]==true){
                         <p>Insert</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>-->
+
+                
             </ul>
     	</div>
     </div>

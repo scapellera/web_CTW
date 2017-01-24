@@ -100,13 +100,8 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
+                
                 <li>
-                    <a href="../index.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>PÁGINA INICIO</p>
-                    </a>
-                </li>
-                <li class="active">
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -157,7 +152,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar cliente</a>
+                    <a class="navbar-brand">Insertar artículo</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,69 +222,64 @@ if($_SESSION["login_done"]==true){
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
-                            <h3>Insertar cliente</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_articulos.php" method="post">
+                            <h3>Insertar artículo</h3>
+                            <h4>Rellene el formulario para añadir un nuevo artículo</h4>
                             <fieldset>
-                              <input placeholder="NIF empresa*" name="nif_empresa" type="text" autofocus>
+                              <input placeholder="Nombre artículo*" name="nombre" type="text" autofocus>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                              <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo*" name="nombre_completo" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Correo electrónico*" name="email" type="email"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad facturacion*" name="ciudad_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal facturación*" name="codigo_postal_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle_facturación*" name="calle_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número facturación*" name="numero_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad envio*" name="ciudad_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal envio*" name="codigo_postal_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle envio*" name="calle_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número envio*" name="numero_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="IBAN*" name="iban" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="SEPA*" name="sepa" type="text" required>
-                            </fieldset>
-                            <fieldset>
-                            <?php $data = select_all_pais(); ?>
-                            <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
+                            <?php $data = select_all_stock(); ?>
+                            <select name="select_box_codigo_de_barras*" class="select_box">
+                              <option value="">Selecciona código de barras*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                                    <option value="<?php echo $row['CODIGO_DE_BARRAS']?>"><?php echo "$row[CODIGO_DE_BARRAS] ($row[cantidad_total])";?></option>
                             <?php   
                                     }       
                                 }
                              ?>       
                             </select>
+                            </fieldset>
+                            <fieldset>
+                            <?php $data = select_all_mayorista(); ?>
+                            <select name="select_box_nif_mayorista*" class="select_box">
+                              <option value="">Selecciona NIF mayorista*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_MAYORISTA']?>"><?php echo "$row[nombre_empresa] - $row[NIF_MAYORISTA]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Precio*" name="precio" type="float"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Cantidad*" name="cantidad" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Ubicación" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

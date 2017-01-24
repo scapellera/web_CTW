@@ -106,7 +106,7 @@ if($_SESSION["login_done"]==true){
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -124,7 +124,7 @@ if($_SESSION["login_done"]==true){
                         <p>Contactos</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="insert_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
@@ -157,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar cliente</a>
+                    <a class="navbar-brand">Insertar mayorista</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,53 +227,32 @@ if($_SESSION["login_done"]==true){
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
-                            <h3>Insertar cliente</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_mayoristas.php" method="post">
+                            <h3>Insertar mayorista</h3>
+                            <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
                             <fieldset>
-                              <input placeholder="NIF empresa*" name="nif_empresa" type="text" autofocus>
+                              <input placeholder="NIF mayorista*" name="NIF_mayorista" type="text" autofocus>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                              <input placeholder="Nombre empresa*" name="nombre_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo*" name="nombre_completo" type="text"  required>
+                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
+                              <input placeholder="Teléfono empresa*" name="telefono_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico*" name="email" type="email"  required>
+                              <input placeholder="Teléfono comercial" name="telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad facturacion*" name="ciudad_facturacion" type="text"  required>
+                              <input placeholder="Extensión teléfono comercial" name="extension_telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal facturación*" name="codigo_postal_facturacion" type="text"  required>
+                              <input placeholder="Correo electrónico empresa*" name="email_empresa" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Calle_facturación*" name="calle_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número facturación*" name="numero_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad envio*" name="ciudad_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal envio*" name="codigo_postal_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle envio*" name="calle_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número envio*" name="numero_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="IBAN*" name="iban" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="SEPA*" name="sepa" type="text" required>
+                              <input placeholder="Correo electrónico comercial" name="email_comercial" type="email">
                             </fieldset>
                             <fieldset>
                             <?php $data = select_all_pais(); ?>

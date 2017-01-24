@@ -2,8 +2,8 @@
   function connect(){
 
       $servername = "localhost";
-      $username = "root";
-      $password = "";
+      $username = "admin";
+      $password = "CTW12345aA";
       $dbname = "CTW_DATABASE_TEST";
 
       // Create connection
@@ -20,7 +20,7 @@
     $conn->close();
   }
 
-  function selectUser($rol){
+  /*function selectUser($rol){
     $conn = connect();
     $sql = "SELECT u.nom, u.pwd
       FROM users u, usr_rol r
@@ -104,8 +104,8 @@
   }
 function selectFormulari(){
     $conn = connect();
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuario";
     $data = $conn->query($sql);
     close($conn);
     return $data;
-  }
+  }*/

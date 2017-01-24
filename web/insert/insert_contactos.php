@@ -106,7 +106,7 @@ if($_SESSION["login_done"]==true){
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -118,7 +118,7 @@ if($_SESSION["login_done"]==true){
                         <p>Sedes</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="insert_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
@@ -141,7 +141,7 @@ if($_SESSION["login_done"]==true){
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
-                </li>
+                </li>                
                 
             </ul>
     	</div>
@@ -157,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar cliente</a>
+                    <a class="navbar-brand">Insertar contacto</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,53 +227,40 @@ if($_SESSION["login_done"]==true){
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
-                            <h3>Insertar cliente</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_contactos.php" method="post">
+                            <h3>Insertar contacto</h3>
+                            <h4>Rellene el formulario para añadir una nuevo contacto a una sede ya añadida.</h4>
+                            
                             <fieldset>
-                              <input placeholder="NIF empresa*" name="nif_empresa" type="text" autofocus>
+                              <input placeholder="Nombre contacto*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                            <?php $data = select_all_sede(); ?>
+                            <select name="select_box_id_sede" class="select_box">
+                              <option value="" disabled selected>Selecciona la sede*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['ID_SEDE']?>"><?php echo "$row[nombre_comercial] - $row[nombre]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo*" name="nombre_completo" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
+                              <input placeholder="Cargo*" name="cargo" type="text" required>
                             </fieldset>
                             <fieldset>
                               <input placeholder="Correo electrónico*" name="email" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad facturacion*" name="ciudad_facturacion" type="text"  required>
+                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal facturación*" name="codigo_postal_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle_facturación*" name="calle_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número facturación*" name="numero_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad envio*" name="ciudad_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal envio*" name="codigo_postal_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle envio*" name="calle_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número envio*" name="numero_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="IBAN*" name="iban" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="SEPA*" name="sepa" type="text" required>
+                              <input placeholder="Extensión" name="extension" type="text">
                             </fieldset>
                             <fieldset>
                             <?php $data = select_all_pais(); ?>

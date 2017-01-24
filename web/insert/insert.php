@@ -57,6 +57,8 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    <!-- nuestro css -->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -99,59 +101,30 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <img src="../assets/img/ctw_logo.gif" alt="CTW Logo">
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="insert_clientes.php">
+                <li>
+                    <a href="../buscador/buscador.php">
+                        <i class="pe-7s-search"></i>
+                        <p>Buscador</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
+                        <p>Insert</p>
                     </a>
                 </li>
-                <li>
-                    <a href="insert_sedes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
-                    </a>
-                </li>
-                <!--<li>
-                    <a href="contactos">
-                        <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>-->
+                
             </ul>
     	</div>
     </div>
@@ -235,7 +208,13 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
 
-                            <img class="wallpaper" src="../assets/img/insert.jpg">      
+                               <a href="insert_clientes.php" class="button">Añadir cliente</a>
+                               <a href="insert_sedes.php" class="button">Añadir <br> sede</a>
+                               <a href="insert_contactos.php" class="button">Añadir contacto</a>
+                               <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
+                               <a href="insert_usuarios.php" class="button">Añadir usuario</a>
+                               <a href="insert_servicios.php" class="button">Añadir servicio</a>
+                               
                                                             
                         </div>
                     </div>

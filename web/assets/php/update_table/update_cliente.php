@@ -1,13 +1,13 @@
 
 <?php
-include('db.php');
+include('../db.php');
 
                                             
 if(!empty($_POST['value'])) {
     $conn = connect();
-    $sql = "UPDATE formulari
+    $sql = "UPDATE CLIENTE
       SET ".$_POST['name']." = '".$_POST['value']."'
-      WHERE ID = ".$_POST['pk'];
+      WHERE NIF_EMPRESA = '".$_POST['pk']."'";
     $result = $conn->query($sql);
     close($conn);
     return $data;

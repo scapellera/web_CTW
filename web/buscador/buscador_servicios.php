@@ -100,13 +100,8 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
+                
                 <li>
-                    <a href="../index.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>PÁGINA INICIO</p>
-                    </a>
-                </li>
-                <li class="active">
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
@@ -136,7 +131,7 @@ if($_SESSION["login_done"]==true){
                         <p>Usuarios</p>
                     </a>
                 </li>
-                <li>
+                <li  class="active">
                     <a href="insert_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
@@ -157,7 +152,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar cliente</a>
+                    <a class="navbar-brand">Insertar servicio</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,64 +222,28 @@ if($_SESSION["login_done"]==true){
                         <div class="card2">
 
                         <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
-                            <h3>Insertar cliente</h3>
-                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                          <form id="contact" action="../assets/php/post/post_servicios.php" method="post">
+                            <h3>Insertar servicio</h3>
+                            <h4>Rellene el formulario para añadir un nuevo servicio</h4>
                             <fieldset>
-                              <input placeholder="NIF empresa*" name="nif_empresa" type="text" autofocus>
+                              <input placeholder="Nombre del servicio*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                              <input placeholder="Descripcion" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo*" name="nombre_completo" type="text"  required>
+                              <input placeholder="Precio*" name="precio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Correo electrónico*" name="email" type="email"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad facturacion*" name="ciudad_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal facturación*" name="codigo_postal_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle_facturación*" name="calle_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número facturación*" name="numero_facturacion" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad envio*" name="ciudad_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal envio*" name="codigo_postal_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle envio*" name="calle_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número envio*" name="numero_envio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="IBAN*" name="iban" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="SEPA*" name="sepa" type="text" required>
-                            </fieldset>
-                            <fieldset>
-                            <?php $data = select_all_pais(); ?>
-                            <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
+                            <?php $data = select_all_cliente(); ?>
+                            <select name="select_box_nif_empresa" class="select_box">
+                              <option value="">Selecciona NIF cliente</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
                             <?php   
                                     }       
                                 }

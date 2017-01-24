@@ -29,13 +29,13 @@ $pais = $_POST['select_box_pais'];
 
 
 
-$prefijo = select_prefijo_paises($pais);
+$prefijo = select_prefijo_pais($pais);
 
 
 //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 $conn = connect();
 
-$sql = "INSERT INTO CLIENTES (NIF_EMPRESA, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo)
+$sql = "INSERT INTO CLIENTE (NIF_EMPRESA, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo)
 VALUES ('$nif_empresa', '$nombre_comercial', '$nombre_completo', $telefono, '$email', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion', '$ciudad_envio', '$codigo_postal_envio', '$calle_envio', '$numero_envio', '$iban', $sepa, '$pais', $prefijo)";
     
 

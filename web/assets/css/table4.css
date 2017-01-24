@@ -1904,14 +1904,14 @@ textarea.input-lg {
 
 .btn-primary {
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd
+    background-color: #e68f46;
+    border-color: #887f77;
 }
 
 .btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #3276b1;
-    border-color: #285e8e
+    background-color: #e98e42;
+    border-color: #62686d;
 }
 
 .btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary {

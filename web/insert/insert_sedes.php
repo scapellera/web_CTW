@@ -95,11 +95,17 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <img src="../assets/img/ctw_logo.gif" alt="CTW Logo">
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
                 <li >
                     <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
@@ -112,48 +118,31 @@ if($_SESSION["login_done"]==true){
                         <p>Sedes</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Articulos</p>
-                    </a>
-                </li>
                 <li>
-                    <a href="contactos">
+                    <a href="insert_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                    <a href="insert_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                    <a href="insert_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
+                    <a href="insert_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>-->
+                
             </ul>
     	</div>
     </div>
@@ -168,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -239,51 +228,50 @@ if($_SESSION["login_done"]==true){
 
                         <div class="container">  
                           <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
-                            <h3>Sedes - Insert</h3>
+                            <h3>Insertar sede</h3>
                             <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
                             
                             <fieldset>
-                            <?php $data = select_nif_empresa_clientes(); ?>
+                            <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box">
-                              <option value="" disabled selected>NIF cliente...</option>
+                              <option value="" disabled selected>Selecciona NIF cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo $row['NIF_EMPRESA']?></option>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
                             <?php   
                                     }       
                                 }
                              ?>       
                             </select>
                             </fieldset>
-
                             <fieldset>
-                              <input placeholder="Nombre sede" name="nombre" type="text"  required>
+                              <input placeholder="Nombre sede*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad sede" name="ciudad" type="text"  required>
+                              <input placeholder="Ciudad sede*" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal sede" name="codigo_postal" type="text"  required>
+                              <input placeholder="Código postal sede*" name="codigo_postal" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Calle sede" name="calle" type="text"  required>
+                              <input placeholder="Calle sede*" name="calle" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número sede" name="numero" type="text"  required>
+                              <input placeholder="Número sede*" name="numero" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ubicacion de la sede (no es obligatorio)" name="ubicacion" type="text">
+                              <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono sede" name="telefono" type="text"  required>
-                            
+                              <input placeholder="Teléfono sede*" name="telefono" type="text"  required>
+                            </fieldset>
                             <fieldset>
-                            <?php $data = select_pais_paises(); ?>
+                            <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>País...</option>
+                              <option value="" disabled selected>Selecciona País*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row

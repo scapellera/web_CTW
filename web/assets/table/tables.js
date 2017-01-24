@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#example').DataTable( {
+    $('#buscador_cliente').DataTable( {
         dom: 'Bfrtip',
         
         "pagingType": "full_numbers",
