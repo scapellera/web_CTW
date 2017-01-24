@@ -3,7 +3,8 @@
 <?php
 session_start();
 include('assets/php/db.php');
-include('./assets/php/selects.php');
+include('assets/php/selects.php');
+include('assets/php/functions.php');
 if($_SESSION["login_done"]==true){
 ?>
 
@@ -27,7 +28,7 @@ if($_SESSION["login_done"]==true){
 
 <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
-<!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 
      <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -82,11 +83,20 @@ if($_SESSION["login_done"]==true){
     <link href="assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
     <link href="./assets/css/insert.css" rel="stylesheet" />
+    <!--SEDES EN VARIABLES-->
+    <!--<script src="assets/php/select_clientes_sedes.php"></script>-->
+    <!--SEDES SELEC DEPENDIENTE-->
+     <script src="assets/js/functions.js"></script>
 
 
 
 </head>
 <body>
+<!--CREAMOS LAS VARIABLES EN JS QUE LUEGO UTILIZAREMOS PARA VINCULAR LAS SEDES CON LOS CLIENTES-->
+
+
+
+
 <!--
 
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -144,7 +154,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Llista de tasques</a>
+                    <a class="navbar-brand">Minutaje</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -213,34 +223,31 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
                         <div class="container">  
-                          <form id="contact" action="./assets/php/post/post_articulos.php" method="post">
-                            <h3>Añadir Artículo</h3>
-                            <h4>Rellene el formulario para añadir el artículo al stock</h4>
+                          <form id="contact" action="./assets/php/post/post_minutaje.php" method="post" name="f_cliente_sede">
+                            <h3>Añadir Minutaje</h3>
+                            <h4>Rellene el formulario para añadir la salida realizada</h4>
+                            
                             <fieldset>
-                              <input placeholder="Nombre*" name="nombre" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Descripción" name="descripcion" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código de barras*" name="codigo_de_barras" type="text"  required>
-                            </fieldset>
-
-                            <fieldset>
-                            <?php $data = select_all_mayorista(); ?>
-                            <select name="select_box_nif_mayorista" class="select_box">
-                              <option value="" disabled selected>Selecciona NIF mayorista*</option>
+                            <?php $data = select_all_cliente(); ?>
+                            <select name="select_box_nif_empresa" class="select_box" onchange="cambia_sede()">
+                              <option value="" disabled selected>Selecciona NIF cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
                                     while($row = $data->fetch_assoc()) {
                               ?>
-                                    <option value="<?php echo $row['NIF_MAYORISTA']?>"><?php echo "$row[nombre_empresa] - $row[NIF_MAYORISTA]";?></option>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
                             <?php   
                                     }       
                                 }
                              ?>       
                             </select>
+                            </fieldset>
+                            <fieldset>
+                                <select class="select_box" name="select_box_sede_cliente"> 
+                                <option value="-">- 
+                                </select>
+                                                            
                             </fieldset>
                             <fieldset>
                               <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
@@ -352,7 +359,12 @@ if($_SESSION["login_done"]==true){
     	});
 	</script>-->
 
+
+
 </html>
+
+
+
 
 <?php 
 }else{

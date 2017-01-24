@@ -58,4 +58,14 @@ function select_all_stock(){
     return $data;
   }
 
+  function select_sede_cliente($nif_cliente){
+     $conn = connect();
+    $sql = "SELECT * 
+    FROM SEDE S
+    WHERE S.NIF_cliente = '".$nif_cliente."'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
+
 ?>
