@@ -102,13 +102,12 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <!--<li>
-                    <a href="lista_tareas.php">
+                <li class="active">
+                    <a href="./index.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Lista de tareas</p>
+                        <p>INICIO</p>
                     </a>
-                </li>-->
-                
+                </li>                
                 <li>
                     <a href="./buscador/buscador.php">
                         <i class="pe-7s-search"></i>
@@ -127,8 +126,12 @@ if($_SESSION["login_done"]==true){
                         <p>Insert</p>
                     </a>
                 </li>
-                
-                
+                <li>
+                    <a href="./minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -197,8 +200,10 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
-                            <a href="../logout.php">Log out
-                            </a>
+                            <a href="./perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
+                            <a href="../logout.php">Log out</a>
                         </li>
                     </ul>
                 </div>
@@ -216,8 +221,8 @@ if($_SESSION["login_done"]==true){
 
 
                                 <!--CONTENIDO VA AQUI-->
-                            
-
+                                <img src="assets/img/javi1.jpg"></img>
+                                <img src="assets/img/javi2.jpg"></img>
 
 
                                 

@@ -151,7 +151,18 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="buscador_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -219,6 +230,9 @@ if($_SESSION["login_done"]==true){
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                         </li>-->
+                        <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
                         <li>
                             <a href="../../logout.php">Log out
                             </a>

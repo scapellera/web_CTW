@@ -68,4 +68,14 @@ function select_all_stock(){
     return $data;
   }
 
+  function select_nombre_sede($id_sede){
+    $conn = connect();
+    $sql = "SELECT nombre
+    FROM SEDE
+    WHERE ID_SEDE = '".$id_sede."'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
+
 ?>

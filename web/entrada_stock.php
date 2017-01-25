@@ -105,12 +105,12 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <!--<li >
-                    <a href="#">
+                <li>
+                    <a href="./index.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Lista de tareas</p>
+                        <p>INICIO</p>
                     </a>
-                </li>-->
+                </li> 
                 <li>
                     <a href="./buscador/buscador.php">
                         <i class="pe-7s-search"></i>
@@ -129,7 +129,12 @@ if($_SESSION["login_done"]==true){
                         <p>Insert</p>
                     </a>
                 </li>
-               
+                <li>
+                    <a href="./minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -197,6 +202,9 @@ if($_SESSION["login_done"]==true){
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                         </li>-->
+                        <li>
+                            <a href="./perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
                         <li>
                             <a href="../logout.php">Log out
                             </a>
