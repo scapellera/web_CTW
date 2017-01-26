@@ -36,7 +36,7 @@ if($_SESSION["login_done"]==true){
     <?php
     if($_SESSION["user_rol"]<=1){
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_mayorista.js\"></script>";
 
     }
     
@@ -269,12 +269,11 @@ if($_SESSION["login_done"]==true){
                                         <?php
                                             $conn = connect();
 
-                                            $sql = "SELECT * FROM MAYORISTA";
-                                            $result = $conn->query($sql);
+                                             $data = select_all_mayorista(); 
 
-                                            if ($result->num_rows > 0) {
+                                            if ($data->num_rows > 0) {
                                                  // output data of each row
-                                                 while($row = $result->fetch_assoc()) {
+                                                 while($row = $data->fetch_assoc()) {
                                                     $pk = $row['NIF_MAYORISTA'];
 
                                         ?>
