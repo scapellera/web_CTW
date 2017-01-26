@@ -36,7 +36,7 @@ if($_SESSION["login_done"]==true){
     <?php
     if($_SESSION["user_rol"]<=1){
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_sede.js\"></script>";
 
     }
     
@@ -243,7 +243,7 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div >
@@ -267,14 +267,12 @@ if($_SESSION["login_done"]==true){
                                     <tbody>
 
                                         <?php
-                                            $conn = connect();
+                                            
+                                            $data = select_all_sede(); 
 
-                                            $sql = "SELECT * FROM SEDE";
-                                            $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
+                                            if ($data->num_rows > 0) {
                                                  // output data of each row
-                                                 while($row = $result->fetch_assoc()) {
+                                                 while($row = $data->fetch_assoc()) {
                                                     $pk = $row['ID_SEDE'];
 
                                         ?>
@@ -294,31 +292,13 @@ if($_SESSION["login_done"]==true){
                                                             
                                                     </tr>
 
-                                        <?php           /*echo"<tr>
-                                                            <td><a".$row["nombre_completo"]."</td>
-                                                            <td>".$row["NIF_EMPRESA"]."</td>
-                                                            <td>".$row["nombre_comercial"]."</td>
-                                                            <td>".$row["telefono"]."</td>
-                                                            <td>".$row["email"]."</td>
-                                                            <td>".$row["IBAN"]."</td>
-                                                            <td>".$row["SEPA"]."</td>
-                                                            <td>".$row["pais"]."</td>
-                                                            <td>".$row["ciudad_facturacion"]."</td>
-                                                            <td>".$row["codigo_postal_facturacion"]."</td>
-                                                            <td>".$row["calle_facturacion"]."</td>
-                                                            <td>".$row["numero_facturacion"]."</td>
-                                                            <td>".$row["ciudad_envio"]."</td>
-                                                            <td>".$row["codigo_postal_envio"]."</td>
-                                                            <td>".$row["calle_envio"]."</td>
-                                                            <td>".$row["numero_envio"]."</td>
-                                                        </tr>";*/
-                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
-                                                 }
+                                        <?php         
+                                                }
                                             } else {
                                                  echo "0 results";
                                             }
 
-                                            $conn->close();
+                                            
                                         ?>
                                         
                                      

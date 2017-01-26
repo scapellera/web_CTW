@@ -274,14 +274,12 @@ if($_SESSION["login_done"]==true){
                                     <tbody>
 
                                         <?php
-                                            $conn = connect();
+                                           
+                                            $data = select_all_cliente(); 
 
-                                            $sql = "SELECT * FROM CLIENTE";
-                                            $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
+                                            if ($data->num_rows > 0) {
                                                  // output data of each row
-                                                 while($row = $result->fetch_assoc()) {
+                                                 while($row = $data->fetch_assoc()) {
                                                     $pk = $row['NIF_EMPRESA'];
 
                                         ?>
@@ -308,31 +306,13 @@ if($_SESSION["login_done"]==true){
                                                             
                                                     </tr>
 
-                                        <?php           /*echo"<tr>
-                                                            <td><a".$row["nombre_completo"]."</td>
-                                                            <td>".$row["NIF_EMPRESA"]."</td>
-                                                            <td>".$row["nombre_comercial"]."</td>
-                                                            <td>".$row["telefono"]."</td>
-                                                            <td>".$row["email"]."</td>
-                                                            <td>".$row["IBAN"]."</td>
-                                                            <td>".$row["SEPA"]."</td>
-                                                            <td>".$row["pais"]."</td>
-                                                            <td>".$row["ciudad_facturacion"]."</td>
-                                                            <td>".$row["codigo_postal_facturacion"]."</td>
-                                                            <td>".$row["calle_facturacion"]."</td>
-                                                            <td>".$row["numero_facturacion"]."</td>
-                                                            <td>".$row["ciudad_envio"]."</td>
-                                                            <td>".$row["codigo_postal_envio"]."</td>
-                                                            <td>".$row["calle_envio"]."</td>
-                                                            <td>".$row["numero_envio"]."</td>
-                                                        </tr>";*/
-                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
+                                        <?php           
                                                  }
                                             } else {
                                                  echo "0 results";
                                             }
 
-                                            $conn->close();
+                                            
                                         ?>
                                         
                                      

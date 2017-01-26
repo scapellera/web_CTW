@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2017 a las 13:46:59
+-- Tiempo de generación: 26-01-2017 a las 13:09:21
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -99,7 +99,7 @@ INSERT INTO `CLIENTE` (`NIF_EMPRESA`, `nombre_comercial`, `nombre_completo`, `te
 ('23415624G', 'ARKHE', 'RIRLEY S.L', 933201263, 'rirley@gmail.com', 'Barcelona', '08008', 'calle hotel W', '101', 'Barcelona', '08008', 'calle hotel W', '101', 'ES242100322143454321', 1, 'Eslovenia', 386),
 ('44512378G', 'BETARQ', 'BETARQ ARQUITECTOS S.L', 931804172, 'betarq@gmail.com', 'Barcelona', '08008', 'Balmes', '78', 'Barcelona', '08008', 'Balmes', '78', 'ES211000345576429841', 1, 'Alemania', 49),
 ('45327163G', 'LIUJO', 'LIUJO S.L', 912804170, 'liujo@gmail.com', 'Milán', '12234', 'Plaza Italia', '33', 'Madrid', '08024', 'Calle mallorca', '33', 'ES333410234578922345', 1, 'Italia', 39),
-('bb', 'bb', 'bb', 4444, 'bb@ggg', 'bb', 'bb', 'bb', 'bb', 'bbb', 'bb', 'bb', 'bb', 'bbbb', 1, 'Angola', 244),
+('bb', 'bbb', 'bebebe', 55555, 'bb@gggdd', 'aa', 'aa', 'aa', 'aa', 'aaa', 'aaa', 'aaa', 'aaa', 'aaaa', 1, 'Angola', 244),
 ('cc', 'cc', 'cc', 333, 'cc@ccc', 'cc', 'cc', 'cc', 'cc', 'cc', 'ccc', 'cc', 'cc', 'cc', 1, 'Armenia', 374),
 ('dd', 'dd', 'dd', 222, 'dd@dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 1, 'Francia', 33);
 
@@ -496,10 +496,10 @@ INSERT INTO `SEDE` (`ID_SEDE`, `NIF_cliente`, `nombre`, `ubicacion`, `ciudad`, `
 (1, 'bb', 'bbb', '', 'bbb', 'bbb', 'bbb', 'bbb', 666, 'Andorra', 376),
 (2, 'bb', 'aaa', 'aaa', 'aa', 'aaa', 'aaaa', 'aaa', 777, 'Australia', 61),
 (3, 'bb', 'ccc', '', 'ccc', 'ccc', 'ccc', 'ccc', 888, 'Argentina', 54),
-(4, 'bb', 'ddd', 'ddd', 'ddd', 'ddd', 'ddd', 'ddd', 999, 'Barbados', 1246),
+(4, 'bb', 'ddd', '', 'ddd', 'ddd', 'ddd', 'ddd', 999, 'Barbados', 1246),
 (5, 'dd', 'dd', 'ddddddd', 'dd', 'dd', 'dd', 'dd', 111, 'Albania', 355),
 (6, 'dd', 'patata', 'asd', 'ads', 'ads', 'asd', 'asd', 555555, 'Jordania', 962),
-(7, '23415624G', 'The Arkhe Madrid', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242),
+(7, '23415624G', 'The Arkhe Madridd', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242),
 (8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34),
 (9, '44512378G', 'Betarq Barcelona', 'Bajos', 'Barcelona', '08002', 'Mallorca', '145', 937841273, 'Argentina', 54);
 
@@ -577,17 +577,18 @@ CREATE TABLE `USUARIO` (
   `ID_USUARIO` int(4) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `user` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+  `password` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `rol` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `USUARIO`
 --
 
-INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`) VALUES
-(10, 'usuario3', 'usu3', 'usu3'),
-(11, 'usuario1', 'usu1', '529113007b15005637b3dad6d9ba2f10'),
-(12, 'usuario2', 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2');
+INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`, `rol`) VALUES
+(10, 'usuario3', 'usu3', 'usu3', 0),
+(11, 'usuario1', 'usu1', '529113007b15005637b3dad6d9ba2f10', 5),
+(12, 'usuario2', 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2', 1);
 
 --
 -- Índices para tablas volcadas
@@ -727,7 +728,7 @@ ALTER TABLE `USUARIO`
 -- AUTO_INCREMENT de la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --

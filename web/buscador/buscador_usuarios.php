@@ -108,7 +108,7 @@ if($_SESSION["login_done"]==true){
                  
             </div>
 
-            <ul class="nav">ç
+            <ul class="nav">
                 <li>
                     <a href="../index.php">
                         <i class="pe-7s-pen"></i>
