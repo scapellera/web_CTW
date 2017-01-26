@@ -3,20 +3,19 @@
 <?php
 session_start();
 include('../assets/php/db.php');
-include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>WEB TEST</title>
+	<title>WEB TEST</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -33,19 +32,12 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <?php
-    if($_SESSION["user_rol"]<=1){
-        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_mayorista.js\"></script>";
-
-    }
-    
-    ?>
-    
+    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    <script type="text/javascript" src="../assets/js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../assets/table/tables.js"></script>
+    <script src="../table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -65,6 +57,8 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    <!-- nuestro css -->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -89,14 +83,17 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
     <link href="../assets/css/insert.css" rel="stylesheet" />
-    <!--NUESTRO CSS-->
-    <link href="../assets/css/micss.css" rel="stylesheet" />
 
 
 
 </head>
 <body>
+<!--
 
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -111,56 +108,38 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>PÁGINA INICIO</p>
+                        <i class="pe-7s-note2"></i>
+                        <p>INICIO</p>
+                    </a>
+                </li> 
+                <li>
+                    <a href="./buscador.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Buscador</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_clientes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
+                    <a href="../entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_sedes.php">
+                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
+                        <p>Insert</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_contactos.php">
+                    <a href="../minutaje.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
+                        <p>Minutaje</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="buscador_mayoristas.php">
+                    <a href="../buscador_calendario.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Mayoristas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_usuarios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_servicios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Servicios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Artículos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_stock.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Stock</p>
+                        <p>Calendario</p>
                     </a>
                 </li>
             </ul>
@@ -177,7 +156,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar sede</a>
+                    <a class="navbar-brand">Buscador</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -246,95 +225,49 @@ if($_SESSION["login_done"]==true){
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div >
-                        <div >
+                    <div class="col-md-12">
+                        <div class="card">
 
-                                <table id="buscador_mayorista" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Nif mayorista</th>
-                                            <th>Nombre empresa</th>
-                                            <th>Nombre del comercial</th>
-                                            <th>Teléfono empresa</th>
-                                            <th>Teléfono del comercial</th>
-                                            <th>Extensión teléfono del comercial</th>
-                                            <th>Email empresa</th>
-                                            <th>Email del comercial</th>
-                                            <th>País</th>
-                                            <th>Prefijo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-                                            $conn = connect();
-
-                                             $data = select_all_mayorista(); 
-
-                                            if ($data->num_rows > 0) {
-                                                 // output data of each row
-                                                 while($row = $data->fetch_assoc()) {
-                                                    $pk = $row['NIF_MAYORISTA'];
-
-                                        ?>
-                                                    <tr> 
-                                                        <td><a href="#" class="NIF_MAYORISTA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_MAYORISTA']?> </a></td>
-                                                        <td><a href="#" class="nombre_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_empresa']?> </a></td>
-                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
-                                                        <td><a href="#" class="telefono_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_empresa']?> </a></td>
-                                                        <td><a href="#" class="telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_comercial']?> </a></td>
-                                                        <td><a href="#" class="extension_telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension_telefono_comercial']?> </a></td>
-                                                        <td><a href="#" class="email_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_empresa']?> </a></td>
-                                                        <td><a href="#" class="email_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_comercial']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>   
-                                                    </tr>
-
-                                        <?php           /*echo"<tr>
-                                                            <td><a".$row["nombre_completo"]."</td>
-                                                            <td>".$row["NIF_EMPRESA"]."</td>
-                                                            <td>".$row["nombre_comercial"]."</td>
-                                                            <td>".$row["telefono"]."</td>
-                                                            <td>".$row["email"]."</td>
-                                                            <td>".$row["IBAN"]."</td>
-                                                            <td>".$row["SEPA"]."</td>
-                                                            <td>".$row["pais"]."</td>
-                                                            <td>".$row["ciudad_facturacion"]."</td>
-                                                            <td>".$row["codigo_postal_facturacion"]."</td>
-                                                            <td>".$row["calle_facturacion"]."</td>
-                                                            <td>".$row["numero_facturacion"]."</td>
-                                                            <td>".$row["ciudad_envio"]."</td>
-                                                            <td>".$row["codigo_postal_envio"]."</td>
-                                                            <td>".$row["calle_envio"]."</td>
-                                                            <td>".$row["numero_envio"]."</td>
-                                                        </tr>";*/
-                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
-                                                 }
-                                            } else {
-                                                 echo "0 results";
-                                            }
-
-                                            $conn->close();
-                                        ?>
-                                        
-                                     
-                                    </tbody>
-                                </table>
-
-
-                                
+                              <?php 
+                              function getGCalendarUrl($event){  
+                                $titulo = urlencode($event['titulo']); 
+                                $descripcion = urlencode($event['descripcion']); 
+                                $localizacion = urlencode($event['localizacion']); 
+                                $start=new DateTime($event['fecha_inicio'].' '.$event['hora_inicio'].' '.date_default_timezone_get()); 
+                                $end=new DateTime($event['fecha_fin'].' '.$event['hora_fin'].' '.date_default_timezone_get()); $dates = urlencode($start->format("Ymd\THis")) . "/" . urlencode($end->format("Ymd\THis"));
+                                $name = urlencode($event['nombre']);
+                                $url = urlencode($event['url']);
+                                $gCalUrl = "http://www.google.com/calendar/event?action=TEMPLATE&amp;text=$titulo&amp;dates=$dates&amp;details=$descripcion&amp;location=$localizacion&amp;trp=false&amp;sprop=$url&amp;sprop=name:$name";
+                                return ($gCalUrl);
+                                }
+                                // array asociativo con los parametros mecesarios.
+                                $evento = array(
+                                  'titulo' => 'Mi evento de prueba',
+                                  'descripcion' => 'Descripcion del evento de prueba',
+                                  'localizacion' => 'Aqui ponemos la dirección donde se celebra el evento',
+                                  'fecha_inicio' => '2014-04-10', // Fecha de inicio de evento en formato AAAA-MM-DD
+                                'hora_inicio'=>'17:30', // Hora Inicio del evento
+                                'fecha_fin'=>'2014-04-12', // Fecha de fin de evento en formato AAAA-MM-DD
+                                'hora_fin'=>'19:00', // Hora final del evento
+                                'nombre'=>'ReviBlog', // Nombre del sitio
+                                'url'=>'www.reviblog.net' // Url de la página
+                                );
+                                ?>
+                                <iframe src="https://calendar.google.com/calendar/embed?src=tutq89pua5n7fp1b596im3vq6s%40group.calendar.google.com&ctz=Europe/Madrid" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                                <a href="<?php echo getGCalendarUrl($evento); ?>"><img src="http://www.google.com/calendar/images/ext/gc_button6_es.gif" border="0"></a>
+                                                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--Menu footer
+
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        
+                        <!--Menu footer-->
                         <!--<li>
                             <a href="#">
                                 Home
@@ -363,7 +296,7 @@ if($_SESSION["login_done"]==true){
                 </p>-->
             </div>
         </footer>
-        -->
+
     </div>
 </div>
 
@@ -372,13 +305,13 @@ if($_SESSION["login_done"]==true){
 
     <!--   Core JS Files   -->
     <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!--  Checkbox, Radio & Switch Plugins -->
-    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-    <!--  Charts Plugin -->
-    <script src="../assets/js/chartist.min.js"></script>
+	<!--  Charts Plugin -->
+	<script src="../assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="../assets/js/bootstrap-notify.js"></script>
@@ -387,27 +320,27 @@ if($_SESSION["login_done"]==true){
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
+	<script src="../assets/js/light-bootstrap-dashboard.js"></script>
 
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/demo.js"></script>
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="../assets/js/demo.js"></script>
     <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-    <!--<script type="text/javascript">
-        $(document).ready(function(){
+	<!--<script type="text/javascript">
+    	$(document).ready(function(){
 
-            demo.initChartist();
+        	demo.initChartist();
 
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+        	$.notify({
+            	icon: 'pe-7s-gift',
+            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
             },{
                 type: 'info',
                 timer: 4000
             });
 
-        });
-    </script>-->
+    	});
+	</script>-->
 
 </html>
 

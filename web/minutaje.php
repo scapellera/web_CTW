@@ -115,20 +115,20 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <!--<li >
-                    <a href="#">
+                <li>
+                    <a href="./index.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Lista de tareas</p>
+                        <p>INICIO</p>
                     </a>
-                </li>-->
+                </li> 
                 <li>
                     <a href="./buscador/buscador.php">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../entrada_stock.php">
+                <li>
+                    <a href="./entrada_stock.php">
                         <i class="pe-7s-box2"></i>
                         <p>Entrada de stock</p>
                     </a>
@@ -137,6 +137,12 @@ if($_SESSION["login_done"]==true){
                     <a href="./insert/insert.php">
                         <i class="pe-7s-pen"></i>
                         <p>Insert</p>
+                    </a>
+                </li>
+                <li  class="active">
+                    <a href="./minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje</p>
                     </a>
                 </li>
                
@@ -208,6 +214,9 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
                             <a href="../logout.php">Log out
                             </a>
                         </li>
@@ -230,7 +239,7 @@ if($_SESSION["login_done"]==true){
                             <fieldset>
                             <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box" onchange="cambia_sede()">
-                              <option value="" disabled selected>Selecciona NIF cliente*</option>
+                              <option value="" disabled selected>Selecciona el cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
@@ -250,22 +259,45 @@ if($_SESSION["login_done"]==true){
                                                             
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
+                            <?php $data = select_all_servicio(); ?>
+                            <select name="select_box_servicio" class="select_box">
+                              <option value="" disabled selected>Selecciona el servicio*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['ID_SERVICIO']?>"><?php echo "$row[nombre] - $row[descripcion]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
+                            <?php $data = select_all_usuario(); ?>
+                            <select name="select_box_usuario" class="select_box">
+                              <option value="" disabled selected>Selecciona el usuario que realiza el servicio*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['ID_USUARIO']?>"><?php echo "$row[user] - $row[nombre]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Precio*" name="precio" type="text"  required>
+                              <input placeholder="Fecha*" name="fecha" type="date" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Cantidad*" name="cantidad" type="text"  required>
+                              <input placeholder="Horas*" name="horas" type="datetime" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ubicación" name="ubicacion" type="text">
+                              Facturado&nbsp;&nbsp;&nbsp;<input name="facturado" type="checkbox">
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

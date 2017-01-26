@@ -249,7 +249,7 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
-                                <table id="buscador_cliente" class="table table-striped table-bordered">
+                                <table id="buscador_sede" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Nif cliente</th>

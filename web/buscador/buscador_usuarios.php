@@ -36,7 +36,7 @@ if($_SESSION["login_done"]==true){
     <?php
     if($_SESSION["user_rol"]<=1){
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_usuario.js\"></script>";
 
     }
     
@@ -168,7 +168,7 @@ if($_SESSION["login_done"]==true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -243,17 +243,18 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div >
                         <div >
 
-                                <table id="buscador_cliente" class="table table-striped table-bordered">
+                                <table id="buscador_usuario" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Nick</th>
+                                            <th>Rol</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -273,6 +274,7 @@ if($_SESSION["login_done"]==true){
                                                     <tr> 
                                                         <td><a href="#" class="user" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['user']?> </a></td>
                                                         <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
+                                                        <td><a href="#" class="rol" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['rol']?> </a></td>
                                                     </tr>
 
                                         <?php           /*echo"<tr>

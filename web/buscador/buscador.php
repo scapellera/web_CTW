@@ -113,8 +113,8 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li> 
                 <li class="active">
-                    <a>
-                        <i class="pe-7s-search"></i>
+                    <a href="./buscador.php">
+                        <i class="pe-7s-box2"></i>
                         <p>Buscador</p>
                     </a>
                 </li>
@@ -134,6 +134,12 @@ if($_SESSION["login_done"]==true){
                     <a href="../minutaje.php">
                         <i class="pe-7s-pen"></i>
                         <p>Minutaje</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./buscador_calendario.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Calendario</p>
                     </a>
                 </li>
             </ul>
@@ -228,7 +234,9 @@ if($_SESSION["login_done"]==true){
                                <a href="buscador_mayoristas.php" class="button">Buscar mayorista</a>
                                <a href="buscador_usuarios.php" class="button">Buscar usuario</a>
                                <a href="buscador_servicios.php" class="button">Buscar servicio</a>
-                               
+                               <a href="buscador_articulos.php" class="button">Buscar artículo</a>
+                               <a href="buscador_stock.php" class="button">Buscar stock</a>
+                               <a href="buscador_calendario.php" class="button">Calendario</a>
                                                             
                         </div>
                     </div>
