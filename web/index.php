@@ -221,9 +221,7 @@ if($_SESSION["login_done"]==true){
 
 
                                 <!--CONTENIDO VA AQUI-->
-                                <img src="assets/img/javi1.jpg"></img>
-                                <img src="assets/img/javi2.jpg"></img>
-
+                                
 
                                 
                         </div>

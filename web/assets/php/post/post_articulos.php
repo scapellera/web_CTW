@@ -25,6 +25,7 @@ $ubicacion = $_POST['ubicacion'];
 
 //Añadimos comillas a los varchars
 $nombre="\"$nombre\"";
+$precio="\"$precio\"";
 $descripcion="\"$descripcion\"";
 $codigo_de_barras="\"$codigo_de_barras\"";
 $nif_mayorista="\"$nif_mayorista\"";

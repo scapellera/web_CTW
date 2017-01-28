@@ -272,8 +272,8 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <tr> 
-                                                        <td><a href="#" class="user" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['user']?> </a></td>
                                                         <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
+                                                        <td><a href="#" class="user" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['user']?> </a></td>                                                        
                                                         <td><a href="#" class="rol" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['rol']?> </a></td>
                                                     </tr>
 

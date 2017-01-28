@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2017 a las 13:09:21
+-- Tiempo de generación: 28-01-2017 a las 18:17:28
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -34,12 +34,22 @@ CREATE TABLE `ARTICULO` (
   `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `codigo_producto_mayorista` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `numero_de_serie` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `precio` float NOT NULL,
+  `precio` double NOT NULL,
   `cantidad` int(3) NOT NULL,
   `numero_factura` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_de_alta` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+  `fecha_de_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ARTICULO`
+--
+
+INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`) VALUES
+(1, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '36340346F', NULL, '2132123', 295, 2, '87998', NULL, '2017-01-28 17:08:47'),
+(2, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '21321231', 290, 2, '879982', NULL, '2017-01-28 17:08:47'),
+(3, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '213212313', 270.5, 5, '8799823', NULL, '2017-01-28 17:08:47'),
+(4, 'BQ aquaris M5.5', 'Smartphone', '12312324132132342333', '23815837G', NULL, '1223212222', 195.99, 2, '879982111', NULL, '2017-01-28 17:13:45');
 
 -- --------------------------------------------------------
 
@@ -537,6 +547,14 @@ CREATE TABLE `STOCK` (
   `cantidad_total` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `STOCK`
+--
+
+INSERT INTO `STOCK` (`CODIGO_DE_BARRAS`, `cantidad_total`) VALUES
+('12312324132132342312', 9),
+('12312324132132342333', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -728,7 +746,7 @@ ALTER TABLE `USUARIO`
 -- AUTO_INCREMENT de la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
