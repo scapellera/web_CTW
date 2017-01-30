@@ -130,5 +130,5 @@ $evento = array(
 'hora_fin'=>'19:00', // Hora final del evento
 'nombre'=>'ReviBlog', // Nombre del sitio
 'url'=>'www.reviblog.net' // Url de la página
-)
+
 ?>

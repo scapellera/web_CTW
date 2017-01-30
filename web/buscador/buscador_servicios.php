@@ -168,7 +168,7 @@ if($_SESSION["login_done"]==true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+        <nav class="navbar2 navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -243,13 +243,13 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content">
+        <div class="content2">
             <div class="container-fluid">
                 <div class="row">
                     <div >
                         <div >
 
-                                <table id="buscador_servicio" class="table table-striped table-bordered">
+                                <table id="buscador_cliente" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
