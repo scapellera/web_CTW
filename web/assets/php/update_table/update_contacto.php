@@ -5,9 +5,9 @@ include('../db.php');
                                             
 if(!empty($_POST['value'])) {
     $conn = connect();
-    $sql = "UPDATE SEDE
+    $sql = "UPDATE CONTACTO
       SET ".$_POST['name']." = '".$_POST['value']."'
-      WHERE ID_SEDE = '".$_POST['pk']."'";
+      WHERE ID_CONTACTO = '".$_POST['pk']."'";
     $result = $conn->query($sql);
     close($conn);
     return $data;

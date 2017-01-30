@@ -251,6 +251,18 @@ if($_SESSION["login_done"]==true){
 
                                 <table id="buscador_sede" class="table table-striped table-bordered">
                                     <thead>
+                                    <button onclick="hola('asd')">O</button>
+                                    <script>
+                                        function hola($pepe){
+                                            <?php
+                                            $conn = connect();
+                                            $sql = "UPDATE SEDE SET ciudad='eee' WHERE calle='asd'";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            close($conn);
+                                            ?>
+                                        }
+                                    </script>
                                         <tr>
                                             <th>Nif cliente</th>
                                             <th>Nombre</th>
@@ -268,7 +280,8 @@ if($_SESSION["login_done"]==true){
 
                                         <?php
                                             
-                                            $data = select_all_sede(); 
+                                            $data = select_all_sede();
+                                            
 
                                             if ($data->num_rows > 0) {
                                                  // output data of each row
@@ -285,12 +298,30 @@ if($_SESSION["login_done"]==true){
                                                         <td><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></td>
                                                         <td><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></td>
                                                         <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
-                                                           
+                                                        <td>
+                                                            <select>
+                                                              <option value="" disabled selected data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?></option>
+                                                                <?php
+                                                                $data2 = select_all_pais();
+                                                                if ($data2->num_rows > 0) {
+                                                                    // output data of each row
+                                                                    while($row2 = $data2->fetch_assoc()) {
+                                                                ?>
+                                                                    <option  value="<?php echo $row2['PAIS']?>"><?php echo $row2['PAIS']?></option>
+                                                                <?php   
+                                                                    }       
+                                                                }
+                                                                ?> 
+                                                             </select>
+                                                            
+                                                         </td>
+                                                         <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                        
+                                                         
                                                            
                                                             
                                                     </tr>
+
 
                                         <?php         
                                                 }

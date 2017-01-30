@@ -2,44 +2,44 @@ $(document).ready(function() {
   $.fn.editable.defaults.mode = 'inline'
   $('.nombre').editable({
     type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
+    url: '../assets/php/update_table/update_contacto.php',
     name: 'nombre'
 
   })
-  $('.ubicacion').editable({
+  $('.sede').editable({
     type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
-    name: 'ubicacion'
+    url: '../assets/php/update_table/update_contacto.php',
+    name: 'sede'
 
   })
-  $('.ciudad').editable({
+  $('.cargo').editable({
     type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
-    name: 'ciudad'
+    url: '../assets/php/update_table/update_contacto.php',
+    name: 'cargo'
 
   })
-  $('.codigo_postal').editable({
+  $('.email').editable({
     type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
-    name: 'codigo_postal'
-
-  })
-  $('.calle').editable({
-    type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
-    name: 'calle'
-
-  })
-  $('.numero').editable({
-    type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
-    name: 'numero'
+    url: '../assets/php/update_table/update_contacto.php',
+    name: 'email'
 
   })
   $('.telefono').editable({
     type: 'text',
-    url: '../assets/php/update_table/update_sede.php',
+    url: '../assets/php/update_table/update_contacto.php',
     name: 'telefono'
+
+  })
+  $('.pais').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_contacto.php',
+    name: 'pais'
+
+  })
+  $('.extension').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_contacto.php',
+    name: 'extension'
 
   })
   

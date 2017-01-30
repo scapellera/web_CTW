@@ -22,7 +22,7 @@ $(document).ready(function() {
         [ '10 rows', '25 rows', '50 rows', 'Show all' ]
       ],
         buttons: [
-            'excel',
+            'pdf',
             'pageLength'
         ]
     } );

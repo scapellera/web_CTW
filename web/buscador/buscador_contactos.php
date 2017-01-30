@@ -36,7 +36,7 @@ if($_SESSION["login_done"]==true){
     <?php
     if($_SESSION["user_rol"]<=1){
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_contacto.js\"></script>";
 
     }
     
