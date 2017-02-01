@@ -234,10 +234,10 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar sede</h3>
                             <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
                             
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona el NIF del cliente:
                             <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box">
-                              <option value="" disabled selected>Selecciona NIF cliente*</option>
+                              <option value="" disabled selected>Selecciona el NIF del cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
@@ -251,30 +251,30 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre sede*" name="nombre" type="text"  required>
+                            &nbsp;Nombre de la sede:  <input placeholder="Nombre de la sede*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad sede*" name="ciudad" type="text"  required>
+                            &nbsp;Ciudad de la sede: <input placeholder="Ciudad de la sede*" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal sede*" name="codigo_postal" type="text"  required>
+                            &nbsp;Código postal de la sede:  <input placeholder="Código postal de la sede*" name="codigo_postal" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Calle sede*" name="calle" type="text"  required>
+                            &nbsp;Calle de la sede:  <input placeholder="Calle de la sede*" name="calle" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número sede*" name="numero" type="text"  required>
+                            &nbsp;Número de la sede:  <input placeholder="Número de la sede*" name="numero" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
+                            &nbsp;Ubicacion de la sede:  <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono sede*" name="telefono" type="text"  required>
+                            &nbsp;Teléfono de la sede:  <input placeholder="Teléfono de la sede*" name="telefono" type="text"  required>
                             </fieldset>
-                            <fieldset>
+                            <fieldset> &nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
+                              <option value="" disabled selected>Selecciona el país*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row

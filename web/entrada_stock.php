@@ -149,7 +149,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Llista de tasques</a>
+                    <a class="navbar-brand">Insertar artículo</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -225,19 +225,19 @@ if($_SESSION["login_done"]==true){
                             <h3>Añadir Artículo</h3>
                             <h4>Rellene el formulario para añadir el artículo al stock</h4>
                             <fieldset>
-                              <input placeholder="Nombre*" name="nombre" type="text"  required>
+                            &nbsp;Nombre:  <input placeholder="Nombre*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Descripción" name="descripcion" type="text">
+                            &nbsp;Descripción:  <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código de barras*" name="codigo_de_barras" type="text"  required>
+                            &nbsp;Código de barras:  <input placeholder="Código de barras*" name="codigo_de_barras" type="text"  required>
                             </fieldset>
 
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona el NIF del mayorista:
                             <?php $data = select_all_mayorista(); ?>
                             <select name="select_box_nif_mayorista" class="select_box">
-                              <option value="" disabled selected>Selecciona NIF mayorista*</option>
+                              <option value="" disabled selected>Selecciona el NIF del mayorista*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
@@ -251,22 +251,22 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
+                            &nbsp;Código producto del mayorista:  <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
+                            &nbsp;Número de serie:  <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Precio*" name="precio" type="text"  required>
+                            &nbsp;Precio:  <input placeholder="Precio*" name="precio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Cantidad*" name="cantidad" type="text"  required>
+                            &nbsp;Cantidad:  <input placeholder="Cantidad*" name="cantidad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
+                            &nbsp;Número de factura:  <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ubicación" name="ubicacion" type="text">
+                            &nbsp;Ubicación:  <input placeholder="Ubicación" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

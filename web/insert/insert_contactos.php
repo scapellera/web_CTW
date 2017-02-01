@@ -19,7 +19,6 @@ if($_SESSION["login_done"]==true){
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
 
@@ -235,9 +234,9 @@ if($_SESSION["login_done"]==true){
                             <h4>Rellene el formulario para añadir una nuevo contacto a una sede ya añadida.</h4>
                             
                             <fieldset>
-                              <input placeholder="Nombre contacto*" name="nombre" type="text"  required>
+                            &nbsp;Nombre del contacto:  <input placeholder="Nombre del contacto*" name="nombre" type="text"  required>
                             </fieldset>
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona la sede:
                             <?php $data = select_all_sede(); ?>
                             <select name="select_box_id_sede" class="select_box">
                               <option value="" disabled selected>Selecciona la sede*</option>
@@ -254,21 +253,21 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Cargo*" name="cargo" type="text" required>
+                            &nbsp;Cargo:  <input placeholder="Cargo*" name="cargo" type="text" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico*" name="email" type="email"  required>
+                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
+                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Extensión" name="extension" type="text">
+                            &nbsp;Extensión:  <input placeholder="Extensión" name="extension" type="text">
                             </fieldset>
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
+                              <option value="" disabled selected>Selecciona el país*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
@@ -286,13 +285,13 @@ if($_SESSION["login_done"]==true){
                             </fieldset>
                           </form>
                         </div>
-
-                                                                                        
-                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         <footer class="footer">

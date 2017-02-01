@@ -234,18 +234,18 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar servicio</h3>
                             <h4>Rellene el formulario para añadir un nuevo servicio</h4>
                             <fieldset>
-                              <input placeholder="Nombre del servicio*" name="nombre" type="text"  required>
+                            &nbsp;Nombre del servicio:  <input placeholder="Nombre del servicio*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Descripcion" name="descripcion" type="text">
+                            &nbsp;Descripción:  <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Precio*" name="precio" type="text"  required>
+                            &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text"  required>
                             </fieldset>
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona el NIF del cliente:
                             <?php $data = select_all_cliente(); ?>
                             <select name="select_box_nif_empresa" class="select_box">
-                              <option value="">Selecciona NIF cliente</option>
+                              <option value="">Selecciona el NIF del cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row

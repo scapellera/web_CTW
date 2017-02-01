@@ -235,13 +235,13 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar usuario</h3>
                             <h4>Rellene el formulario para añadir un nuevo usuario</h4>
                             <fieldset>
-                              <input placeholder="Nombre usuario*" name="nombre" type="text"  required>
+                            &nbsp;Nombre de usuario:  <input placeholder="Nombre de usuario*" name="nombre" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nick de usuario*" name="user" type="text"  required>
+                            &nbsp;Nick de usuario:  <input placeholder="Nick de usuario*" name="user" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Contraseña*" name="password" type="text"  required>
+                            &nbsp;Contraseña:  <input placeholder="Contraseña*" name="password" type="text"  required>
                             </fieldset>
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>

@@ -271,18 +271,15 @@ if($_SESSION["login_done"]==true){
                                     </script>
                                     <script>
 
-                                    function myFunction($id) {
+                                    function myFunction(id) {
                                         <?php
-
-                                                    $id2 = 'id';
-                                                    /*$conn = connect();
-                                                    $sql = "UPDATE SEDE SET pais='".$id2."' WHERE ID_SEDE=7";
-                                                    $stmt = $conn->prepare($sql);
-                                                    $stmt->execute();
-                                                    close($conn);
-                                                    */
-                                                    ?>
-                                                    var id = '<?php echo $id2 ?>';
+                                            /*$conn = connect();
+                                            $sql = "UPDATE SEDE SET pais='".$id2."' WHERE ID_SEDE=7";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            close($conn);
+                                            */
+                                        ?>
                                         //var x = document.getElementById("mySelect").selectedIndex;
                                         //alert(document.getElementsByTagName("option")[x].value);
                                         alert(id);
@@ -343,15 +340,9 @@ if($_SESSION["login_done"]==true){
                                                                 ?> 
                                                              </select>
                                                              
-                                                         
-                                                         
-
                                                          </td>
-                                                         <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
-                                                        
-                                                         
-                                                        
-                                                       <button onclick="myFunction('<?php echo $pais; ?>')"><?php echo $pais; ?></button>     
+                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                             
                                                     </tr>
 
 

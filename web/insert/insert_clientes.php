@@ -234,51 +234,51 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar cliente</h3>
                             <h4>Rellene el formulario para añadir un nuevo cliente</h4>
                             <fieldset>
-                              <input placeholder="NIF empresa*" name="nif_empresa" type="text" autofocus>
+                            &nbsp;NIF de la empresa:  <input placeholder="NIF de la empresa*" name="nif_empresa" type="text" autofocus>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial*" name="nombre_comercial" type="text"  required>
+                            &nbsp;Nombre del comercial:  <input placeholder="Nombre del comercial*" name="nombre_comercial" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre completo*" name="nombre_completo" type="text"  required>
+                            &nbsp;Nombre de la empresa:  <input placeholder="Nombre de la empresa*" name="nombre_completo" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono*" name="telefono" type="text"  required>
+                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico*" name="email" type="email"  required>
+                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad facturacion*" name="ciudad_facturacion" type="text"  required>
+                            &nbsp;Ciudad para la facturacion:  <input placeholder="Ciudad para la facturacion*" name="ciudad_facturacion" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal facturación*" name="codigo_postal_facturacion" type="text"  required>
+                            &nbsp;Código postal para la facturación:  <input placeholder="Código postal para la facturación*" name="codigo_postal_facturacion" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Calle_facturación*" name="calle_facturacion" type="text"  required>
+                            &nbsp;Calle para la facturación:  <input placeholder="Calle para la facturación*" name="calle_facturacion" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número facturación*" name="numero_facturacion" type="text"  required>
+                            &nbsp;Número para la facturación:  <input placeholder="Número para la facturación*" name="numero_facturacion" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Ciudad envio*" name="ciudad_envio" type="text"  required>
+                            &nbsp;Ciudad para el envio:  <input placeholder="Ciudad para el envio*" name="ciudad_envio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Código postal envio*" name="codigo_postal_envio" type="text"  required>
+                            &nbsp;Código postal para el envio:  <input placeholder="Código postal para el envio*" name="codigo_postal_envio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Calle envio*" name="calle_envio" type="text"  required>
+                            &nbsp;Calle para el envio:  <input placeholder="Calle para el envio*" name="calle_envio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Número envio*" name="numero_envio" type="text"  required>
+                            &nbsp;Número para el envio:  <input placeholder="Número para el envio*" name="numero_envio" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="IBAN*" name="iban" type="text"  required>
+                            &nbsp;IBAN:  <input placeholder="IBAN*" name="iban" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="SEPA*" name="sepa" type="text" required>
+                            &nbsp;SEPA:  <input placeholder="SEPA*" name="sepa" type="text" required>
                             </fieldset>
-                            <fieldset>
+                            <fieldset>&nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>Selecciona País*</option>
