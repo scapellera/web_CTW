@@ -132,6 +132,12 @@ if($_SESSION["login_done"]==true){
                         <p>Minutaje</p>
                     </a>
                 </li>
+                <li>
+                    <a href="./calendario.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Calendario</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>

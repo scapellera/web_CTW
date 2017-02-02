@@ -35,11 +35,11 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <!--<script type="text/javascript" src="assets/js/editor.js"></script>-->
+    <script type="text/javascript" src="assets/js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <!--<script src="table/tables.js"></script>-->
+    <script src="table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 

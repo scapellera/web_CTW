@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -57,8 +58,6 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-    <!-- nuestro css -->
-    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -88,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -108,34 +102,47 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
                     </a>
-                </li> 
+                </li>
+                <li >
+                    <a href="insert_clientes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
                 <li class="active">
-                    <a href="./buscador.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../insert/insert.php">
+                    <a href="insert_sedes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../minutaje.php">
+                    <a href="insert_contactos.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
+                        <p>Contactos</p>
                     </a>
                 </li>
+                <li>
+                    <a href="insert_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+                
             </ul>
     	</div>
     </div>
@@ -150,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Buscador</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -220,18 +227,73 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                               <a href="buscador_clientes.php" class="button">Buscar cliente</a>
-                               <a href="buscador_sedes.php" class="button">Buscar <br> sede</a>
-                               <a href="buscador_contactos.php" class="button">Buscar contacto</a>
-                               <a href="buscador_mayoristas.php" class="button">Buscar mayorista</a>
-                               <a href="buscador_usuarios.php" class="button">Buscar usuario</a>
-                               <a href="buscador_servicios.php" class="button">Buscar servicio</a>
-                               <a href="buscador_articulos.php" class="button">Buscar artículo</a>
-                               <a href="buscador_stock.php" class="button">Buscar stock</a>
-                               <a href="buscador_calendario.php" class="button">Calendario</a>
-                                                            
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
+                            <h3>Insertar sede</h3>
+                            <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
+                            
+                            <fieldset>&nbsp;Selecciona el NIF del cliente:
+                            <?php $data = select_all_cliente(); ?>
+                            <select name="select_box_nif_empresa" class="select_box">
+                              <option value="" disabled selected>Selecciona el NIF del cliente*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Nombre de la sede:  <input placeholder="Nombre de la sede*" name="nombre" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Ciudad de la sede: <input placeholder="Ciudad de la sede*" name="ciudad" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Código postal de la sede:  <input placeholder="Código postal de la sede*" name="codigo_postal" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Calle de la sede:  <input placeholder="Calle de la sede*" name="calle" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Número de la sede:  <input placeholder="Número de la sede*" name="numero" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Ubicacion de la sede:  <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Teléfono de la sede:  <input placeholder="Teléfono de la sede*" name="telefono" type="text"  required>
+                            </fieldset>
+                            <fieldset> &nbsp;Selecciona el país:
+                            <?php $data = select_all_pais(); ?>
+                            <select name="select_box_pais" class="select_box">
+                              <option value="" disabled selected>Selecciona el país*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>

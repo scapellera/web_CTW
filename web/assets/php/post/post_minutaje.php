@@ -234,9 +234,9 @@ if($_SESSION["login_done"]==true){
 					$facturado = $_POST['facturado'];
 
 					if($facturado==''){
-						$facturado2 = false;
+						$facturado2 = 0;
 					}else{
-						$facturado2 = true;
+						$facturado2 = 1;
 					}
 					$conn = connect();
 					$data = select_id_sede($sede);
@@ -245,7 +245,7 @@ if($_SESSION["login_done"]==true){
 
 
 					$sql = "INSERT INTO MINUTAJE (fecha, horas, ID_servicio, ID_usuario, ID_sede, NIF_cliente, facturado)
-					VALUES ('$fecha','$horas','$servicio','$usuario','$data','$NIF_cliente',$facturado2)";	
+					VALUES ('$fecha','$horas','$servicio','$usuario','$data','$NIF_cliente', $facturado2)";	
 
 
 					if ($conn->query($sql) === TRUE) {

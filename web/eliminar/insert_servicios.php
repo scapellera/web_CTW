@@ -10,7 +10,7 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -58,8 +58,6 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-    <!-- nuestro css -->
-    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -89,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -109,40 +102,47 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
-                    </a>
-                </li> 
-                <li>
-                    <a href="./buscador.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>PÁGINA INICIO</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../minutaje.php">
+                    <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
+                        <p>Clientes</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../buscador_calendario.php">
+                <li>
+                    <a href="insert_sedes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Calendario</p>
+                        <p>Sedes</p>
                     </a>
                 </li>
+                <li>
+                    <a href="insert_contactos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li  class="active">
+                    <a href="insert_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+                
             </ul>
     	</div>
     </div>
@@ -157,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Buscador</a>
+                    <a class="navbar-brand">Insertar servicio</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -227,36 +227,44 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                              <?php 
-                              function getGCalendarUrl($event){  
-                                $titulo = urlencode($event['titulo']); 
-                                $descripcion = urlencode($event['descripcion']); 
-                                $localizacion = urlencode($event['localizacion']); 
-                                $start=new DateTime($event['fecha_inicio'].' '.$event['hora_inicio'].' '.date_default_timezone_get()); 
-                                $end=new DateTime($event['fecha_fin'].' '.$event['hora_fin'].' '.date_default_timezone_get()); $dates = urlencode($start->format("Ymd\THis")) . "/" . urlencode($end->format("Ymd\THis"));
-                                $name = urlencode($event['nombre']);
-                                $url = urlencode($event['url']);
-                                $gCalUrl = "http://www.google.com/calendar/event?action=TEMPLATE&amp;text=$titulo&amp;dates=$dates&amp;details=$descripcion&amp;location=$localizacion&amp;trp=false&amp;sprop=$url&amp;sprop=name:$name";
-                                return ($gCalUrl);
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_servicios.php" method="post">
+                            <h3>Insertar servicio</h3>
+                            <h4>Rellene el formulario para añadir un nuevo servicio</h4>
+                            <fieldset>
+                            &nbsp;Nombre del servicio:  <input placeholder="Nombre del servicio*" name="nombre" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Descripción:  <input placeholder="Descripción" name="descripcion" type="text">
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text"  required>
+                            </fieldset>
+                            <fieldset>&nbsp;Selecciona el NIF del cliente:
+                            <?php $data = select_all_cliente(); ?>
+                            <select name="select_box_nif_empresa" class="select_box">
+                              <option value="">Selecciona el NIF del cliente*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
+                            <?php   
+                                    }       
                                 }
-                                // array asociativo con los parametros mecesarios.
-                                $evento = array(
-                                  'titulo' => 'Mi evento de prueba',
-                                  'descripcion' => 'Descripcion del evento de prueba',
-                                  'localizacion' => 'Aqui ponemos la dirección donde se celebra el evento',
-                                  'fecha_inicio' => '2014-04-10', // Fecha de inicio de evento en formato AAAA-MM-DD
-                                'hora_inicio'=>'17:30', // Hora Inicio del evento
-                                'fecha_fin'=>'2014-04-12', // Fecha de fin de evento en formato AAAA-MM-DD
-                                'hora_fin'=>'19:00', // Hora final del evento
-                                'nombre'=>'ReviBlog', // Nombre del sitio
-                                'url'=>'www.reviblog.net' // Url de la página
-                                );
-                                ?>
-                                <iframe src="https://calendar.google.com/calendar/embed?src=tutq89pua5n7fp1b596im3vq6s%40group.calendar.google.com&ctz=Europe/Madrid" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                                <a href="<?php echo getGCalendarUrl($evento); ?>"><img src="http://www.google.com/calendar/images/ext/gc_button6_es.gif" border="0"></a>
-                                                            
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>

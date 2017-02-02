@@ -2,22 +2,23 @@
 
 <?php
 session_start();
-include('../../php/db.php');
-include('../../php/selects.php');
+include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="icon" type="image/png" href="../../img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>WEB TEST</title>
+	<title>WEB TEST</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -33,29 +34,29 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../../js/editor.js"></script>
+    <script type="text/javascript" src="../assets/js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../../table/tables.js"></script>
+    <script src="../table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="../../css/animate.min.css" rel="stylesheet"/>
+    <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="../../css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../../css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
@@ -65,8 +66,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     <!--TABLE_EDITOR.CSS-->
-    <link href="../../css/table_editor.css" rel="stylesheet"/>
-    <link href="../../css/table.css" rel="stylesheet"/>
+    <link href="../assets/css/table_editor.css" rel="stylesheet"/>
+    <link href="../assets/css/table.css" rel="stylesheet"/>
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -76,16 +77,16 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
-    <link href="../../css/table2.css" rel="stylesheet"/>
+    <link href="../assets/css/table2.css" rel="stylesheet"/>
     <!--EDIT DATATABLE CODE-->
-    <link href="../../css/table4.css" rel="stylesheet"/>
+    <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
-    <link href="../../css/insert.css" rel="stylesheet" />
-    <!--CARGAR BARRA INSERT-->
-    <link href="../../css/cargarinsert.css" rel="stylesheet" />
+    <link href="../assets/css/insert.css" rel="stylesheet" />
+
+
 
 </head>
-<body onload="itv = setInterval(prog, 10)">
+<body>
 
 <div class="wrapper">
     <div class="sidebar">
@@ -94,53 +95,54 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="../../../index.php"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="../../../index.php">
+                    <a href="../index.php">
                         <i class="pe-7s-pen"></i>
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
-                <li >
-                    <a href="../../../insert/insert_clientes.php">
+                <li>
+                    <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../insert/insert_sedes.php">
+                    <a href="insert_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../insert/insert_contactos.php">
+                    <a href="insert_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../../../insert/insert_mayoristas.php">
+                <li>
+                    <a href="insert_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
-                <li>
-                    <a href="../../../insert/insert_usuarios.php">
+                <li class="active">
+                    <a href="insert_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../insert/insert_servicios.php">
+                    <a href="insert_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
-                </li>                
+                </li>
+                <li>
                 
             </ul>
     	</div>
@@ -156,7 +158,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar mayorista</a>
+                    <a class="navbar-brand">Insertar usuario</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -226,103 +228,114 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="card2">
 
-					<?php
-					//Declaramos las variables del formulario
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_usuarios.php" method="post">
+                            <h3>Insertar usuario</h3>
+                            <h4>Rellene el formulario para añadir un nuevo usuario</h4>
+                            <fieldset>
+                            &nbsp;Nombre de usuario:  <input placeholder="Nombre de usuario*" name="nombre" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Nick de usuario:  <input placeholder="Nick de usuario*" name="user" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Contraseña:  <input placeholder="Contraseña*" name="password" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
 
-					$NIF_mayorista = $_POST['NIF_mayorista'];
-					$nombre_empresa = $_POST['nombre_empresa'];
-					$nombre_comercial = $_POST['nombre_comercial'];
-					$telefono_empresa = $_POST['telefono_empresa'];
-					$telefono_comercial = $_POST['telefono_comercial'];
-					$extension_telefono_comercial = $_POST['extension_telefono_comercial'];
-					$email_empresa = $_POST['email_empresa'];
-					$email_comercial = $_POST['email_comercial'];
-                    $ubicacion = $_POST['ubicacion'];
-					$pais = $_POST['select_box_pais'];
-					$prefijo = select_prefijo_pais($pais);
-
-
-					//Añadimos comillas a los varchars
-					$NIF_mayorista="\"$NIF_mayorista\"";
-					$nombre_empresa="\"$nombre_empresa\"";
-					$nombre_comercial="\"$nombre_comercial\"";
-					$email_empresa="\"$email_empresa\"";
-					$email_comercial="\"$email_comercial\"";
-                    $ubicacion="\"$ubicacion\"";
-					$pais="\"$pais\"";
-
-					//Si hay algun campo opcional no rellenado lo transforma en null
-					if($nombre_comercial == "\"\""){
-						$nombre_comercial = 'null';
-					}if($telefono_comercial == null){
-						$telefono_comercial ='null';
-					}if($extension_telefono_comercial == null){
-						$extension_telefono_comercial ='null';
-					}if($email_comercial == "\"\""){
-						$email_comercial ='null';
-					}if($ubicacion == "\"\""){
-                        $ubicacion ='null';
-                    }
+                                                                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
-					$conn = connect();
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <!--Menu footer-->
+                        <!--<li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Company
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Blog
+                            </a>
+                        </li>-->
+                    </ul>
+                </nav>
+                <!--Copyright-->
+                <!--<p class="copyright pull-right">
+                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                </p>-->
+            </div>
+        </footer>
 
-					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo)
-					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo)";
-					    
-
-
-					if ($conn->query($sql) === TRUE) {
-					?>
-						
-						<div id="precargador">
-						  <p id="progressnum"></p> 
-						  <div id="progressbar">
-						     <div id="indicador"></div>
-						  </div>
-					</div>
-						
-					    <script>
-					    //document.body.style.background = "#ea7f33";
-					    var maxprogress = 300;
-							var actualprogress = 0;
-							var itv = 0;
-							function prog()
-							{
-							  if(actualprogress >= maxprogress) 
-							  {
-							    clearInterval(itv);     
-							    return;
-							  } 
-							  var progressnum = document.getElementById("progressnum");
-							  var indicador = document.getElementById("indicador");
-							  actualprogress +=2;  
-							  indicador.style.width=actualprogress + "px";
-							  progressnum.innerHTML = "Añadiendo mayorista...";
-							  if (actualprogress==300){
-								window.location="../../../insert/insert_mayoristas.php";
-							  }
-							}
-						</script>
-
-					<?php
-					} else {
-					    echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
-					}
-
-					close($conn); 
-					 
-					?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    </div>
 </div>
 
+
 </body>
+
+    <!--   Core JS Files   -->
+    <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
+	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="../assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="../assets/js/light-bootstrap-dashboard.js"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="../assets/js/demo.js"></script>
+    <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
+	<!--<script type="text/javascript">
+    	$(document).ready(function(){
+
+        	demo.initChartist();
+
+        	$.notify({
+            	icon: 'pe-7s-gift',
+            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+    	});
+	</script>-->
+
 </html>
 
 <?php 

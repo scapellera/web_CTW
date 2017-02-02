@@ -103,37 +103,37 @@ if($_SESSION["login_done"]==true){
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="./"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../../../index.php"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="./index.php">
+                    <a href="../../../index.php">
                         <i class="pe-7s-note2"></i>
                         <p>INICIO</p>
                     </a>
                 </li> 
                 <li>
-                    <a href="./buscador/buscador.php">
+                    <a href="../../../buscador/buscador.php">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../entrada_stock.php">
+                    <a href="../../../entrada_stock.php">
                         <i class="pe-7s-box2"></i>
                         <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./insert/insert.php">
+                    <a href="../../../insert/insert.php">
                         <i class="pe-7s-pen"></i>
                         <p>Insert</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./minutaje.php">
+                    <a href="../../../minutaje.php">
                         <i class="pe-7s-pen"></i>
                         <p>Minutaje</p>
                     </a>

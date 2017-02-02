@@ -260,6 +260,7 @@ if($_SESSION["login_done"]==true){
                                             <th>Extensión teléfono del comercial</th>
                                             <th>Email empresa</th>
                                             <th>Email del comercial</th>
+                                            <th>Ubicación</th>
                                             <th>País</th>
                                             <th>Prefijo</th>
                                         </tr>
@@ -286,6 +287,7 @@ if($_SESSION["login_done"]==true){
                                                         <td><a href="#" class="extension_telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension_telefono_comercial']?> </a></td>
                                                         <td><a href="#" class="email_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_empresa']?> </a></td>
                                                         <td><a href="#" class="email_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_comercial']?> </a></td>
+                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
                                                         <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
                                                         <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>   
                                                     </tr>

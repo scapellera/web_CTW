@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -57,8 +58,6 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-    <!-- nuestro css -->
-    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -88,12 +87,7 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -108,34 +102,47 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
                     </a>
-                </li> 
+                </li>
                 <li class="active">
-                    <a href="./buscador.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../insert/insert.php">
+                    <a href="insert_clientes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../minutaje.php">
+                    <a href="insert_sedes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
+                        <p>Sedes</p>
                     </a>
                 </li>
+                <li>
+                    <a href="insert_contactos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="insert_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+                
             </ul>
     	</div>
     </div>
@@ -150,7 +157,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Buscador</a>
+                    <a class="navbar-brand">Insertar cliente</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -220,18 +227,80 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card2">
 
-                               <a href="buscador_clientes.php" class="button">Buscar cliente</a>
-                               <a href="buscador_sedes.php" class="button">Buscar <br> sede</a>
-                               <a href="buscador_contactos.php" class="button">Buscar contacto</a>
-                               <a href="buscador_mayoristas.php" class="button">Buscar mayorista</a>
-                               <a href="buscador_usuarios.php" class="button">Buscar usuario</a>
-                               <a href="buscador_servicios.php" class="button">Buscar servicio</a>
-                               <a href="buscador_articulos.php" class="button">Buscar artículo</a>
-                               <a href="buscador_stock.php" class="button">Buscar stock</a>
-                               <a href="buscador_calendario.php" class="button">Calendario</a>
-                                                            
+                        <div class="container">  
+                          <form id="contact" action="../assets/php/post/post_clientes.php" method="post">
+                            <h3>Insertar cliente</h3>
+                            <h4>Rellene el formulario para añadir un nuevo cliente</h4>
+                            <fieldset>
+                            &nbsp;NIF de la empresa:  <input placeholder="NIF de la empresa*" name="nif_empresa" type="text" autofocus>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Nombre del comercial:  <input placeholder="Nombre del comercial*" name="nombre_comercial" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Nombre de la empresa:  <input placeholder="Nombre de la empresa*" name="nombre_completo" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Ciudad para la facturacion:  <input placeholder="Ciudad para la facturacion*" name="ciudad_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Código postal para la facturación:  <input placeholder="Código postal para la facturación*" name="codigo_postal_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Calle para la facturación:  <input placeholder="Calle para la facturación*" name="calle_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Número para la facturación:  <input placeholder="Número para la facturación*" name="numero_facturacion" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Ciudad para el envio:  <input placeholder="Ciudad para el envio*" name="ciudad_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Código postal para el envio:  <input placeholder="Código postal para el envio*" name="codigo_postal_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Calle para el envio:  <input placeholder="Calle para el envio*" name="calle_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Número para el envio:  <input placeholder="Número para el envio*" name="numero_envio" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;IBAN:  <input placeholder="IBAN*" name="iban" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;SEPA:  <input placeholder="SEPA*" name="sepa" type="text" required>
+                            </fieldset>
+                            <fieldset>&nbsp;Selecciona el país:
+                            <?php $data = select_all_pais(); ?>
+                            <select name="select_box_pais" class="select_box">
+                              <option value="" disabled selected>Selecciona País*</option>
+                              <?php
+                                if ($data->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $data->fetch_assoc()) {
+                              ?>
+                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
+                            <?php   
+                                    }       
+                                }
+                             ?>       
+                            </select>
+                            </fieldset>
+                            <fieldset>
+                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                            </fieldset>
+                          </form>
+                        </div>
+
+                                                                                        
                         </div>
                     </div>
                 </div>

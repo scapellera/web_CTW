@@ -94,49 +94,49 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="../"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../../../index.php"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="../index.php">
+                    <a href="../../../index.php">
                         <i class="pe-7s-pen"></i>
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
                 <li >
-                    <a href="insert_clientes.php">
+                    <a href="../../../insert/insert_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_sedes.php">
+                    <a href="../../../insert/insert_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="insert_contactos.php">
+                <li>
+                    <a href="../../../insert/insert_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_mayoristas.php">
+                    <a href="../../../insert/insert_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_usuarios.php">
+                    <a href="../../../insert/insert_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="insert_servicios.php">
+                <li class="active">
+                    <a href="../../../insert/insert_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>

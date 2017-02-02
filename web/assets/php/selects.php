@@ -90,13 +90,13 @@ function select_all_stock(){
   }
 
   function select_id_sede($nombre){
-     $conn = connect();
-    $sql = "SELECT nombre 
-    FROM SEDE S
-    WHERE S.nombre = '".$nombre."'";
+    $conn = connect();
+    $sql = "SELECT ID_SEDE FROM SEDE WHERE nombre = '".$nombre."'";
     $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $prefijo = $row['ID_SEDE'];
     close($conn);
-    return $data;
+    return $prefijo;
   }
 
   function select_nombre_sede($id_sede){
