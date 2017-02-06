@@ -3,13 +3,14 @@
 <?php
 session_start();
 include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -32,12 +33,19 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../assets/js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -57,8 +65,6 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-    <!-- nuestro css -->
-    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -83,17 +89,14 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
     <link href="../assets/css/insert.css" rel="stylesheet" />
+    <!--NUESTRO CSS-->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
 
 
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -108,32 +111,56 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
-                    </a>
-                </li> 
-                <li>
-                    <a href="../buscador/buscador.php">
-                        <i class="pe-7s-search"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="../entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../insert/insert.php">
+                    <a href="buscador_clientes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../minutaje.php">
+                    <a href="buscador_sedes.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
+                        <p>Sedes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_contactos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
                     </a>
                 </li>
             </ul>
@@ -141,7 +168,7 @@ if($_SESSION["login_done"]==true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+        <nav class="navbar2 navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -150,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Inserts</a>
+                    <a class="navbar-brand">Buscador</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -216,33 +243,97 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content">
+        <div class="content2">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
+                    <div >
+                        <div >
 
-                               <a href="insert_clientes.php" class="button">Añadir cliente</a>
-                               <a href="insert_sedes.php" class="button">Añadir <br> sede</a>
-                               <a href="insert_contactos.php" class="button">Añadir contacto</a>
-                               <a href="insert_mayoristas.php" class="button">Añadir mayorista</a>
-                               <a href="insert_usuarios.php" class="button">Añadir usuario</a>
-                               <a href="insert_servicios.php" class="button">Añadir servicio</a>
-                               
-                                                            
+                                <table id="buscador_cliente" class="table table-striped table-bordered">
+                                    <thead>
+
+                                        <tr>
+                                            <th style="background-color: #F26842; ">Borrar</th>
+                                            <th>Nombre completo</th>
+                                            <th>NIF empresa</th>
+                                            <th>Nombre comercial</th>
+                                            <th>País</th>
+                                            <th>Telefono</th>
+                                            <th>Prefijo</th>
+                                            <th>Email</th>
+                                            <th>Ciudad facturacion</th>
+                                            <th>Codigo postal facturación</th>
+                                            <th>Calle facturación</th>
+                                            <th>Número facturación</th>
+                                            <th>Ciudad envio</th>
+                                            <th>Codigo envio</th>
+                                            <th>Calle envio</th>
+                                            <th>Número envio</th>
+                                            <th>IBAN</th>
+                                            <th>SEPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                           
+                                            $data = select_all_cliente(); 
+
+                                            if ($data->num_rows > 0) {
+                                                 // output data of each row
+                                                 while($row = $data->fetch_assoc()) {
+                                                    $pk = $row['NIF_EMPRESA'];
+
+                                        ?>
+                                                    <tr>
+                                                        <td><button onclick="eliminar_cliente()">Borrar</button></td>    
+                                                        <td><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></td>
+                                                        <td><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></td>
+                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
+                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
+                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
+                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                        <td><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></td>
+                                                        <td><a href="#" class="ciudad_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_facturacion']?> </a></td>
+                                                        <td><a href="#" class="codigo_postal_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_facturacion']?> </a></td>
+                                                        <td><a href="#" class="calle_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_facturacion']?> </a></td>
+                                                        <td><a href="#" class="numero_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_facturacion']?> </a></td>
+                                                        <td><a href="#" class="ciudad_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_envio']?> </a></td>
+                                                        <td><a href="#" class="codigo_postal_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_envio']?> </a></td>
+                                                        <td><a href="#" class="calle_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_envio']?> </a></td>
+                                                        <td><a href="#" class="numero_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_envio']?> </a></td>
+                                                        <td><a href="#" class="IBAN" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['IBAN']?> </a></td>
+                                                        <td><a href="#" class="SEPA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['SEPA']?> </a></td>
+                                                           
+                                                    </tr>
+
+                                        <?php           
+                                                 }
+                                            } else {
+                                                 echo "0 results";
+                                            }
+
+                                            
+                                        ?>
+                                        
+                                     
+                                    </tbody>
+                                </table>
+
+
+                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+        <!--
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <!--Menu footer-->
-                        <!--<li>
+                        <li>
                             <a href="#">
                                 Home
                             </a>
@@ -261,16 +352,15 @@ if($_SESSION["login_done"]==true){
                             <a href="#">
                                Blog
                             </a>
-                        </li>-->
+                        </li>
                     </ul>
                 </nav>
-                <!--Copyright-->
-                <!--<p class="copyright pull-right">
+                <p class="copyright pull-right">
                     &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>-->
+                </p>
             </div>
         </footer>
-
+        -->
     </div>
 </div>
 

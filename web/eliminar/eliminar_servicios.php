@@ -2,20 +2,21 @@
 
 <?php
 session_start();
-include('assets/php/db.php');
+include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -32,30 +33,37 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="assets/js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_servicio.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
@@ -65,8 +73,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     <!--TABLE_EDITOR.CSS-->
-    <link href="assets/css/table_editor.css" rel="stylesheet"/>
-    <link href="assets/css/table.css" rel="stylesheet"/>
+    <link href="../assets/css/table_editor.css" rel="stylesheet"/>
+    <link href="../assets/css/table.css" rel="stylesheet"/>
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -76,20 +84,19 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
-    <link href="assets/css/table2.css" rel="stylesheet"/>
+    <link href="../assets/css/table2.css" rel="stylesheet"/>
     <!--EDIT DATATABLE CODE-->
-    <link href="assets/css/table4.css" rel="stylesheet"/>
+    <link href="../assets/css/table4.css" rel="stylesheet"/>
+    <!--INSERTS-->
+    <link href="../assets/css/insert.css" rel="stylesheet" />
+    <!--NUESTRO CSS-->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
 
 
 
 </head>
 <body>
-<!--
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -97,51 +104,63 @@ if($_SESSION["login_done"]==true){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="./"><img src="./assets/img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_clientes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_sedes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Sedes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_contactos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_mayoristas.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Mayoristas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
                 <li class="active">
-                    <a href="./index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
-                    </a>
-                </li>                
-                <li>
-                    <a href="./buscador/buscador.php">
-                        <i class="pe-7s-search"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./insert/insert.php">
+                    <a href="buscador_servicios.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>Servicios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./eliminar/eliminar.php">
+                    <a href="buscador_articulos.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Eliminar</p>
+                        <p>Artículos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./minutaje.php">
+                    <a href="buscador_stock.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./calendario.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Calendario</p>
+                        <p>Stock</p>
                     </a>
                 </li>
             </ul>
@@ -158,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Llista de tasques</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -212,10 +231,11 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
-                            <a href="./perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
                         <li>
-                            <a href="../logout.php">Log out</a>
+                            <a href="../../logout.php">Log out
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -226,14 +246,70 @@ if($_SESSION["login_done"]==true){
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
+                    <div >
+                        <div >
 
+                                <table id="buscador_servicio" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>NIF empresa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        <?php
+                                            $conn = connect();
 
+                                            $sql = "SELECT * FROM SERVICIO";
+                                            $result = $conn->query($sql);
 
-                                <!--CONTENIDO VA AQUI-->
-                                
+                                            if ($result->num_rows > 0) {
+                                                 // output data of each row
+                                                 while($row = $result->fetch_assoc()) {
+                                                    $pk = $row['ID_SERVICIO'];
+
+                                        ?>
+                                                    <tr> 
+                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
+                                                        <td><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></td>
+                                                        <td><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio']?> </a></td>
+                                                        <td><a href="#" class="NIF_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_empresa']?> </a></td>
+                                                    </tr>
+
+                                        <?php           /*echo"<tr>
+                                                            <td><a".$row["nombre_completo"]."</td>
+                                                            <td>".$row["NIF_EMPRESA"]."</td>
+                                                            <td>".$row["nombre_comercial"]."</td>
+                                                            <td>".$row["telefono"]."</td>
+                                                            <td>".$row["email"]."</td>
+                                                            <td>".$row["IBAN"]."</td>
+                                                            <td>".$row["SEPA"]."</td>
+                                                            <td>".$row["pais"]."</td>
+                                                            <td>".$row["ciudad_facturacion"]."</td>
+                                                            <td>".$row["codigo_postal_facturacion"]."</td>
+                                                            <td>".$row["calle_facturacion"]."</td>
+                                                            <td>".$row["numero_facturacion"]."</td>
+                                                            <td>".$row["ciudad_envio"]."</td>
+                                                            <td>".$row["codigo_postal_envio"]."</td>
+                                                            <td>".$row["calle_envio"]."</td>
+                                                            <td>".$row["numero_envio"]."</td>
+                                                        </tr>";*/
+                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
+                                                 }
+                                            } else {
+                                                 echo "0 results";
+                                            }
+
+                                            $conn->close();
+                                        ?>
+                                        
+                                     
+                                    </tbody>
+                                </table>
+
 
                                 
                         </div>
@@ -242,12 +318,12 @@ if($_SESSION["login_done"]==true){
             </div>
         </div>
 
-
+        <!--Menu footer
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <!--Menu footer-->
+                        
                         <!--<li>
                             <a href="#">
                                 Home
@@ -276,7 +352,7 @@ if($_SESSION["login_done"]==true){
                 </p>-->
             </div>
         </footer>
-
+        -->
     </div>
 </div>
 
@@ -285,42 +361,42 @@ if($_SESSION["login_done"]==true){
 
     <!--   Core JS Files   -->
     <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="../assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="../assets/js/bootstrap-notify.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/demo.js"></script>
     <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-	<!--<script type="text/javascript">
-    	$(document).ready(function(){
+    <!--<script type="text/javascript">
+        $(document).ready(function(){
 
-        	demo.initChartist();
+            demo.initChartist();
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
             },{
                 type: 'info',
                 timer: 4000
             });
 
-    	});
-	</script>-->
+        });
+    </script>-->
 
 </html>
 

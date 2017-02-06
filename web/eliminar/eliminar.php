@@ -3,14 +3,13 @@
 <?php
 session_start();
 include('../assets/php/db.php');
-include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -18,6 +17,7 @@ if($_SESSION["login_done"]==true){
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -57,6 +57,8 @@ if($_SESSION["login_done"]==true){
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    <!-- nuestro css -->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -86,7 +88,12 @@ if($_SESSION["login_done"]==true){
 
 </head>
 <body>
+<!--
 
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
 <div class="wrapper">
     <div class="sidebar">
 
@@ -101,47 +108,40 @@ if($_SESSION["login_done"]==true){
             <ul class="nav">
                 <li>
                     <a href="../index.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>PÁGINA INICIO</p>
+                        <i class="pe-7s-note2"></i>
+                        <p>INICIO</p>
                     </a>
-                </li>
-                <li >
-                    <a href="insert_clientes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
+                </li> 
+                <li>
+                    <a href="../buscador/buscador.php">
+                        <i class="pe-7s-search"></i>
+                        <p>Buscador</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_sedes.php">
+                    <a href="../entrada_stock.php">
+                        <i class="pe-7s-box2"></i>
+                        <p>Entrada de stock</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../insert/insert.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
+                        <p>Insert</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="insert_contactos.php">
+                    <a href="../eliminar/eliminar.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
+                        <p>Eliminar</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_mayoristas.php">
+                    <a href="../minutaje.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Mayoristas</p>
+                        <p>Minutaje</p>
                     </a>
                 </li>
-                <li>
-                    <a href="insert_usuarios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="insert_servicios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Servicios</p>
-                    </a>
-                </li>                
-                
             </ul>
     	</div>
     </div>
@@ -156,7 +156,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar contacto</a>
+                    <a class="navbar-brand">Eliminar</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -226,72 +226,21 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card2">
+                        <div class="card">
 
-                        <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_contactos.php" method="post">
-                            <h3>Insertar contacto</h3>
-                            <h4>Rellene el formulario para añadir una nuevo contacto a una sede ya añadida.</h4>
-                            
-                            <fieldset>
-                            &nbsp;Nombre del contacto:  <input placeholder="Nombre del contacto*" name="nombre" type="text"  required>
-                            </fieldset>
-                            <fieldset>&nbsp;Selecciona la sede:
-                            <?php $data = select_all_sede(); ?>
-                            <select name="select_box_id_sede" class="select_box">
-                              <option value="" disabled selected>Selecciona la sede*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['ID_SEDE']?>"><?php echo "$row[nombre_comercial] - $row[nombre]";?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Cargo:  <input placeholder="Cargo*" name="cargo" type="text" required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Extensión:  <input placeholder="Extensión" name="extension" type="text">
-                            </fieldset>
-                            <fieldset>&nbsp;Selecciona el país:
-                            <?php $data = select_all_pais(); ?>
-                            <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona el país*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
-                          </form>
+                               <a href="eliminar_clientes.php" class="button">Eliminar cliente</a>
+                               <a href="eliminar_sedes.php" class="button">Eliminar <br> sede</a>
+                               <a href="eliminar_contactos.php" class="button">Eliminar contacto</a>
+                               <a href="eliminar_mayoristas.php" class="button">Eliminar mayorista</a>
+                               <a href="eliminar_usuarios.php" class="button">Eliminar usuario</a>
+                               <a href="eliminar_servicios.php" class="button">Eliminar servicio</a>
+                               
+                                                            
                         </div>
-                        
-                        
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <footer class="footer">
