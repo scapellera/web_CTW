@@ -239,8 +239,10 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
                         <?php
+                        $id_contacto = $_GET['id'];
                         $pk = $_SESSION['id_contacto'];
                        $conn = connect();
+                       $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = '".$id_contacto."'";
                        
 
                         if ($conn->query($sql) === TRUE) {

@@ -9,13 +9,13 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -95,7 +95,7 @@ if($_SESSION["login_done"]==true){
 
     
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="./"><img src="./assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
@@ -127,13 +127,25 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
+                    <a href="./eliminar/eliminar.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Eliminar</p>
+                    </a>
+                </li>
+                <li>
                     <a href="./minutaje.php">
                         <i class="pe-7s-pen"></i>
                         <p>Minutaje</p>
                     </a>
                 </li>
+                <li>
+                    <a href="./calendario.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Calendario</p>
+                    </a>
+                </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -199,11 +211,11 @@ if($_SESSION["login_done"]==true){
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                         </li>-->
-                         <li>
-                            <a href="../configuracion_usuario.php">gfhf<?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                         <li class="active">
+                            <a href="../configuracion_usuario.php"><?php echo $_SESSION["username"]; ?></a>
                         </li>
                         <li>
-                            <a href="../logout.php">Log out</a>
+                            <a href="../logout.php">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log out</a>
                         </li>
                     </ul>
                 </div>
