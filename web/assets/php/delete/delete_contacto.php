@@ -241,7 +241,6 @@ if($_SESSION["login_done"]==true){
                         <?php
                         $pk = $_SESSION['id_contacto'];
                        $conn = connect();
-                       $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = 9";
                        
 
                         if ($conn->query($sql) === TRUE) {
@@ -256,7 +255,7 @@ if($_SESSION["login_done"]==true){
                             
                             <script>
                             //document.body.style.background = "#ea7f33";
-                            var maxprogress = 300;
+                            var maxprogress = 500;
                                 var actualprogress = 0;
                                 var itv = 0;
                                 function prog()
@@ -270,7 +269,7 @@ if($_SESSION["login_done"]==true){
                                   var indicador = document.getElementById("indicador");
                                   actualprogress +=2;  
                                   indicador.style.width=actualprogress + "px";
-                                  progressnum.innerHTML = "Añadiendo contacto...";
+                                  progressnum.innerHTML = "Eliminando contacto...";
                                   if (actualprogress==300){
                                     window.location="../../../eliminar/eliminar_contactos.php";
                                   }

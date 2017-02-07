@@ -250,20 +250,12 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
                         <script>
-                            function preguntar(a){
+                            function preguntar(id_contacto){
                                eliminar=confirm("¿Deseas eliminar este contacto?");
                                if (eliminar)
-                                <?php
-                                 $conn = connect();
-                                    $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = 28";
-                                   $stmt = $conn->prepare($sql);
-                                  $stmt->execute();
-                                  close($conn);
-                                ?>
                                //Redireccionamos si das a aceptar
-                                 window.location.href = "dfgdfg"; //página web a la que te redirecciona si confirmas la eliminación
+                                 window.location.href="../assets/php/delete/delete_contacto.php?id="+id_contacto; //página web a la que te redirecciona si confirmas la eliminación
                             else
-                                alert (a)
                               //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
                                 alert('No se ha podido eliminar el contacto...')
                             }
@@ -290,7 +282,6 @@ if($_SESSION["login_done"]==true){
 
                                         <?php
                                             $conn = connect();
-
                                             $sql = "SELECT * FROM CONTACTO";
                                             $result = $conn->query($sql);
 

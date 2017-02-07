@@ -110,6 +110,8 @@ function select_all_stock(){
   }
 
 
+
+
 function getGCalendarUrl($event){  
 $titulo = urlencode($event['titulo']); 
 $descripcion = urlencode($event['descripcion']); 
