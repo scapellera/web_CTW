@@ -230,9 +230,10 @@ if($_SESSION["login_done"]==true){
 					$servicio = $_POST['select_box_servicio'];
 					$usuario = $_POST['select_box_usuario'];
 					$fecha = $_POST['fecha'];
-					$horas = $_POST['horas'];
+					$hora_entrada = $_POST['hora_entrada'];
+                    $hora_salida = $_POST['hora_salida'];
 					$facturado = $_POST['facturado'];
-
+                    
 					if($facturado==''){
 						$facturado2 = 0;
 					}else{
@@ -244,8 +245,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 
 
-					$sql = "INSERT INTO MINUTAJE (fecha, horas, ID_servicio, ID_usuario, ID_sede, NIF_cliente, facturado)
-					VALUES ('$fecha','$horas','$servicio','$usuario','$data','$NIF_cliente', $facturado2)";	
+					$sql = "INSERT INTO MINUTAJE (fecha, hora_entrada, hora_salida, ID_servicio, ID_usuario, ID_sede, NIF_cliente, facturado)
+					VALUES ('$fecha','$hora_entrada', '$hora_salida','$servicio','$usuario','$data','$NIF_cliente', $facturado2)";	
 
 
 					if ($conn->query($sql) === TRUE) {
@@ -276,7 +277,7 @@ if($_SESSION["login_done"]==true){
 							  indicador.style.width=actualprogress + "px";
 							  progressnum.innerHTML = "Añadiendo minutaje...";
 							  if (actualprogress==300){
-								window.location="../../../minutaje.php";
+								window.location="../../../minutaje_automatico.php";
 							  }
 							}
 						</script>

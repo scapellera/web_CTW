@@ -232,8 +232,8 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
                         <div class="container">  
-                          <form id="contact" action="./assets/php/post/post_minutaje.php" method="post" name="f_cliente_sede">
-                            <h3>Añadir Minutaje</h3>
+                          <form id="contact" action="./assets/php/post/post_minutaje_manual.php" method="post" name="f_cliente_sede">
+                            <h3>Añadir Minutaje (Manual)</h3>
                             <h4>Rellene el formulario para añadir la salida realizada</h4>
                             
                             <fieldset>
@@ -294,7 +294,10 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Fecha*" name="fecha" type="date" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Horas*" name="horas" type="datetime" required>
+                              <input placeholder="Hora entrada*" name="hora_entrada" type="time" required>
+                            </fieldset>
+                            <fieldset>
+                              <input placeholder="Hora salida*" name="hora_salida" type="time" required>
                             </fieldset>
                             <fieldset>
                               Facturado&nbsp;&nbsp;&nbsp;<input name="facturado" type="checkbox">

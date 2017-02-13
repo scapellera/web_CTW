@@ -1,21 +1,22 @@
-    <!doctype html>
+<!doctype html>
 
 <?php
 session_start();
-include('assets/php/db.php');
+include('../../php/db.php');
+include('../../php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../../img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -33,29 +34,32 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="assets/js/editor.js"></script>
+    <!--<script type="text/javascript" src="assets/js/editor.js"></script>-->
+
+
+    <script type="text/javascript" src="../../js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="table/tables.js"></script>
+    <script src="../../table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="../../css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="../../css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="../../css/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="../../css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
@@ -65,8 +69,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     <!--TABLE_EDITOR.CSS-->
-    <link href="assets/css/table_editor.css" rel="stylesheet"/>
-    <link href="assets/css/table.css" rel="stylesheet"/>
+    <link href="../../css/table_editor.css" rel="stylesheet"/>
+    <link href="../../css/table.css" rel="stylesheet"/>
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -76,14 +80,16 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
-    <link href="assets/css/table2.css" rel="stylesheet"/>
+    <link href="../../css/table2.css" rel="stylesheet"/>
     <!--EDIT DATATABLE CODE-->
-    <link href="assets/css/table4.css" rel="stylesheet"/>
-
-
+    <link href="../../css/table4.css" rel="stylesheet"/>
+    <!--INSERTS-->
+    <link href="../../css/insert.css" rel="stylesheet" />
+    <!--CARGAR BARRA INSERT-->
+    <link href="../../css/cargarinsert.css" rel="stylesheet" />
 
 </head>
-<body>
+<body onload="itv = setInterval(prog, 10)">
 <!--
 
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -95,19 +101,19 @@ if($_SESSION["login_done"]==true){
 
     
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="./"><img src="./assets/img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="./"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="./index.php">
                         <i class="pe-7s-note2"></i>
                         <p>INICIO</p>
                     </a>
-                </li>                
+                </li> 
                 <li>
                     <a href="./buscador/buscador.php">
                         <i class="pe-7s-search"></i>
@@ -115,7 +121,7 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
-                    <a href="entrada_stock.php">
+                    <a href="../entrada_stock.php">
                         <i class="pe-7s-box2"></i>
                         <p>Entrada de stock</p>
                     </a>
@@ -126,32 +132,14 @@ if($_SESSION["login_done"]==true){
                         <p>Insert</p>
                     </a>
                 </li>
-                <li>
-                    <a href="./eliminar/eliminar.php">
+                <li class="active">
+                    <a href="./minutaje.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Eliminar</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./minutaje_manual.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Minutaje (manual)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./minutaje_automatico.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Minutaje (automatico)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./calendario.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Calendario</p>
+                        <p>Minutaje</p>
                     </a>
                 </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -164,7 +152,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Llista de tasques</a>
+                    <a class="navbar-brand">Insertar minutaje</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -221,7 +209,8 @@ if($_SESSION["login_done"]==true){
                             <a href="./perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
                         <li>
-                            <a href="../logout.php">Log out</a>
+                            <a href="../logout.php">Log out
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -233,101 +222,82 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        
+					<?php
+					#Declaramos las variables del formulario
+					$NIF_cliente = $_POST['select_box_nif_empresa'];
+					$sede = $_POST['select_box_sede_cliente'];
+					$servicio = $_POST['select_box_servicio'];
+					$usuario = $_POST['select_box_usuario'];
+					$fecha = $_POST['fecha'];
+					$hora_entrada = $_POST['hora_entrada'];
+                    $hora_salida = $_POST['hora_salida'];
+					$facturado = $_POST['facturado'];
+                    
+					if($facturado==''){
+						$facturado2 = 0;
+					}else{
+						$facturado2 = 1;
+					}
+					$conn = connect();
+					$data = select_id_sede($sede);
+
+					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 
 
+					$sql = "INSERT INTO MINUTAJE (fecha, hora_entrada, hora_salida, ID_servicio, ID_usuario, ID_sede, NIF_cliente, facturado)
+					VALUES ('$fecha','$hora_entrada', '$hora_salida','$servicio','$usuario','$data','$NIF_cliente', $facturado2)";	
 
 
-                                <!--CONTENIDO VA AQUI-->
-                                
+					if ($conn->query($sql) === TRUE) {
+					?>
+						
+						<div id="precargador">
+						  <p id="progressnum"></p> 
+						  <div id="progressbar">
+						     <div id="indicador"></div>
+						  </div>
+					</div>
+						
+					    <script>
+					    //document.body.style.background = "#ea7f33";
+					    var maxprogress = 300;
+							var actualprogress = 0;
+							var itv = 0;
+							function prog()
+							{
+							  if(actualprogress >= maxprogress) 
+							  {
+							    clearInterval(itv);     
+							    return;
+							  } 
+							  var progressnum = document.getElementById("progressnum");
+							  var indicador = document.getElementById("indicador");
+							  actualprogress +=2;  
+							  indicador.style.width=actualprogress + "px";
+							  progressnum.innerHTML = "Añadiendo minutaje...";
+							  if (actualprogress==300){
+								window.location="../../../minutaje_manual.php";
+							  }
+							}
+						</script>
 
-                                
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+					<?php
+					} else {
+					    echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
+					}
 
+					close($conn); 
+					 
+					?>
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <!--Menu footer-->
-                        <!--<li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>-->
-                    </ul>
-                </nav>
-                <!--Copyright-->
-                <!--<p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>-->
-            </div>
-        </footer>
-
-    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-
 </body>
-
-    <!--   Core JS Files   -->
-    <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
-
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js"></script>
-
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
-    <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-	<!--<script type="text/javascript">
-    	$(document).ready(function(){
-
-        	demo.initChartist();
-
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-    	});
-	</script>-->
-
 </html>
 
 <?php 

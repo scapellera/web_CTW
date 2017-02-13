@@ -1,0 +1,1 @@
+- En mostrar contactos que no salga el ID de la sede(que salga el nombre de la sede)
