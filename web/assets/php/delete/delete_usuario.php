@@ -117,7 +117,7 @@ if($_SESSION["login_done"]==true){
                         <p>Sedes</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="../../../eliminar/eliminar_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
@@ -129,7 +129,7 @@ if($_SESSION["login_done"]==true){
                         <p>Mayoristas</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../../../eliminar/eliminar_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
@@ -152,13 +152,13 @@ if($_SESSION["login_done"]==true){
                         <i class="pe-7s-pen"></i>
                         <p>Stock</p>
                     </a>
-                </li>  
+                </li>    
             </ul>
         </div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -167,7 +167,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Borrar contacto</a>
+                    <a class="navbar-brand">Eliminar usuario</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -239,9 +239,9 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
                         <?php
-                        $id_contacto = $_GET['id'];
+                        $id_usuario = $_GET['id'];
                        $conn = connect();
-                       $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = '".$id_contacto."'";
+                       $sql = "DELETE FROM USUARIO WHERE ID_USUARIO = '".$id_usuario."'";
                        
 
                         if ($conn->query($sql) === TRUE) {
@@ -270,9 +270,9 @@ if($_SESSION["login_done"]==true){
                                   var indicador = document.getElementById("indicador");
                                   actualprogress +=2;  
                                   indicador.style.width=actualprogress + "px";
-                                  progressnum.innerHTML = "Eliminando contacto...";
+                                  progressnum.innerHTML = "Eliminando usuario...";
                                   if (actualprogress==300){
-                                    window.location="../../../eliminar/eliminar_contactos.php";
+                                    window.location="../../../eliminar/eliminar_usuarios.php";
                                   }
                                 }
                             </script>

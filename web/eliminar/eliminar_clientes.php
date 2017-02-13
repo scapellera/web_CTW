@@ -116,49 +116,49 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li class="active">
-                    <a href="buscador_clientes.php">
+                    <a href="eliminar_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_sedes.php">
+                    <a href="eliminar_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_contactos.php">
+                    <a href="eliminar_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_mayoristas.php">
+                    <a href="eliminar_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_usuarios.php">
+                    <a href="eliminar_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_servicios.php">
+                    <a href="eliminar_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_articulos.php">
+                    <a href="eliminar_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Artículos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_stock.php">
+                    <a href="eliminar_stock.php">
                         <i class="pe-7s-pen"></i>
                         <p>Stock</p>
                     </a>
@@ -177,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Buscador</a>
+                    <a class="navbar-brand">Eliminar cliente</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -248,7 +248,17 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
-
+                            <script>
+                            function preguntar(nif_empresa){
+                               eliminar=confirm("¿Deseas eliminar este cliente?");
+                               if (eliminar)
+                               //Redireccionamos si das a aceptar
+                                 window.location.href="../assets/php/delete/delete_cliente.php?id="+nif_empresa; //página web a la que te redirecciona si confirmas la eliminación
+                            else
+                              //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                alert('No se ha podido eliminar el cliente...')
+                            }
+                            </script>
                                 <table id="buscador_cliente" class="table table-striped table-bordered">
                                     <thead>
 
@@ -286,7 +296,7 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <tr>
-                                                        <td><button onclick="eliminar_cliente()">Borrar</button></td>    
+                                                        <td><button onclick="preguntar(<?php echo $row['NIF_EMPRESA']?>)">Borrar</button></td> 
                                                         <td><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></td>
                                                         <td><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></td>
                                                         <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>

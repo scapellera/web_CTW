@@ -231,7 +231,8 @@ if($_SESSION["login_done"]==true){
                                <a href="buscador_articulos.php" class="button">Buscar artículo</a>
                                <a href="buscador_stock.php" class="button">Buscar stock</a>
                                <a href="buscador_calendario.php" class="button">Calendario</a>
-                                                            
+                               <a href="buscador_minutajes.php" class="button">Minutaje</a>
+
                         </div>
                     </div>
                 </div>

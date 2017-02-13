@@ -116,49 +116,49 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_clientes.php">
+                    <a href="eliminar_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_sedes.php">
+                    <a href="eliminar_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_contactos.php">
+                    <a href="eliminar_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_mayoristas.php">
+                    <a href="eliminar_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_usuarios.php">
+                    <a href="eliminar_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_servicios.php">
+                    <a href="eliminar_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="buscador_articulos.php">
+                    <a href="eliminar_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Artículos</p>
                     </a>
                 </li>
                 <li  class="active">
-                    <a href="buscador_stock.php">
+                    <a href="eliminar_stock.php">
                         <i class="pe-7s-pen"></i>
                         <p>Stock</p>
                     </a>
@@ -177,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar sede</a>
+                    <a class="navbar-brand">Eliminar stock</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->

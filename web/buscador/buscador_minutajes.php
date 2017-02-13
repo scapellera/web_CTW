@@ -2,8 +2,8 @@
 
 <?php
 session_start();
-include('../../php/db.php');
-include('../../php/selects.php');
+include('../assets/php/db.php');
+include('../assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
@@ -11,13 +11,14 @@ if($_SESSION["login_done"]==true){
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="icon" type="image/png" href="../../img/favicon.ico">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>WEB TEST</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -32,30 +33,37 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../../js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_minutaje.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../../table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="../../css/animate.min.css" rel="stylesheet"/>
+    <link href="../assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="../../css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../../css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
@@ -65,8 +73,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     <!--TABLE_EDITOR.CSS-->
-    <link href="../../css/table_editor.css" rel="stylesheet"/>
-    <link href="../../css/table.css" rel="stylesheet"/>
+    <link href="../assets/css/table_editor.css" rel="stylesheet"/>
+    <link href="../assets/css/table.css" rel="stylesheet"/>
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -76,85 +84,93 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
-    <link href="../../css/table2.css" rel="stylesheet"/>
+    <link href="../assets/css/table2.css" rel="stylesheet"/>
     <!--EDIT DATATABLE CODE-->
-    <link href="../../css/table4.css" rel="stylesheet"/>
+    <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
-    <link href="../../css/insert.css" rel="stylesheet" />
-    <!--CARGAR BARRA INSERT-->
-    <link href="../../css/cargarinsert.css" rel="stylesheet" />
+    <link href="../assets/css/insert.css" rel="stylesheet" />
+    <!--NUESTRO CSS-->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
+
+
 
 </head>
-<body onload="itv = setInterval(prog, 10)">
+<body>
 
 <div class="wrapper">
     <div class="sidebar">
 
     
 
-        <div class="sidebar-wrapper">
+    	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="../../../index.php"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="../../../index.php">
+                    <a href="../index.php">
                         <i class="pe-7s-pen"></i>
                         <p>PÁGINA INICIO</p>
                     </a>
                 </li>
-                <li >
-                    <a href="../../../eliminar/eliminar_clientes.php">
+                <li>
+                    <a href="buscador_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_sedes.php">
+                    <a href="buscador_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../../../eliminar/eliminar_contactos.php">
+                <li>
+                    <a href="buscador_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_mayoristas.php">
+                    <a href="buscador_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_usuarios.php">
+                    <a href="buscador_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_servicios.php">
+                    <a href="buscador_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
-                </li>                
+                </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_articulos.php">
+                    <a href="buscador_articulos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Artículos</p>
                     </a>
-                </li>  
+                </li>
                 <li>
-                    <a href="../../../eliminar/eliminar_stock.php">
+                    <a href="buscador_stock.php">
                         <i class="pe-7s-pen"></i>
                         <p>Stock</p>
                     </a>
-                </li>  
+                </li>
+                <li  class="active">
+                    <a href="buscador_minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutajes</p>
+                    </a>
+                </li>
             </ul>
-        </div>
+    	</div>
     </div>
 
     <div class="main-panel">
@@ -167,7 +183,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Borrar contacto</a>
+                    <a class="navbar-brand">Insertar minutaje</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -238,53 +254,77 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
-                        <?php
-                        $id_contacto = $_GET['id'];
-                       $conn = connect();
-                       $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = '".$id_contacto."'";
-                       
 
-                        if ($conn->query($sql) === TRUE) {
-                        ?>
-                            
-                        <div id="precargador">
-                              <p id="progressnum"></p> 
-                              <div id="progressbar">
-                                 <div id="indicador"></div>
-                              </div>
-                        </div>
-                            
-                            <script>
-                            //document.body.style.background = "#ea7f33";
-                            var maxprogress = 500;
-                                var actualprogress = 0;
-                                var itv = 0;
-                                function prog()
-                                {
-                                  if(actualprogress >= maxprogress) 
-                                  {
-                                    clearInterval(itv);     
-                                    return;
-                                  } 
-                                  var progressnum = document.getElementById("progressnum");
-                                  var indicador = document.getElementById("indicador");
-                                  actualprogress +=2;  
-                                  indicador.style.width=actualprogress + "px";
-                                  progressnum.innerHTML = "Eliminando contacto...";
-                                  if (actualprogress==300){
-                                    window.location="../../../eliminar/eliminar_contactos.php";
-                                  }
-                                }
-                            </script>
+                                <table id="buscador_minutaje" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Horas</th>
+                                            <th>Horas</th>
+                                            <th>ID servicio</th>
+                                            <th>ID usuario</th>
+                                            <th>ID sede</th>
+                                            <th>NIF cliente</th>
+                                            <th>Facturado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                        <?php
-                        } else {
-                            echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
-                        }
+                                        <?php
+                                            $conn = connect();
 
-                        close($conn); 
-                         
-                        ?>
+                                            $sql = "SELECT * FROM MINUTAJE";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                 // output data of each row
+                                                 while($row = $result->fetch_assoc()) {
+                                                    $pk = $row['ID_MINUTAJE'];
+
+                                        ?>
+                                                    <tr> 
+                                                        <td><a href="#" class="fecha" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['fecha']?> </a></td>
+                                                        <td><a href="#" class="horas" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['horas']?> </a></td>
+                                                        <td><a href="#" class="ID_servicio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_servicio']?> </a></td>
+                                                        <td><a href="#" class="ID_usuario" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_usuario']?> </a></td>
+                                                        <td><a href="#" class="ID_sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></td>
+                                                        <td><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></td>
+                                                        <td><a href="#" class="facturado" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['facturado']?> </a></td>
+                                                    </tr>
+
+                                        <?php           /*echo"<tr>
+                                                            <td><a".$row["nombre_completo"]."</td>
+                                                            <td>".$row["NIF_EMPRESA"]."</td>
+                                                            <td>".$row["nombre_comercial"]."</td>
+                                                            <td>".$row["telefono"]."</td>
+                                                            <td>".$row["email"]."</td>
+                                                            <td>".$row["IBAN"]."</td>
+                                                            <td>".$row["SEPA"]."</td>
+                                                            <td>".$row["pais"]."</td>
+                                                            <td>".$row["ciudad_facturacion"]."</td>
+                                                            <td>".$row["codigo_postal_facturacion"]."</td>
+                                                            <td>".$row["calle_facturacion"]."</td>
+                                                            <td>".$row["numero_facturacion"]."</td>
+                                                            <td>".$row["ciudad_envio"]."</td>
+                                                            <td>".$row["codigo_postal_envio"]."</td>
+                                                            <td>".$row["calle_envio"]."</td>
+                                                            <td>".$row["numero_envio"]."</td>
+                                                        </tr>";*/
+                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
+                                                 }
+                                            } else {
+                                                 echo "0 results";
+                                            }
+
+                                            $conn->close();
+                                        ?>
+                                        
+                                     
+                                    </tbody>
+                                </table>
+
+
+                                
                         </div>
                     </div>
                 </div>
