@@ -294,10 +294,12 @@ if($_SESSION["login_done"]==true){
                               <input placeholder="Fecha*" name="fecha" type="date" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Hora entrada*" name="hora_entrada" type="time" required>
+                            <button onclick="myFunction1()">Try it1</button>
+                              <input id="hora_entrada" placeholder="Hora entrada*" name="hora_entrada" type="text" required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Hora salida*" name="hora_salida" type="time" required>
+                                <button onclick="myFunction2()">Try it2</button>
+                              <input id="hora_salida" placeholder="Hora salida*" name="hora_salida" type="time" required>
                             </fieldset>
                             <fieldset>
                               Facturado&nbsp;&nbsp;&nbsp;<input name="facturado" type="checkbox">
@@ -307,6 +309,34 @@ if($_SESSION["login_done"]==true){
                             </fieldset>
 
                           </form>
+
+                          
+                          
+
+
+
+<script>
+function myFunction1() {
+    var d = new Date(); // for now
+d.getHours(); // => 9
+d.getMinutes(); // =>  30
+d.getSeconds(); // => 51
+
+
+    document.getElementById("hora_entrada").innerHTML = d;
+}
+
+function myFunction2() {
+    var d = new Date(); // for now
+d.getHours(); // => 9
+d.getMinutes(); // =>  30
+d.getSeconds(); // => 51
+
+
+    document.getElementById("hora_salida").innerHTML = d;
+}
+</script>
+
                         </div>
                         </div>
                     </div>

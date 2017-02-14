@@ -261,7 +261,7 @@ if($_SESSION["login_done"]==true){
 						
 					    <script>
 					    //document.body.style.background = "#ea7f33";
-					    var maxprogress = 300;
+					    var maxprogress = 2000;
 							var actualprogress = 0;
 							var itv = 0;
 							function prog()
@@ -276,7 +276,7 @@ if($_SESSION["login_done"]==true){
 							  actualprogress +=2;  
 							  indicador.style.width=actualprogress + "px";
 							  progressnum.innerHTML = "Añadiendo minutaje...";
-							  if (actualprogress==300){
+							  if (actualprogress==2000){
 								window.location="../../../minutaje_automatico.php";
 							  }
 							}
