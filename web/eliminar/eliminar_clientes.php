@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -250,6 +251,7 @@ if($_SESSION["login_done"]==true){
                         <div >
                             <script>
                             function preguntar(nif_empresa){
+                                if(nif_empresa>0){
                                eliminar=confirm("¿Deseas eliminar este cliente?");
                                if (eliminar)
                                //Redireccionamos si das a aceptar
@@ -257,13 +259,17 @@ if($_SESSION["login_done"]==true){
                             else
                               //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
                                 alert('No se ha podido eliminar el cliente...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
                             }
                             </script>
                                 <table id="buscador_cliente" class="table table-striped table-bordered">
                                     <thead>
 
                                         <tr>
-                                            <th style="background-color: #F26842; ">Borrar</th>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre completo</th>
                                             <th>NIF empresa</th>
                                             <th>Nombre comercial</th>
@@ -296,24 +302,37 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <tr>
-                                                        <td><button onclick="preguntar(<?php echo $row['NIF_EMPRESA']?>)">Borrar</button></td> 
-                                                        <td><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></td>
-                                                        <td><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></td>
-                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
-                                                        <td><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></td>
-                                                        <td><a href="#" class="ciudad_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_facturacion']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_facturacion']?> </a></td>
-                                                        <td><a href="#" class="calle_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_facturacion']?> </a></td>
-                                                        <td><a href="#" class="numero_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_facturacion']?> </a></td>
-                                                        <td><a href="#" class="ciudad_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_envio']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_envio']?> </a></td>
-                                                        <td><a href="#" class="calle_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_envio']?> </a></td>
-                                                        <td><a href="#" class="numero_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_envio']?> </a></td>
-                                                        <td><a href="#" class="IBAN" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['IBAN']?> </a></td>
-                                                        <td><a href="#" class="SEPA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['SEPA']?> </a></td>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_cliente.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['NIF_EMPRESA'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ciudad_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_facturacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_postal_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_facturacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="calle_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_facturacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero_facturacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_facturacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ciudad_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad_envio']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_postal_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal_envio']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="calle_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle_envio']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero_envio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_envio']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="IBAN" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['IBAN']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="SEPA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['SEPA']?> </a></label></td>
                                                            
                                                     </tr>
 

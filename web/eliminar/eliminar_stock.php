@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -249,9 +250,27 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
+                            <script>
+                            function preguntar(id_stock){
+                                if(id_stock>0){
+                                   eliminar=confirm("¿Deseas eliminar este producto?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_usuario.php?id="+id_stock; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el producto...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
+                            }
+                            </script>
+
                                 <table id="buscador_stock" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Código de barras</th>
                                             <th>Cantidad total</th>
                                         </tr>
@@ -270,9 +289,23 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['CODIGO_DE_BARRAS'];
 
                                         ?>
-                                                    <tr> 
-                                                        <td><a href="#" class="CODIGO_DE_BARRAS" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['CODIGO_DE_BARRAS']?> </a></td>
-                                                        <td><a href="#" class="cantidad_total" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad_total']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_stock.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['CODIGO_DE_BARRAS'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="CODIGO_DE_BARRAS" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['CODIGO_DE_BARRAS']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="cantidad_total" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad_total']?> </a></label></td>
                                                     </tr>
 
                                         <?php           /*echo"<tr>

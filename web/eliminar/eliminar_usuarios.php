@@ -15,7 +15,6 @@ if($_SESSION["login_done"]==true){
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>WEB TEST</title>
-
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
@@ -91,6 +90,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 
@@ -249,22 +250,27 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
-                        <script>
+                            <script>
                             function preguntar(id_usuario){
-                               eliminar=confirm("¿Deseas eliminar este usuario?");
-                               if (eliminar)
-                               //Redireccionamos si das a aceptar
-                                 window.location.href="../assets/php/delete/delete_usuario.php?id="+id_usuario; //página web a la que te redirecciona si confirmas la eliminación
-                            else
-                              //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
-                                alert('No se ha podido eliminar el usuario...')
+                                if(id_usuario>0){
+                                   eliminar=confirm("¿Deseas eliminar este usuario?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_usuario.php?id="+id_usuario; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el usuario...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
                             }
                             </script>
 
                                 <table id="buscador_usuario" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color: #F26842; ">Borrar</th>
+                                            <th style="background-color: #39AF33; width: 30px;">Activo</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre</th>
                                             <th>Nick</th>
                                             <th>Rol</th>
@@ -284,11 +290,24 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['ID_USUARIO'];
 
                                         ?>
-                                                    <tr> 
-                                                        <td><button onclick="preguntar(<?php echo $row['ID_USUARIO']?>)">Borrar</button></td>
-                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
-                                                        <td><a href="#" class="user" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['user']?> </a></td>                                                        
-                                                        <td><a href="#" class="rol" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['rol']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_usuario.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['ID_USUARIO'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="user" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['user']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="rol" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['rol']?> </a></label></td>
                                                     </tr>
 
                                         <?php           /*echo"<tr>

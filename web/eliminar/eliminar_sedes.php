@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -249,43 +250,29 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
+                            <script>
+                            function preguntar(id_sede){
+                                if(id_sede>0){
+                                   eliminar=confirm("¿Deseas eliminar este sede?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_sede.php?id="+id_sede; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el sede...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
+                            }
+                            </script>
+
                                 <table id="buscador_sede" class="table table-striped table-bordered">
                                     <thead>
                                     
-                                    <script>
-                                        $('document').ready(function(){
-                                            $('#updatepais').click(function(){
-                                                
-                                                    <?php
-                                                    $conn = connect();
-                                                    $sql = "UPDATE SEDE SET ciudad='iiii' WHERE calle='asd'";
-                                                    $stmt = $conn->prepare($sql);
-                                                    $stmt->execute();
-                                                    close($conn);
-                                                    ?>
-
-                                                location.reload();
-                                            });
-                                        });
-
-                                    </script>
-                                    <script>
-
-                                    function myFunction(id) {
-                                        <?php
-                                            /*$conn = connect();
-                                            $sql = "UPDATE SEDE SET pais='".$id2."' WHERE ID_SEDE=7";
-                                            $stmt = $conn->prepare($sql);
-                                            $stmt->execute();
-                                            close($conn);
-                                            */
-                                        ?>
-                                        //var x = document.getElementById("mySelect").selectedIndex;
-                                        //alert(document.getElementsByTagName("option")[x].value);
-                                        alert(id);
-                                    }
-                                    </script>
+                                    
                                         <tr>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nif cliente</th>
                                             <th>Nombre</th>
                                             <th>Ubicación</th>
@@ -312,15 +299,29 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <!--<script>var x = <?php echo $pk ?></script>-->
-                                                    <tr> 
-                                                        <td><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></td>
-                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
-                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
-                                                        <td><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal']?> </a></td>
-                                                        <td><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></td>
-                                                        <td><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></td>
-                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_sede.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['ID_SEDE'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_postal" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>
                                                         <td>
 
                                                         

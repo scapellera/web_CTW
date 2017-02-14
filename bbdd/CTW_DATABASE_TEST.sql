@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.3
+-- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 14-02-2017 a las 12:28:17
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Servidor: localhost
+-- Tiempo de generación: 14-02-2017 a las 18:15:22
+-- Versión del servidor: 5.5.52-MariaDB
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,7 @@ CREATE TABLE `ARTICULO` (
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
   `codigo_de_barras` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
-  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   `codigo_producto_mayorista` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `numero_de_serie` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `precio` double NOT NULL,
@@ -62,8 +62,8 @@ INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barra
 
 CREATE TABLE `ASIGNAR_USUARIO_PROVEEDOR` (
   `NUM_DETALLE_PROVEEDOR` int(4) NOT NULL,
-  `ID_usuario` int(5) NOT NULL,
-  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci NOT NULL
+  `ID_usuario` int(5) DEFAULT NULL,
+  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -74,8 +74,8 @@ CREATE TABLE `ASIGNAR_USUARIO_PROVEEDOR` (
 
 CREATE TABLE `CABECERA_FACTURA` (
   `ID_CABECERA_FACTURA` int(5) NOT NULL,
-  `ID_factura` int(5) NOT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL
+  `ID_factura` int(5) DEFAULT NULL,
+  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -100,7 +100,7 @@ CREATE TABLE `CLIENTE` (
   `numero_envio` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
   `IBAN` varchar(34) COLLATE utf8_spanish_ci NOT NULL,
   `SEPA` tinyint(1) NOT NULL,
-  `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -126,11 +126,11 @@ INSERT INTO `CLIENTE` (`NIF_EMPRESA`, `nombre_comercial`, `nombre_completo`, `te
 CREATE TABLE `CONTACTO` (
   `ID_CONTACTO` int(4) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ID_sede` int(4) NOT NULL,
+  `ID_sede` int(4) DEFAULT NULL,
   `cargo` varchar(35) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `telefono` int(9) NOT NULL,
-  `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL,
   `extension` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -180,7 +180,7 @@ CREATE TABLE `MAYORISTA` (
   `email_empresa` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `email_comercial` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ubicacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -206,10 +206,10 @@ CREATE TABLE `MINUTAJE` (
   `fecha` date NOT NULL,
   `hora_entrada` time NOT NULL,
   `hora_salida` time NOT NULL,
-  `ID_servicio` int(4) NOT NULL,
-  `ID_usuario` int(4) NOT NULL,
+  `ID_servicio` int(4) DEFAULT NULL,
+  `ID_usuario` int(4) DEFAULT NULL,
   `ID_sede` int(5) DEFAULT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   `facturado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -486,9 +486,9 @@ INSERT INTO `PAIS` (`PAIS`, `prefijo`) VALUES
 
 CREATE TABLE `PIE_FACTURA` (
   `ID_PIE_FACTURA` int(5) NOT NULL,
-  `ID_factura` int(5) NOT NULL,
+  `ID_factura` int(5) DEFAULT NULL,
   `total_facturado` float NOT NULL,
-  `IVA` int(5) NOT NULL,
+  `IVA` int(5) DEFAULT NULL,
   `total_neto` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -500,7 +500,7 @@ CREATE TABLE `PIE_FACTURA` (
 
 CREATE TABLE `SEDE` (
   `ID_SEDE` int(5) NOT NULL,
-  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   `nombre` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ubicacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ciudad` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
@@ -508,7 +508,7 @@ CREATE TABLE `SEDE` (
   `calle` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `numero` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
   `telefono` int(9) NOT NULL,
-  `pais` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -581,7 +581,7 @@ INSERT INTO `STOCK` (`CODIGO_DE_BARRAS`, `cantidad_total`) VALUES
 
 CREATE TABLE `TRONCO_FACTURA_ARTICULO` (
   `ID_TRONCO_FACTURA_ARTICULO` int(5) NOT NULL,
-  `ID_factura` int(5) NOT NULL,
+  `ID_factura` int(5) DEFAULT NULL,
   `ID_articulo` int(5) DEFAULT NULL,
   `numero_de_serie` int(30) NOT NULL,
   `cantidad` int(5) NOT NULL,
@@ -596,8 +596,8 @@ CREATE TABLE `TRONCO_FACTURA_ARTICULO` (
 
 CREATE TABLE `TRONCO_FACTURA_SERVICIO` (
   `ID_TRONCO_FACTURA_SERVICIO` int(5) NOT NULL,
-  `ID_factura` int(5) NOT NULL,
-  `ID_minutaje` int(4) NOT NULL,
+  `ID_factura` int(5) DEFAULT NULL,
+  `ID_minutaje` int(4) DEFAULT NULL,
   `nombre_servicio` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `horas` float NOT NULL,
   `precio` float NOT NULL
@@ -630,8 +630,6 @@ INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`, `rol`) VALUES
 (15, 'eee', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0),
 (16, 'eee', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0),
 (17, 'eee', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0),
-(18, 'www', 'www', '4eae35f1b35977a00ebd8086c259d4c9', 0),
-(19, 'qqq', 'qqq', 'b2ca678b4c936f905fb82f2733f5297f', 0),
 (20, 'aaa', 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', 0),
 (21, 'zzz', 'zzz', 'f3abb86bd34cf4d52698f14c0da1dc60', 0),
 (22, 'ssssssss', 'sssssss', '16fcb1091f8a0cc70c96e2ff97fdd213', 0),
@@ -841,69 +839,69 @@ ALTER TABLE `USUARIO`
 -- Filtros para la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
+  ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
 ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
-  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
-  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`);
+  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `CABECERA_FACTURA`
 --
 ALTER TABLE `CABECERA_FACTURA`
-  ADD CONSTRAINT `fk_ID_factura_cabecera_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`),
-  ADD CONSTRAINT `fk_NIF_cliente_cabecera_factura` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+  ADD CONSTRAINT `fk_NIF_cliente_cabecera_factura` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_factura_cabecera_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `CLIENTE`
 --
 ALTER TABLE `CLIENTE`
-  ADD CONSTRAINT `fk_pais_clientes` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
+  ADD CONSTRAINT `fk_pais_clientes` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  ADD CONSTRAINT `fk_ID_subsede_contacto` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`),
-  ADD CONSTRAINT `fk_pais_contacto` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
+  ADD CONSTRAINT `fk_pais_contacto` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_subsede_contacto` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `MAYORISTA`
 --
 ALTER TABLE `MAYORISTA`
-  ADD CONSTRAINT `fk_pais_mayorista` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
+  ADD CONSTRAINT `fk_pais_mayorista` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `MINUTAJE`
 --
 ALTER TABLE `MINUTAJE`
-  ADD CONSTRAINT `fk_ID_sede_fecha` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`),
-  ADD CONSTRAINT `fk_ID_servicio_fecha` FOREIGN KEY (`ID_servicio`) REFERENCES `SERVICIO` (`ID_SERVICIO`),
-  ADD CONSTRAINT `fk_ID_usuario_fecha` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`),
-  ADD CONSTRAINT `fk_NIF_empresa_fecha` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+  ADD CONSTRAINT `fk_NIF_empresa_fecha` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_sede_fecha` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_servicio_fecha` FOREIGN KEY (`ID_servicio`) REFERENCES `SERVICIO` (`ID_SERVICIO`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_usuario_fecha` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `PIE_FACTURA`
 --
 ALTER TABLE `PIE_FACTURA`
-  ADD CONSTRAINT `fk_ID_IVA` FOREIGN KEY (`IVA`) REFERENCES `IVA` (`IVA`),
-  ADD CONSTRAINT `fk_ID_factura_pie_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`);
+  ADD CONSTRAINT `fk_ID_IVA` FOREIGN KEY (`IVA`) REFERENCES `IVA` (`IVA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_factura_pie_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
-  ADD CONSTRAINT `fk_NIF_cliente_sede` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`),
-  ADD CONSTRAINT `fk_pais_sede` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`);
+  ADD CONSTRAINT `fk_pais_sede` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_NIF_cliente_sede` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  ADD CONSTRAINT `FK_NIF_empresa_servicio` FOREIGN KEY (`NIF_empresa`) REFERENCES `CLIENTE` (`NIF_EMPRESA`);
+  ADD CONSTRAINT `FK_NIF_empresa_servicio` FOREIGN KEY (`NIF_empresa`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `STOCK`
@@ -915,15 +913,15 @@ ALTER TABLE `STOCK`
 -- Filtros para la tabla `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_ARTICULO`
-  ADD CONSTRAINT `fk_ID_articulo_tronco_factura_articulos` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`),
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_articulos` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`);
+  ADD CONSTRAINT `fk_ID_factura_tronco_factura_articulos` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_articulo_tronco_factura_articulos` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `TRONCO_FACTURA_SERVICIO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`),
-  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`);
+  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

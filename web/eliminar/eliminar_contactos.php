@@ -92,7 +92,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -178,7 +179,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar sede</a>
+                    <a class="navbar-brand">Eliminar contacto</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -249,16 +250,23 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
-                        <script>
+                            <script>
+
                             function preguntar(id_contacto){
+                                if(id_contacto>0){
+
                                eliminar=confirm("¿Deseas eliminar este contacto?");
                                if (eliminar)
                                //Redireccionamos si das a aceptar
                                  window.location.href="../assets/php/delete/delete_contacto.php?id="+id_contacto; //página web a la que te redirecciona si confirmas la eliminación
-                            else
+                                else
                               //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
                                 alert('No se ha podido eliminar el contacto...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
                             }
+                            
                             </script>
                         
                         
@@ -267,7 +275,8 @@ if($_SESSION["login_done"]==true){
                                 <table id="buscador_cliente" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color: #F26842; ">Borrar</th>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre</th>
                                             <th>Sede</th>
                                             <th>Cargo</th>
@@ -291,15 +300,28 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['ID_CONTACTO'];
                                         ?>
                                                     <tr>
-                                                        <td><button onclick="preguntar(<?php echo $row['ID_CONTACTO']?>)">Borrar</button></td>
-                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
-                                                        <td><a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></td>
-                                                        <td><a href="#" class="cargo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cargo']?> </a></td>
-                                                        <td><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></td>
-                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
-                                                        <td><a href="#" class="extension" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension']?> </a></td>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_contacto.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['ID_CONTACTO'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="cargo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cargo']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="extension" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension']?> </a></label></td>
                                                     </tr>
 
                                         <?php           /*echo"<tr>

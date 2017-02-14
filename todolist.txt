@@ -1,1 +1,6 @@
 - En mostrar contactos que no salga el ID de la sede(que salga el nombre de la sede)
+- Mirar buscador minutaje
+- Editar usuario
+- Eliminar cualquier cosa sin fallos
+- En mostrar minutaje que no salgan ids sino nombres
+- fusionar minutaje y calendario a lo goku-vegetta

@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -251,6 +252,7 @@ if($_SESSION["login_done"]==true){
 
                         <script>
                             function preguntar(nif_mayorista){
+                                if(nif_mayorista>0){
                                eliminar=confirm("¿Deseas eliminar este mayorista?");
                                if (eliminar)
                                //Redireccionamos si das a aceptar
@@ -258,13 +260,17 @@ if($_SESSION["login_done"]==true){
                             else
                               //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
                                 alert('No se ha podido eliminar el mayorista...')
+                            }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
                             }
                             </script>
 
                                 <table id="buscador_mayorista" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color: #F26842; ">Borrar</th>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nif mayorista</th>
                                             <th>Nombre empresa</th>
                                             <th>Nombre del comercial</th>
@@ -291,19 +297,32 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['NIF_MAYORISTA'];
 
                                         ?>
-                                                    <tr> 
-                                                        <td><button onclick="preguntar(<?php echo $row['NIF_MAYORISTA']?>)">Borrar</button></td>
-                                                        <td><a href="#" class="NIF_MAYORISTA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_MAYORISTA']?> </a></td>
-                                                        <td><a href="#" class="nombre_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_empresa']?> </a></td>
-                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
-                                                        <td><a href="#" class="telefono_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_empresa']?> </a></td>
-                                                        <td><a href="#" class="telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_comercial']?> </a></td>
-                                                        <td><a href="#" class="extension_telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension_telefono_comercial']?> </a></td>
-                                                        <td><a href="#" class="email_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_empresa']?> </a></td>
-                                                        <td><a href="#" class="email_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_comercial']?> </a></td>
-                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
-                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>   
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_mayorista.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['NIF_MAYORISTA'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_MAYORISTA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_MAYORISTA']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_empresa']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_empresa']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_comercial']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="extension_telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension_telefono_comercial']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="email_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_empresa']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="email_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_comercial']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></label></td>   
                                                     </tr>
 
                                         <?php           /*echo"<tr>

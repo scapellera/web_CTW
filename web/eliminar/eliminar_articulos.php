@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -249,9 +250,27 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
+                            <script>
+                            function preguntar(id_articulo){
+                                if(id_articulo>0){
+                                   eliminar=confirm("¿Deseas eliminar este articulo?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_articulo.php?id="+id_articulo; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el articulo...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
+                            }
+                            </script>
+
                                 <table id="buscador_articulo" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Codigo de barras</th>
@@ -279,18 +298,32 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['ID_ARTICULO'];
 
                                         ?>
-                                                    <tr> 
-                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
-                                                        <td><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></td>
-                                                        <td><a href="#" class="codigo_de_barras" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a></td>
-                                                        <td><a href="#" class="NIF_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_mayorista']?> </a></td>
-                                                        <td><a href="#" class="codigo_producto_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_producto_mayorista']?> </a></td>
-                                                        <td><a href="#" class="numero_de_serie" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_de_serie']?> </a></td>
-                                                        <td><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio']?> </a></td>
-                                                        <td><a href="#" class="cantidad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad']?> </a></td>
-                                                        <td><a href="#" class="numero_factura" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_factura']?> </a></td>
-                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
-                                                        <td><a href="#" class="fecha_de_alta" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['fecha_de_alta']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_articulo.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['ID_ARTICULO'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_de_barras" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label>></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_mayorista']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_producto_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_producto_mayorista']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero_de_serie" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_de_serie']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="cantidad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero_factura" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_factura']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="fecha_de_alta" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['fecha_de_alta']?> </a></label></td>
                                                     </tr>
 
                                         <?php           /*echo"<tr>
