@@ -19,6 +19,7 @@ if($_SESSION["login_done"]==true){
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    
 
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
@@ -87,6 +88,8 @@ if($_SESSION["login_done"]==true){
     <!--<script src="assets/php/select_clientes_sedes.php"></script>-->
     <!--SEDES SELEC DEPENDIENTE-->
      <script src="assets/js/functions.js"></script>
+     <!--micss-->
+     <link href="assets/css/micss.css" rel="stylesheet"/>
 
 
 
@@ -231,10 +234,17 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                        <div class="container">  
-                          <form id="contact" action="./assets/php/post/post_minutaje_automatico.php" method="post" name="f_cliente_sede">
+                        <div class="container">
+
+
                             <h3>Añadir Minutaje (Automatico)</h3>
                             <h4>Rellene el formulario para añadir la salida realizada</h4>
+
+                            <p><button class "button_horas" onclick="myFunction1()">Presione este boton al entrar.</button></p>
+                            <p><button class "button_horas" onclick="myFunction2()">Presione este boton al salir.</button></p>
+
+                          <form id="contact" action="./assets/php/post/post_minutaje_automatico.php" method="post" name="f_cliente_sede">
+                            
                             
                             <fieldset>
                             <?php $data = select_all_cliente(); ?>
@@ -291,15 +301,17 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Fecha*" name="fecha" type="date" required>
+                            <p>Fecha: <a id="fecha_print"></a></p>
+                            <input type="hidden" id="fecha" name="fecha" value="" required/>
                             </fieldset>
                             <fieldset>
-                            <button onclick="myFunction1()">Try it1</button>
-                              <input id="hora_entrada" placeholder="Hora entrada*" name="hora_entrada" type="text" required>
+                            <p>Hora de entrada: <a id="hora_entrada_print"></a></p>
+                            <input type="hidden" id="hora_entrada" name="hora_entrada" value="" required/>
+
                             </fieldset>
                             <fieldset>
-                                <button onclick="myFunction2()">Try it2</button>
-                              <input id="hora_salida" placeholder="Hora salida*" name="hora_salida" type="time" required>
+                            <p>Hora de salida: <a id="hora_salida_print"></a></p>
+                            <input type="hidden" id="hora_salida" name="hora_salida" value="" required/>
                             </fieldset>
                             <fieldset>
                               Facturado&nbsp;&nbsp;&nbsp;<input name="facturado" type="checkbox">
@@ -314,26 +326,39 @@ if($_SESSION["login_done"]==true){
                           
 
 
-
 <script>
 function myFunction1() {
     var d = new Date(); // for now
-d.getHours(); // => 9
-d.getMinutes(); // =>  30
-d.getSeconds(); // => 51
+    //obtener hora actual
+    var horas = d.getHours(); // => 9
+    var minutos = d.getMinutes(); // =>  30
+    d.getSeconds(); // => 51
+    var tiempo = horas + ":" + minutos;
+    //obtener fecha
+    var day = d.getDate();
+    var month = d.getMonth() +1;
+    var year = d.getFullYear();
+    var fecha = year + "-" + month + "-" + day;
 
+    //passar hora de inicio
+    document.getElementById("hora_entrada_print").innerHTML = tiempo;
+    document.getElementById('hora_entrada').value = tiempo;
 
-    document.getElementById("hora_entrada").innerHTML = d;
+    //passar fecha
+    document.getElementById("fecha_print").innerHTML = fecha;
+    document.getElementById('fecha').value = fecha;
+
 }
 
 function myFunction2() {
-    var d = new Date(); // for now
-d.getHours(); // => 9
-d.getMinutes(); // =>  30
+   var d = new Date(); // for now
+var horas = d.getHours(); // => 9
+var minutos = d.getMinutes(); // =>  30
 d.getSeconds(); // => 51
+ var tiempo = horas + ":" + minutos;
 
-
-    document.getElementById("hora_salida").innerHTML = d;
+    document.getElementById("hora_salida_print").innerHTML = tiempo;
+    document.getElementById('hora_salida').value = tiempo;
 }
 </script>
 
