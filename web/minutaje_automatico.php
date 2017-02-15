@@ -35,12 +35,12 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="assets/js/editor.js"></script>
+    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS
+    <script type="text/javascript" src="assets/js/editor.js"></script>-->
 
 
-    <!-- DATATABLES TABLAS -->
-    <script src="table/tables.js"></script>
+    <!-- DATATABLES TABLAS
+    <script src="table/tables.js"></script> -->
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -80,8 +80,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
     <link href="assets/css/table2.css" rel="stylesheet"/>
-    <!--EDIT DATATABLE CODE-->
-    <link href="assets/css/table4.css" rel="stylesheet"/>
+    <!--EDIT DATATABLE CODE
+    <link href="assets/css/table4.css" rel="stylesheet"/>-->
     <!--INSERTS-->
     <link href="./assets/css/insert.css" rel="stylesheet" />
     <!--SEDES EN VARIABLES-->
@@ -240,8 +240,8 @@ if($_SESSION["login_done"]==true){
                             <h3>Añadir Minutaje (Automatico)</h3>
                             <h4>Rellene el formulario para añadir la salida realizada</h4>
 
-                            <p><button class "button_horas" onclick="myFunction1()">Presione este boton al entrar.</button></p>
-                            <p><button class "button_horas" onclick="myFunction2()">Presione este boton al salir.</button></p>
+                            <p><button class="button_horas" onclick="myFunction1()">Presione este boton al entrar.</button></p>
+                            <p><button class="button_horas" onclick="myFunction2()">Presione este boton al salir.</button></p>
 
                           <form id="contact" action="./assets/php/post/post_minutaje_automatico.php" method="post" name="f_cliente_sede">
                             
