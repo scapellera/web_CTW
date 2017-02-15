@@ -9,6 +9,7 @@ if($_SESSION["login_done"]==true){
 ?>
 
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -19,8 +20,44 @@ if($_SESSION["login_done"]==true){
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    
-
+    <!--
+    <style>
+    *{
+    margin: 0;
+    padding: 0;
+    }
+    #contenedor{
+        margin: 10px auto;
+        width: 540px;
+        height: 115px;
+    }
+    .reloj{
+        float: left;
+        font-size: 80px;
+        font-family: Courier,sans-serif;
+        color: #363431;
+    }
+    .boton{
+        outline: none;
+        border: 1px solid #363431;
+        color: white;
+        width: 128px;
+        height: 30px;
+        text-shadow: 0px -1px 1px black;
+        font-size: 20px;
+        border-radius: 5px;
+        font-family: Helvetica;
+        cursor: pointer;
+        background-image: linear-gradient(#3aad02,#2c6f05);
+    }
+    .boton:active{
+        background-image: linear-gradient(#2c6f05,#3aad02);
+    }
+    .boton:hover{
+        box-shadow: 0px 0px 14px #3aad02;
+    }
+    </style>
+    -->
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -91,7 +128,8 @@ if($_SESSION["login_done"]==true){
      <!--micss-->
      <link href="assets/css/micss.css" rel="stylesheet"/>
 
-
+    <!-- GUARDAR MINUTAJE EN SESSIONES-->
+     <script src="assets/js/jquery.session.js"></script>
 
 </head>
 <body>
@@ -233,22 +271,24 @@ if($_SESSION["login_done"]==true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                        <div class="container">
 
+                        
+
+                        <div id="panelEntrar" class="card">
+                        <div class="container">
+                        
 
                             <h3>Añadir Minutaje (Automatico)</h3>
                             <h4>Rellene el formulario para añadir la salida realizada</h4>
 
-                            <p><button class="button_horas" onclick="myFunction1()">Presione este boton al entrar.</button></p>
-                            <p><button class="button_horas" onclick="myFunction2()">Presione este boton al salir.</button></p>
+                            
 
-                          <form id="contact" action="./assets/php/post/post_minutaje_automatico.php" method="post" name="f_cliente_sede">
+                          <form id="contact" method="post" name="f_cliente_sede">
                             
                             
                             <fieldset>
                             <?php $data = select_all_cliente(); ?>
-                            <select name="select_box_nif_empresa" class="select_box" onchange="cambia_sede()">
+                            <select id="cliente" name="select_box_nif_empresa" class="select_box" onchange="cambia_sede()">
                               <option value="" disabled selected>Selecciona el cliente*</option>
                               <?php
                                 if ($data->num_rows > 0) {
@@ -263,14 +303,13 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                                <select class="select_box" name="select_box_sede_cliente"> 
+                                <select id="sede" class="select_box" name="select_box_sede_cliente"> 
                                 <option value="-">- 
-                                </select>
-                                                            
+                                </select>                    
                             </fieldset>
                             <fieldset>
                             <?php $data = select_all_servicio(); ?>
-                            <select name="select_box_servicio" class="select_box">
+                            <select id="servicio" name="select_box_servicio" class="select_box">
                               <option value="" disabled selected>Selecciona el servicio*</option>
                               <?php
                                 if ($data->num_rows > 0) {
@@ -285,85 +324,218 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
-                            <?php $data = select_all_usuario(); ?>
-                            <select name="select_box_usuario" class="select_box">
-                              <option value="" disabled selected>Selecciona el usuario que realiza el servicio*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['ID_USUARIO']?>"><?php echo "$row[user] - $row[nombre]";?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                            <p>Fecha: <a id="fecha_print"></a></p>
+                            <a id="fecha_print"></a>
                             <input type="hidden" id="fecha" name="fecha" value="" required/>
                             </fieldset>
                             <fieldset>
-                            <p>Hora de entrada: <a id="hora_entrada_print"></a></p>
+                            <a id="hora_entrada_print"></a>
                             <input type="hidden" id="hora_entrada" name="hora_entrada" value="" required/>
-
                             </fieldset>
-                            <fieldset>
-                            <p>Hora de salida: <a id="hora_salida_print"></a></p>
-                            <input type="hidden" id="hora_salida" name="hora_salida" value="" required/>
-                            </fieldset>
-                            <fieldset>
-                              Facturado&nbsp;&nbsp;&nbsp;<input name="facturado" type="checkbox">
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
+                            
 
                           </form>
 
                           
-                          
-
-
-<script>
-function myFunction1() {
-    var d = new Date(); // for now
-    //obtener hora actual
-    var horas = d.getHours(); // => 9
-    var minutos = d.getMinutes(); // =>  30
-    d.getSeconds(); // => 51
-    var tiempo = horas + ":" + minutos;
-    //obtener fecha
-    var day = d.getDate();
-    var month = d.getMonth() +1;
-    var year = d.getFullYear();
-    var fecha = year + "-" + month + "-" + day;
-
-    //passar hora de inicio
-    document.getElementById("hora_entrada_print").innerHTML = tiempo;
-    document.getElementById('hora_entrada').value = tiempo;
-
-    //passar fecha
-    document.getElementById("fecha_print").innerHTML = fecha;
-    document.getElementById('fecha').value = fecha;
-
-}
-
-function myFunction2() {
-   var d = new Date(); // for now
-var horas = d.getHours(); // => 9
-var minutos = d.getMinutes(); // =>  30
-d.getSeconds(); // => 51
- var tiempo = horas + ":" + minutos;
-
-    document.getElementById("hora_salida_print").innerHTML = tiempo;
-    document.getElementById('hora_salida').value = tiempo;
-}
-</script>
 
                         </div>
                         </div>
+
+                        
+
+                        <div id="panelSalir" class="card">
+                        <div class="container">
+
+
+                            <h3>Finalizar minutaje</h3>
+                            <h4>Seleccione el boton para finalizar el minutaje</h4>
+
+                            
+
+                          <form id="contact" action="./assets/php/post/post_minutaje_automatico.php" method="post">
+                            
+                            <fieldset>
+                            <input type="hidden" name="cliente_minutaje" value=""> 
+                            </fieldset>
+                            <fieldset>
+                            <input type="hidden" name="sede_minutaje" value=""> 
+                            </fieldset>
+                            <fieldset>
+                            <input type="hidden" name="servicio_minutaje" value="">
+                            </fieldset>
+                            <fieldset>
+                              Facturado&nbsp;&nbsp;&nbsp;<input name="facturado_minutaje" type="checkbox">
+                            </fieldset>
+                            <fieldset>
+                            <input type="hidden" name="fecha_minutaje" value=""> 
+                            </fieldset>
+                            <fieldset>
+                            <input type="hidden" name="hora_entrada_minutaje" value=""> 
+                            </fieldset>
+                            <fieldset>
+                            <a id="hora_salida_print"></a>
+                            <input type="hidden" id="hora_salida" name="hora_salida_minutaje" value="" required/>
+                            </fieldset>
+                            <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton al salir.</button>
+                          </form>
+
+                        </div>
+                        </div>
+                        <div>
+                        <center>
+                        <button id="entrar" data-submit="...Sending" class="button_horas" onclick="myFunction1()">Presione este boton al entrar.</button>
+                        </center>
+                        </div>
+
+                        <!--
+                        
+                            <div id="contenedor">
+                                <div class="reloj" id="Horas">00</div>
+                                <div class="reloj" id="Minutos">:00</div>
+                                <div class="reloj" id="Segundos">:00</div>
+                                <div class="reloj" id="Centesimas">:00</div>
+                                <input type="button" class="boton" id="inicio" value="Start &#9658;" onclick="inicio();">
+                            </div>
+                        
+                        -->
+
+                        <script>
+
+                        if($.session.get("esperandoSalida")!=1){
+                            $("#panelSalir").hide();
+                            $("#panelEntrar").show();
+                        }else{
+                            $("#panelEntrar").hide();
+                            $("#panelSalir").show();
+                        }
+
+
+                            $("#entrar").click(function(){
+                                $.session.set("cliente_minutaje",$("#cliente").val());
+                                $.session.set("sede_minutaje",$("#sede").val());
+                                $.session.set("servicio_minutaje",$("#servicio").val());
+                                $.session.set("fecha_minutaje",$("#fecha").val());
+                                $.session.set("hora_entrada_minutaje",$("#hora_entrada").val());
+                                $.session.set("esperandoSalida",1);
+                                $("#panelEntrar").hide();
+                                $("#panelSalir").show();
+                                $("#entrar").text("Hello world!");
+                                var n = 0;
+                                var l = document.getElementById("entrar");
+                                window.setInterval(function(){
+                                  l.innerHTML = n;
+                                  n++;
+                                },1000);
+                            });
+                        
+                            $("#salir").click(function(){
+                                $("input:hidden[name=cliente_minutaje]").val($.session.get("cliente_minutaje"));
+                                $("input:hidden[name=sede_minutaje]").val($.session.get("sede_minutaje"));
+                                $("input:hidden[name=servicio_minutaje]").val($.session.get("servicio_minutaje"));
+                                $("input:hidden[name=fecha_minutaje]").val($.session.get("fecha_minutaje"));
+                                $("input:hidden[name=hora_entrada_minutaje]").val($.session.get("hora_entrada_minutaje"));
+                                $.session.set("esperandoSalida",0);
+                            });
+
+
+                            function myFunction1() {
+                                var d = new Date(); // for now
+                                //obtener hora actual
+                                var horas = d.getHours(); // => 9
+                                var minutos = d.getMinutes(); // =>  30
+                                d.getSeconds(); // => 51
+                                var tiempo = horas + ":" + minutos;
+                                //obtener fecha
+                                var day = d.getDate();
+                                var month = d.getMonth() +1;
+                                var year = d.getFullYear();
+                                var fecha = year + "-" + month + "-" + day;
+
+                                //passar hora de inicio
+                                document.getElementById("hora_entrada_print").innerHTML = tiempo;
+                                document.getElementById('hora_entrada').value = tiempo;
+
+                                //passar fecha
+                                document.getElementById("fecha_print").innerHTML = fecha;
+                                document.getElementById('fecha').value = fecha;
+
+                            }
+
+                            function myFunction2() {
+                               var d = new Date(); // for now
+                            var horas = d.getHours(); // => 9
+                            var minutos = d.getMinutes(); // =>  30
+                            d.getSeconds(); // => 51
+                             var tiempo = horas + ":" + minutos;
+
+                                document.getElementById("hora_salida_print").innerHTML = tiempo;
+                                document.getElementById('hora_salida').value = tiempo;
+                            }
+
+                            /*
+                            var centesimas = 0;
+                            var segundos = 0;
+                            var minutos = 0;
+                            var horas = 0;
+                            function inicio () {
+                                control = setInterval(cronometro,10);
+                                document.getElementById("inicio").disabled = true;
+                                document.getElementById("parar").disabled = false;
+                                document.getElementById("continuar").disabled = true;
+                                document.getElementById("reinicio").disabled = false;
+                            }
+                            function parar () {
+                                clearInterval(control);
+                                document.getElementById("parar").disabled = true;
+                                document.getElementById("continuar").disabled = false;
+                            }
+                            function reinicio () {
+                                clearInterval(control);
+                                centesimas = 0;
+                                segundos = 0;
+                                minutos = 0;
+                                horas = 0;
+                                Centesimas.innerHTML = ":00";
+                                Segundos.innerHTML = ":00";
+                                Minutos.innerHTML = ":00";
+                                Horas.innerHTML = "00";
+                                document.getElementById("inicio").disabled = false;
+                                document.getElementById("parar").disabled = true;
+                                document.getElementById("continuar").disabled = true;
+                                document.getElementById("reinicio").disabled = true;
+                            }
+                            function cronometro () {
+                                if (centesimas < 99) {
+                                    centesimas++;
+                                    if (centesimas < 10) { centesimas = "0"+centesimas }
+                                    Centesimas.innerHTML = ":"+centesimas;
+                                }
+                                if (centesimas == 99) {
+                                    centesimas = -1;
+                                }
+                                if (centesimas == 0) {
+                                    segundos ++;
+                                    if (segundos < 10) { segundos = "0"+segundos }
+                                    Segundos.innerHTML = ":"+segundos;
+                                }
+                                if (segundos == 59) {
+                                    segundos = -1;
+                                }
+                                if ( (centesimas == 0)&&(segundos == 0) ) {
+                                    minutos++;
+                                    if (minutos < 10) { minutos = "0"+minutos }
+                                    Minutos.innerHTML = ":"+minutos;
+                                }
+                                if (minutos == 59) {
+                                    minutos = -1;
+                                }
+                                if ( (centesimas == 0)&&(segundos == 0)&&(minutos == 0) ) {
+                                    horas ++;
+                                    if (horas < 10) { horas = "0"+horas }
+                                    Horas.innerHTML = horas;
+                                }
+                            }*/
+
+                            </script>
                     </div>
                 </div>
             </div>

@@ -225,14 +225,14 @@ if($_SESSION["login_done"]==true){
                         
 					<?php
 					#Declaramos las variables del formulario
-					$NIF_cliente = $_POST['select_box_nif_empresa'];
-					$sede = $_POST['select_box_sede_cliente'];
-					$servicio = $_POST['select_box_servicio'];
-					$usuario = $_POST['select_box_usuario'];
-					$fecha = $_POST['fecha'];
-					$hora_entrada = $_POST['hora_entrada'];
-                    $hora_salida = $_POST['hora_salida'];
-					$facturado = $_POST['facturado'];
+					$NIF_cliente = $_POST['cliente_minutaje'];
+					$sede = $_POST['sede_minutaje'];
+					$servicio = $_POST['servicio_minutaje'];
+					$usuario = $_SESSION["id_usuario"];
+					$facturado = $_POST['facturado_minutaje'];
+					$fecha = $_POST['fecha_minutaje'];
+                    $hora_entrada = $_POST['hora_entrada_minutaje'];
+					$hora_salida = $_POST['hora_salida_minutaje'];
                     
 					if($facturado==''){
 						$facturado2 = 0;

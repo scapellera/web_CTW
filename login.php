@@ -30,7 +30,6 @@ if(!isset($_SESSION['userid']))
 {
     if(isset($_POST['login']))
     {
-        $id_usuario = $_POST['ID_USUARIO'];
         $nombre = $_POST['nombre'];
         $user = $_POST['user'];
         $password = $_POST['password'];
@@ -38,7 +37,7 @@ if(!isset($_SESSION['userid']))
         
         if(verificar_login($user,$password,$result,$nombre) == 1)
         {
-            $_SESSION["id_usuario"] = $result->id_usuario;
+            $_SESSION["id_usuario"] = $result->ID_USUARIO;
             $_SESSION["user"] = $user;
             $_SESSION["username"] = $result->nombre;
             $_SESSION['user_rol'] = $result->rol;
