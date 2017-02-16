@@ -79,6 +79,15 @@ function select_all_stock(){
     return $data;
   }
 
+  function select_all_minutaje(){
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM MINUTAJE";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
+
   function select_sede_cliente($nif_cliente){
      $conn = connect();
     $sql = "SELECT * 

@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -102,7 +103,7 @@ if($_SESSION["login_done"]==true){
 
     
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
@@ -121,7 +122,7 @@ if($_SESSION["login_done"]==true){
                         <p>Clientes</p>
                     </a>
                 </li>
-                <li class="active">
+                <li  class="active">
                     <a href="buscador_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
@@ -163,8 +164,14 @@ if($_SESSION["login_done"]==true){
                         <p>Stock</p>
                     </a>
                 </li>
+                <li>
+                    <a href="buscador_minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje</p>
+                    </a>
+                </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -177,59 +184,12 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar sede</a>
+                    <a class="navbar-brand">Eliminar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
-
+                    
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
+                        
                         <li>
                             <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
@@ -249,43 +209,29 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
+                            <script>
+                            function preguntar(id_sede){
+                                if(id_sede>0){
+                                   eliminar=confirm("¿Deseas eliminar este sede?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_sede.php?id="+id_sede; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el sede...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
+                            }
+                            </script>
+
                                 <table id="buscador_sede" class="table table-striped table-bordered">
                                     <thead>
                                     
-                                    <script>
-                                        $('document').ready(function(){
-                                            $('#updatepais').click(function(){
-                                                
-                                                    <?php
-                                                    $conn = connect();
-                                                    $sql = "UPDATE SEDE SET ciudad='iiii' WHERE calle='asd'";
-                                                    $stmt = $conn->prepare($sql);
-                                                    $stmt->execute();
-                                                    close($conn);
-                                                    ?>
-
-                                                location.reload();
-                                            });
-                                        });
-
-                                    </script>
-                                    <script>
-
-                                    function myFunction(id) {
-                                        <?php
-                                            /*$conn = connect();
-                                            $sql = "UPDATE SEDE SET pais='".$id2."' WHERE ID_SEDE=7";
-                                            $stmt = $conn->prepare($sql);
-                                            $stmt->execute();
-                                            close($conn);
-                                            */
-                                        ?>
-                                        //var x = document.getElementById("mySelect").selectedIndex;
-                                        //alert(document.getElementsByTagName("option")[x].value);
-                                        alert(id);
-                                    }
-                                    </script>
+                                    
                                         <tr>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nif cliente</th>
                                             <th>Nombre</th>
                                             <th>Ubicación</th>
@@ -312,15 +258,29 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <!--<script>var x = <?php echo $pk ?></script>-->
-                                                    <tr> 
-                                                        <td><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></td>
-                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
-                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
-                                                        <td><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></td>
-                                                        <td><a href="#" class="codigo_postal" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal']?> </a></td>
-                                                        <td><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></td>
-                                                        <td><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></td>
-                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_sede.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['ID_SEDE'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_postal" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>
                                                         <td>
 
                                                         
@@ -368,41 +328,7 @@ if($_SESSION["login_done"]==true){
             </div>
         </div>
 
-        <!--Menu footer
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        
-                        <!--<li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>-->
-                    </ul>
-                </nav>
-                <!--Copyright-->
-                <!--<p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>-->
-            </div>
-        </footer>
-        -->
+        
     </div>
 </div>
 
@@ -411,13 +337,13 @@ if($_SESSION["login_done"]==true){
 
     <!--   Core JS Files   -->
     <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="../assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="../assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="../assets/js/bootstrap-notify.js"></script>
@@ -426,27 +352,11 @@ if($_SESSION["login_done"]==true){
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="../assets/js/light-bootstrap-dashboard.js"></script>
+    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="../assets/js/demo.js"></script>
-    <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-	<!--<script type="text/javascript">
-    	$(document).ready(function(){
-
-        	demo.initChartist();
-
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-    	});
-	</script>-->
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/demo.js"></script>
+    
 
 </html>
 

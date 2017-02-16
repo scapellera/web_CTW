@@ -91,7 +91,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/insert.css" rel="stylesheet" />
     <!--NUESTRO CSS-->
     <link href="../assets/css/micss.css" rel="stylesheet" />
-
+    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="../assets/css/csscheckbox.css" rel="stylesheet" />
 
 
 </head>
@@ -102,7 +103,7 @@ if($_SESSION["login_done"]==true){
 
     
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
                  
@@ -163,8 +164,14 @@ if($_SESSION["login_done"]==true){
                         <p>Stock</p>
                     </a>
                 </li>
+                <li>
+                    <a href="buscador_minutaje.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje</p>
+                    </a>
+                </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -177,59 +184,12 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar sede</a>
+                    <a class="navbar-brand">Eliminar stock</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
-
+                    
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
+                        
                         <li>
                             <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
@@ -249,9 +209,27 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
 
+                            <script>
+                            function preguntar(id_stock){
+                                if(id_stock!=null){
+                                   eliminar=confirm("¿Deseas eliminar este producto?");
+                                   if (eliminar)
+                                   //Redireccionamos si das a aceptar
+                                     window.location.href="../assets/php/delete/delete_stock.php?id="+id_stock; //página web a la que te redirecciona si confirmas la eliminación
+                                    else
+                                  //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                                    alert('No se ha podido eliminar el producto...')
+                                }else{
+                                    alert ('Error, solo se puede eliminar en local siendo el admin');
+                                }
+                            }
+                            </script>
+
                                 <table id="buscador_stock" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Código de barras</th>
                                             <th>Cantidad total</th>
                                         </tr>
@@ -270,30 +248,26 @@ if($_SESSION["login_done"]==true){
                                                     $pk = $row['CODIGO_DE_BARRAS'];
 
                                         ?>
-                                                    <tr> 
-                                                        <td><a href="#" class="CODIGO_DE_BARRAS" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['CODIGO_DE_BARRAS']?> </a></td>
-                                                        <td><a href="#" class="cantidad_total" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad_total']?> </a></td>
+                                                    <tr>
+                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_stock.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row["CODIGO_DE_BARRAS"];
+                                                                    
+                                                                } else {
+                                                                    echo null;
+                                                                }
+
+
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="CODIGO_DE_BARRAS" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['CODIGO_DE_BARRAS']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="cantidad_total" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad_total']?> </a></label></td>
                                                     </tr>
 
-                                        <?php           /*echo"<tr>
-                                                            <td><a".$row["nombre_completo"]."</td>
-                                                            <td>".$row["NIF_EMPRESA"]."</td>
-                                                            <td>".$row["nombre_comercial"]."</td>
-                                                            <td>".$row["telefono"]."</td>
-                                                            <td>".$row["email"]."</td>
-                                                            <td>".$row["IBAN"]."</td>
-                                                            <td>".$row["SEPA"]."</td>
-                                                            <td>".$row["pais"]."</td>
-                                                            <td>".$row["ciudad_facturacion"]."</td>
-                                                            <td>".$row["codigo_postal_facturacion"]."</td>
-                                                            <td>".$row["calle_facturacion"]."</td>
-                                                            <td>".$row["numero_facturacion"]."</td>
-                                                            <td>".$row["ciudad_envio"]."</td>
-                                                            <td>".$row["codigo_postal_envio"]."</td>
-                                                            <td>".$row["calle_envio"]."</td>
-                                                            <td>".$row["numero_envio"]."</td>
-                                                        </tr>";*/
-                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
+                                        <?php           
                                                  }
                                             } else {
                                                  echo "0 results";
@@ -314,41 +288,7 @@ if($_SESSION["login_done"]==true){
             </div>
         </div>
 
-        <!--Menu footer
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        
-                        <!--<li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>-->
-                    </ul>
-                </nav>
-                <!--Copyright-->
-                <!--<p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>-->
-            </div>
-        </footer>
-        -->
+        
     </div>
 </div>
 
@@ -376,23 +316,7 @@ if($_SESSION["login_done"]==true){
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="../assets/js/demo.js"></script>
-    <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-    <!--<script type="text/javascript">
-        $(document).ready(function(){
-
-            demo.initChartist();
-
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-        });
-    </script>-->
+    
 
 </html>
 

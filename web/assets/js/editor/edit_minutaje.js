@@ -7,10 +7,17 @@ $(document).ready(function() {
 
   })
 
-  $('.horas').editable({
+  $('.hora_entrada').editable({
     type: 'text',
     url: '../assets/php/update_table/update_minutaje.php',
-    name: 'horas'
+    name: 'hora_entrada'
+
+  })
+
+  $('.hora_salida').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_minutaje.php',
+    name: 'hora_salida'
 
   })
 

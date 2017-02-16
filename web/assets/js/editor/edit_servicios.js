@@ -18,5 +18,11 @@ $(document).ready(function() {
     name: 'precio'
 
   })
+    $('.NIF_empresa').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_servicio.php',
+    name: 'NIF_empresa'
+
+  })
   
 })
