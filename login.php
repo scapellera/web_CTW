@@ -2,7 +2,7 @@
 
 include_once "conexion.php";
 
-function verificar_login($user,$password,&$result) {
+function verificar_login($user,$password,&$result,&$nombre) {
     
     $sql = "SELECT * FROM USUARIO WHERE user = '$user' and password = '$password'";
     $rec = mysql_query($sql);
@@ -30,12 +30,16 @@ if(!isset($_SESSION['userid']))
 {
     if(isset($_POST['login']))
     {
+        $nombre = $_POST['nombre'];
         $user = $_POST['user'];
         $password = $_POST['password'];
         $password = md5($password);
         
-        if(verificar_login($user,$password,$result) == 1)
+        if(verificar_login($user,$password,$result,$nombre) == 1)
         {
+            $_SESSION["id_usuario"] = $result->ID_USUARIO;
+            $_SESSION["user"] = $user;
+            $_SESSION["username"] = $result->nombre;
             $_SESSION['user_rol'] = $result->rol;
             $_SESSION["login_done"] = true;
             header("location:./web/index.php");

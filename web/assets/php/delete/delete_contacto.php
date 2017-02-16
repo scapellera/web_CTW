@@ -2,24 +2,22 @@
 
 <?php
 session_start();
-include('assets/php/db.php');
-include('assets/php/selects.php');
-include('assets/php/functions.php');
+include('../../php/db.php');
+include('../../php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../../img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
 
     <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
@@ -28,36 +26,36 @@ if($_SESSION["login_done"]==true){
 
 <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">-->
 
      <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <!--<script type="text/javascript" src="assets/js/editor.js"></script>-->
+    <script type="text/javascript" src="../../js/editor.js"></script>
 
 
     <!-- DATATABLES TABLAS -->
-    <!--<script src="table/tables.js"></script>-->
+    <script src="../../table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="../../css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link href="../../css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="../../css/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="../../css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     
     <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
@@ -67,8 +65,8 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     <!--TABLE_EDITOR.CSS-->
-    <link href="assets/css/table_editor.css" rel="stylesheet"/>
-    <link href="assets/css/table.css" rel="stylesheet"/>
+    <link href="../../css/table_editor.css" rel="stylesheet"/>
+    <link href="../../css/table.css" rel="stylesheet"/>
     <!--BOTONES EXCEL-->
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -78,74 +76,89 @@ if($_SESSION["login_done"]==true){
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!--BOTONES EXCEL CSS-->
-    <link href="assets/css/table2.css" rel="stylesheet"/>
+    <link href="../../css/table2.css" rel="stylesheet"/>
     <!--EDIT DATATABLE CODE-->
-    <link href="assets/css/table4.css" rel="stylesheet"/>
+    <link href="../../css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
-    <link href="./assets/css/insert.css" rel="stylesheet" />
-    <!--SEDES EN VARIABLES-->
-    <!--<script src="assets/php/select_clientes_sedes.php"></script>-->
-    <!--SEDES SELEC DEPENDIENTE-->
-     <script src="assets/js/functions.js"></script>
-
-
+    <link href="../../css/insert.css" rel="stylesheet" />
+    <!--CARGAR BARRA INSERT-->
+    <link href="../../css/cargarinsert.css" rel="stylesheet" />
 
 </head>
-<body>
-<!--CREAMOS LAS VARIABLES EN JS QUE LUEGO UTILIZAREMOS PARA VINCULAR LAS SEDES CON LOS CLIENTES-->
+<body onload="itv = setInterval(prog, 10)">
 
-
-
-
-<!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 <div class="wrapper">
     <div class="sidebar">
 
     
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="./"><img src="assets/img/ctw_logo.gif" alt="CTW Logo"></a>
+                <a href="../../../index.php"><img src="../../img/ctw_logo.gif" alt="CTW Logo"></a>
                  
             </div>
 
             <ul class="nav">
-                <!--<li >
-                    <a href="#">
-                        <i class="pe-7s-note2"></i>
-                        <p>Lista de tareas</p>
-                    </a>
-                </li>-->
                 <li>
-                    <a href="./buscador/buscador.php">
-                        <i class="pe-7s-search"></i>
-                        <p>Buscador</p>
+                    <a href="../../../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
+                <li >
+                    <a href="../../../eliminar/eliminar_clientes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../eliminar/eliminar_sedes.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Sedes</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
+                    <a href="../../../eliminar/eliminar_contactos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./insert/insert.php">
+                    <a href="../../../eliminar/eliminar_mayoristas.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
+                        <p>Mayoristas</p>
                     </a>
                 </li>
-               
+                <li>
+                    <a href="../../../eliminar/eliminar_usuarios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../eliminar/eliminar_servicios.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Servicios</p>
+                    </a>
+                </li>                
+                <li>
+                    <a href="../../../eliminar/eliminar_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>  
+                <li>
+                    <a href="../../../eliminar/eliminar_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>  
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+        <nav class="navbar2 navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -154,7 +167,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Minutaje</a>
+                    <a class="navbar-brand">Borrar contacto</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -208,7 +221,10 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
-                            <a href="../logout.php">Log out
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
+                            <a href="../../logout.php">Log out
                             </a>
                         </li>
                     </ul>
@@ -217,74 +233,70 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content">
+        <div class="content2">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                        <div class="container">  
-                          <form id="contact" action="./assets/php/post/post_minutaje.php" method="post" name="f_cliente_sede">
-                            <h3>Añadir Minutaje</h3>
-                            <h4>Rellene el formulario para añadir la salida realizada</h4>
-                            
-                            <fieldset>
-                            <?php $data = select_all_cliente(); ?>
-                            <select name="select_box_nif_empresa" class="select_box" onchange="cambia_sede()">
-                              <option value="" disabled selected>Selecciona NIF cliente*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                                <select class="select_box" name="select_box_sede_cliente"> 
-                                <option value="-">- 
-                                </select>
-                                                            
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código producto del mayorista" name="codigo_producto_mayorista" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número de serie*" name="numero_de_serie" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Precio*" name="precio" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Cantidad*" name="cantidad" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número de factura*" name="numero_factura" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ubicación" name="ubicacion" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
+                    <div >
+                        <div >
+                        <?php
+                        $id_contacto = $_GET['id'];
+                       $conn = connect();
+                       $sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO = '".$id_contacto."'";
+                       
 
-                          </form>
+                        if ($conn->query($sql) === TRUE) {
+                        ?>
+                            
+                        <div id="precargador">
+                              <p id="progressnum"></p> 
+                              <div id="progressbar">
+                                 <div id="indicador"></div>
+                              </div>
                         </div>
+                            
+                            <script>
+                            //document.body.style.background = "#ea7f33";
+                            var maxprogress = 500;
+                                var actualprogress = 0;
+                                var itv = 0;
+                                function prog()
+                                {
+                                  if(actualprogress >= maxprogress) 
+                                  {
+                                    clearInterval(itv);     
+                                    return;
+                                  } 
+                                  var progressnum = document.getElementById("progressnum");
+                                  var indicador = document.getElementById("indicador");
+                                  actualprogress +=2;  
+                                  indicador.style.width=actualprogress + "px";
+                                  progressnum.innerHTML = "Eliminando contacto...";
+                                  if (actualprogress==300){
+                                    window.location="../../../eliminar/eliminar_contactos.php";
+                                  }
+                                }
+                            </script>
+
+                        <?php
+                        } else {
+                            echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
+                        }
+
+                        close($conn); 
+                         
+                        ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+        <!--Menu footer
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <!--Menu footer-->
+                        
                         <!--<li>
                             <a href="#">
                                 Home
@@ -313,7 +325,7 @@ if($_SESSION["login_done"]==true){
                 </p>-->
             </div>
         </footer>
-
+        -->
     </div>
 </div>
 
@@ -322,49 +334,44 @@ if($_SESSION["login_done"]==true){
 
     <!--   Core JS Files   -->
     <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="../assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="../assets/js/bootstrap-notify.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="assets/js/demo.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/demo.js"></script>
     <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-	<!--<script type="text/javascript">
-    	$(document).ready(function(){
+    <!--<script type="text/javascript">
+        $(document).ready(function(){
 
-        	demo.initChartist();
+            demo.initChartist();
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
             },{
                 type: 'info',
                 timer: 4000
             });
 
-    	});
-	</script>-->
-
-
+        });
+    </script>-->
 
 </html>
-
-
-
 
 <?php 
 }else{

@@ -10,13 +10,13 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -33,12 +33,19 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../assets/js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_mayorista.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -82,6 +89,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
     <link href="../assets/css/insert.css" rel="stylesheet" />
+    <!--NUESTRO CSS-->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
 
 
 
@@ -100,44 +109,60 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                
                 <li>
-                    <a href="insert_clientes.php">
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_sedes.php">
+                    <a href="buscador_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_contactos.php">
+                    <a href="buscador_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="insert_mayoristas.php">
+                    <a href="buscador_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_usuarios.php">
+                    <a href="buscador_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_servicios.php">
+                    <a href="buscador_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="buscador_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -152,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar mayorista</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -206,6 +231,9 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
                             <a href="../../logout.php">Log out
                             </a>
                         </li>
@@ -218,72 +246,97 @@ if($_SESSION["login_done"]==true){
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card2">
+                    <div >
+                        <div >
 
-                        <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_mayoristas.php" method="post">
-                            <h3>Insertar mayorista</h3>
-                            <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
-                            <fieldset>
-                              <input placeholder="NIF mayorista*" name="NIF_mayorista" type="text" autofocus>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Nombre empresa*" name="nombre_empresa" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Teléfono empresa*" name="telefono_empresa" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Teléfono comercial" name="telefono_comercial" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Extensión teléfono comercial" name="extension_telefono_comercial" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Correo electrónico empresa*" name="email_empresa" type="email"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Correo electrónico comercial" name="email_comercial" type="email">
-                            </fieldset>
-                            <fieldset>
-                            <?php $data = select_all_pais(); ?>
-                            <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
-                          </form>
-                        </div>
+                                <table id="buscador_mayorista" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nif mayorista</th>
+                                            <th>Nombre empresa</th>
+                                            <th>Nombre del comercial</th>
+                                            <th>Teléfono empresa</th>
+                                            <th>Teléfono del comercial</th>
+                                            <th>Extensión teléfono del comercial</th>
+                                            <th>Email empresa</th>
+                                            <th>Email del comercial</th>
+                                            <th>Ubicación</th>
+                                            <th>País</th>
+                                            <th>Prefijo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                                                                        
+                                        <?php
+                                            $conn = connect();
+
+                                             $data = select_all_mayorista(); 
+
+                                            if ($data->num_rows > 0) {
+                                                 // output data of each row
+                                                 while($row = $data->fetch_assoc()) {
+                                                    $pk = $row['NIF_MAYORISTA'];
+
+                                        ?>
+                                                    <tr> 
+                                                        <td><a href="#" class="NIF_MAYORISTA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_MAYORISTA']?> </a></td>
+                                                        <td><a href="#" class="nombre_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_empresa']?> </a></td>
+                                                        <td><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></td>
+                                                        <td><a href="#" class="telefono_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_empresa']?> </a></td>
+                                                        <td><a href="#" class="telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono_comercial']?> </a></td>
+                                                        <td><a href="#" class="extension_telefono_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension_telefono_comercial']?> </a></td>
+                                                        <td><a href="#" class="email_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_empresa']?> </a></td>
+                                                        <td><a href="#" class="email_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email_comercial']?> </a></td>
+                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
+                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
+                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>   
+                                                    </tr>
+
+                                        <?php           /*echo"<tr>
+                                                            <td><a".$row["nombre_completo"]."</td>
+                                                            <td>".$row["NIF_EMPRESA"]."</td>
+                                                            <td>".$row["nombre_comercial"]."</td>
+                                                            <td>".$row["telefono"]."</td>
+                                                            <td>".$row["email"]."</td>
+                                                            <td>".$row["IBAN"]."</td>
+                                                            <td>".$row["SEPA"]."</td>
+                                                            <td>".$row["pais"]."</td>
+                                                            <td>".$row["ciudad_facturacion"]."</td>
+                                                            <td>".$row["codigo_postal_facturacion"]."</td>
+                                                            <td>".$row["calle_facturacion"]."</td>
+                                                            <td>".$row["numero_facturacion"]."</td>
+                                                            <td>".$row["ciudad_envio"]."</td>
+                                                            <td>".$row["codigo_postal_envio"]."</td>
+                                                            <td>".$row["calle_envio"]."</td>
+                                                            <td>".$row["numero_envio"]."</td>
+                                                        </tr>";*/
+                                                     /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
+                                                 }
+                                            } else {
+                                                 echo "0 results";
+                                            }
+
+                                            $conn->close();
+                                        ?>
+                                        
+                                     
+                                    </tbody>
+                                </table>
+
+
+                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+        <!--Menu footer
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <!--Menu footer-->
+                        
                         <!--<li>
                             <a href="#">
                                 Home
@@ -312,7 +365,7 @@ if($_SESSION["login_done"]==true){
                 </p>-->
             </div>
         </footer>
-
+        -->
     </div>
 </div>
 
@@ -321,13 +374,13 @@ if($_SESSION["login_done"]==true){
 
     <!--   Core JS Files   -->
     <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="../assets/js/chartist.min.js"></script>
+    <!--  Charts Plugin -->
+    <script src="../assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="../assets/js/bootstrap-notify.js"></script>
@@ -336,27 +389,27 @@ if($_SESSION["login_done"]==true){
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="../assets/js/light-bootstrap-dashboard.js"></script>
+    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="../assets/js/demo.js"></script>
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="../assets/js/demo.js"></script>
     <!--POPUP DE COLOR BLAU SUPERIOR DRET-->
-	<!--<script type="text/javascript">
-    	$(document).ready(function(){
+    <!--<script type="text/javascript">
+        $(document).ready(function(){
 
-        	demo.initChartist();
+            demo.initChartist();
 
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
             },{
                 type: 'info',
                 timer: 4000
             });
 
-    	});
-	</script>-->
+        });
+    </script>-->
 
 </html>
 

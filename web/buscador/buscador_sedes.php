@@ -10,13 +10,13 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>WEB TEST</title>
+    <title>WEB TEST</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -33,12 +33,19 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../assets/js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_sede.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -82,6 +89,8 @@ if($_SESSION["login_done"]==true){
     <link href="../assets/css/table4.css" rel="stylesheet"/>
     <!--INSERTS-->
     <link href="../assets/css/insert.css" rel="stylesheet" />
+    <!--NUESTRO CSS-->
+    <link href="../assets/css/micss.css" rel="stylesheet" />
 
 
 
@@ -100,44 +109,60 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                
-                <li >
-                    <a href="insert_clientes.php">
+                <li>
+                    <a href="../index.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>PÁGINA INICIO</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_clientes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="insert_sedes.php">
+                    <a href="buscador_sedes.php">
                         <i class="pe-7s-pen"></i>
                         <p>Sedes</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_contactos.php">
+                    <a href="buscador_contactos.php">
                         <i class="pe-7s-pen"></i>
                         <p>Contactos</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_mayoristas.php">
+                    <a href="buscador_mayoristas.php">
                         <i class="pe-7s-pen"></i>
                         <p>Mayoristas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_usuarios.php">
+                    <a href="buscador_usuarios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="insert_servicios.php">
+                    <a href="buscador_servicios.php">
                         <i class="pe-7s-pen"></i>
                         <p>Servicios</p>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="buscador_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
@@ -206,6 +231,9 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
                             <a href="../../logout.php">Log out
                             </a>
                         </li>
@@ -218,86 +246,134 @@ if($_SESSION["login_done"]==true){
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card2">
+                    <div >
+                        <div >
 
-                        <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_sedes.php" method="post">
-                            <h3>Insertar sede</h3>
-                            <h4>Rellene el formulario para añadir una nueva sede para un cliente ya añadido.</h4>
-                            
-                            <fieldset>
-                            <?php $data = select_all_cliente(); ?>
-                            <select name="select_box_nif_empresa" class="select_box">
-                              <option value="" disabled selected>Selecciona NIF cliente*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Nombre sede*" name="nombre" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ciudad sede*" name="ciudad" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Código postal sede*" name="codigo_postal" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Calle sede*" name="calle" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Número sede*" name="numero" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
-                            </fieldset>
-                            <fieldset>
-                              <input placeholder="Teléfono sede*" name="telefono" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            <?php $data = select_all_pais(); ?>
-                            <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
-                              <?php
-                                if ($data->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $data->fetch_assoc()) {
-                              ?>
-                                    <option value="<?php echo $row['PAIS']?>"><?php echo $row['PAIS']?></option>
-                            <?php   
-                                    }       
-                                }
-                             ?>       
-                            </select>
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
-                          </form>
-                        </div>
+                                <table id="buscador_sede" class="table table-striped table-bordered">
+                                    <thead>
+                                    
+                                    <script>
+                                        $('document').ready(function(){
+                                            $('#updatepais').click(function(){
+                                                
+                                                    <?php
+                                                    $conn = connect();
+                                                    $sql = "UPDATE SEDE SET ciudad='iiii' WHERE calle='asd'";
+                                                    $stmt = $conn->prepare($sql);
+                                                    $stmt->execute();
+                                                    close($conn);
+                                                    ?>
 
-                                                                                        
+                                                location.reload();
+                                            });
+                                        });
+
+                                    </script>
+                                    <script>
+
+                                    function myFunction(id) {
+                                        <?php
+                                            /*$conn = connect();
+                                            $sql = "UPDATE SEDE SET pais='".$id2."' WHERE ID_SEDE=7";
+                                            $stmt = $conn->prepare($sql);
+                                            $stmt->execute();
+                                            close($conn);
+                                            */
+                                        ?>
+                                        //var x = document.getElementById("mySelect").selectedIndex;
+                                        //alert(document.getElementsByTagName("option")[x].value);
+                                        alert(id);
+                                    }
+                                    </script>
+                                        <tr>
+                                            <th>Nif cliente</th>
+                                            <th>Nombre</th>
+                                            <th>Ubicación</th>
+                                            <th>Ciudad</th>
+                                            <th>Código postal</th>
+                                            <th>Calle</th>
+                                            <th>Número</th>
+                                            <th>Telefono</th>
+                                            <th>País</th>
+                                            <th>Prefijo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                            
+                                            $data = select_all_sede();
+
+                                            if ($data->num_rows > 0) {
+                                                 // output data of each row
+                                                 while($row = $data->fetch_assoc()) {
+                                                    $pk = $row['ID_SEDE'];
+                                                    $pais = $row['pais'];
+
+                                        ?>
+                                                    <!--<script>var x = <?php echo $pk ?></script>-->
+                                                    <tr> 
+                                                        <td><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></td>
+                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
+                                                        <td><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></td>
+                                                        <td><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></td>
+                                                        <td><a href="#" class="codigo_postal" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_postal']?> </a></td>
+                                                        <td><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></td>
+                                                        <td><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></td>
+                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
+                                                        <td>
+
+                                                        
+                                                            <select name="hola" id="mySelect" onchange="myFunction('<?php echo $pais; ?>')">
+                                                              <option value="<?php echo $row['pais']?>" disabled selected data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?></option>
+                                                                <?php
+                                                                $data2 = select_all_pais();
+                                                                if ($data2->num_rows > 0) {
+                                                                    // output data of each row
+                                                                    while($row2 = $data2->fetch_assoc()) {
+                                                                ?>
+
+                                                                    <option value="<?php echo $row2['PAIS']?>"><?php echo $row2['PAIS']?></option>
+                                                                <?php   
+                                                                    }       
+                                                                }
+                                                                ?> 
+                                                             </select>
+                                                             
+                                                         </td>
+                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                             
+                                                    </tr>
+
+
+
+                                        <?php         
+                                                }
+                                            } else {
+                                                 echo "0 results";
+                                            }
+
+                                            
+                                        ?>
+                                        
+                                     
+                                    </tbody>
+                                </table>
+
+
+                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+        <!--Menu footer
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <!--Menu footer-->
+                        
                         <!--<li>
                             <a href="#">
                                 Home
@@ -326,7 +402,7 @@ if($_SESSION["login_done"]==true){
                 </p>-->
             </div>
         </footer>
-
+        -->
     </div>
 </div>
 

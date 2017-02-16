@@ -33,12 +33,19 @@ if($_SESSION["login_done"]==true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-    <!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-    <script type="text/javascript" src="../assets/js/editor.js"></script>
+    <?php
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+    echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_contacto.js\"></script>";
+
+    }
+    
+    ?>
+    
 
 
     <!-- DATATABLES TABLAS -->
-    <script src="../table/tables.js"></script>
+    <script src="../assets/table/tables.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -144,13 +151,24 @@ if($_SESSION["login_done"]==true){
                         <p>Servicios</p>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="buscador_articulos.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Artículos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="buscador_stock.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+        <nav class="navbar2 navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -159,7 +177,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Buscador</a>
+                    <a class="navbar-brand">Insertar sede</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--ICONOS ESQUERRA-->
@@ -213,6 +231,9 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
                             <a href="../../logout.php">Log out
                             </a>
                         </li>
@@ -222,31 +243,23 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content">
+        <div class="content2">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
+                    <div >
+                        <div >
 
-                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <table id="buscador_cliente" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Nombre empresa</th>
-                                            <th>NIF empresa</th>
-                                            <th>Nombre del comercial</th>
-                                            <th>Telefono</th>
+                                            <th>Nombre</th>
+                                            <th>Sede</th>
+                                            <th>Cargo</th>
                                             <th>Email</th>
-                                            <th>IBAN</th>
-                                            <th>SEPA</th>
+                                            <th>Telefono</th>
                                             <th>País</th>
-                                            <th>Ciudad facturacion</th>
-                                            <th>Codigo postal facturación</th>
-                                            <th>Calle facturación</th>
-                                            <th>Número facturación</th>
-                                            <th>Ciudad envio</th>
-                                            <th>Codigo envio</th>
-                                            <th>Calle envio</th>
-                                            <th>Número envio</th>
+                                            <th>Prefijo</th>
+                                            <th>Extensión</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -254,14 +267,28 @@ if($_SESSION["login_done"]==true){
                                         <?php
                                             $conn = connect();
 
-                                            $sql = "SELECT * FROM CLIENTE";
+                                            $sql = "SELECT * FROM CONTACTO";
                                             $result = $conn->query($sql);
 
                                             if ($result->num_rows > 0) {
                                                  // output data of each row
                                                  while($row = $result->fetch_assoc()) {
-                                                    echo"<tr>
-                                                            <td>".$row["nombre_completo"]."</td>
+                                                    $pk = $row['ID_CONTACTO'];
+
+                                        ?>
+                                                    <tr> 
+                                                        <td><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></td>
+                                                        <td><a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></td>
+                                                        <td><a href="#" class="cargo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cargo']?> </a></td>
+                                                        <td><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></td>
+                                                        <td><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></td>
+                                                        <td><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></td>
+                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                        <td><a href="#" class="extension" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['extension']?> </a></td>
+                                                    </tr>
+
+                                        <?php           /*echo"<tr>
+                                                            <td><a".$row["nombre_completo"]."</td>
                                                             <td>".$row["NIF_EMPRESA"]."</td>
                                                             <td>".$row["nombre_comercial"]."</td>
                                                             <td>".$row["telefono"]."</td>
@@ -277,7 +304,7 @@ if($_SESSION["login_done"]==true){
                                                             <td>".$row["codigo_postal_envio"]."</td>
                                                             <td>".$row["calle_envio"]."</td>
                                                             <td>".$row["numero_envio"]."</td>
-                                                        </tr>";
+                                                        </tr>";*/
                                                      /*echo "<br> id: ". $row["ID"]. " - Lloc incidencia: ". $row["lloc_incidencia"]. " " . $row["breu_descripcio"] . "<br>";*/
                                                  }
                                             } else {
@@ -299,12 +326,13 @@ if($_SESSION["login_done"]==true){
             </div>
         </div>
 
-        <!--
+        <!--Menu footer
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <li>
+                        
+                        <!--<li>
                             <a href="#">
                                 Home
                             </a>
@@ -323,12 +351,13 @@ if($_SESSION["login_done"]==true){
                             <a href="#">
                                Blog
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </nav>
-                <p class="copyright pull-right">
+                <!--Copyright-->
+                <!--<p class="copyright pull-right">
                     &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
+                </p>-->
             </div>
         </footer>
         -->

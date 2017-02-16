@@ -211,6 +211,9 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
+                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
                             <a href="../../logout.php">Log out
                             </a>
                         </li>
@@ -231,33 +234,36 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar mayorista</h3>
                             <h4>Rellene el formulario para añadir un nuevo mayorista</h4>
                             <fieldset>
-                              <input placeholder="NIF mayorista*" name="NIF_mayorista" type="text" autofocus>
+                            &nbsp;NIF del mayorista:  <input placeholder="NIF del mayorista*" name="NIF_mayorista" type="text" autofocus>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre empresa*" name="nombre_empresa" type="text"  required>
+                            &nbsp;Nombre de la empresa:  <input placeholder="Nombre de la empresa*" name="nombre_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Nombre comercial" name="nombre_comercial" type="text">
+                            &nbsp;Nombre del comercial:  <input placeholder="Nombre del comercial" name="nombre_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono empresa*" name="telefono_empresa" type="text"  required>
+                            &nbsp;Teléfono de la empresa:  <input placeholder="Teléfono de la empresa*" name="telefono_empresa" type="text"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Teléfono comercial" name="telefono_comercial" type="text">
+                            &nbsp;Teléfono del comercial:  <input placeholder="Teléfono del comercial" name="telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Extensión teléfono comercial" name="extension_telefono_comercial" type="text">
+                            &nbsp;Extensión teléfono del comercial:  <input placeholder="Extensión teléfono del comercial" name="extension_telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico empresa*" name="email_empresa" type="email"  required>
+                            &nbsp;Correo electrónico de la empresa:  <input placeholder="Correo electrónico de la empresa*" name="email_empresa" type="email"  required>
                             </fieldset>
                             <fieldset>
-                              <input placeholder="Correo electrónico comercial" name="email_comercial" type="email">
+                            &nbsp;Correo electrónico del comercial:  <input placeholder="Correo electrónico del comercial" name="email_comercial" type="email">
                             </fieldset>
                             <fieldset>
+                            &nbsp;Ubicación:  <input placeholder="Ubicación" name="ubicacion" type="text">
+                            </fieldset>
+                            <fieldset>&nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>
                             <select name="select_box_pais" class="select_box">
-                              <option value="" disabled selected>Selecciona País*</option>
+                              <option value="" disabled selected>Selecciona el país*</option>
                               <?php
                                 if ($data->num_rows > 0) {
                                     // output data of each row
