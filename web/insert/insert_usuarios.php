@@ -212,7 +212,7 @@ if($_SESSION["login_done"]==true){
                               </ul>
                         </li>-->
                         <li>
-                            <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                            <a href="../user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
                         <li>
                             <a href="../../logout.php">Log out
