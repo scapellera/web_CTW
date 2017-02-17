@@ -235,7 +235,16 @@ if($_SESSION["login_done"]==true){
                             <h3>Insertar usuario</h3>
                             <h4>Rellene el formulario para añadir un nuevo usuario</h4>
                             <fieldset>
-                            &nbsp;Nombre de usuario:  <input placeholder="Nombre de usuario*" name="nombre" type="text"  required>
+                            &nbsp;Nombre:  <input placeholder="Nombre*" name="nombre" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Apellido:  <input placeholder="Apellido*" name="apellido" type="text"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
+                            </fieldset>
+                            <fieldset>
+                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
                             </fieldset>
                             <fieldset>
                             &nbsp;Nick de usuario:  <input placeholder="Nick de usuario*" name="user" type="text"  required>

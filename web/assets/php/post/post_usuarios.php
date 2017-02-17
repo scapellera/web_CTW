@@ -230,11 +230,17 @@ if($_SESSION["login_done"]==true){
 					<?php
 					//Declaramos las variables del formulario
 					$nombre = $_POST['nombre'];
+                    $apellido = $_POST['apellido'];
+                    $email = $_POST['email'];
+                    $telefono = $_POST['telefono'];
 					$user = $_POST['user'];
 					$password = $_POST['password'];
 
 					//Añadimos comillas a los varchars
-					$nombre="\"$nombre\"";
+					$apellido="\"$apellido\"";
+                    $email="\"$email\"";
+                    $telefono="\"$telefono\"";
+                    $nombre="\"$nombre\"";
 					$user="\"$user\"";
 					$password="\"$password\"";
 
@@ -242,14 +248,9 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO USUARIO (nombre, user, password)
-					VALUES ($nombre, $user, MD5($password))";
-					/*
-					//Encriptar clave MD5
-					$sql ="UPDATE USUARIO
-					SET password = MD5($password)
-					WHERE user = $user";
-					*/ 
+					$sql = "INSERT INTO USUARIO (nombre, apellido, correo, telefono, user, password)
+					VALUES ($nombre, $apellido, $email, $telefono, $user, MD5($password))";
+					
 
 					if ($conn->query($sql) === TRUE) {
 					?>

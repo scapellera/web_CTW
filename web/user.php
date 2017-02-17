@@ -164,7 +164,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Profile</a>
+                    <a class="navbar-brand" href="#">Perfil</a>
                 </div>
                 <div class="collapse navbar-collapse">
                    
@@ -237,7 +237,7 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Editar perfil</h4>
                             </div>
                             <div class="content">
                                 <form>
