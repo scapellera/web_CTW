@@ -184,7 +184,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Eliminar artículo</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     
@@ -211,12 +211,12 @@ if($_SESSION["login_done"]==true){
                         <div >
 
                             <script>
-                            function preguntar(id_articulo){
+                            function preguntar(id_articulo,cantidad,codigo_de_barras){
                                 if(id_articulo>0){
                                    eliminar=confirm("¿Deseas eliminar este articulo?");
                                    if (eliminar)
                                    //Redireccionamos si das a aceptar
-                                     window.location.href="../assets/php/delete/delete_articulo.php?id="+id_articulo; //página web a la que te redirecciona si confirmas la eliminación
+                                     window.location.href="../assets/php/delete/delete_articulo.php?id="+id_articulo+"&cantidad="+cantidad+"&codigo_de_barras="+codigo_de_barras; //página web a la que te redirecciona si confirmas la eliminación
                                     else
                                   //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
                                     alert('No se ha podido eliminar el articulo...')
@@ -229,7 +229,6 @@ if($_SESSION["login_done"]==true){
                                 <table id="buscador_articulo" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
                                             <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
@@ -259,7 +258,6 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <tr>
-                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
                                                         <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
 
                                                                 $nombre_fichero = '../assets/php/delete/delete_articulo.php';
@@ -272,7 +270,31 @@ if($_SESSION["login_done"]==true){
                                                                 }
 
 
-                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        ?>,<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_articulo.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['cantidad'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>,'<?php   
+
+                                                                $nombre_fichero = '../assets/php/delete/delete_articulo.php';
+
+                                                                if (file_exists($nombre_fichero)) {
+                                                                    echo $row['codigo_de_barras'];
+                                                                    
+                                                                } else {
+                                                                    echo 0;
+                                                                }
+
+
+                                                        ?>')"><i class="glyphicon glyphicon-trash"></i></button></td> 
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="codigo_de_barras" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label>></td>

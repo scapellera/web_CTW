@@ -197,9 +197,9 @@ if($_SESSION["login_done"]==true){
                     <div >
                         <div >
                         <?php
-                        $id_cliente = $_GET['id'];
+                        $nif_empresa = $_GET['id'];
                        $conn = connect();
-                       $sql = "DELETE FROM CLIENTE WHERE ID_CLIENTE = '".$id_cliente."'";
+                       $sql = "DELETE FROM CLIENTE WHERE NIF_EMPRESA = '".$nif_empresa."'";
                        
 
                         if ($conn->query($sql) === TRUE) {

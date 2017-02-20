@@ -109,33 +109,45 @@ if($_SESSION["login_done"]==true){
 
             <ul class="nav">
                 <li>
-                    <a href="../../../index.php">
+                    <a href="./index.php">
                         <i class="pe-7s-note2"></i>
                         <p>INICIO</p>
                     </a>
-                </li> 
+                </li>                
                 <li>
-                    <a href="../../../buscador/buscador.php">
+                    <a href="./buscador/buscador.php">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../../../entrada_stock.php">
+                    <a href="entrada_stock.php">
                         <i class="pe-7s-box2"></i>
                         <p>Entrada de stock</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../insert/insert.php">
+                    <a href="./insert/insert.php">
                         <i class="pe-7s-pen"></i>
                         <p>Insert</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../../../minutaje.php">
+                    <a href="./minutaje_manual.php">
                         <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
+                        <p>Minutaje (manual)</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./minutaje_automatico.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Minutaje (automatico)</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./calendario.php">
+                        <i class="pe-7s-pen"></i>
+                        <p>Calendario</p>
                     </a>
                 </li>
             </ul>
@@ -152,59 +164,11 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar artículo</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
 
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
                         <li>
                             <a href="./perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>

@@ -258,7 +258,7 @@ if($_SESSION["login_done"]==true){
                                         ?>
                                                     <tr>
                                                         <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
-                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar('<?php   
 
                                                                 $nombre_fichero = '../assets/php/delete/delete_mayorista.php';
 
@@ -270,7 +270,7 @@ if($_SESSION["login_done"]==true){
                                                                 }
 
 
-                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        ?>')"><i class="glyphicon glyphicon-trash"></i></button></td> 
                                                         <td><label style="margin-top: 11px;"><a href="#" class="NIF_MAYORISTA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_MAYORISTA']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre_empresa" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_empresa']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></label></td>

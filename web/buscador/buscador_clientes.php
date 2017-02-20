@@ -184,7 +184,7 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Eliminar cliente</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     
@@ -210,7 +210,7 @@ if($_SESSION["login_done"]==true){
                         <div >
                             <script>
                             function preguntar(nif_empresa){
-                                if(nif_empresa>0){
+                                if(nif_empresa!="0"){
                                eliminar=confirm("¿Deseas eliminar este cliente?");
                                if (eliminar)
                                //Redireccionamos si das a aceptar
@@ -262,7 +262,7 @@ if($_SESSION["login_done"]==true){
                                         ?>
                                                     <tr>
                                                         <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
-                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar('<?php   
 
                                                                 $nombre_fichero = '../assets/php/delete/delete_cliente.php';
 
@@ -270,11 +270,11 @@ if($_SESSION["login_done"]==true){
                                                                     echo $row['NIF_EMPRESA'];
                                                                     
                                                                 } else {
-                                                                    echo 0;
+                                                                    echo "0";
                                                                 }
 
 
-                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        ?>')"><i class="glyphicon glyphicon-trash"></i></button></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre_completo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="NIF_EMPRESA" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_EMPRESA'] ?></a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre_comercial" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_comercial']?> </a></label></td>

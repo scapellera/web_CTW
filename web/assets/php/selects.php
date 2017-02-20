@@ -19,6 +19,16 @@ function select_prefijo_pais($pais){
     return $prefijo;
   }
 
+  function select_cantidad_stock($codigo_de_barras){
+    $conn = connect();
+    $sql = "SELECT cantidad_total FROM STOCK WHERE CODIGO_DE_BARRAS = '".$codigo_de_barras."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $cantidad = $row['cantidad_tota'l];
+    close($conn);
+    return $cantidad;
+  }
+
 function select_all_cliente(){
     $conn = connect();
     $sql = "SELECT * 

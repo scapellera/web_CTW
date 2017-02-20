@@ -228,7 +228,6 @@ if($_SESSION["login_done"]==true){
                                 <table id="buscador_mayorista" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color: #39AF33; width: 3px;">Activos</th>
                                             <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Fecha</th>
                                             <th>Hora de entrada</th>
@@ -254,7 +253,6 @@ if($_SESSION["login_done"]==true){
 
                                         ?>
                                                     <tr>
-                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
                                                         <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
 
                                                                 $nombre_fichero = '../assets/php/delete/delete_minutaje.php';

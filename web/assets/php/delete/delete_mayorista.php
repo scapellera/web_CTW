@@ -228,7 +228,7 @@ if($_SESSION["login_done"]==true){
                                   var indicador = document.getElementById("indicador");
                                   actualprogress +=2;  
                                   indicador.style.width=actualprogress + "px";
-                                  progressnum.innerHTML = "Eliminando usuario...";
+                                  progressnum.innerHTML = "Eliminando mayorista...";
                                   if (actualprogress==300){
                                     window.location="../../../buscador/buscador_mayoristas.php";
                                   }
