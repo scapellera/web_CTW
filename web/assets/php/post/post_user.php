@@ -286,7 +286,7 @@ if($_SESSION["login_done"]==true){
 						
 					    <script>
 					    //document.body.style.background = "#ea7f33";
-					    var maxprogress = 600;
+					    var maxprogress = 300;
 							var actualprogress = 0;
 							var itv = 0;
 							function prog()
@@ -300,8 +300,8 @@ if($_SESSION["login_done"]==true){
 							  var indicador = document.getElementById("indicador");
 							  actualprogress +=2;  
 							  indicador.style.width=actualprogress + "px";
-							  progressnum.innerHTML = "Modificando usuario...";
-							  if (actualprogress==600){
+							  progressnum.innerHTML = "Cambiando contraseña...";
+							  if (actualprogress==300){
 								window.location="../../../user.php";
 							  }
 							}
