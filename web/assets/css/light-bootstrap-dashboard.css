@@ -629,12 +629,12 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 .btn-info.btn-fill {
   color: #FFFFFF;
-  background-color: #1DC7EA;
+  background-color: #ea8f43;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-info.btn-fill:hover, .btn-info.btn-fill:focus, .btn-info.btn-fill:active, .btn-info.btn-fill.active, .open > .btn-info.btn-fill.dropdown-toggle {
-  background-color: #42d0ed;
+  background-color: #d5672b;
   color: #FFFFFF;
 }
 .btn-info.btn-fill .caret {

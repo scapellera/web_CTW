@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.3
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 16-02-2017 a las 17:57:24
--- Versión del servidor: 5.5.52-MariaDB
--- Versión de PHP: 5.6.23
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-02-2017 a las 13:45:29
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -633,6 +633,9 @@ CREATE TABLE `TRONCO_FACTURA_SERVICIO` (
 CREATE TABLE `USUARIO` (
   `ID_USUARIO` int(4) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` int(9) NOT NULL,
   `user` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `rol` int(1) NOT NULL,
@@ -643,18 +646,19 @@ CREATE TABLE `USUARIO` (
 -- Volcado de datos para la tabla `USUARIO`
 --
 
-INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `user`, `password`, `rol`, `activo`) VALUES
-(10, 'usuario3', 'usu3', 'usu3', 0, 0),
-(11, 'usuario1', 'usu1', '529113007b15005637b3dad6d9ba2f10', 5, 0),
-(12, 'usuario2', 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2', 1, 0),
-(13, 'eee', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
-(15, 'eee', 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
-(20, 'aaa', 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', 0, 0),
-(21, 'zzz', 'zzz', 'f3abb86bd34cf4d52698f14c0da1dc60', 0, 0),
-(22, 'ssssssss', 'sssssss', '16fcb1091f8a0cc70c96e2ff97fdd213', 0, 0),
-(23, 'ergtrgr', 'wret', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0),
-(24, 'trftry', 'hggfh', '2d73ccacc33ebbc7deb7faa109fa95e9', 0, 0),
-(25, 'gjgh', 'hj', '55f341d654dcfa8900d86da35d3b2af0', 0, 0);
+INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `apellido`, `correo`, `telefono`, `user`, `password`, `rol`, `activo`) VALUES
+(10, 'usuario3', '', '', 0, 'usu3', 'usu3', 0, 0),
+(11, 'usuario1', '', '', 0, 'usu1', '529113007b15005637b3dad6d9ba2f10', 5, 0),
+(12, 'usuario2', '', '', 0, 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2', 1, 0),
+(13, 'eee', '', '', 0, 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
+(15, 'eee', '', '', 0, 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
+(20, 'aaa', '', '', 0, 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', 0, 0),
+(21, 'zzz', '', '', 0, 'zzz', '10b260458f0277c4481694ff06b8bb91', 0, 0),
+(22, 'ssssssss', '', '', 0, 'sssssss', '16fcb1091f8a0cc70c96e2ff97fdd213', 0, 0),
+(23, 'ergtrgr', '', '', 0, 'wret', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0),
+(24, 'trftry', '', '', 0, 'hggfh', '2d73ccacc33ebbc7deb7faa109fa95e9', 0, 0),
+(25, 'gjgh', '', '', 0, 'hj', '55f341d654dcfa8900d86da35d3b2af0', 0, 0),
+(26, 'Sergi', 'Capellera', 'scapellera@ctw.es', 608232626, 'sergi', 'cc18d123662375ec0ae275b50cebcc36', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -809,7 +813,7 @@ ALTER TABLE `CABECERA_FACTURA`
 -- AUTO_INCREMENT de la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `FACTURA`
 --
@@ -829,12 +833,12 @@ ALTER TABLE `PIE_FACTURA`
 -- AUTO_INCREMENT de la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
-  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
 ALTER TABLE `SERVICIO`
-  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `TRONCO_FACTURA_ARTICULO`
 --
@@ -849,7 +853,7 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
 -- AUTO_INCREMENT de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- Restricciones para tablas volcadas
 --
@@ -864,15 +868,15 @@ ALTER TABLE `ARTICULO`
 -- Filtros para la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
 ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
-  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_usuario_detalle_proveedor` FOREIGN KEY (`ID_usuario`) REFERENCES `USUARIO` (`ID_USUARIO`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_NIF_mayorista_detalle_proveedor` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `CABECERA_FACTURA`
 --
 ALTER TABLE `CABECERA_FACTURA`
-  ADD CONSTRAINT `fk_NIF_cliente_cabecera_factura` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_factura_cabecera_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_factura_cabecera_factura` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_NIF_cliente_cabecera_factura` FOREIGN KEY (`NIF_cliente`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `CLIENTE`
@@ -884,8 +888,8 @@ ALTER TABLE `CLIENTE`
 -- Filtros para la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  ADD CONSTRAINT `fk_pais_contacto` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_subsede_contacto` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_subsede_contacto` FOREIGN KEY (`ID_sede`) REFERENCES `SEDE` (`ID_SEDE`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_pais_contacto` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `MAYORISTA`
@@ -932,15 +936,15 @@ ALTER TABLE `STOCK`
 -- Filtros para la tabla `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_ARTICULO`
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_articulos` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_articulo_tronco_factura_articulos` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_articulo_tronco_factura_articulos` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_factura_tronco_factura_articulos` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `TRONCO_FACTURA_SERVICIO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
-  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`) ON DELETE SET NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

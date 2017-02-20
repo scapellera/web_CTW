@@ -118,6 +118,16 @@ function select_all_stock(){
     return $data;
   }
 
+  function select_all_user($id_user){
+    $conn = connect();
+    $sql = "SELECT *
+    FROM USUARIO
+    WHERE ID_USUARIO = '".$id_user."'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+  }
+
 
 
 

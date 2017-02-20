@@ -3,6 +3,7 @@
 <?php
 session_start();
 include('assets/php/db.php');
+include('assets/php/selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
@@ -230,6 +231,8 @@ if($_SESSION["login_done"]==true){
             </div>
         </nav>
 
+            
+
 
         <div class="content">
             <div class="container-fluid">
@@ -240,48 +243,43 @@ if($_SESSION["login_done"]==true){
                                 <h4 class="title">Editar perfil</h4>
                             </div>
                             <div class="content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
 
+                                <?php
+               
+                                    $data = select_all_user($_SESSION["id_usuario"]); 
+
+                                    if ($data->num_rows > 0) {
+                                         // output data of each row
+                                         while($row = $data->fetch_assoc()) {
+                                ?>
+
+                                <form id="contact" action="assets/php/post/post_user.php" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                                <label>Nombre (disabled)</label>
+                                                <input type="text" name="nombre" class="form-control" disabled placeholder="<?php echo $row['nombre']?>" value="<?php echo $row['nombre']?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                                <label>Apellido (disabled)</label>
+                                                <input type="text" name="apellido" class="form-control" disabled placeholder="<?php echo $row['apellido']?>" value="<?php echo $row['apellido']?>">
                                             </div>
                                         </div>
-                                    </div>
+                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                                <label>Correo electrónico (disabled)</label>
+                                                <input type="text" name="email" class="form-control" disabled placeholder="<?php echo $row['correo']?>" value="<?php echo $row['correo']?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Teléfono (disabled)</label>
+                                                <input type="text" name="telefon" class="form-control" disabled placeholder="<?php echo $row['telefono']?>" value="<?php echo $row['telefono']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -289,36 +287,37 @@ if($_SESSION["login_done"]==true){
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                <label>Usuario (disabled)</label>
+                                                <input type="text" name="usuario" class="form-control" disabled placeholder="<?php echo $row['user']?>" value="<?php echo $row['user']?>">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                <label>Contraseña</label>
+                                                <input type="text" name="password1" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                                <label>Repetir contraseña</label>
+                                                <input type="text" name="password2" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="password_anterior" value="<?php echo $row['password']?>">
 
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                     <div class="clearfix"></div>
                                 </form>
+
+                                <?php           
+                                     }
+                                } else {
+                                     echo "0 results";
+                                }
+
+                                ?>
                             </div>
                         </div>
                     </div>
