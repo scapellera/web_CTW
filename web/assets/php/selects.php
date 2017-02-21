@@ -24,7 +24,7 @@ function select_prefijo_pais($pais){
     $sql = "SELECT cantidad_total FROM STOCK WHERE CODIGO_DE_BARRAS = '".$codigo_de_barras."'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
-    $cantidad = $row['cantidad_tota'l];
+    $cantidad = $row['cantidad_tota'];
     close($conn);
     return $cantidad;
   }
