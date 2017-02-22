@@ -106,7 +106,7 @@ if($_SESSION["login_done"]==true){
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="../index.php">
                         <i class="pe-7s-note2"></i>
                         <p>INICIO</p>
@@ -124,8 +124,8 @@ if($_SESSION["login_done"]==true){
                         <p>Entrada de stock</p>
                     </a>
                 </li>
-                <li>
-                    <a href="./insert/insert.php">
+                <li class="active">
+                    <a href="#">
                         <i class="pe-7s-pen"></i>
                         <p>Insert</p>
                     </a>

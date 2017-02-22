@@ -91,9 +91,8 @@ if($_SESSION["login_done"]==true){
 <div class="wrapper">
     <div class="sidebar">
     	<div class="sidebar-wrapper">
-        <!--LOGO Y MENU-->
-        <?php include('assets/html/logo/logo.html');?>
-        <?php include('assets/html/menu/menu_principal.html');?>
+        <!--AQUI VA EL MENU-->
+        <?php include('../assets/menu/menu_principal.html');?>
         </div>
     </div>
 
@@ -131,16 +130,16 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card">
 
-                               <a href="buscador/buscador_clientes.php" class="button">Buscar cliente</a>
-                               <a href="buscador/buscador_sedes.php" class="button">Buscar <br> sede</a>
-                               <a href="buscador/buscador_contactos.php" class="button">Buscar contacto</a>
-                               <a href="buscador/buscador_mayoristas.php" class="button">Buscar mayorista</a>
-                               <a href="buscador/buscador_usuarios.php" class="button">Buscar usuario</a>
-                               <a href="buscador/buscador_servicios.php" class="button">Buscar servicio</a>
-                               <a href="buscador/buscador_articulos.php" class="button">Buscar artículo</a>
-                               <a href="buscador/buscador_stock.php" class="button">Buscar stock</a>
-                               <a href="buscador/buscador_calendario.php" class="button">Calendario</a>
-                               <a href="buscador/buscador_minutajes.php" class="button">Minutaje</a>
+                               <a href="buscador_clientes.php" class="button">Buscar cliente</a>
+                               <a href="buscador_sedes.php" class="button">Buscar <br> sede</a>
+                               <a href="buscador_contactos.php" class="button">Buscar contacto</a>
+                               <a href="buscador_mayoristas.php" class="button">Buscar mayorista</a>
+                               <a href="buscador_usuarios.php" class="button">Buscar usuario</a>
+                               <a href="buscador_servicios.php" class="button">Buscar servicio</a>
+                               <a href="buscador_articulos.php" class="button">Buscar artículo</a>
+                               <a href="buscador_stock.php" class="button">Buscar stock</a>
+                               <a href="buscador_calendario.php" class="button">Calendario</a>
+                               <a href="buscador_minutajes.php" class="button">Minutaje</a>
 
                         </div>
                     </div>

@@ -104,50 +104,10 @@ if($_SESSION["login_done"]==true){
                  
             </div>
 
-            <ul class="nav">
-                <li>
-                    <a href="./index.php">
-                        <i class="pe-7s-note2"></i>
-                        <p>INICIO</p>
-                    </a>
-                </li>                
-                <li>
-                    <a href="./buscador/buscador.php">
-                        <i class="pe-7s-search"></i>
-                        <p>Buscador</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="entrada_stock.php">
-                        <i class="pe-7s-box2"></i>
-                        <p>Entrada de stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./insert/insert.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Insert</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./minutaje_manual.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Minutaje (manual)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./minutaje_automatico.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Minutaje (automatico)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./calendario.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Calendario</p>
-                    </a>
-                </li>
-            </ul>
+            <!--AQUI VA EL MENU-->
+            <?php
+            include('menu.html');
+            ?>
     	</div>
     </div>
 
@@ -181,6 +141,11 @@ if($_SESSION["login_done"]==true){
 
 
         <div class="content">
+            <script>
+            $(function(){
+                document.getElementById("entrada_stock").className = "active";
+            });
+        </script>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
