@@ -58,7 +58,7 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
 
-                            <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar cliente</a>
+                            <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar clientee</a>
                             <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar <br> sede</a>
                             <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar contacto</a>
                             <a href="./buscador/buscador_mayoristas.php" class="button_buscador">Buscar mayorista</a>
