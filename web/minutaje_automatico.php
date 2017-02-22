@@ -130,6 +130,8 @@ if($_SESSION["login_done"]==true){
 
     <!-- GUARDAR MINUTAJE EN SESSIONES-->
      <script src="assets/js/jquery.session.js"></script>
+          <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
+    <link href="assets/css/csscheckbox.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -329,7 +331,7 @@ if($_SESSION["login_done"]==true){
                             <input type="hidden" name="servicio_minutaje" value="">
                             </fieldset>
                             <fieldset>
-                              Facturado&nbsp;&nbsp;&nbsp;<input name="facturado_minutaje" type="checkbox">
+                              Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;" class='switcha'><input name="facturado_minutaje" type="checkbox"><div  class='slider rounda'></div></label>
                             </fieldset>
                             <fieldset>
                             <input type="hidden" name="fecha_minutaje" value=""> 

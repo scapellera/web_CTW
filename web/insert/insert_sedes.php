@@ -240,6 +240,9 @@ if($_SESSION["login_done"]==true){
                             </select>
                             </fieldset>
                             <fieldset>
+                            <input style="visibility:hidden" name="activo" type="checkbox" checked>
+                            </fieldset>
+                            <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
                             </fieldset>
                           </form>

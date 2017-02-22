@@ -187,6 +187,13 @@ if($_SESSION["login_done"]==true){
                     $telefono = $_POST['telefono'];
 					$user = $_POST['user'];
 					$password = $_POST['password'];
+                    $activo = $_POST['activo'];
+
+                    if($activo==''){
+                        $activo2 = 0;
+                    }else{
+                        $activo2 = 1;
+                    }
 
 					//Añadimos comillas a los varchars
 					$apellido="\"$apellido\"";
@@ -200,8 +207,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO USUARIO (nombre, apellido, correo, telefono, user, password)
-					VALUES ($nombre, $apellido, $email, $telefono, $user, MD5($password))";
+					$sql = "INSERT INTO USUARIO (nombre, apellido, correo, telefono, user, password, activo)
+					VALUES ($nombre, $apellido, $email, $telefono, $user, MD5($password), $activo2)";
 					
 
 					if ($conn->query($sql) === TRUE) {

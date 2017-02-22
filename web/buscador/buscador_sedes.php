@@ -223,6 +223,13 @@ if($_SESSION["login_done"]==true){
                                     alert ('Error, solo se puede eliminar en local siendo el admin');
                                 }
                             }
+                            function result(activo){
+                                if (activo==0){//imprime un input activado o desactivado
+                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;0</a><input  type='checkbox' disabled ><div  class='slider rounda'></div></label></td>");
+                                }else{
+                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;1</a><input  type='checkbox' checked disabled ><div  class='slider rounda'></div></label></td>");
+                                }
+                            }
                             </script>
 
                                 <table id="buscador_sede" class="table table-striped table-bordered">
@@ -231,7 +238,7 @@ if($_SESSION["login_done"]==true){
                                     
                                         <tr>
                                             <th style="background-color: #39AF33; width: 3px;">Activos</th>
-                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
+                                            <!--<th style="background-color: #F26842; width: 3px;">Borrar</th>-->
                                             <th>Nif cliente</th>
                                             <th>Nombre</th>
                                             <th>Ubicación</th>
@@ -259,8 +266,8 @@ if($_SESSION["login_done"]==true){
                                         ?>
                                                     <!--<script>var x = <?php echo $pk ?></script>-->
                                                     <tr>
-                                                        <td><label style="margin-top: 10px; margin-left:12px;" class="switcha"><input  type="checkbox" checked><div  class="slider rounda"></div></label></td> 
-                                                        <td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
+                                                        <script>result(<?php echo $row['activo']?>)</script> 
+                                                        <!--<td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar(<?php   
 
                                                                 $nombre_fichero = '../assets/php/delete/delete_sede.php';
 
@@ -272,7 +279,7 @@ if($_SESSION["login_done"]==true){
                                                                 }
 
 
-                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> 
+                                                        ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> -->
                                                         <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
