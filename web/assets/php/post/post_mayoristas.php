@@ -193,7 +193,13 @@ if($_SESSION["login_done"]==true){
                     $ubicacion = $_POST['ubicacion'];
 					$pais = $_POST['select_box_pais'];
 					$prefijo = select_prefijo_pais($pais);
+                    $activo = $_POST['activo'];
 
+                    if($activo==''){
+                        $activo2 = 0;
+                    }else{
+                        $activo2 = 1;
+                    }                    
 
 					//Añadimos comillas a los varchars
 					$NIF_mayorista="\"$NIF_mayorista\"";
@@ -221,8 +227,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo)
-					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo)";
+					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo, activo)
+					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo, $activo2)";
 					    
 
 
