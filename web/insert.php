@@ -1,3 +1,5 @@
+<!doctype html>
+
 <?php
 session_start();
 include('assets/php/db.php');
@@ -20,7 +22,6 @@ if ($_SESSION["login_done"] == true){
     <!--LIBRERIA - GLOBAL-->
     <?php include('assets/librerias/librerias_globales.html'); ?>
 
-
 </head>
 <body>
 <div class="wrapper">
@@ -33,8 +34,9 @@ if ($_SESSION["login_done"] == true){
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_buscador").className = "active";
+                    document.getElementById("menu_insert").className = "active";
                 });</script>
+
         </div>
     </div>
 
@@ -42,12 +44,25 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <!--TITULO DE LA PÁGINA-->
-                    <a class="navbar-brand">Buscador</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">Inserts</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--USER & LOGOUT-->
-                    <?php include('assets/html/menu/user_logout.html'); ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="../user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
+                        </li>
+                        <li>
+                            <a href="../../logout.php">Log out
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -59,21 +74,21 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
 
-                            <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar cliente</a>
-                            <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar <br> sede</a>
-                            <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar contacto</a>
-                            <a href="./buscador/buscador_mayoristas.php" class="button_buscador">Buscar mayorista</a>
-                            <a href="./buscador/buscador_usuarios.php" class="button_buscador">Buscar usuario</a>
-                            <a href="./buscador/buscador_servicios.php" class="button_buscador">Buscar servicio</a>
-                            <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar artículo</a>
-                            <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar stock</a>
-                            <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar minutaje</a>
+                            <a href="insert_clientes.php" class="button_insert">Añadir cliente</a>
+                            <a href="insert_sedes.php" class="button_insert">Añadir <br> sede</a>
+                            <a href="insert_contactos.php" class="button_insert">Añadir contacto</a>
+                            <a href="insert_mayoristas.php" class="button_insert">Añadir mayorista</a>
+                            <a href="insert_usuarios.php" class="button_insert">Añadir usuario</a>
+                            <a href="insert_servicios.php" class="button_insert">Añadir servicio</a>
+
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 </body>
@@ -84,4 +99,5 @@ if ($_SESSION["login_done"] == true){
     echo "false";
     header("location:../index.php");
 }
+
 ?>
