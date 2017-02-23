@@ -239,7 +239,7 @@ if($_SESSION["login_done"]==true){
                                         <tr>
                                             <th style="background-color: #39AF33; width: 3px;">Activos</th>
                                             <!--<th style="background-color: #F26842; width: 3px;">Borrar</th>-->
-                                            <th>Nif cliente</th>
+                                            <th>Cliente</th>
                                             <th>Nombre</th>
                                             <th>Ubicación</th>
                                             <th>Ciudad</th>
@@ -280,7 +280,14 @@ if($_SESSION["login_done"]==true){
 
 
                                                         ?>)"><i class="glyphicon glyphicon-trash"></i></button></td> -->
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $nif_cliente = $row['NIF_cliente'];
+                                                        $nombreCliente = select_nombre_cliente($nif_cliente);
+                                                        echo $nombreCliente;
+                                                        ?> 
+                                                        </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="ciudad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ciudad']?> </a></label></td>
@@ -288,6 +295,8 @@ if($_SESSION["login_done"]==true){
                                                         <td><label style="margin-top: 11px;"><a href="#" class="calle" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['calle']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="numero" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="pais" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais']?> </a></label></td>
+                                                        <!--
                                                         <td>
 
                                                         
@@ -308,7 +317,8 @@ if($_SESSION["login_done"]==true){
                                                              </select>
                                                              
                                                          </td>
-                                                        <td><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
+                                                         -->
+                                                        <td><label style="margin-top: 11px;"><a href="#" class="prefijo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo']?> </a></td>
                                                              
                                                     </tr>
 

@@ -267,18 +267,17 @@ if ($_SESSION["login_done"] == true){
 
                                                 ?>)"><i class="glyphicon glyphicon-trash"></i></button>
                                             </td>
-                                            <td><label style="margin-top: 11px;"><a href="#" class="nombre"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre'] ?> </a></label>
-                                            </td>
-                                            <td><label style="margin-top: 11px;"><a href="#" class="descripcion"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion'] ?> </a></label>
-                                            </td>
-                                            <td><label style="margin-top: 11px;"><a href="#" class="precio"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio'] ?> </a></label>
-                                            </td>
-                                            <td><label style="margin-top: 11px;"><a href="#" class="NIF_empresa"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_empresa'] ?> </a></label>
-                                            </td>
+                                            <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre'] ?> </a></label></td>
+                                            <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion'] ?> </a></label></td>
+                                            <td><label style="margin-top: 11px;"><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio'] ?> </a></label></td>
+                                            <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $nif_cliente = $row['NIF_empresa'];
+                                                        $nombreCliente = select_nombre_cliente($nif_cliente);
+                                                        echo $nombreCliente;
+                                                        ?> 
+                                                        </a></label></td>
                                         </tr>
 
                                         <?php

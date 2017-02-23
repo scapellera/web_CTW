@@ -298,7 +298,14 @@ if($_SESSION["login_done"]==true){
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="codigo_de_barras" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label>></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_mayorista']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $nif_mayorista = $row['NIF_mayorista'];
+                                                        $nombreMayorista = select_nombre_mayorista($nif_mayorista);
+                                                        echo $nombreMayorista;
+                                                        ?> 
+                                                        </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="codigo_producto_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_producto_mayorista']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="numero_de_serie" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_de_serie']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio']?> </a></label></td>

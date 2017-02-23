@@ -271,7 +271,14 @@ if($_SESSION["login_done"]==true){
 
                                                         ?>)"><i class="glyphicon glyphicon-trash"></i></button></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $id_sede = $row['ID_sede'];
+                                                        $nombreSede = select_nombre_sede($id_sede);
+                                                        echo $nombreSede;
+                                                        ?> 
+                                                        </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="cargo" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cargo']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="email" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['email']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="telefono" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono']?> </a></label></td>

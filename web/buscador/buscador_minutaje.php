@@ -232,10 +232,10 @@ if($_SESSION["login_done"]==true){
                                             <th>Fecha</th>
                                             <th>Hora de entrada</th>
                                             <th>Hora de salida</th>
-                                            <th>ID de servicio</th>
-                                            <th>ID_ de usuario</th>
-                                            <th>ID de sede</th>
-                                            <th>NIF de cliente</th>
+                                            <th>Servicio</th>
+                                            <th>Usuario</th>
+                                            <th>Sede</th>
+                                            <th>Cliente</th>
                                             <th>Facturado</th>
                                         </tr>
                                     </thead>
@@ -269,10 +269,38 @@ if($_SESSION["login_done"]==true){
                                                         <td><label style="margin-top: 11px;"><a href="#" class="fecha" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['fecha']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="hora_entrada" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['hora_entrada']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="hora_salida" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['hora_salida']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="ID_servicio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_servicio']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="ID_usuario" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_usuario']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="ID_sede" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_sede']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $id_servicio = $row['ID_servicio'];
+                                                        $nombreServicio = select_nombre_servicio($id_servicio);
+                                                        echo $nombreServicio;
+                                                        ?> 
+                                                        </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $id_usuario = $row['ID_usuario'];
+                                                        $nombreUsuario = select_nombre_usuario($id_usuario);
+                                                        echo $nombreUsuario;
+                                                        ?> 
+                                                        </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $id_sede = $row['ID_sede'];
+                                                        $nombreSede = select_nombre_sede($id_sede);
+                                                        echo $nombreSede;
+                                                        ?> 
+                                                        </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <?php 
+                                                        $nif_cliente = $row['NIF_cliente'];
+                                                        $nombreCliente = select_nombre_cliente($nif_cliente);
+                                                        echo $nombreCliente;
+                                                        ?> 
+                                                        </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="facturado" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['facturado']?> </a></label></td>   
                                                     </tr>
 

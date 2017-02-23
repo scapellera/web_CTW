@@ -118,16 +118,6 @@ function select_all_stock(){
     return $prefijo;
   }
 
-  function select_nombre_sede($id_sede){
-    $conn = connect();
-    $sql = "SELECT nombre
-    FROM SEDE
-    WHERE ID_SEDE = '".$id_sede."'";
-    $data = $conn->query($sql);
-    close($conn);
-    return $data;
-  }
-
   function select_all_user($id_user){
     $conn = connect();
     $sql = "SELECT *
@@ -138,30 +128,85 @@ function select_all_stock(){
     return $data;
   }
 
+  function select_nombre_servicio($ID_servicio){
+    $conn = connect();
+    $sql = "SELECT nombre 
+    FROM SERVICIO WHERE ID_SERVICIO = '".$ID_servicio."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_servicio = $row['nombre'];
+    close($conn);
+    return $nombre_servicio;
+  }
+
+   function select_nombre_usuario($ID_usuario){
+    $conn = connect();
+    $sql = "SELECT nombre 
+    FROM USUARIO WHERE ID_USUARIO = '".$ID_usuario."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_usuario = $row['nombre'];
+    close($conn);
+    return $nombre_usuario;
+  }
+
+   function select_nombre_sede($ID_sede){
+    $conn = connect();
+    $sql = "SELECT nombre 
+    FROM SEDE WHERE ID_SEDE = '".$ID_sede."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_sede = $row['nombre'];
+    close($conn);
+    return $nombre_sede;
+  }
+
+   function select_nombre_cliente($NIF_cliente){
+    $conn = connect();
+    $sql = "SELECT nombre_comercial
+    FROM CLIENTE WHERE NIF_EMPRESA = '".$NIF_cliente."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_cliente = $row['nombre_comercial'];
+    close($conn);
+    return $nombre_cliente;
+  }
+
+   function select_nombre_mayorista($NIF_mayorista){
+    $conn = connect();
+    $sql = "SELECT nombre_empresa
+    FROM MAYORISTA WHERE NIF_MAYORISTA = '".$NIF_mayorista."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_mayorista = $row['nombre_empresa'];
+    close($conn);
+    return $nombre_mayorista;
+  }
 
 
 
-function getGCalendarUrl($event){  
-$titulo = urlencode($event['titulo']); 
-$descripcion = urlencode($event['descripcion']); 
-$localizacion = urlencode($event['localizacion']); 
-$start=new DateTime($event['fecha_inicio'].' '.$event['hora_inicio'].' '.date_default_timezone_get()); 
-$end=new DateTime($event['fecha_fin'].' '.$event['hora_fin'].' '.date_default_timezone_get()); $dates = urlencode($start->format("Ymd\THis")) . "/" . urlencode($end->format("Ymd\THis"));
-$name = urlencode($event['nombre']);
-$url = urlencode($event['url']);
-$gCalUrl = "http://www.google.com/calendar/event?action=TEMPLATE&amp;text=$titulo&amp;dates=$dates&amp;details=$descripcion&amp;location=$localizacion&amp;trp=false&amp;sprop=$url&amp;sprop=name:$name";
-return ($gCalUrl);
-}
-// array asociativo con los parametros mecesarios.
-$evento = array(
-  'titulo' => 'Mi evento de prueba',
-  'descripcion' => 'Descripcion del evento de prueba',
-  'localizacion' => 'Aqui ponemos la dirección donde se celebra el evento',
-  'fecha_inicio' => '2014-04-10', // Fecha de inicio de evento en formato AAAA-MM-DD
-'hora_inicio'=>'17:30', // Hora Inicio del evento
-'fecha_fin'=>'2014-04-12', // Fecha de fin de evento en formato AAAA-MM-DD
-'hora_fin'=>'19:00', // Hora final del evento
-'nombre'=>'ReviBlog', // Nombre del sitio
-'url'=>'www.reviblog.net' // Url de la página
-)
+	function getGCalendarUrl($event){  
+	$titulo = urlencode($event['titulo']); 
+	$descripcion = urlencode($event['descripcion']); 
+	$localizacion = urlencode($event['localizacion']); 
+	$start=new DateTime($event['fecha_inicio'].' '.$event['hora_inicio'].' '.date_default_timezone_get()); 
+	$end=new DateTime($event['fecha_fin'].' '.$event['hora_fin'].' '.date_default_timezone_get()); $dates = urlencode($start->format("Ymd\THis")) . "/" . urlencode($end->format("Ymd\THis"));
+	$name = urlencode($event['nombre']);
+	$url = urlencode($event['url']);
+	$gCalUrl = "http://www.google.com/calendar/event?action=TEMPLATE&amp;text=$titulo&amp;dates=$dates&amp;details=$descripcion&amp;location=$localizacion&amp;trp=false&amp;sprop=$url&amp;sprop=name:$name";
+	return ($gCalUrl);
+	}
+	// array asociativo con los parametros mecesarios.
+	$evento = array(
+	  'titulo' => 'Mi evento de prueba',
+	  'descripcion' => 'Descripcion del evento de prueba',
+	  'localizacion' => 'Aqui ponemos la dirección donde se celebra el evento',
+	  'fecha_inicio' => '2014-04-10', // Fecha de inicio de evento en formato AAAA-MM-DD
+	'hora_inicio'=>'17:30', // Hora Inicio del evento
+	'fecha_fin'=>'2014-04-12', // Fecha de fin de evento en formato AAAA-MM-DD
+	'hora_fin'=>'19:00', // Hora final del evento
+	'nombre'=>'ReviBlog', // Nombre del sitio
+	'url'=>'www.reviblog.net' // Url de la página
+	)
+
 ?>
