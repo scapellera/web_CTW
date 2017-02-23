@@ -13,65 +13,20 @@ if ($_SESSION["login_done"] == true){
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-
-    <title>CTW - intranet</title>
-
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
-
-    <!-- ARCHIVOS NECESARIOS PARA DATATABLES-->
-    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-    <!--Si el usuario tiene rol suficiente puede editar las tablas-->
+    <!--LIBRERIAS-->
+    <!--LIBRERIA - GLOBAL-->
+    <?php include('../assets/librerias/librerias_globales_buscador.html'); ?>
+    <!--EDITOR DE TABLAS-->
     <?php
-    if ($_SESSION["user_rol"] <= 1) {
-//<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-        echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
-    } ?>
-
-    <!-- DATATABLES TABLAS ESPECIFICAS (CLIENTES, CONTACTOS, SEDES...) -->
-    <script src="../assets/table/tables.js"></script>
-
-    <!--Fonts and icons-->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
-
-    <!--CSS-->
-    <!--  Light Bootstrap Table core CSS  1-->
-    <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-    <!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <!--EDIT DATATABLE CODE TYPE TABLE-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
-          rel="stylesheet"/>
-    <script
-        src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-    <link href="../assets/css/table_editor.css" rel="stylesheet"/>
-    <!--TABLE CSS-->
-    <link href="../assets/css/table.css" rel="stylesheet"/>
-    <!--BOTONES TABLA-->
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="http://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="http://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <!--BOTONES CSS-->
-    <link href="../assets/css/table2.css" rel="stylesheet"/>
-    <!--EDIT DATATABLE CODE-->
-    <link href="../assets/css/table4.css" rel="stylesheet"/>
-    <!--NUESTRO CSS-->
-    <link href="../assets/css/micss.css" rel="stylesheet"/>
-    <!--CSS DEL CHECKBOX ACTIVAR/DESACTIVAR-->
-    <link href="../assets/css/csscheckbox.css" rel="stylesheet"/>
-
-    <!--SCRIPTS-->
-    <script src="../assets/js/scripts.js"></script>
+    if($_SESSION["user_rol"]<=1){
+        //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
+        echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+    }
+    ?>
+    <!--LIBRERIAS - BUSCADOR-->
+    <?php include('../assets/librerias/librerias_buscador.html'); ?>
 
 </head>
 
