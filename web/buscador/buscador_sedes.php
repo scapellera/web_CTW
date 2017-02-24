@@ -225,9 +225,9 @@ if($_SESSION["login_done"]==true){
                             }
                             function result(activo){
                                 if (activo==0){//imprime un input activado o desactivado
-                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;0</a><input  type='checkbox' disabled ><div  class='slider rounda'></div></label></td>");
+                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;0</a><input  type='checkbox' checked enable ><div  class='slider rounda'></div></label></td>");
                                 }else{
-                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;1</a><input  type='checkbox' checked disabled ><div  class='slider rounda'></div></label></td>");
+                                    document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;1</a><input  type='checkbox' checked enable ><div  class='slider rounda'></div></label></td>");
                                 }
                             }
                             </script>

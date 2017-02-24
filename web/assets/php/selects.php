@@ -33,7 +33,7 @@ function select_all_cliente(){
     $conn = connect();
     $sql = "SELECT * 
     FROM CLIENTE
-    ORDER BY nombre_completo asc";
+    ORDER BY activo desc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -43,8 +43,7 @@ function select_all_sede(){
     $conn = connect();
     $sql = "SELECT * 
     FROM SEDE S, CLIENTE C
-    WHERE S.NIF_cliente = C.NIF_EMPRESA
-    ORDER BY C.nombre_comercial, S.nombre asc";
+    WHERE S.NIF_cliente = C.NIF_EMPRESA";
     $data = $conn->query($sql);
     close($conn);
     return $data;

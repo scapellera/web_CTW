@@ -4,6 +4,7 @@
 session_start();
 include('../assets/php/db.php');
 include('../assets/php/selects.php');
+include('../assets/php/functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -20,9 +21,9 @@ if ($_SESSION["login_done"] == true){
     <?php include('../assets/librerias/librerias_globales_buscador.html'); ?>
     <!--EDITOR DE TABLAS-->
     <?php
-    if($_SESSION["user_rol"]<=1){
+    if ($_SESSION["user_rol"] <= 1) {
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-        echo"<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
+        echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_cliente.js\"></script>";
     }
     ?>
     <!--LIBRERIAS - BUSCADOR-->
@@ -35,72 +36,16 @@ if ($_SESSION["login_done"] == true){
 <div class="wrapper">
     <div class="sidebar">
         <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="../"><img src="../assets/img/ctw_logo.gif" alt="CTW Logo"></a>
-            </div>
-            <!--MENU-->
-            <ul class="nav">
-                <li>
-                    <a href="../index.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>PÁGINA INICIO</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="buscador_clientes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Clientes</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_sedes.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Sedes</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_contactos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Contactos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_mayoristas.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Mayoristas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_usuarios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_servicios.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Servicios</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_articulos.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Artículos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_stock.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Stock</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="buscador_minutaje.php">
-                        <i class="pe-7s-pen"></i>
-                        <p>Minutaje</p>
-                    </a>
-                </li>
-            </ul>
+            <!--MENU Y LOGO-->
+            <?php
+            include('../assets/html/logo/logo_buscador.html');
+            include('../assets/html/menu/menu_buscador.html');
+            ?>
+            <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
+            <script>$(function () {
+                    document.getElementById("menu_clientes").className = "active";
+                });</script>
+
         </div>
     </div>
     <!--BARRA SUPERIOR, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
@@ -108,25 +53,12 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar2 navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand"></a>
+
+                    <a class="navbar-brand">Buscador clientes</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="../user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
-                        </li>
-                        <li>
-                            <a href="../../logout.php">Log out
-                            </a>
-                        </li>
-                    </ul>
+                    <!--USER & LOGOUT-->
+                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
                 </div>
             </div>
         </nav>
@@ -136,23 +68,11 @@ if ($_SESSION["login_done"] == true){
                 <div class="row">
                     <div>
                         <div>
-
-                            <script>
-                                function result(activo) {
-                                    if (activo == 0) {//imprime un input activado o desactivado
-                                        document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;0</a><input  type='checkbox' disabled ><div  class='slider rounda'></div></label></td>");
-                                    } else {
-                                        document.write("<td><label style='margin-top: 10px; margin-left:12px;' class='switcha'><a>&nbsp;1</a><input  type='checkbox' checked disabled ><div  class='slider rounda'></div></label></td>");
-                                    }
-                                }
-                            </script>
-
                             <table id="buscador_cliente" class="table table-striped table-bordered">
                                 <!--HEAD DE LA TABLA-->
                                 <thead>
                                 <tr>
                                     <th style="background-color: #39AF33; width: 3px;">Activos</th>
-                                    <!--<th style="background-color: #F26842; width: 3px;">Borrar</th>-->
                                     <th>Nombre completo</th>
                                     <th>NIF empresa</th>
                                     <th>Nombre comercial</th>
@@ -183,15 +103,8 @@ if ($_SESSION["login_done"] == true){
                                         ?>
                                         <!--INTRODUCIOMOS LOS DATOS AQUÍ-->
                                         <tr>
-                                            <script>result(<?php echo $row['activo']?>)</script>
-                                            <!--<td><button style="margin-top: 3px; margin-left:14px;" class="btn btn-danger" onclick="preguntar('<?php
-                                            $nombre_fichero = '../assets/php/delete/delete_cliente.php';
-                                            if (file_exists($nombre_fichero)) {
-                                                echo $row['NIF_EMPRESA'];
-                                            } else {
-                                                echo "0 results";
-                                            }
-                                            ?>')"><i class="glyphicon glyphicon-trash"></i></button></td>-->
+                                            <?php result($row['activo'],$row['NIF_EMPRESA']  )?>
+
                                             <td><label><a class="nombre_completo"
                                                           data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo'] ?> </a></label>
                                             </td>
@@ -205,7 +118,7 @@ if ($_SESSION["login_done"] == true){
                                                           data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais'] ?> </a></label>
                                             </td>
                                             <td><label><a class="telefono"
-                                                          data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono'] ?> </a></label>
+                                                          data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono'] ?></a></label>
                                             </td>
                                             <td><label><a class="prefijo"
                                                           data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo'] ?> </a></label>
@@ -264,7 +177,7 @@ if ($_SESSION["login_done"] == true){
 </html>
 <!--SI NO HA PASSADO POR EL LOGIN LO MANDAMOS PARA QUE SE AUTENTIFIQUE-->
 <?php
-} else {
+}else {
     header("location:../index.php");
 }
 ?>
