@@ -175,7 +175,7 @@ if($_SESSION["login_done"]==true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -203,7 +203,7 @@ if($_SESSION["login_done"]==true){
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div >
@@ -311,33 +311,7 @@ if($_SESSION["login_done"]==true){
         
     </div>
 </div>
-
-
 </body>
-
-    <!--   Core JS Files   -->
-    <!--<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>-->
-    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Checkbox, Radio & Switch Plugins -->
-    <script src="../assets/js/bootstrap-checkbox-radio-switch.js"></script>
-
-    <!--  Charts Plugin -->
-    <script src="../assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="../assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="../assets/js/light-bootstrap-dashboard.js"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/demo.js"></script>
-    
-
 </html>
 
 <?php 

@@ -37,7 +37,8 @@ if ($cliente->num_rows > 0) {
 //activar desactivar checkbox buscador
 ////////////////////
 
-function result($activo, $NIF_EMPRESA)
+//CLIENTES
+function checkbox_cliente($activo, $NIF_EMPRESA)
 {
     if ($activo == 0) {//imprime un input activado o desactivado
         echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_cliente('$NIF_EMPRESA', $activo)\"><div  class=\"slider rounda\"></div></label></td>";
@@ -47,6 +48,16 @@ function result($activo, $NIF_EMPRESA)
 
 }
 
+//SEDES
+function checkbox_sede($activo, $ID_SEDE)
+{
+    if ($activo == 0) {//imprime un input activado o desactivado
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_sede($ID_SEDE, $activo)\"><div  class=\"slider rounda\"></div></label></td>";
+    } else {
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\"><a  class=\"checkbox_activo\">&nbsp;1</a><input  type=\"checkbox\" checked onchange=\" onchange_sede($ID_SEDE, $activo)\" ><div  class=\"slider rounda\"></div></label></td>";
+    }
+
+}
 
 ?>
 </html>

@@ -41,7 +41,7 @@ function select_all_cliente(){
 
 function select_all_sede(){
     $conn = connect();
-    $sql = "SELECT * 
+    $sql = "SELECT *,s.activo as s_activo
     FROM SEDE S, CLIENTE C
     WHERE S.NIF_cliente = C.NIF_EMPRESA";
     $data = $conn->query($sql);

@@ -16,6 +16,7 @@ $(document).ready(function() {
 
     $('#buscador_sede').DataTable( {
         dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ] ,[ 2, "asc" ]],
         
         "pagingType": "full_numbers",
         lengthMenu: [

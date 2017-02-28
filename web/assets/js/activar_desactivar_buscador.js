@@ -26,3 +26,28 @@ function onchange_cliente($pk, $activo) {
         });
     }
 }
+
+function onchange_sede($pk, $activo) {
+    if ($activo == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'sede',
+                accion: 'activar'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'sede',
+                accion: 'desactivar'
+            }
+        });
+    }
+}

@@ -103,7 +103,7 @@ if ($_SESSION["login_done"] == true){
                                         ?>
                                         <!--INTRODUCIOMOS LOS DATOS AQUÍ-->
                                         <tr>
-                                            <?php result($row['activo'],$row['NIF_EMPRESA']  )?>
+                                            <?php checkbox_cliente($row['activo'],$row['NIF_EMPRESA']  )?>
 
                                             <td><label><a class="nombre_completo"
                                                           data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre_completo'] ?> </a></label>
