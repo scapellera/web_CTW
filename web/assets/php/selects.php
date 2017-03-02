@@ -18,6 +18,14 @@ function select_prefijo_pais($pais){
     close($conn);
     return $prefijo;
   }
+function select_all_contacto(){
+    $conn = connect();
+    $sql = "SELECT *
+    FROM CONTACTO";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
   function select_cantidad_stock($codigo_de_barras){
     $conn = connect();

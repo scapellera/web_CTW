@@ -51,3 +51,28 @@ function onchange_sede($pk, $activo) {
         });
     }
 }
+
+function onchange_contacto($pk, $activo) {
+    if ($activo == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'contacto',
+                accion: 'activar'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'contacto',
+                accion: 'desactivar'
+            }
+        });
+    }
+}

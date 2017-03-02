@@ -59,5 +59,16 @@ function checkbox_sede($activo, $ID_SEDE)
 
 }
 
+//CONTACTOS
+function checkbox_contacto($activo, $ID_CONTACTO)
+{
+    if ($activo == 0) {//imprime un input activado o desactivado
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_contacto($ID_CONTACTO, $activo)\"><div  class=\"slider rounda\"></div></label></td>";
+    } else {
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\"><a  class=\"checkbox_activo\">&nbsp;1</a><input  type=\"checkbox\" checked onchange=\" onchange_contacto($ID_CONTACTO, $activo)\" ><div  class=\"slider rounda\"></div></label></td>";
+    }
+
+}
+
 ?>
 </html>

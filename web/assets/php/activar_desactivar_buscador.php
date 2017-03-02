@@ -22,6 +22,10 @@ else if($function == "sede_activar"){
 
 }else if($function == "sede_desactivar"){
     sede_desactivar($pk);
+}else if($function == "contacto_desactivar"){
+    contacto_desactivar($pk);
+}else if($function == "contacto_activar"){
+    contacto_activar($pk);
 }
 
 
@@ -59,6 +63,22 @@ function sede_desactivar($pk){
     $sql = "UPDATE SEDE
     SET activo = 0
     WHERE ID_SEDE = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function contacto_desactivar($pk){
+    $conn = connect();
+    $sql = "UPDATE CONTACTO
+    SET activo = 0
+    WHERE ID_CONTACTO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function contacto_activar($pk){
+    $conn = connect();
+    $sql = "UPDATE CONTACTO
+    SET activo = 1
+    WHERE ID_CONTACTO = ".$pk;
     $result = $conn->query($sql);
     close($conn);
 }
