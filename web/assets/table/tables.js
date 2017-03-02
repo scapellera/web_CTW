@@ -46,7 +46,8 @@ $(document).ready(function() {
 
     $('#buscador_mayorista').DataTable( {
         dom: 'Bfrtip',
-        
+        "order": [[ 0, "desc" ],[ 1, "asc" ] ,[ 2, "asc" ]],
+
         "pagingType": "full_numbers",
         lengthMenu: [
         [ 10, 25, 50, -1 ],

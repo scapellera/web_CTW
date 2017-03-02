@@ -27,6 +27,31 @@ function onchange_cliente($pk, $activo) {
     }
 }
 
+function onchange_mayorista($pk, $activo) {
+    if ($activo == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'mayorista',
+                accion: 'activar'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'mayorista',
+                accion: 'desactivar'
+            }
+        });
+    }
+}
+
 function onchange_sede($pk, $activo) {
     if ($activo == 0) {
 

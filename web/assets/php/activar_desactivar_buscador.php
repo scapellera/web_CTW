@@ -26,6 +26,10 @@ else if($function == "sede_activar"){
     contacto_desactivar($pk);
 }else if($function == "contacto_activar"){
     contacto_activar($pk);
+}else if($function == "mayorista_activar"){
+    mayorista_activar($pk);
+}else if($function == "mayorista_desactivar"){
+    mayorista_desactivar($pk);
 }
 
 
@@ -79,6 +83,22 @@ function contacto_activar($pk){
     $sql = "UPDATE CONTACTO
     SET activo = 1
     WHERE ID_CONTACTO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function mayorista_activar($pk){
+    $conn = connect();
+    $sql = "UPDATE MAYORISTA
+    SET activo = 1
+    WHERE NIF_MAYORISTA = '".$pk."'";
+    $result = $conn->query($sql);
+    close($conn);
+}
+function mayorista_desactivar($pk){
+    $conn = connect();
+    $sql = "UPDATE MAYORISTA
+    SET activo = 0
+    WHERE NIF_MAYORISTA =  '".$pk."'";
     $result = $conn->query($sql);
     close($conn);
 }
