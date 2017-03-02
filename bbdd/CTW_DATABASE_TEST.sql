@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-02-2017 a las 13:45:29
+-- Tiempo de generación: 02-03-2017 a las 14:30:37
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -111,9 +111,9 @@ CREATE TABLE `CLIENTE` (
 
 INSERT INTO `CLIENTE` (`NIF_EMPRESA`, `nombre_comercial`, `nombre_completo`, `telefono`, `email`, `ciudad_facturacion`, `codigo_postal_facturacion`, `calle_facturacion`, `numero_facturacion`, `ciudad_envio`, `codigo_postal_envio`, `calle_envio`, `numero_envio`, `IBAN`, `SEPA`, `pais`, `prefijo`, `activo`) VALUES
 ('1234K', 'cliente prueba', 'cliente prueba', 345345, 'rgdfg@sdfgdf', 'cliente prueba', '08054', 'cliente prueba', '23', 'cliente prueba', '45', 'cliente prueba', '12', '345345', 127, 'Bahamas', 1242, 0),
-('23415624G', 'ARKHE', 'RIRLEY S.L', 933201263, 'rirley@gmail.com', 'Barcelona', '08008', 'calle hotel W', '101', 'Barcelona', '08008', 'calle hotel W', '101', 'ES242100322143454321', 1, 'Eslovenia', 386, 0),
-('44512378G', 'BETARQ', 'BETARQ ARQUITECTOS S.L', 931804172, 'betarq@gmail.com', 'Barcelona', '08008', 'Balmes', '78', 'Barcelona', '08008', 'Balmes', '78', 'ES211000345576429841', 1, 'Alemania', 49, 0),
-('45327163G', 'LIUJO', 'LIUJO S.L', 912804170, 'liujo@gmail.com', 'Milán', '12234', 'Plaza Italia', '33', 'Madrid', '08024', 'Calle mallorca', '33', 'ES333410234578922345', 1, 'Italia', 39, 0),
+('23415624G', 'ARKHE', 'RIRLEY S.L', 933201263, 'rirley@gmail.com', 'Barcelona', '08008', 'calle hotel W', '101', 'Barcelona', '08008', 'calle hotel W', '101', 'ES242100322143454321', 1, 'Eslovenia', 386, 1),
+('44512378G', 'BETARQ', 'BETARQ ARQUITECTOS S.L', 931804172, 'betarq@gmail.com', 'Barcelona', '08008', 'Balmes', '78', 'Barcelona', '08008', 'Balmes', '78', 'ES211000345576429841', 1, 'Alemania', 49, 1),
+('45327163G', 'LIUJO', 'LIUJO S.L', 912804170, 'liujo@gmail.com', 'Milán', '12234', 'Plaza Italia', '33', 'Madrid', '08024', 'Calle mallorca', '33', 'ES333410234578922345', 1, 'Italia', 39, 1),
 ('bb', 'bbb', 'bebebe', 55555, 'bb@gggdd', 'aa', 'aa', 'aa', 'aa', 'aaa', 'aaa', 'aaa', 'aaa', 'aaaa', 1, 'Angola', 244, 0),
 ('cc', 'cc', 'cc', 333, 'cc@ccc', 'cc', 'cc', 'cc', 'cc', 'cc', 'ccc', 'cc', 'cc', 'cc', 1, 'Armenia', 374, 0),
 ('dd', 'dd', 'dd', 222, 'dd@dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 1, 'Francia', 33, 0);
@@ -133,16 +133,17 @@ CREATE TABLE `CONTACTO` (
   `telefono` int(9) NOT NULL,
   `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL,
-  `extension` int(10) DEFAULT NULL
+  `extension` int(10) DEFAULT NULL,
+  `activo` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `CONTACTO`
 --
 
-INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `telefono`, `pais`, `prefijo`, `extension`) VALUES
-(1, 'Andrés Palomares', 7, 'Informatico', 'apalomares@thearkhe.es', 912345712, 'Albania', 355, 107),
-(2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77);
+INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `telefono`, `pais`, `prefijo`, `extension`, `activo`) VALUES
+(1, 'Andrés Palomares', 7, 'Informatico', 'apalomares@thearkhe.es', 912345712, 'Albania', 355, 107, 1),
+(2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77, 1);
 
 -- --------------------------------------------------------
 
@@ -191,9 +192,9 @@ CREATE TABLE `MAYORISTA` (
 
 INSERT INTO `MAYORISTA` (`NIF_MAYORISTA`, `nombre_empresa`, `nombre_comercial`, `telefono_empresa`, `telefono_comercial`, `extension_telefono_comercial`, `email_empresa`, `email_comercial`, `ubicacion`, `pais`, `prefijo`, `activo`) VALUES
 ('23815837G', 'Mediamarkt S.L', NULL, 936459238, 43535345, 23, 'mediamarkt@gmail.com', 'y', '', 'Eslovaquia', 421, 0),
-('36340346F', 'Fnac', 'fnac glorias', 932107712, NULL, NULL, 'fnac@gmail.com', NULL, '', 'Egipto', 20, 0),
-('dfghgfh', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, 'tytr', 'Bahamas', 1242, 0),
-('fffff', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, NULL, 'Bahamas', 1242, 0),
+('36340346F', 'Fnac', 'fnac glorias', 932107712, NULL, NULL, 'fnac@gmail.com', NULL, '', 'Egipto', 20, 1),
+('dfghgfh', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, 'tytr', 'Bahamas', 1242, 1),
+('fffff', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, NULL, 'Bahamas', 1242, 1),
 ('sfsdf', 'sdfds', NULL, 345, NULL, NULL, 'fdg@fdg', NULL, '', 'Azerbaiyán', 994, 0);
 
 -- --------------------------------------------------------
@@ -544,13 +545,13 @@ CREATE TABLE `SEDE` (
 
 INSERT INTO `SEDE` (`ID_SEDE`, `NIF_cliente`, `nombre`, `ubicacion`, `ciudad`, `codigo_postal`, `calle`, `numero`, `telefono`, `pais`, `prefijo`, `activo`) VALUES
 (1, 'bb', 'bbbbbbbb', '', 'bbb', 'bbb', 'A', 'bbb', 666, 'Andorra', 376, 0),
-(2, 'bb', 'aaa', 'aaa', 'aaaaaa', 'aaa', 'aaaa', 'aaa', 777, 'Australia', 61, 0),
+(2, 'bb', 'aaa', 'aaa', 'aaaaaa', 'aaa', 'aaaa', 'aaa', 777, 'Australia', 61, 1),
 (4, 'bb', 'ddd', '', 'ddd', 'ddd', 'A', 'ddd', 999, 'Barbados', 1246, 0),
-(5, 'dd', 'dd', 'ddddddd', 'sss', 'dd', 'BBBB', 'dd', 546345654, 'Alemania', 355, 0),
-(6, 'dd', 'patata', 'asd', 'iiii', 'ads', 'asd', 'asd', 2147483647, 'Jordania', 962, 0),
-(7, '23415624G', 'The Arkhe Madridd', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242, 0),
-(8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34, 0),
-(9, '44512378G', 'Betarq Barcelona', 'Bajos', 'Barcelona', '08002', 'Mallorca', '145', 937841273, 'Argentina', 54, 0),
+(5, 'dd', 'dd', 'ddddddd', 'sss', 'dd', 'BBBB', 'dd', 546345654, 'Alemania', 355, 1),
+(6, 'dd', 'patata', 'asd', 'iiii', 'ads', 'asd', 'asd', 2147483647, 'Jordania', 962, 1),
+(7, '23415624G', 'The Arkhe Madridd', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242, 1),
+(8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34, 1),
+(9, '44512378G', 'Betarq Barcelona', 'Bajos', 'Barcelona', '08002', 'Mallorca', '145', 937841273, 'Argentina', 54, 1),
 (10, '1234K', 'prueba sede 1', '', 'prueba sede 1', '4545', 'prueba sede 1', '43', 645645, 'Bahamas', 1242, 0);
 
 -- --------------------------------------------------------
