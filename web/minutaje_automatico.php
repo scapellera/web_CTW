@@ -25,7 +25,8 @@ if ($_SESSION["login_done"] == true){
     <!-- GUARDAR MINUTAJE EN SESSIONES-->
     <script src="assets/js/jquery.session.js"></script>
 
-
+    <!--Funciones javascript-->
+    <script src="./assets/js/functions.js"></script>
 
 </head>
 <body>
@@ -89,23 +90,7 @@ if ($_SESSION["login_done"] == true){
                                             <option value="-">-
                                         </select>
                                     </fieldset>
-                                    <fieldset>
-                                        <?php $data = select_all_servicio(); ?>
-                                        <select id="servicio" name="select_box_servicio" class="select_box">
-                                            <option value="" disabled selected>Selecciona el servicio*</option>
-                                            <?php
-                                            if ($data->num_rows > 0) {
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    ?>
-                                                    <option
-                                                        value="<?php echo $row['ID_SERVICIO'] ?>"><?php echo "$row[nombre] - $row[descripcion]"; ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </fieldset>
+
                                     <fieldset>
                                         <a id="fecha_print"></a>
                                         <input type="hidden" id="fecha" name="fecha" value="" required/>
@@ -131,12 +116,24 @@ if ($_SESSION["login_done"] == true){
                                         <input type="hidden" name="sede_minutaje" value="">
                                     </fieldset>
                                     <fieldset>
-                                        <input type="hidden" name="servicio_minutaje" value="">
+                                        <?php $data = select_all_servicio(); ?>
+                                        <select id="servicio" name="select_box_servicio" class="select_box">
+                                            <option value="" disabled selected>Selecciona el servicio*</option>
+                                            <?php
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option
+                                                            value="<?php echo $row['ID_SERVICIO'] ?>"><?php echo "$row[nombre] - $row[descripcion]"; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </fieldset>
                                     <fieldset>
-                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;"
-                                                                                             class='switcha'><input
-                                                name="facturado_minutaje" type="checkbox">
+                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;" class='switcha'><input name="facturado_minutaje" type="checkbox">
                                             <div class='slider rounda'></div>
                                         </label>
                                     </fieldset>

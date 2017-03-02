@@ -179,7 +179,7 @@ if($_SESSION["login_done"]==true){
 					#Declaramos las variables del formulario
 					$NIF_cliente = $_POST['cliente_minutaje'];
 					$sede = $_POST['sede_minutaje'];
-					$servicio = $_POST['servicio_minutaje'];
+					$servicio = $_POST['select_box_servicio'];
 					$usuario = $_SESSION["id_usuario"];
 					$facturado = $_POST['facturado_minutaje'];
 					$fecha = $_POST['fecha_minutaje'];

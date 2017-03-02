@@ -23,6 +23,9 @@ if ($_SESSION["login_done"] == true){
     <!--FORMULARIO - CSS-->
     <link href="./assets/css/insert.css" rel="stylesheet"/>
 
+    <!--Funciones javascript-->
+    <script src="./assets/js/functions.js"></script>
+
 </head>
 
 <body>
