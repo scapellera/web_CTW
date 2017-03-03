@@ -88,7 +88,7 @@ if ($_SESSION["login_done"] == true){
 
                                 <?php
 
-                                $data = select_all_sede();
+                                $data = select_all_sede_activo();
 
                                 if ($data->num_rows > 0) {
                                     // output data of each row

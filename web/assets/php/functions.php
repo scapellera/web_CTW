@@ -79,5 +79,36 @@ function checkbox_mayorista($activo, $NIF_MAYORISTA)
     }
 
 }
+//USUARIOS
+function checkbox_usuarios($activo, $ID_USUARIO)
+{
+    if ($activo == 0) {//imprime un input activado o desactivado
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_usuario('$ID_USUARIO', $activo)\"><div  class=\"slider rounda\"></div></label></td>";
+    } else {
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\"><a  class=\"checkbox_activo\">&nbsp;1</a><input  type=\"checkbox\" checked onchange=\" onchange_usuario('$ID_USUARIO', $activo)\" ><div  class=\"slider rounda\"></div></label></td>";
+    }
+
+}
+//SERVICIOS
+function checkbox_servicios($activo, $ID_SERVICIO)
+{
+    if ($activo == 0) {//imprime un input activado o desactivado
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_servicio('$ID_SERVICIO', $activo)\"><div  class=\"slider rounda\"></div></label></td>";
+    } else {
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\"><a  class=\"checkbox_activo\">&nbsp;1</a><input  type=\"checkbox\" checked onchange=\" onchange_servicio('$ID_SERVICIO', $activo)\" ><div  class=\"slider rounda\"></div></label></td>";
+    }
+
+}
+
+//SERVICIOS
+function checkbox_minutaje_facturado($facturado, $ID_MINUTAJE)
+{
+    if ($facturado == 0) {//imprime un input activado o desactivado
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\" ><a class=\"checkbox_activo\">&nbsp;0</a><input  type=\"checkbox\" onchange=\" onchange_minutaje_facturado('$ID_MINUTAJE', $facturado)\"><div  class=\"slider rounda\"></div></label></td>";
+    } else {
+        echo "<td><label style=\"margin-top: 10px; margin-left:12px;\" class=\"switcha\"><a  class=\"checkbox_activo\">&nbsp;1</a><input  type=\"checkbox\" checked onchange=\" onchange_minutaje_facturado('$ID_MINUTAJE', $facturado)\" ><div  class=\"slider rounda\"></div></label></td>";
+    }
+
+}
 ?>
 </html>

@@ -61,12 +61,28 @@ $(document).ready(function() {
 
     $('#buscador_usuario').DataTable( {
         dom: 'Bfrtip',
-        
+        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
+
         "pagingType": "full_numbers",
         lengthMenu: [
         [ 10, 25, 50, -1 ],
         [ '10 rows', '25 rows', '50 rows', 'Show all' ]
       ],
+        buttons: [
+            'excel',
+            'pageLength'
+        ]
+    } );
+
+    $('#buscador_stock').DataTable( {
+        dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
+
+        "pagingType": "full_numbers",
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
         buttons: [
             'excel',
             'pageLength'

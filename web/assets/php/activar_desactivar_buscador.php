@@ -30,6 +30,18 @@ else if($function == "sede_activar"){
     mayorista_activar($pk);
 }else if($function == "mayorista_desactivar"){
     mayorista_desactivar($pk);
+}else if($function == "usuario_activar"){
+    usuario_activar($pk);
+}else if($function == "usuario_desactivar"){
+    usuario_desactivar($pk);
+}else if($function == "servicio_activar"){
+    servicio_activar($pk);
+}else if($function == "servicio_desactivar"){
+    servicio_desactivar($pk);
+}else if($function == "minutaje_facturado"){
+    minutaje_facturado($pk);
+}else if($function == "minutaje_por_facturar"){
+    minutaje_por_facturar($pk);
 }
 
 
@@ -99,6 +111,54 @@ function mayorista_desactivar($pk){
     $sql = "UPDATE MAYORISTA
     SET activo = 0
     WHERE NIF_MAYORISTA =  '".$pk."'";
+    $result = $conn->query($sql);
+    close($conn);
+}
+function usuario_desactivar($pk){
+    $conn = connect();
+    $sql = "UPDATE USUARIO
+    SET activo = 0
+    WHERE ID_USUARIO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function usuario_activar($pk){
+    $conn = connect();
+    $sql = "UPDATE USUARIO
+    SET activo = 1
+    WHERE ID_USUARIO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function servicio_activar($pk){
+    $conn = connect();
+    $sql = "UPDATE SERVICIO
+    SET activo = 1
+    WHERE ID_SERVICIO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function servicio_desactivar($pk){
+    $conn = connect();
+    $sql = "UPDATE SERVICIO
+    SET facturado = 0
+    WHERE ID_SERVICIO = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function minutaje_facturado($pk){
+    $conn = connect();
+    $sql = "UPDATE MINUTAJE
+    SET facturado = 1
+    WHERE ID_MINUTAJE = ".$pk;
+    $result = $conn->query($sql);
+    close($conn);
+}
+function minutaje_por_facturar($pk){
+    $conn = connect();
+    $sql = "UPDATE MINUTAJE
+    SET facturado = 0
+    WHERE ID_MINUTAJE = ".$pk;
     $result = $conn->query($sql);
     close($conn);
 }

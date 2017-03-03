@@ -47,6 +47,16 @@ function select_all_cliente(){
     return $data;
   }
 
+function select_all_sede_activo(){
+    $conn = connect();
+    $sql = "SELECT *,s.activo as s_activo
+    FROM SEDE S, CLIENTE C
+    WHERE S.NIF_cliente = C.NIF_EMPRESA";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
 function select_all_sede(){
     $conn = connect();
     $sql = "SELECT *
@@ -95,7 +105,14 @@ function select_all_stock(){
     close($conn);
     return $data;
   }
-
+function select_all_articulo(){
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM ARTICULO";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
   function select_all_minutaje(){
     $conn = connect();
     $sql = "SELECT * 

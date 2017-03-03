@@ -101,3 +101,76 @@ function onchange_contacto($pk, $activo) {
         });
     }
 }
+
+function onchange_usuario($pk, $activo) {
+    if ($activo == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'usuario',
+                accion: 'activar'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'usuario',
+                accion: 'desactivar'
+            }
+        });
+    }
+}
+function onchange_servicio($pk, $activo) {
+    if ($activo == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'servicio',
+                accion: 'activar'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'servicio',
+                accion: 'desactivar'
+            }
+        });
+    }
+}
+function onchange_minutaje_facturado($pk, $facturado) {
+    if ($facturado == 0) {
+
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'minutaje',
+                accion: 'facturado'
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'post',
+            url: '../assets/php/activar_desactivar_buscador.php',
+            data: {
+                pk: $pk,
+                para: 'minutaje',
+                accion: 'por_facturar'
+            }
+        });
+    }
+}
