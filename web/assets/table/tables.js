@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#buscador_cliente').DataTable( {
         dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ] ],
         
         "pagingType": "full_numbers",
         lengthMenu: [
@@ -15,6 +16,7 @@ $(document).ready(function() {
 
     $('#buscador_sede').DataTable( {
         dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ] ,[ 2, "asc" ]],
         
         "pagingType": "full_numbers",
         lengthMenu: [
@@ -29,6 +31,7 @@ $(document).ready(function() {
 
     $('#buscador_contacto').DataTable( {
         dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 2, "asc" ] ,[ 1, "asc" ]],
         
         "pagingType": "full_numbers",
         lengthMenu: [
@@ -43,7 +46,8 @@ $(document).ready(function() {
 
     $('#buscador_mayorista').DataTable( {
         dom: 'Bfrtip',
-        
+        "order": [[ 0, "desc" ],[ 1, "asc" ] ,[ 2, "asc" ]],
+
         "pagingType": "full_numbers",
         lengthMenu: [
         [ 10, 25, 50, -1 ],
@@ -57,12 +61,28 @@ $(document).ready(function() {
 
     $('#buscador_usuario').DataTable( {
         dom: 'Bfrtip',
-        
+        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
+
         "pagingType": "full_numbers",
         lengthMenu: [
         [ 10, 25, 50, -1 ],
         [ '10 rows', '25 rows', '50 rows', 'Show all' ]
       ],
+        buttons: [
+            'excel',
+            'pageLength'
+        ]
+    } );
+
+    $('#buscador_stock').DataTable( {
+        dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
+
+        "pagingType": "full_numbers",
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
         buttons: [
             'excel',
             'pageLength'

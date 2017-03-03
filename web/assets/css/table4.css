@@ -1989,13 +1989,13 @@ textarea.input-lg {
 .btn-info {
     color: #fff;
     background-color: #5bc0de;
-    border-color: #46b8da
+    border-color: #ea8f43
 }
 
 .btn-info:hover,.btn-info:focus,.btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info {
     color: #fff;
     background-color: #39b3d7;
-    border-color: #269abc
+    border-color: #d5672b
 }
 
 .btn-info:active,.btn-info.active,.open .dropdown-toggle.btn-info {

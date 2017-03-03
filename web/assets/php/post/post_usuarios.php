@@ -156,59 +156,11 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar usuario</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
 
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
                         <li>
                             <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
@@ -230,11 +182,24 @@ if($_SESSION["login_done"]==true){
 					<?php
 					//Declaramos las variables del formulario
 					$nombre = $_POST['nombre'];
+                    $apellido = $_POST['apellido'];
+                    $email = $_POST['email'];
+                    $telefono = $_POST['telefono'];
 					$user = $_POST['user'];
 					$password = $_POST['password'];
+                    $activo = $_POST['activo'];
+
+                    if($activo==''){
+                        $activo2 = 0;
+                    }else{
+                        $activo2 = 1;
+                    }
 
 					//Añadimos comillas a los varchars
-					$nombre="\"$nombre\"";
+					$apellido="\"$apellido\"";
+                    $email="\"$email\"";
+                    $telefono="\"$telefono\"";
+                    $nombre="\"$nombre\"";
 					$user="\"$user\"";
 					$password="\"$password\"";
 
@@ -242,14 +207,9 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO USUARIO (nombre, user, password)
-					VALUES ($nombre, $user, MD5($password))";
-					/*
-					//Encriptar clave MD5
-					$sql ="UPDATE USUARIO
-					SET password = MD5($password)
-					WHERE user = $user";
-					*/ 
+					$sql = "INSERT INTO USUARIO (nombre, apellido, correo, telefono, user, password, activo)
+					VALUES ($nombre, $apellido, $email, $telefono, $user, MD5($password), $activo2)";
+					
 
 					if ($conn->query($sql) === TRUE) {
 					?>

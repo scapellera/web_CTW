@@ -156,59 +156,11 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar mayorista</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
 
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
                         <li>
                             <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
@@ -241,7 +193,13 @@ if($_SESSION["login_done"]==true){
                     $ubicacion = $_POST['ubicacion'];
 					$pais = $_POST['select_box_pais'];
 					$prefijo = select_prefijo_pais($pais);
+                    $activo = $_POST['activo'];
 
+                    if($activo==''){
+                        $activo2 = 0;
+                    }else{
+                        $activo2 = 1;
+                    }                    
 
 					//Añadimos comillas a los varchars
 					$NIF_mayorista="\"$NIF_mayorista\"";
@@ -269,8 +227,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo)
-					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo)";
+					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo, activo)
+					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo, $activo2)";
 					    
 
 

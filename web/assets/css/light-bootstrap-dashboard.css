@@ -478,7 +478,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 .main-panel > .content2 {
   padding: 30px 15px;
   min-height: calc(100% - 123px);
-  width: 150%;
+  width: 2100px;
 }
 .main-panel > .footer {
   border-top: 1px solid #e7e7e7;
@@ -488,7 +488,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 .main-panel .navbar2 {
   margin-bottom: 0;
-  width: 150%;
+  width: 2100px;
 }
 
 .sidebar,
@@ -629,12 +629,12 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 .btn-info.btn-fill {
   color: #FFFFFF;
-  background-color: #1DC7EA;
+  background-color: #ea8f43;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-info.btn-fill:hover, .btn-info.btn-fill:focus, .btn-info.btn-fill:active, .btn-info.btn-fill.active, .open > .btn-info.btn-fill.dropdown-toggle {
-  background-color: #42d0ed;
+  background-color: #d5672b;
   color: #FFFFFF;
 }
 .btn-info.btn-fill .caret {
@@ -1984,7 +1984,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 }
 
 .card-user .image {
-  height: 110px;
+  height: 190px;
 }
 .card-user .image-plain {
   height: 0;

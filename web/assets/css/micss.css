@@ -1,5 +1,5 @@
 /*http://www.bestcssbuttongenerator.com/#/2*/
-.button {
+.button_buscador {
     width: 300px;
     height: 124px;
     text-align: center;
@@ -29,6 +29,47 @@
     padding:32px 76px;
     text-decoration:none;
     text-shadow:0px 2px 27px #000000;
+}
+.button_buscador:hover {
+    -webkit-box-shadow: 1px 17px 10px -7px #6d6d6d;
+    box-shadow: 1px 17px 10px -7px #6d6d6d;
+    color:white;
+}
+.button_insert {
+    width: 300px;
+    height: 124px;
+    text-align: center;
+    margin-left:20px;
+    margin-top:20px;
+    margin-right:20px;
+    -moz-box-shadow: 1px 11px 10px -7px #c7751e;
+    -webkit-box-shadow: 1px 11px 10px -7px #c7751e;
+    box-shadow: 1px 11px 10px -7px #c7751e;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c27013), color-stop(1, #db8f0b));
+    background:-moz-linear-gradient(top, #c27013 5%, #db8f0b 100%);
+    background:-webkit-linear-gradient(top, #c27013 5%, #db8f0b 100%);
+    background:-o-linear-gradient(top, #c27013 5%, #db8f0b 100%);
+    background:-ms-linear-gradient(top, #c27013 5%, #db8f0b 100%);
+    background:linear-gradient(to bottom, #c27013 5%, #db8f0b 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c27013', endColorstr='#db8f0b',GradientType=0);
+    background-color:#c27013;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:24px;
+    font-weight:bold;
+    padding:32px 76px;
+    text-decoration:none;
+    text-shadow:0px 2px 27px #000000;
+}
+.button_insert:hover {
+    -webkit-box-shadow: 1px 17px 10px -7px #6d6d6d;
+    box-shadow: 1px 17px 10px -7px #6d6d6d;
+    color:white;
 }
 .myButton:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #db8f0b), color-stop(1, #c27013));
@@ -77,6 +118,59 @@
 .button_horas:hover {
     background-color: #ea8f43;
     color: white;
+}
+
+
+
+/*****************************************
+************** CSS CHECKBOX***************
+******************************************/
+.switcha {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.switcha input {display:none;}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #2196F3;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(1px);
+    -ms-transform: translateX(10px);
+    transform: translateX(19px);
+}
+/* Rounded sliders */
+.slider.rounda {
+    border-radius: 34px;
+}
+.slider.rounda:before {
+    border-radius: 50%;
 }
 
 

@@ -156,59 +156,10 @@ if($_SESSION["login_done"]==true){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">Insertar cliente</a>
+                    <a class="navbar-brand"></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <!--ICONOS ESQUERRA-->
-                    <!--<ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>-->
-
                     <ul class="nav navbar-nav navbar-right">
-                        <!--Comentat account i dropdown-->
-                        <!--<li>
-                           <a href="">
-                               Account
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Dropdown
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>-->
                         <li>
                             <a href="../perfil.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
@@ -246,7 +197,13 @@ if($_SESSION["login_done"]==true){
 					$iban = $_POST['iban'];
 					$sepa = $_POST['sepa'];
 					$pais = $_POST['select_box_pais'];
+                    $activo = $_POST['activo'];
 
+                    if($activo==''){
+                        $activo2 = 0;
+                    }else{
+                        $activo2 = 1;
+                    }
 
 
 					$prefijo = select_prefijo_pais($pais);
@@ -255,8 +212,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO CLIENTE (NIF_EMPRESA, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo)
-					VALUES ('$nif_empresa', '$nombre_comercial', '$nombre_completo', $telefono, '$email', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion', '$ciudad_envio', '$codigo_postal_envio', '$calle_envio', '$numero_envio', '$iban', $sepa, '$pais', $prefijo)";
+					$sql = "INSERT INTO CLIENTE (NIF_EMPRESA, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo, activo)
+					VALUES ('$nif_empresa', '$nombre_comercial', '$nombre_completo', $telefono, '$email', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion', '$ciudad_envio', '$codigo_postal_envio', '$calle_envio', '$numero_envio', '$iban', $sepa, '$pais', $prefijo, $activo2)";
 					    
 
 
