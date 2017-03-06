@@ -50,7 +50,7 @@ if ($_SESSION["login_done"] == true){
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand">Buscador minutaje</a>
@@ -64,7 +64,7 @@ if ($_SESSION["login_done"] == true){
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div>

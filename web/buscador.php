@@ -55,7 +55,7 @@ if ($_SESSION["login_done"] == true){
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-
+                        <center>
                             <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar cliente</a>
                             <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar <br> sede</a>
                             <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar contacto</a>
@@ -65,7 +65,7 @@ if ($_SESSION["login_done"] == true){
                             <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar artículo</a>
                             <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar stock</a>
                             <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar minutaje</a>
-
+                        </center>
                         </div>
                     </div>
                 </div>
