@@ -48,7 +48,6 @@ if($_SESSION["login_done"]==true){
                     <a class="navbar-brand">Insert cliente</a>
                 </div>
                 <div class="collapse navbar-collapse">
-
                     <!--USER & LOGOUT-->
                     <?php include('../assets/html/menu/user_logout_insert.html'); ?>
                 </div>
