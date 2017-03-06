@@ -182,7 +182,7 @@ if($_SESSION["login_done"]==true){
 						<?php
 						#Declaramos las variables del formulario
 						$nombre = $_POST['nombre'];
-						$ID_sede = $_POST['select_box_id_sede'];
+						$sede = $_POST['select_box_sede_cliente'];
 						$cargo = $_POST['cargo'];
 						$email = $_POST['email'];
 						$telefono = $_POST['telefono'];
@@ -196,15 +196,17 @@ if($_SESSION["login_done"]==true){
 
 						//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 						$conn = connect();
+                        $data = select_id_sede($sede);
+                        echo "$data";
 						if($extension==''){
 
 						$sql = "INSERT INTO CONTACTO (nombre, ID_sede, cargo, email, telefono, pais, prefijo)
-						VALUES ('$nombre', '$ID_sede', '$cargo', '$email', '$telefono', '$pais', $prefijo)";	
+						VALUES ('$nombre', '$data', '$cargo', '$email', '$telefono', '$pais', $prefijo)";
 
 						}else{
 
 						$sql = "INSERT INTO CONTACTO (nombre, ID_sede, cargo, email, telefono, pais, prefijo, extension)
-						VALUES ('$nombre', '$ID_sede', '$cargo', '$email', '$telefono', '$pais', $prefijo, $extension)";	
+						VALUES ('$nombre', '$data', '$cargo', '$email', '$telefono', '$pais', $prefijo, $extension)";
 
 						}
 
