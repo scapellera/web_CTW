@@ -28,6 +28,20 @@ $(document).ready(function() {
             'pageLength'
         ]
     } );
+    $('#exemple').DataTable( {
+        dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 2, "asc" ] ,[ 1, "asc" ]],
+
+        "pagingType": "full_numbers",
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+            'excel',
+            'pageLength'
+        ]
+    } );
 
     $('#buscador_contacto').DataTable( {
         dom: 'Bfrtip',

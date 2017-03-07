@@ -11,6 +11,7 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -66,6 +67,43 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
+                            <script>
+                                $(document).ready(function() {
+                                    var table = $('#buscador_contacto').DataTable();
+
+                                    $('#buscador_contacto tbody').on( 'click', 'tr', function () {
+                                        $(this).toggleClass('selected');
+
+
+                                    } );
+                                    $('#test').click( function () {
+                                        var submit=[]
+                                        submit = table.rows('.selected').data().join();
+                                        
+
+                                        $.ajax({
+                                            type: 'post',
+                                            url: './test.php',
+                                            data: {
+                                                submit: submit
+                                            }
+                                        });
+                                        
+                                        
+                                    } );
+                                    $('#test1').click( function () {
+                                        var ids = $.map(table.rows('.selected').data(), function (item) {
+                                            return item[1]
+                                        });
+                                        console.log(ids)
+                                        alert(ids);
+
+                                    } );
+
+
+                                } );
+                            </script>
+                            <button id="test">test</button>
                             <table id="buscador_contacto" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -89,11 +127,11 @@ if($_SESSION["login_done"]==true){
                                         while ($row = $data->fetch_assoc()) {
                                             $pk = $row['ID_CONTACTO'];
                                             ?>
-                                                    <tr>
+                                                    <tr id="<?php echo $row['ID_CONTACTO']; ?>">
                                                         <?php checkbox_contacto($row['activo'],$row['ID_CONTACTO']  )?>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;">
-                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>>
                                                         <?php 
                                                         $id_sede = $row['ID_sede'];
                                                         $nombreSede = select_nombre_sede($id_sede);
@@ -126,6 +164,7 @@ if($_SESSION["login_done"]==true){
     </div>
 </div>
 </body>
+
 </html>
 
 <?php 
