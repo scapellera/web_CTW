@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2017 a las 14:38:50
+-- Tiempo de generación: 07-03-2017 a las 21:12:01
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -40,19 +40,6 @@ CREATE TABLE `ARTICULO` (
   `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha_de_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ARTICULO`
---
-
-INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`) VALUES
-(1, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '36340346F', NULL, '2132123', 295, 2, '87998', NULL, '2017-01-28 17:08:47'),
-(2, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '21321231', 290, 2, '879982', NULL, '2017-01-28 17:08:47'),
-(3, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '213212313', 270.5, 5, '8799823', NULL, '2017-01-28 17:08:47'),
-(4, 'BQ aquaris M5.5', 'Smartphone', '12312324132132342333', '23815837G', NULL, '1223212222', 195.99, 2, '879982111', NULL, '2017-01-28 17:13:45'),
-(5, 'dfg', NULL, '12312324132132342312', 'sfsdf', NULL, '345', 4, 5, '54353', NULL, '2017-02-01 15:35:45'),
-(6, 'dfg', NULL, '12312324132132342312', 'sfsdf', NULL, '345', 4, 5, '54353', NULL, '2017-02-01 15:44:54'),
-(7, 'aaaaaaaaaaaaaaaaaaaaa', NULL, '234', '23815837G', NULL, '22222', 2, 55, '123', NULL, '2017-02-01 16:05:31');
 
 -- --------------------------------------------------------
 
@@ -209,37 +196,6 @@ CREATE TABLE `MINUTAJE` (
   `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   `facturado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `MINUTAJE`
---
-
-INSERT INTO `MINUTAJE` (`ID_MINUTAJE`, `fecha`, `hora_entrada`, `hora_salida`, `ID_servicio`, `ID_usuario`, `ID_sede`, `NIF_cliente`, `facturado`) VALUES
-(1, '2017-02-16', '12:45:00', '01:01:00', 2, NULL, 9, '44512378G', 1),
-(2, '2017-02-15', '13:26:00', '13:29:00', NULL, NULL, 9, '44512378G', 1),
-(3, '2017-02-15', '13:29:00', '00:00:00', 3, 11, 10, '1234K', 1),
-(5, '2017-02-15', '13:34:00', '13:34:00', NULL, NULL, 9, '44512378G', 0),
-(6, '2017-02-15', '13:35:00', '00:00:00', 3, NULL, 7, '23415624G', 0),
-(51, '2017-02-15', '17:19:00', '17:19:00', 3, NULL, 9, '44512378G', 0),
-(52, '2017-02-15', '17:19:00', '17:19:00', 3, NULL, 9, '44512378G', 0),
-(53, '2017-02-15', '17:21:00', '17:21:00', NULL, NULL, 10, '1234K', 0),
-(54, '2017-02-15', '17:21:00', '17:21:00', 3, 11, 1, 'bb', 0),
-(55, '2017-02-15', '17:22:00', '17:22:00', 3, NULL, 1, 'bb', 1),
-(56, '2017-02-15', '17:24:00', '17:24:00', NULL, NULL, 9, '44512378G', 1),
-(57, '2017-02-15', '17:25:00', '17:25:00', NULL, NULL, 9, '44512378G', 0),
-(58, '2017-02-15', '17:27:00', '17:27:00', NULL, NULL, 9, '44512378G', 0),
-(60, '2017-02-15', '17:29:00', '17:29:00', NULL, NULL, 9, '44512378G', 0),
-(71, '2017-02-15', '18:02:00', '18:02:00', NULL, 12, 8, '45327163G', 0),
-(72, '2017-02-15', '18:06:00', '18:06:00', NULL, 12, 7, '23415624G', 0),
-(73, '2017-02-15', '18:11:00', '00:00:00', 3, 12, 1, 'bb', 0),
-(76, '2017-02-15', '18:44:00', '00:00:00', 3, 12, 7, '23415624G', 1),
-(81, '2017-02-15', '19:01:00', '00:00:00', 3, 12, 10, '1234K', 1),
-(82, '2017-02-15', '19:03:00', '00:00:00', NULL, 12, 9, '44512378G', 0),
-(83, '2017-02-15', '19:04:00', '19:04:00', NULL, 12, 10, '1234K', 0),
-(84, '2017-02-15', '19:05:00', '00:00:00', 3, 12, 8, '45327163G', 0),
-(85, '2017-02-15', '19:06:00', '19:06:00', 3, 12, 5, 'dd', 0),
-(86, '2017-02-16', '12:54:00', '12:54:00', NULL, 12, 9, '44512378G', 0),
-(87, '2017-02-16', '12:56:00', '12:58:00', 3, 12, 8, '45327163G', 0);
 
 -- --------------------------------------------------------
 
@@ -598,14 +554,6 @@ CREATE TABLE `STOCK` (
   `cantidad_total` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `STOCK`
---
-
-INSERT INTO `STOCK` (`CODIGO_DE_BARRAS`, `cantidad_total`) VALUES
-('12312324132132342312', 21),
-('12312324132132342333', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -810,7 +758,7 @@ ALTER TABLE `USUARIO`
 -- AUTO_INCREMENT de la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
@@ -835,7 +783,7 @@ ALTER TABLE `FACTURA`
 -- AUTO_INCREMENT de la tabla `MINUTAJE`
 --
 ALTER TABLE `MINUTAJE`
-  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `PIE_FACTURA`
 --
