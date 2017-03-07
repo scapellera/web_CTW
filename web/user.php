@@ -175,7 +175,7 @@ if($_SESSION["login_done"]==true){
                             <a href="./user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
                         </li>
                         <li>
-                            <a href="../logout.php">Log out</a>
+                            <a href="../logout.php">Desconectarse</a>
                         </li>
                     </ul>
                 </div>
@@ -279,14 +279,18 @@ if($_SESSION["login_done"]==true){
                             </div>
                             <div class="content">
                                 <div class="author">
-                                     <a>
-                                    <img class="avatar border-gray" src="assets/img/user_logo/<?php echo"$_SESSION[id_usuario]";?>_logo.png" />
+                                    <a>
+                                        <img class="avatar border-gray" src="assets/img/user_logo/<?php echo $_SESSION["imagen"]; ?>" />
 
-                                      <h4 class="title"><?php echo $_SESSION["username"]; ?><br />
-                                         <small><?php echo $_SESSION["user"]; ?></small>
-                                      </h4>
+                                        <h4 class="title"><?php echo $_SESSION["username"]; ?><br />
+                                        </h4>
                                     </a>
                                 </div>
+                                <form action="assets/php/post/uploadImageProfile.php" method="post" enctype="multipart/form-data">
+                                    Select image to upload:
+                                    <input type="file" name="fileToUpload">
+                                    <input type="submit" value="Upload Image" name="submit">
+                                </form>
                                 <p class="description text-center"></p>
                             </div>
                             

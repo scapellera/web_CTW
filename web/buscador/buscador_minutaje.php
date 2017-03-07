@@ -102,7 +102,7 @@ if ($_SESSION["login_done"] == true){
                                 <tr>
                                     <?php checkbox_minutaje_facturado($row['facturado'], $row['ID_MINUTAJE']) ?>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $nif_cliente = $row['NIF_cliente'];
                                                 $nombreCliente = select_nombre_cliente($nif_cliente);
@@ -112,7 +112,7 @@ if ($_SESSION["login_done"] == true){
                                         </label>
                                     </td>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="ID_sede" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $id_sede = $row['ID_sede'];
                                                 $nombreSede = select_nombre_sede($id_sede);
@@ -132,7 +132,7 @@ if ($_SESSION["login_done"] == true){
                                         </label>
                                     </td>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="ID_usuario" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $id_usuario = $row['ID_usuario'];
                                                 $nombreUsuario = select_nombre_usuario($id_usuario);

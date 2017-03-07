@@ -73,7 +73,7 @@ if($_SESSION["login_done"]==true){
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Codigo de barras</th>
-                                            <th>NIF mayorista</th>
+                                            <th>Mayorista</th>
                                             <th>Codigo producto del mayorista</th>
                                             <th>Número de serie</th>
                                             <th>Precio</th>
@@ -98,7 +98,7 @@ if($_SESSION["login_done"]==true){
                                                         
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_de_barras" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label></td>
                                                         <td><label style="margin-top: 11px;">
                                                         <a data-pk=<?php echo "\"$pk\""; ?>>
                                                         <?php 
@@ -107,7 +107,7 @@ if($_SESSION["login_done"]==true){
                                                         echo $nombreMayorista;
                                                         ?> 
                                                         </a></label></td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" class="codigo_producto_mayorista" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_producto_mayorista']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_producto_mayorista']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="numero_de_serie" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_de_serie']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="precio" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['precio']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="cantidad" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['cantidad']?> </a></label></td>
