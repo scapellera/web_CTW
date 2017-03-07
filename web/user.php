@@ -206,16 +206,22 @@ if($_SESSION["login_done"]==true){
 
                                 <form id="contact" action="assets/php/post/post_user.php" method="post">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Nombre (disabled)</label>
                                                 <input type="text" name="nombre" class="form-control" disabled placeholder="<?php echo $row['nombre']?>" value="<?php echo $row['nombre']?>">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Apellido (disabled)</label>
                                                 <input type="text" name="apellido" class="form-control" disabled placeholder="<?php echo $row['apellido']?>" value="<?php echo $row['apellido']?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Usuario (disabled)</label>
+                                                <input type="text" name="usuario" class="form-control" disabled placeholder="<?php echo $row['user']?>" value="<?php echo $row['user']?>">
                                             </div>
                                         </div>
                                      </div>
@@ -238,8 +244,8 @@ if($_SESSION["login_done"]==true){
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Usuario (disabled)</label>
-                                                <input type="text" name="usuario" class="form-control" disabled placeholder="<?php echo $row['user']?>" value="<?php echo $row['user']?>">
+                                                <label>Contraseña antigua</label>
+                                                <input type="text" name="password" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                         <div class="col-md-4">

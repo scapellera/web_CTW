@@ -2,8 +2,8 @@
 
 <?php
 session_start();
-include('../../php/db.php');
-include('../../php/selects.php');
+include('../db.php');
+include('../selects.php');
 if($_SESSION["login_done"]==true){
 ?>
 
@@ -181,41 +181,36 @@ if($_SESSION["login_done"]==true){
 
 					<?php
 					//Declaramos las variables del formulario
+                    $password = $_POST['password'];
 					$password1 = $_POST['password1'];
                     $password2 = $_POST['password2'];
                     $password_anterior = $_POST['password_anterior'];
                     $password_length = strlen($password1);
                     $md5password = md5($password1);
 
-                    //Añadimos comillas a los varchars
-                    
-                    $password1="\"$password1\"";
-                    $password2="\"$password2\"";
-                    $password_anterior="\"$password_anterior\"";
+                    $passwordantiguo=select_password_user($_SESSION['id_usuario']);
 
+                    if($passwordantiguo==md5($password)) {
+                        if ($password1 == $password2) {
 
-                    if($password1 == $password2){
-
-                        if($password_length>=8){
+                            if ($password_length >= 8) {
 
                                 $conn = connect();
-                                $sql="UPDATE USUARIO SET password = md5($password1) WHERE  ID_USUARIO = $_SESSION[id_usuario]";
-                             
-                        }else{
+                                $sql = "UPDATE USUARIO SET password = md5($password1) WHERE  ID_USUARIO = $_SESSION[id_usuario]";
 
-                          echo"Mínimo 8 carácteres";  
+                            } else {
+
+                                echo "Mínimo 8 carácteres";
+                            }
+
+                        } else {
+
+                            echo "Las contraseñas no coinciden";
                         }
-
                     }else{
-
-                        echo"Las contraseñas no coinciden";
+                        echo "La contraseña antigua no es la correcta";
                     }
-                    
 
-					
-
-
-					
 					if ($conn->query($sql) === TRUE) {
 					?>
 						

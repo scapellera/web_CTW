@@ -160,6 +160,18 @@ function select_all_articulo(){
     return $data;
   }
 
+    function select_password_user($id_user){
+        $conn = connect();
+        $sql = "SELECT *
+        FROM USUARIO
+        WHERE ID_USUARIO = '".$id_user."'";
+        $data = $conn->query($sql);
+        $row = $data->fetch_assoc();
+        $password = $row['password'];
+        close($conn);
+        return $password;
+    }
+
   function select_nombre_servicio($ID_servicio){
     $conn = connect();
     $sql = "SELECT nombre 
