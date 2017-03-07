@@ -87,7 +87,6 @@ if ($_SESSION["login_done"] == true){
                                 <tbody>
 
                                 <?php
-
                                 $data = select_all_sede_activo();
 
                                 if ($data->num_rows > 0) {
@@ -127,7 +126,7 @@ if ($_SESSION["login_done"] == true){
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero'] ?> </a></label>
                                             </td>
                                             <td><label style="margin-top: 11px;"><a href="#" class="telefono"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono'] ?> </a></label>
+                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['s_telefono'] ?> </a></label>
                                             </td>
                                             <td><label style="margin-top: 11px;"><a href="#" class="pais"
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais'] ?> </a></label>

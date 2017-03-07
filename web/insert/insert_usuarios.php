@@ -1,20 +1,20 @@
-    <!doctype html>
+<!doctype html>
 
 <?php
 session_start();
 include('../assets/php/db.php');
 include('../assets/php/selects.php');
-if($_SESSION["login_done"]==true){
+if ($_SESSION["login_done"] == true){
 ?>
 
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
 
     <!--LIBRERIAS-->
@@ -28,7 +28,7 @@ if($_SESSION["login_done"]==true){
 
 <div class="wrapper">
     <div class="sidebar">
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <!--MENU Y LOGO-->
             <?php
             include('../assets/html/logo/logo_insert.html');
@@ -38,7 +38,7 @@ if($_SESSION["login_done"]==true){
             <script>$(function () {
                     document.getElementById("menu_usuarios").className = "active";
                 });</script>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -61,38 +61,62 @@ if($_SESSION["login_done"]==true){
                     <div class="col-md-12">
                         <div class="card2">
 
-                        <div class="container">  
-                          <form id="contact" action="../assets/php/post/post_usuarios.php" method="post">
-                            <h3>Insertar usuario</h3>
-                            <h4>Rellene el formulario para añadir un nuevo usuario</h4>
-                            <fieldset>
-                            &nbsp;Nombre:  <input placeholder="Nombre*" name="nombre" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Apellido:  <input placeholder="Apellido*" name="apellido" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Correo electrónico:  <input placeholder="Correo electrónico*" name="email" type="email"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Teléfono:  <input placeholder="Teléfono*" name="telefono" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Nick de usuario:  <input placeholder="Nick de usuario*" name="user" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            &nbsp;Contraseña:  <input placeholder="Contraseña*" name="password" type="text"  required>
-                            </fieldset>
-                            <fieldset>
-                            <input style="visibility:hidden" name="activo" type="checkbox" checked>
-                            </fieldset>
-                            <fieldset>
-                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-                            </fieldset>
-                          </form>
-                        </div>
+                            <div class="container">
+                                <form id="contact" action="../assets/php/post/post_usuarios.php" method="post">
+                                    <h3>Insertar usuario</h3>
+                                    <h4>Rellene el formulario para añadir un nuevo usuario</h4>
+                                    <fieldset>
+                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" required>
+                                    </fieldset>
+                                    <fieldset>
+                                        &nbsp;Apellido: <input placeholder="Apellido*" name="apellido" type="text"
+                                                               required>
+                                    </fieldset>
+                                    <fieldset>
+                                        &nbsp;Correo electrónico: <input placeholder="Correo electrónico*" name="email"
+                                                                         type="email" required>
+                                    </fieldset>
+                                    <fieldset>
+                                        &nbsp;Teléfono: <input placeholder="Teléfono*" name="telefono" type="text"
+                                                               required>
+                                    </fieldset>
+                                    <fieldset>
+                                        &nbsp;Nick de usuario: <input placeholder="Nick de usuario*" name="user"
+                                                                      type="text" required>
+                                    </fieldset>
+                                    <fieldset>
+                                        &nbsp;Contraseña: <input placeholder="Contraseña*" name="password" type="text"
+                                                                 required>
+                                    </fieldset>
+                                    <fieldset>&nbsp;Selecciona el rol de usuario:
+                                        <?php $data = select_all_rol(); ?>
+                                        <select name="select_box_rol" class="select_box" required>
+                                            <option value="" disabled selected>Selecciona el rol*</option>
+                                            <?php
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option
+                                                        value="<?php echo $row['rol'] ?>"><?php echo "$row[rol] - $row[descripcion]"; ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </fieldset>
+                                    <fieldset>
+                                        <input style="visibility:hidden" name="activo" type="checkbox" checked>
+                                    </fieldset>
+                                    <fieldset>
+                                        <button name="submit" type="submit" id="contact-submit"
+                                                data-submit="...Sending">Submit
+                                        </button>
+                                    </fieldset>
+                                </form>
+                            </div>
 
-                                                                                        
+
                         </div>
                     </div>
                 </div>
@@ -106,8 +130,8 @@ if($_SESSION["login_done"]==true){
 </body>
 </html>
 
-<?php 
-}else{
+<?php
+} else {
     echo "false";
     header("location:../index.php");
 }

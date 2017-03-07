@@ -108,7 +108,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;IBAN:  <input placeholder="IBAN*" name="iban" type="text"  required>
                             </fieldset>
                             <fieldset>
-                            &nbsp;SEPA:  <input placeholder="SEPA*" name="sepa" type="text" required>
+                            &nbsp;SEPA (SI/NO):  <input placeholder="SEPA*" name="sepa" type="text" required>
                             </fieldset>
                             <fieldset>&nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>
@@ -126,9 +126,7 @@ if($_SESSION["login_done"]==true){
                              ?>       
                             </select>
                             </fieldset>
-                            <fieldset>
-                            <input style="visibility:hidden" name="activo" type="checkbox" checked>
-                            </fieldset>
+                            
                             <fieldset>
                               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
                             </fieldset>

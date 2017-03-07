@@ -30,6 +30,7 @@ if($_SESSION["login_done"]==true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+
 </head>
 <body>
 
@@ -67,43 +68,7 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
-                            <script>
-                                $(document).ready(function() {
-                                    var table = $('#buscador_contacto').DataTable();
-
-                                    $('#buscador_contacto tbody').on( 'click', 'tr', function () {
-                                        $(this).toggleClass('selected');
-
-
-                                    } );
-                                    $('#test').click( function () {
-                                        var submit=[]
-                                        submit = table.rows('.selected').data().join();
-                                        
-
-                                        $.ajax({
-                                            type: 'post',
-                                            url: './test.php',
-                                            data: {
-                                                submit: submit
-                                            }
-                                        });
-                                        
-                                        
-                                    } );
-                                    $('#test1').click( function () {
-                                        var ids = $.map(table.rows('.selected').data(), function (item) {
-                                            return item[1]
-                                        });
-                                        console.log(ids)
-                                        alert(ids);
-
-                                    } );
-
-
-                                } );
-                            </script>
-                            <button id="test">test</button>
+                            
                             <table id="buscador_contacto" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>

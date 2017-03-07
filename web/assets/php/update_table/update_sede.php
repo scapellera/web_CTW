@@ -2,7 +2,7 @@
 <?php
 include('../db.php');
 
-                                            
+
 if(!empty($_POST['value'])) {
     $conn = connect();
     $sql = "UPDATE SEDE
@@ -11,10 +11,11 @@ if(!empty($_POST['value'])) {
     $result = $conn->query($sql);
     close($conn);
     return $data;
-  } else {
+} else {
     header('HTTP 400 Bad Request', true, 400);
     echo "Aquest camp és obligatori!";
-  }
+}
+
 
 
 ?>

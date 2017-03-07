@@ -1,17 +1,13 @@
 $(document).ready(function() {
   $.fn.editable.defaults.mode = 'inline'
+  $.fn.editable.defaults.toggle = 'dblclick'
   $('.nombre_completo').editable({
     type: 'text',
     url: '../assets/php/update_table/update_cliente.php',
     name: 'nombre_completo'
 
   })
-  $('.NIF_EMPRESA').editable({
-    type: 'text',
-    url: '../assets/php/update_table/update_cliente.php',
-    name: 'NIF_EMPRESA'
 
-  })
   $('.nombre_comercial').editable({
     type: 'text',
     url: '../assets/php/update_table/update_cliente.php',
