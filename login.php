@@ -35,6 +35,7 @@ if (!isset($_SESSION['userid'])) {
             $_SESSION["user"] = $user;
             $_SESSION["username"] = $result->nombre;
             $_SESSION['user_rol'] = $result->rol;
+            $_SESSION['imagen'] = $result->imagen;
             $_SESSION["login_done"] = true;
             header("location:./web/index.php");
 
