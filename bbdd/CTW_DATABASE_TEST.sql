@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5
+-- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2017 a las 14:30:37
--- Versión del servidor: 10.1.19-MariaDB
+-- Servidor: localhost
+-- Tiempo de generación: 08-03-2017 a las 16:20:26
+-- Versión del servidor: 5.5.53-MariaDB
 -- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -33,7 +33,7 @@ CREATE TABLE `ARTICULO` (
   `codigo_de_barras` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
   `codigo_producto_mayorista` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `numero_de_serie` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `numero_de_serie` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `precio` double NOT NULL,
   `cantidad` int(3) NOT NULL,
   `numero_factura` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
@@ -46,13 +46,8 @@ CREATE TABLE `ARTICULO` (
 --
 
 INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`) VALUES
-(1, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '36340346F', NULL, '2132123', 295, 2, '87998', NULL, '2017-01-28 17:08:47'),
-(2, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '21321231', 290, 2, '879982', NULL, '2017-01-28 17:08:47'),
-(3, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23815837G', NULL, '213212313', 270.5, 5, '8799823', NULL, '2017-01-28 17:08:47'),
-(4, 'BQ aquaris M5.5', 'Smartphone', '12312324132132342333', '23815837G', NULL, '1223212222', 195.99, 2, '879982111', NULL, '2017-01-28 17:13:45'),
-(5, 'dfg', NULL, '12312324132132342312', 'sfsdf', NULL, '345', 4, 5, '54353', NULL, '2017-02-01 15:35:45'),
-(6, 'dfg', NULL, '12312324132132342312', 'sfsdf', NULL, '345', 4, 5, '54353', NULL, '2017-02-01 15:44:54'),
-(7, 'aaaaaaaaaaaaaaaaaaaaa', NULL, '234', '23815837G', NULL, '22222', 2, 55, '123', NULL, '2017-02-01 16:05:31');
+(1, 'Cargador portatil HP', 'Cargador para portatil HP rojo perfecto para cargas rapidas, muy muy bieno', 'WDUUT0BDD9PE5U', '23456672J', NULL, NULL, 30, 3, '1234', NULL, '2017-03-08 13:33:03'),
+(2, 'Cargador portatil HP', 'Cargador para portatil HP rojo perfecto para cargas rapidas, muy muy bieno', 'WDUUT0BDD9PE5U', '23456672J', NULL, NULL, 30, 2, '12345', NULL, '2017-03-08 13:38:06');
 
 -- --------------------------------------------------------
 
@@ -99,7 +94,7 @@ CREATE TABLE `CLIENTE` (
   `calle_envio` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `numero_envio` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
   `IBAN` varchar(34) COLLATE utf8_spanish_ci NOT NULL,
-  `SEPA` tinyint(1) NOT NULL,
+  `SEPA` varchar(2) COLLATE utf8_spanish_ci NOT NULL,
   `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL,
   `activo` tinyint(1) NOT NULL
@@ -110,13 +105,10 @@ CREATE TABLE `CLIENTE` (
 --
 
 INSERT INTO `CLIENTE` (`NIF_EMPRESA`, `nombre_comercial`, `nombre_completo`, `telefono`, `email`, `ciudad_facturacion`, `codigo_postal_facturacion`, `calle_facturacion`, `numero_facturacion`, `ciudad_envio`, `codigo_postal_envio`, `calle_envio`, `numero_envio`, `IBAN`, `SEPA`, `pais`, `prefijo`, `activo`) VALUES
-('1234K', 'cliente prueba', 'cliente prueba', 345345, 'rgdfg@sdfgdf', 'cliente prueba', '08054', 'cliente prueba', '23', 'cliente prueba', '45', 'cliente prueba', '12', '345345', 127, 'Bahamas', 1242, 0),
-('23415624G', 'ARKHE', 'RIRLEY S.L', 933201263, 'rirley@gmail.com', 'Barcelona', '08008', 'calle hotel W', '101', 'Barcelona', '08008', 'calle hotel W', '101', 'ES242100322143454321', 1, 'Eslovenia', 386, 1),
-('44512378G', 'BETARQ', 'BETARQ ARQUITECTOS S.L', 931804172, 'betarq@gmail.com', 'Barcelona', '08008', 'Balmes', '78', 'Barcelona', '08008', 'Balmes', '78', 'ES211000345576429841', 1, 'Alemania', 49, 1),
-('45327163G', 'LIUJO', 'LIUJO S.L', 912804170, 'liujo@gmail.com', 'Milán', '12234', 'Plaza Italia', '33', 'Madrid', '08024', 'Calle mallorca', '33', 'ES333410234578922345', 1, 'Italia', 39, 1),
-('bb', 'bbb', 'bebebe', 55555, 'bb@gggdd', 'aa', 'aa', 'aa', 'aa', 'aaa', 'aaa', 'aaa', 'aaa', 'aaaa', 1, 'Angola', 244, 0),
-('cc', 'cc', 'cc', 333, 'cc@ccc', 'cc', 'cc', 'cc', 'cc', 'cc', 'ccc', 'cc', 'cc', 'cc', 1, 'Armenia', 374, 0),
-('dd', 'dd', 'dd', 222, 'dd@dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 'dd', 1, 'Francia', 33, 0);
+('23456784y', 'LIU-JO S.A', 'LIU-JO', 933241231, 'cliente@liujo.es', 'Milan', '92351', 'provenza', '35', 'milan', '92351', 'provenza', '35', 'ES21003746355558', 'SI', 'Ecuador', 593, 1),
+('23815820G', 'The Arkhe', 'Rirley Trade S.L', 931804150, 'empresa@thearkhe.es', 'Barcelona', '08025', 'Diagonal', '433', 'Barcelona', '08024', 'Passeig Joan de Borbo', '101', 'ES21003746352134', 'NO', 'Chile', 56, 1),
+('34562345L', 'BETARQ S.L', 'Betarq arquitectos', 934536128, 'empresa@betarq.es', 'barcelona', '08013', 'balmes', '145', 'barcelona', '08013', 'balmes', '145', 'ES21003746359865', 'NO', 'cuba', 53, 1),
+('45243523Z', 'Abogados Soria', 'J.Soria abogados S.L', 931643816, 'cliente@soria.es', 'Barcelona', '08025', 'Diagonal', '433 bis', 'Barcelona', '08025', 'diagonal', '433 bis', 'ES21003746366666', 'NO', 'Aruba', 297, 1);
 
 -- --------------------------------------------------------
 
@@ -142,8 +134,12 @@ CREATE TABLE `CONTACTO` (
 --
 
 INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `telefono`, `pais`, `prefijo`, `extension`, `activo`) VALUES
-(1, 'Andrés Palomares', 7, 'Informatico', 'apalomares@thearkhe.es', 912345712, 'Albania', 355, 107, 1),
-(2, 'Marina', 8, 'Secretaria', 'marina@liujo.es', 609234526, 'España', 34, 77, 1);
+(1, 'Andrea Sanchez', 1, 'Directora', 'asanchez@thearkhe.es', 934562135, 'Andorra', 376, 0, 1),
+(7, 'Ivan Alonso', 1, 'Jefe', 'ialonso@thearke.es', 934144192, 'Australia', 61, 109, 1),
+(8, 'Alicia Lopez', 3, 'Encargada', 'alopez@liujo.es', 931256374, 'Australia', 61, NULL, 1),
+(10, 'Marta Garcia', 3, 'dependienta', 'mgarcia@liujo.es', 931251635, 'Bahamas', 1242, NULL, 1),
+(11, 'Maria Garcia', 3, 'dependienta', 'magarcia@liujo.es', 931251344, 'Bahamas', 1242, 123, 1),
+(12, 'tttt', 2, 'ttt', 'tt@gg', 45345, 'Argentina', 54, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +179,7 @@ CREATE TABLE `MAYORISTA` (
   `ubicacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -191,11 +187,8 @@ CREATE TABLE `MAYORISTA` (
 --
 
 INSERT INTO `MAYORISTA` (`NIF_MAYORISTA`, `nombre_empresa`, `nombre_comercial`, `telefono_empresa`, `telefono_comercial`, `extension_telefono_comercial`, `email_empresa`, `email_comercial`, `ubicacion`, `pais`, `prefijo`, `activo`) VALUES
-('23815837G', 'Mediamarkt S.L', NULL, 936459238, 43535345, 23, 'mediamarkt@gmail.com', 'y', '', 'Eslovaquia', 421, 0),
-('36340346F', 'Fnac', 'fnac glorias', 932107712, NULL, NULL, 'fnac@gmail.com', NULL, '', 'Egipto', 20, 1),
-('dfghgfh', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, 'tytr', 'Bahamas', 1242, 1),
-('fffff', 'gggg', NULL, 2343, NULL, NULL, 'fdf@fd', NULL, NULL, 'Bahamas', 1242, 1),
-('sfsdf', 'sdfds', NULL, 345, NULL, NULL, 'fdg@fdg', NULL, '', 'Azerbaiyán', 994, 0);
+('23456672J', 'Mediamarkt S.Ls', '', 931459345, 0, NULL, 'mayorista@mediamarkt.es', NULL, NULL, 'Bahamas', 1242, 1),
+('34567836P', 'Fnac', 'Antonio', 931234512, 637482746, NULL, 'mayorista@fnac.es', 'alamela@fnac.es', NULL, 'Argentina', 54, 1);
 
 -- --------------------------------------------------------
 
@@ -220,31 +213,19 @@ CREATE TABLE `MINUTAJE` (
 --
 
 INSERT INTO `MINUTAJE` (`ID_MINUTAJE`, `fecha`, `hora_entrada`, `hora_salida`, `ID_servicio`, `ID_usuario`, `ID_sede`, `NIF_cliente`, `facturado`) VALUES
-(1, '2017-02-16', '12:45:00', '01:01:00', 2, 13, 9, '44512378G', 0),
-(2, '2017-02-15', '13:26:00', '13:29:00', NULL, 23, 9, '44512378G', 0),
-(3, '2017-02-15', '13:29:00', '00:00:00', 3, 11, 10, '1234K', 0),
-(5, '2017-02-15', '13:34:00', '13:34:00', NULL, 23, 9, '44512378G', 0),
-(6, '2017-02-15', '13:35:00', '00:00:00', 3, 25, 7, '23415624G', 0),
-(51, '2017-02-15', '17:19:00', '17:19:00', 3, 23, 9, '44512378G', 1),
-(52, '2017-02-15', '17:19:00', '17:19:00', 3, 23, 9, '44512378G', 1),
-(53, '2017-02-15', '17:21:00', '17:21:00', NULL, 23, 10, '1234K', 1),
-(54, '2017-02-15', '17:21:00', '17:21:00', 3, 11, 1, 'bb', 1),
-(55, '2017-02-15', '17:22:00', '17:22:00', 3, 13, 1, 'bb', 1),
-(56, '2017-02-15', '17:24:00', '17:24:00', NULL, 23, 9, '44512378G', 1),
-(57, '2017-02-15', '17:25:00', '17:25:00', NULL, 15, 9, '44512378G', 0),
-(58, '2017-02-15', '17:27:00', '17:27:00', NULL, 22, 9, '44512378G', 0),
-(60, '2017-02-15', '17:29:00', '17:29:00', NULL, NULL, 9, '44512378G', 0),
-(71, '2017-02-15', '18:02:00', '18:02:00', NULL, 12, 8, '45327163G', 0),
-(72, '2017-02-15', '18:06:00', '18:06:00', NULL, 12, 7, '23415624G', 0),
-(73, '2017-02-15', '18:11:00', '00:00:00', 3, 12, 1, 'bb', 0),
-(76, '2017-02-15', '18:44:00', '00:00:00', 3, 12, 7, '23415624G', 1),
-(81, '2017-02-15', '19:01:00', '00:00:00', 3, 12, 10, '1234K', 1),
-(82, '2017-02-15', '19:03:00', '00:00:00', NULL, 12, 9, '44512378G', 0),
-(83, '2017-02-15', '19:04:00', '19:04:00', NULL, 12, 10, '1234K', 0),
-(84, '2017-02-15', '19:05:00', '00:00:00', 3, 12, 8, '45327163G', 0),
-(85, '2017-02-15', '19:06:00', '19:06:00', 3, 12, 5, 'dd', 0),
-(86, '2017-02-16', '12:54:00', '12:54:00', NULL, 12, 9, '44512378G', 0),
-(87, '2017-02-16', '12:56:00', '12:58:00', 3, 12, 8, '45327163G', 0);
+(1, '2017-03-08', '15:28:00', '15:32:00', 3, 12, 3, '23456784y', 0),
+(3, '2017-03-08', '15:35:00', '15:36:00', 3, 12, 2, '34562345L', 0),
+(4, '2017-03-08', '15:35:00', '15:36:00', 3, 12, 2, '34562345L', 0),
+(5, '2017-03-08', '15:36:00', '15:36:00', 3, 12, 2, '34562345L', 0),
+(7, '2017-03-08', '15:41:00', '15:42:00', 3, 12, 2, '34562345L', 0),
+(8, '2017-03-08', '15:42:00', '15:43:00', 3, 12, 2, '34562345L', 0),
+(14, '2017-03-08', '15:49:00', '15:49:00', 3, 12, 2, '34562345L', 0),
+(15, '2017-03-08', '15:59:00', '15:59:00', 3, 12, 2, '34562345L', 1),
+(16, '2017-03-08', '16:13:00', '16:15:00', 2, 12, 2, '34562345L', 0),
+(17, '2017-03-08', '16:15:00', '16:16:00', 3, 12, 2, '34562345L', 0),
+(18, '2017-03-08', '16:17:00', '16:17:00', 3, 12, 2, '34562345L', 0),
+(19, '2017-03-08', '16:17:00', '16:17:00', 3, 12, 2, '34562345L', 0),
+(20, '2017-03-08', '16:18:00', '16:18:00', 2, 12, 2, '34562345L', 0);
 
 -- --------------------------------------------------------
 
@@ -521,6 +502,28 @@ CREATE TABLE `PIE_FACTURA` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ROL`
+--
+
+CREATE TABLE `ROL` (
+  `rol` int(2) NOT NULL DEFAULT '5',
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ROL`
+--
+
+INSERT INTO `ROL` (`rol`, `descripcion`) VALUES
+(1, 'Administrador'),
+(2, 'Usuario estandar'),
+(3, 'Usuario estandar'),
+(4, 'Usuario estandar'),
+(5, 'Usuario estandar');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `SEDE`
 --
 
@@ -536,7 +539,7 @@ CREATE TABLE `SEDE` (
   `telefono` int(9) NOT NULL,
   `pais` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prefijo` int(5) DEFAULT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -544,15 +547,27 @@ CREATE TABLE `SEDE` (
 --
 
 INSERT INTO `SEDE` (`ID_SEDE`, `NIF_cliente`, `nombre`, `ubicacion`, `ciudad`, `codigo_postal`, `calle`, `numero`, `telefono`, `pais`, `prefijo`, `activo`) VALUES
-(1, 'bb', 'bbbbbbbb', '', 'bbb', 'bbb', 'A', 'bbb', 666, 'Andorra', 376, 0),
-(2, 'bb', 'aaa', 'aaa', 'aaaaaa', 'aaa', 'aaaa', 'aaa', 777, 'Australia', 61, 1),
-(4, 'bb', 'ddd', '', 'ddd', 'ddd', 'A', 'ddd', 999, 'Barbados', 1246, 0),
-(5, 'dd', 'dd', 'ddddddd', 'sss', 'dd', 'BBBB', 'dd', 546345654, 'Alemania', 355, 1),
-(6, 'dd', 'patata', 'asd', 'iiii', 'ads', 'asd', 'asd', 2147483647, 'Jordania', 962, 1),
-(7, '23415624G', 'The Arkhe Madridd', '1a planta zona izquierda', 'Madrid', '09754', 'Gran Via', '33', 912356170, 'Bahamas', 1242, 1),
-(8, '45327163G', 'LIUJO Corte Ingles Gran Via', 'Planta mujer fondo derecha', 'Madrid', '08345', 'Gran Via', ' 876', 911234761, 'España', 34, 1),
-(9, '44512378G', 'Betarq Barcelona', 'Bajos', 'Barcelona', '08002', 'Mallorca', '145', 937841273, 'Argentina', 54, 1),
-(10, '1234K', 'prueba sede 1', '', 'prueba sede 1', '4545', 'prueba sede 1', '43', 645645, 'Bahamas', 1242, 0);
+(1, '23815820G', 'The Arkhe Barcelona', '', 'Barcelona', '08025', 'RosellÃ³', '449', 934144192, 'Argentina', 54, 1),
+(2, '34562345L', 'Betarq Barcelona', '', 'Barcelona', '08013', 'balmes', '145', 932536123, 'Armenia', 374, 1),
+(3, '23456784y', 'LIU-JO Marbella', 'primera planta corner derecho', 'Malaga', '14345', 'Gran via', '344', 934512351, 'Isla de Navidad', 61, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `SEPA`
+--
+
+CREATE TABLE `SEPA` (
+  `valor` varchar(2) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `SEPA`
+--
+
+INSERT INTO `SEPA` (`valor`) VALUES
+('NO'),
+('SI');
 
 -- --------------------------------------------------------
 
@@ -564,17 +579,19 @@ CREATE TABLE `SERVICIO` (
   `ID_SERVICIO` int(4) NOT NULL,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
-  `precio` float NOT NULL,
-  `NIF_empresa` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL
+  `precio` float NOT NULL DEFAULT '0',
+  `NIF_empresa` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `activo` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `SERVICIO`
 --
 
-INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_empresa`) VALUES
-(2, 'reparar', 'arreglar pc y otros', 44, NULL),
-(3, 'Otro', 'servicio fuera de lo comun (Falta definir precio)', 2, NULL);
+INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_empresa`, `activo`) VALUES
+(1, 'Reparar', 'reparar hardware', 30, NULL, 1),
+(2, 'Instalar', '', 0, NULL, 1),
+(3, 'instalar LIU-JO', 'instalar maquinas pero solo a LIU-JO', 50, '23456784y', 1);
 
 -- --------------------------------------------------------
 
@@ -592,8 +609,7 @@ CREATE TABLE `STOCK` (
 --
 
 INSERT INTO `STOCK` (`CODIGO_DE_BARRAS`, `cantidad_total`) VALUES
-('12312324132132342312', 21),
-('12312324132132342333', 2);
+('WDUUT0BDD9PE5U', 5);
 
 -- --------------------------------------------------------
 
@@ -640,26 +656,19 @@ CREATE TABLE `USUARIO` (
   `user` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `rol` int(1) NOT NULL,
-  `activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL,
+  `imagen` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `USUARIO`
 --
 
-INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `apellido`, `correo`, `telefono`, `user`, `password`, `rol`, `activo`) VALUES
-(10, 'usuario3', '', '', 0, 'usu3', 'usu3', 0, 0),
-(11, 'usuario1', '', '', 0, 'usu1', '529113007b15005637b3dad6d9ba2f10', 5, 0),
-(12, 'usuario2', '', '', 0, 'usu2', '9c60c45d8440e2ece3442fed8fe4c5c2', 1, 0),
-(13, 'eee', '', '', 0, 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
-(15, 'eee', '', '', 0, 'eee', 'd2f2297d6e829cd3493aa7de4416a18f', 0, 0),
-(20, 'aaa', '', '', 0, 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', 0, 0),
-(21, 'zzz', '', '', 0, 'zzz', '10b260458f0277c4481694ff06b8bb91', 0, 0),
-(22, 'ssssssss', '', '', 0, 'sssssss', '16fcb1091f8a0cc70c96e2ff97fdd213', 0, 0),
-(23, 'ergtrgr', '', '', 0, 'wret', '81dc9bdb52d04dc20036dbd8313ed055', 0, 0),
-(24, 'trftry', '', '', 0, 'hggfh', '2d73ccacc33ebbc7deb7faa109fa95e9', 0, 0),
-(25, 'gjgh', '', '', 0, 'hj', '55f341d654dcfa8900d86da35d3b2af0', 0, 0),
-(26, 'Sergi', 'Capellera', 'scapellera@ctw.es', 608232626, 'sergi', 'cc18d123662375ec0ae275b50cebcc36', 1, 0);
+INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `apellido`, `correo`, `telefono`, `user`, `password`, `rol`, `activo`, `imagen`) VALUES
+(11, 'usuario1', '', '', 0, 'usu1', '529113007b15005637b3dad6d9ba2f10', 5, 0, NULL),
+(12, 'usuario2', '', '', 0, 'usu2', '25d55ad283aa400af464c76d713c07ad', 1, 1, NULL),
+(26, 'Sergi', 'Capellera', 'scapellera@ctw.es', 608232626, 'sergi', 'cc18d123662375ec0ae275b50cebcc36', 1, 1, NULL),
+(27, 'usuario4', 'test', 'usuario4@ctw.es', 674483645, 'usu4', '2a90084cdef89518c2b8b5ce3130266f', 3, 1, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -694,7 +703,8 @@ ALTER TABLE `CABECERA_FACTURA`
 --
 ALTER TABLE `CLIENTE`
   ADD PRIMARY KEY (`NIF_EMPRESA`),
-  ADD KEY `fk_pais_clientes` (`pais`);
+  ADD KEY `fk_pais_clientes` (`pais`),
+  ADD KEY `SEPA` (`SEPA`);
 
 --
 -- Indices de la tabla `CONTACTO`
@@ -748,12 +758,26 @@ ALTER TABLE `PIE_FACTURA`
   ADD KEY `fk_ID_IVA` (`IVA`);
 
 --
+-- Indices de la tabla `ROL`
+--
+ALTER TABLE `ROL`
+  ADD PRIMARY KEY (`rol`),
+  ADD UNIQUE KEY `rol` (`rol`);
+
+--
 -- Indices de la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
   ADD PRIMARY KEY (`ID_SEDE`),
   ADD KEY `fk_NIF_cliente_sede` (`NIF_cliente`),
   ADD KEY `fk_pais_sede` (`pais`);
+
+--
+-- Indices de la tabla `SEPA`
+--
+ALTER TABLE `SEPA`
+  ADD PRIMARY KEY (`valor`),
+  ADD UNIQUE KEY `valor` (`valor`);
 
 --
 -- Indices de la tabla `SERVICIO`
@@ -789,7 +813,8 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
 -- Indices de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  ADD PRIMARY KEY (`ID_USUARIO`);
+  ADD PRIMARY KEY (`ID_USUARIO`),
+  ADD KEY `rol` (`rol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -799,7 +824,7 @@ ALTER TABLE `USUARIO`
 -- AUTO_INCREMENT de la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
-  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
@@ -814,7 +839,7 @@ ALTER TABLE `CABECERA_FACTURA`
 -- AUTO_INCREMENT de la tabla `CONTACTO`
 --
 ALTER TABLE `CONTACTO`
-  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_CONTACTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `FACTURA`
 --
@@ -824,7 +849,7 @@ ALTER TABLE `FACTURA`
 -- AUTO_INCREMENT de la tabla `MINUTAJE`
 --
 ALTER TABLE `MINUTAJE`
-  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `PIE_FACTURA`
 --
@@ -834,7 +859,7 @@ ALTER TABLE `PIE_FACTURA`
 -- AUTO_INCREMENT de la tabla `SEDE`
 --
 ALTER TABLE `SEDE`
-  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_SEDE` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `SERVICIO`
 --
@@ -854,7 +879,7 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
 -- AUTO_INCREMENT de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID_USUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- Restricciones para tablas volcadas
 --
@@ -883,7 +908,8 @@ ALTER TABLE `CABECERA_FACTURA`
 -- Filtros para la tabla `CLIENTE`
 --
 ALTER TABLE `CLIENTE`
-  ADD CONSTRAINT `fk_pais_clientes` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_pais_clientes` FOREIGN KEY (`pais`) REFERENCES `PAIS` (`PAIS`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_sepa_clientes` FOREIGN KEY (`SEPA`) REFERENCES `SEPA` (`valor`);
 
 --
 -- Filtros para la tabla `CONTACTO`
@@ -946,6 +972,12 @@ ALTER TABLE `TRONCO_FACTURA_ARTICULO`
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
   ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
   ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`) ON DELETE SET NULL;
+
+--
+-- Filtros para la tabla `USUARIO`
+--
+ALTER TABLE `USUARIO`
+  ADD CONSTRAINT `fk_usuarios_rol_rol` FOREIGN KEY (`rol`) REFERENCES `ROL` (`rol`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
