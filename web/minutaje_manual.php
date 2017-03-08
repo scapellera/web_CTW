@@ -138,13 +138,6 @@ if ($_SESSION["login_done"] == true){
                                         <input placeholder="Hora salida*" name="hora_salida" type="time" required>
                                     </fieldset>
                                     <fieldset>
-                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;"
-                                                                                             class='switcha'><input
-                                                name="facturado" type="checkbox">
-                                            <div class='slider rounda'></div>
-                                        </label>
-                                    </fieldset>
-                                    <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit
                                         </button>
