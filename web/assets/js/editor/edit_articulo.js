@@ -13,6 +13,18 @@ $(document).ready(function() {
     name: 'descripcion'
 
   })
+  $('.NIF_mayorista').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'NIF_mayorista'
+
+  })
+  $('.descripcion').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'descripcion'
+
+  })
   $('.codigo_producto_mayorista').editable({
     type: 'text',
     url: '../assets/php/update_table/update_articulo.php',

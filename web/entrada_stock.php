@@ -47,17 +47,8 @@ if ($_SESSION["login_done"] == true){
                     <a class="navbar-brand">Entrada de artículo</a>
                 </div>
                 <div class="collapse navbar-collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li>
-                            <a href="./user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
-                        </li>
-                        <li>
-                            <a href="../logout.php">Log out
-                            </a>
-                        </li>
-                    </ul>
+                    <!--USER & LOGOUT-->
+                    <?php include('assets/html/menu/user_logout.html'); ?>
                 </div>
             </div>
         </nav>
@@ -106,8 +97,8 @@ if ($_SESSION["login_done"] == true){
                                             type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número de serie: <input placeholder="Número de serie*"
-                                                                      name="numero_de_serie" type="text" required>
+                                        &nbsp;Número de serie: <input placeholder="Número de serie"
+                                                                      name="numero_de_serie" type="text">
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text" required>
