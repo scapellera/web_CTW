@@ -1,22 +1,30 @@
 if ($.session.get("esperandoSalida") != 1) {
     $("#panelSalir").hide();
     $("#panelEntrar").show();
+    $("#botonentrar").show();
 } else {
     $("#panelEntrar").hide();
+    $("#botonentrar").hide();
     $("#panelSalir").show();
 }
 
-
 $("#entrar").click(function () {
-    $.session.set("cliente_minutaje", $("#cliente").val());
-    $.session.set("sede_minutaje", $("#sede").val());
-    $.session.set("servicio_minutaje", $("#servicio").val());
-    $.session.set("fecha_minutaje", $("#fecha").val());
-    $.session.set("hora_entrada_minutaje", $("#hora_entrada").val());
-    $.session.set("esperandoSalida", 1);
-    $("#panelEntrar").hide();
-    $("#panelSalir").show();
-    $("#botonentrar").css("display:none");
+
+        $.session.set("cliente_minutaje", $("#cliente").val());
+        $.session.set("sede_minutaje", $("#sede").val());
+        $.session.set("servicio_minutaje", $("#servicio").val());
+        $.session.set("fecha_minutaje", $("#fecha").val());
+        $.session.set("hora_entrada_minutaje", $("#hora_entrada").val());
+        $.session.set("esperandoSalida", 1);
+        if ($.session.get("sede_minutaje") != '-') {
+            $("#panelEntrar").hide();
+            $("#panelSalir").show();
+            $("#botonentrar").hide();
+        }else{
+            $("#panelEntrar").show();
+            $("#panelSalir").hide();
+            $("#botonentrar").show();
+        }
 });
 
 $("#salir").click(function () {
@@ -26,6 +34,8 @@ $("#salir").click(function () {
     $("input:hidden[name=fecha_minutaje]").val($.session.get("fecha_minutaje"));
     $("input:hidden[name=hora_entrada_minutaje]").val($.session.get("hora_entrada_minutaje"));
     $.session.set("esperandoSalida", 0);
+    $.session.set("sede_minutaje", '');
+
 });
 
 

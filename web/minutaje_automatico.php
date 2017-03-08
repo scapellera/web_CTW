@@ -92,15 +92,23 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
 
                                     <fieldset>
-                                        <a id="fecha_print"></a>
+                                        <a id="fecha_print" style="display:none;"></a>
                                         <input type="hidden" id="fecha" name="fecha" value="" required/>
                                     </fieldset>
                                     <fieldset>
-                                        <a id="hora_entrada_print"></a>
+                                        <a id="hora_entrada_print" style="display:none;"></a>
                                         <input type="hidden" id="hora_entrada" name="hora_entrada" value="" required/>
                                     </fieldset>
                                 </form>
                             </div>
+
+                        </div>
+                        <div id="botonentrar">
+                        <center>
+                            <button id="entrar" data-submit="...Sending" class="button_horas"
+                                    onclick="myFunction1()">Presione este boton al entrar.
+                            </button>
+                        </center>
                         </div>
                         <!--FORMULARIO DE SALIDA-->
                         <div id="panelSalir" class="card">
@@ -133,11 +141,6 @@ if ($_SESSION["login_done"] == true){
                                         </select>
                                     </fieldset>
                                     <fieldset>
-                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;" class='switcha'><input name="facturado_minutaje" type="checkbox">
-                                            <div class='slider rounda'></div>
-                                        </label>
-                                    </fieldset>
-                                    <fieldset>
                                         <input type="hidden" name="fecha_minutaje" value="">
                                     </fieldset>
                                     <fieldset>
@@ -157,13 +160,7 @@ if ($_SESSION["login_done"] == true){
 
                             </div>
                         </div>
-                        <div id="botonentrar">
-                            <center>
-                                <button id="entrar" data-submit="...Sending" class="button_horas"
-                                        onclick="myFunction1()">Presione este boton al entrar.
-                                </button>
-                            </center>
-                        </div>
+
                         <!--FUNCIONES JAVASCRIPT - MINUTAJE AUTOMATICO-->
                             <script src="assets/js/minutaje_automatico.js"></script>
                     </div>
