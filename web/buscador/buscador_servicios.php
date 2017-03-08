@@ -74,7 +74,7 @@ if ($_SESSION["login_done"] == true){
                                     <th>Nombre</th>
                                     <th>Descripción</th>
                                     <th>Precio</th>
-                                    <th>NIF empresa</th>
+                                    <th>Cliente</th>
                                 </tr>
                                 </thead>
                                 <tbody>

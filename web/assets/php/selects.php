@@ -41,7 +41,7 @@ function select_all_cliente(){
     $conn = connect();
     $sql = "SELECT * 
     FROM CLIENTE
-    ORDER BY activo desc";
+    ORDER BY activo desc, nombre_completo asc";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -84,6 +84,14 @@ function select_all_mayorista(){
     close($conn);
     return $data;
   }
+function select_all_sepa(){
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM SEPA";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 function select_all_servicio(){
     $conn = connect();

@@ -36,7 +36,7 @@ if($_SESSION["login_done"]==true){
 					$calle_envio = $_POST['calle_envio'];
 					$numero_envio = $_POST['numero_envio'];
 					$iban = $_POST['iban'];
-					$sepa = $_POST['sepa'];
+					$sepa = $_POST['select_box_sepa'];
 					$pais = $_POST['select_box_pais'];
                     $activo = 1;
 

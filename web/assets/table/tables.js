@@ -105,6 +105,7 @@ $(document).ready(function() {
 
     $('#buscador_servicio').DataTable( {
         dom: 'Bfrtip',
+        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
         
         "pagingType": "full_numbers",
         lengthMenu: [
