@@ -71,7 +71,6 @@ if ($_SESSION["login_done"] == true){
 
                                 <tr>
                                     <th style="background-color: #39AF33; width: 3px;">Activos</th>
-                                    <!--<th style="background-color: #F26842; width: 3px;">Borrar</th>-->
                                     <th>Cliente</th>
                                     <th>Nombre</th>
                                     <th>Ubicación</th>

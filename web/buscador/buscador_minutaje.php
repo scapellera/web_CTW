@@ -29,6 +29,7 @@ if ($_SESSION["login_done"] == true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+    <script type="text/javascript" src="../assets/js/functions.js"></script>
 
 </head>
 <body>
@@ -74,7 +75,7 @@ if ($_SESSION["login_done"] == true){
                             <table id="buscador_minutaje" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th style="background-color: #39AF33; width: 3px;">Facturado</th>
+                                    <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                     <th>Cliente</th>
                                     <th>Sede</th>
                                     <th>Servicio</th>
@@ -100,7 +101,7 @@ if ($_SESSION["login_done"] == true){
 
                                 ?>
                                 <tr>
-                                    <?php checkbox_minutaje_facturado($row['facturado'], $row['ID_MINUTAJE']) ?>
+                                    <td><label><button onclick="borrar_minutaje(<?php echo "$pk"; ?>)">test</button></label></td>
                                     <td><label style="margin-top: 11px;">
                                             <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
