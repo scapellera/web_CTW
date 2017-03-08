@@ -245,19 +245,19 @@ if($_SESSION["login_done"]==true){
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Contraseña antigua</label>
-                                                <input type="text" name="password" class="form-control" placeholder="********" >
+                                                <input type="password" name="password" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Contraseña</label>
-                                                <input type="text" name="password1" class="form-control" placeholder="********" >
+                                                <input type="password" name="password1" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Repetir contraseña</label>
-                                                <input type="text" name="password2" class="form-control" placeholder="********" >
+                                                <input type="password" name="password2" class="form-control" placeholder="********" >
                                             </div>
                                         </div>
                                     </div>
