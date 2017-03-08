@@ -193,10 +193,10 @@ if($_SESSION["login_done"]==true){
                     if($passwordantiguo==md5($password)) {
                         if ($password1 == $password2) {
 
-                            if ($password_length >= 8) {
+                            if ($password_length >= 3) {
 
                                 $conn = connect();
-                                $sql = "UPDATE USUARIO SET password = md5($password1) WHERE  ID_USUARIO = $_SESSION[id_usuario]";
+                                $sql = "UPDATE USUARIO SET password = md5('$password1') WHERE  ID_USUARIO = $_SESSION[id_usuario]";
 
                             } else {
 
