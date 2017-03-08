@@ -117,7 +117,7 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         <?php $data = select_all_servicio(); ?>
-                                        <select id="servicio" name="select_box_servicio" class="select_box">
+                                        <select id="servicio" name="select_box_servicio" class="select_box" required>
                                             <option value="" disabled selected>Selecciona el servicio*</option>
                                             <?php
                                             if ($data->num_rows > 0) {
@@ -144,18 +144,20 @@ if ($_SESSION["login_done"] == true){
                                         <input type="hidden" name="hora_entrada_minutaje" value="">
                                     </fieldset>
                                     <fieldset>
-                                        <a id="hora_salida_print"></a>
+                                        <a id="hora_salida_print" style="display:none;"></a>
                                         <input type="hidden" id="hora_salida" name="hora_salida_minutaje" value=""
                                                required/>
                                     </fieldset>
+                                    <center>
                                     <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton
                                         al salir.
                                     </button>
+                                    </center>
                                 </form>
 
                             </div>
                         </div>
-                        <div>
+                        <div id="botonentrar">
                             <center>
                                 <button id="entrar" data-submit="...Sending" class="button_horas"
                                         onclick="myFunction1()">Presione este boton al entrar.
