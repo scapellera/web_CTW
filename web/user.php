@@ -110,7 +110,7 @@ if($_SESSION["login_done"]==true){
                     </a>
                 </li>                
                 <li>
-                    <a href="./buscador/buscador.php">
+                    <a href="./buscador.php">
                         <i class="pe-7s-search"></i>
                         <p>Buscador</p>
                     </a>

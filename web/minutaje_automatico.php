@@ -106,7 +106,7 @@ if ($_SESSION["login_done"] == true){
                         <div id="botonentrar">
                         <center>
                             <button id="entrar" data-submit="...Sending" class="button_horas"
-                                    onclick="myFunction1()">Presione este boton al entrar.
+                                    onclick="myFunction1()">Presione este boton al entrar
                             </button>
                         </center>
                         </div>
@@ -152,8 +152,7 @@ if ($_SESSION["login_done"] == true){
                                                required/>
                                     </fieldset>
                                     <center>
-                                    <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton
-                                        al salir.
+                                    <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton al salir
                                     </button>
                                     </center>
                                 </form>

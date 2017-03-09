@@ -64,12 +64,12 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                         <center>
-                            <a href="insert/insert_clientes.php" class="button_insert">Añadir cliente</a>
-                            <a href="insert/insert_sedes.php" class="button_insert">Añadir <br> sede</a>
-                            <a href="insert/insert_contactos.php" class="button_insert">Añadir contacto</a>
-                            <a href="insert/insert_mayoristas.php" class="button_insert">Añadir mayorista</a>
-                            <a href="insert/insert_usuarios.php" class="button_insert">Añadir usuario</a>
-                            <a href="insert/insert_servicios.php" class="button_insert">Añadir servicio</a>
+                            <a href="insert/insert_clientes.php" class="button_insert">Añadir<br>cliente</a>
+                            <a href="insert/insert_sedes.php" class="button_insert">Añadir<br>sede</a>
+                            <a href="insert/insert_contactos.php" class="button_insert">Añadir<br>contacto</a>
+                            <a href="insert/insert_mayoristas.php" class="button_insert">Añadir<br>mayorista</a>
+                            <a href="insert/insert_usuarios.php" class="button_insert">Añadir<br>usuario</a>
+                            <a href="insert/insert_servicios.php" class="button_insert">Añadir<br>servicio</a>
                         </center>
 
                         </div>

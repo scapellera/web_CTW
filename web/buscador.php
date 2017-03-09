@@ -56,6 +56,16 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                         <center>
+                            <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar<br>cliente</a>
+                            <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar<br>sede</a>
+                            <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar<br>contacto</a>
+                            <a href="./buscador/buscador_mayoristas.php" class="button_buscador">Buscar<br>mayorista</a>
+                            <a href="./buscador/buscador_usuarios.php" class="button_buscador">Buscar<br>usuario</a>
+                            <a href="./buscador/buscador_servicios.php" class="button_buscador">Buscar<br>servicio</a>
+                            <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar<br>artículo</a>
+                            <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar<br>stock</a>
+                            <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar<br>minutaje</a>
+                            <!--
                             <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar cliente</a>
                             <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar <br> sede</a>
                             <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar contacto</a>
@@ -65,6 +75,7 @@ if ($_SESSION["login_done"] == true){
                             <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar artículo</a>
                             <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar stock</a>
                             <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar minutaje</a>
+                            -->
                         </center>
                         </div>
                     </div>
