@@ -101,7 +101,7 @@ if ($_SESSION["login_done"] == true){
 
                                 ?>
                                 <tr>
-                                    <td><label><button onclick="borrar_minutaje(<?php echo "$pk"; ?>)">test</button></label></td>
+                                    <td><label style="width: 100%"><center><button style="width: 100%"class="btn btn-danger" onclick="borrar_minutaje(<?php echo "$pk"; ?>)"><span class="glyphicon glyphicon-trash "></span></button></center></label></td>
                                     <td><label style="margin-top: 11px;">
                                             <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php

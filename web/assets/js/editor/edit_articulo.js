@@ -61,5 +61,12 @@ $(document).ready(function() {
     name: 'ubicacion'
 
   })
+  $('.NIF_cliente_articulo').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'NIF_cliente_articulo'
+
+  })
+
   
 })

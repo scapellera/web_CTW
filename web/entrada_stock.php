@@ -63,7 +63,7 @@ if ($_SESSION["login_done"] == true){
                                     <h3>Añadir Artículo</h3>
                                     <h4>Rellene el formulario para añadir el artículo al stock</h4>
                                     <fieldset>
-                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" required>
+                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" value="hola" required>
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Descripción: <input placeholder="Descripción" name="descripcion"

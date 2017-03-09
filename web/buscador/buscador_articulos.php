@@ -81,6 +81,7 @@ if($_SESSION["login_done"]==true){
                                             <th>Número de factura</th>
                                             <th>Ubicacion</th>
                                             <th>Fecha de alta</th>
+                                            <th>Cliente</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,6 +115,19 @@ if($_SESSION["login_done"]==true){
                                                         <td><label style="margin-top: 11px;"><a href="#" class="numero_factura" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero_factura']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="ubicacion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ubicacion']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="fecha_de_alta" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['fecha_de_alta']?> </a></label></td>
+                                                        <td><label style="margin-top: 11px;">
+                                                                <a href="#" class="NIF_cliente_articulo" data-pk=<?php echo "\"$pk\""; ?>>
+                                                                    <?php
+                                                                    if($row['NIF_cliente_articulo']=='') {
+                                                                        echo $row['NIF_cliente_articulo'];
+
+                                                                    }else{
+                                                                        $nif_cliente = $row['NIF_cliente_articulo'];
+                                                                        $nombreCliente = select_nombre_cliente($nif_cliente);
+                                                                        echo $nombreCliente;
+                                                                    }
+                                                                    ?>
+                                                                </a></label></td>
                                                     </tr>
 
                                         <?php           
