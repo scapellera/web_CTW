@@ -43,12 +43,7 @@ $(document).ready(function() {
     name: 'precio'
 
   })
-  $('.cantidad').editable({
-    type: 'text',
-    url: '../assets/php/update_table/update_articulo.php',
-    name: 'cantidad'
-
-  })
+  
   $('.numero_de_factura').editable({
     type: 'text',
     url: '../assets/php/update_table/update_articulo.php',

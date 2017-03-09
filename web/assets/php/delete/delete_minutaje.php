@@ -2,8 +2,8 @@
 
 <?php
 session_start();
-include('../../php/db.php');
-include('../../php/selects.php');
+include('../db.php');
+include('../selects.php');
 if ($_SESSION["login_done"] == true){
 ?>
 

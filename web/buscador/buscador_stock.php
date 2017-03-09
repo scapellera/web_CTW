@@ -20,13 +20,15 @@ if ($_SESSION["login_done"] == true){
     <!--LIBRERIAS-->
     <!--LIBRERIA - GLOBAL-->
     <?php include('../assets/librerias/librerias_globales_buscador.html'); ?>
-    <!--EDITOR DE TABLAS-->
+    <!--EDITOR DE TABLA-->
+
     <?php
     if ($_SESSION["user_rol"] <= 1) {
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-        echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_stock.js\"></script>";
+       /* echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_stock.js\"></script>";*/
     }
     ?>
+
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
 </head>

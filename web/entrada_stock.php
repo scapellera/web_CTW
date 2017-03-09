@@ -114,6 +114,22 @@ if ($_SESSION["login_done"] == true){
                                     <fieldset>
                                         &nbsp;Ubicación: <input placeholder="Ubicación" name="ubicacion" type="text">
                                     </fieldset>
+                                    <fieldset>&nbsp;Selecciona el NIF del cliente(En el caso que sea necesario):
+                                        <?php $data = select_all_cliente(); ?>
+                                        <select name="select_box_nif_empresa" class="select_box">
+                                            <option value="">Selecciona el NIF del cliente...</option>
+                                            <?php
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </fieldset>
                                     <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit

@@ -29,6 +29,8 @@ if($_SESSION["login_done"]==true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+    <script type="text/javascript" src="../assets/js/functions.js"></script>
+    <script type="text/javascript" src="../assets/js/selected_row.js"></script>
 </head>
 <body>
 
@@ -66,10 +68,11 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
-
+                                <button id="test">test</button>
                                 <table id="buscador_articulo" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Codigo de barras</th>
@@ -94,9 +97,10 @@ if($_SESSION["login_done"]==true){
                                                  while($row = $data->fetch_assoc()) {
                                                     $pk = $row['ID_ARTICULO'];
 
+
                                         ?>
-                                                    <tr>
-                                                        
+                                                    <tr id="<?php echo "$pk"; ?>">
+                                                        <td><label style="width: 100%"><center><button style="width: 100%"class="btn btn-danger" onclick="borrar_articulo(<?php echo "$pk"; ?>)"><span class="glyphicon glyphicon-trash "></span></button></center></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="descripcion" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['descripcion']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;"><a data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['codigo_de_barras']?> </a</label></td>

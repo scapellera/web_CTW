@@ -1,12 +1,22 @@
 $(document).ready(function() {
-    var table = $('#buscador_contacto').DataTable();
+    var table = $('#buscador_articulo').DataTable();
 
-    $('#buscador_contacto tbody').on( 'click', 'tr', function () {
+    $('#buscador_articulo tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
-
+        /*alert( $(this).attr('id') );*/
 
     } );
 
+    $('#test').click( function () {
+        $('#buscador_articulo tbody').find('tr').toggleClass('selected')function () {
+            
+        }; {
+            $(this).toggleClass('selected');
+            /*alert( $(this).attr('id') );*/
+
+        } );
+        table.rows('.selected').(this).attr('id'));
+    } );
 
 
-    } )
+    } );

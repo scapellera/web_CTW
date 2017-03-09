@@ -37,6 +37,7 @@ if($_SESSION["login_done"]==true){
                         $cantidad = $_POST['cantidad'];
                         $numero_factura = $_POST['numero_factura'];
                         $ubicacion = $_POST['ubicacion'];
+                        $nif_empresa_articulo = $_POST['select_box_nif_empresa'];
 
                         //Añadimos comillas a los varchars
                         $nombre="\"$nombre\"";
@@ -48,6 +49,7 @@ if($_SESSION["login_done"]==true){
                         $numero_de_serie="\"$numero_de_serie\"";
                         $numero_factura="\"$numero_factura\"";
                         $ubicacion="\"$ubicacion\"";
+                        $nif_empresa_articulo="\"$nif_empresa_articulo\"";
 
                         //Si hay algun campo opcional no rellenado lo transforma en null
                         if($descripcion == "\"\""){
@@ -58,14 +60,16 @@ if($_SESSION["login_done"]==true){
                             $ubicacion = 'null';
                         }if($numero_de_serie == "\"\""){
                             $numero_de_serie = 'null';
+                        }if($nif_empresa_articulo == "\"\""){
+                            $nif_empresa_articulo = 'null';
                         }
 
 
                         //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
                         $conn = connect();
 
-                        $sql = "INSERT INTO ARTICULO (nombre, descripcion, codigo_de_barras, NIF_mayorista, codigo_producto_mayorista, numero_de_serie, precio, cantidad, numero_factura, ubicacion)
-                        VALUES ($nombre, $descripcion, $codigo_de_barras, $nif_mayorista, $codigo_producto_mayorista, $numero_de_serie, $precio, $cantidad, $numero_factura, $ubicacion)";
+                        $sql = "INSERT INTO ARTICULO (nombre, descripcion, codigo_de_barras, NIF_mayorista, codigo_producto_mayorista, numero_de_serie, precio, cantidad, numero_factura, ubicacion, NIF_cliente_articulo)
+                        VALUES ($nombre, $descripcion, $codigo_de_barras, $nif_mayorista, $codigo_producto_mayorista, $numero_de_serie, $precio, $cantidad, $numero_factura, $ubicacion, $nif_empresa_articulo)";
 
 
 

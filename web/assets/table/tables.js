@@ -90,7 +90,7 @@ $(document).ready(function() {
 
     $('#buscador_stock').DataTable( {
         dom: 'Bfrtip',
-        "order": [[ 0, "desc" ],[ 1, "asc" ]] ,
+        "order": [[ 0, "asc" ]] ,
 
         "pagingType": "full_numbers",
         lengthMenu: [
@@ -132,19 +132,6 @@ $(document).ready(function() {
         ]
     } );
 
-    $('#buscador_stock').DataTable( {
-        dom: 'Bfrtip',
-        
-        "pagingType": "full_numbers",
-        lengthMenu: [
-        [ 10, 25, 50, -1 ],
-        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-      ],
-        buttons: [
-            'excel',
-            'pageLength'
-        ]
-    } );
 
     $('#buscador_minutaje').DataTable( {
         dom: 'Bfrtip',
