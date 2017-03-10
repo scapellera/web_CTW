@@ -1,22 +1,23 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var table = $('#buscador_articulo').DataTable();
-
-    $('#buscador_articulo tbody').on( 'click', 'tr', function () {
-        $(this).toggleClass('selected');
-        /*alert( $(this).attr('id') );*/
-
-    } );
-
-    $('#test').click( function () {
-        $('#buscador_articulo tbody').find('tr').toggleClass('selected')function () {
-            
-        }; {
+    var manipular =
+        $('#buscador_articulo tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
-            /*alert( $(this).attr('id') );*/
+            return this;
+        });
 
-        } );
-        table.rows('.selected').(this).attr('id'));
-    } );
+    $('#test').click(function () {
+        var x = document.getElementById("buscador_articulo").rows.length;
+        var ID_ARTICULO = ""
+        for (var $i = 0; $i <= x - 1; $i++) {
+            var div = "#div" + $i;
+            if ($(div).hasClass("selected")) {
+                ID_ARTICULO = ID_ARTICULO + ($(div).attr('value')) + ",";
+            }
+        }
+        if (ID_ARTICULO.length >0) {
+            document.getElementById('articulo_array_string').value = ID_ARTICULO;
 
-
-    } );
+        }
+    });
+});
