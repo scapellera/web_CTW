@@ -142,8 +142,9 @@ $(document).ready(function () {
                         }
                     }
                     if (ID_ARTICULO.length > 0) {
+                        ID_ARTICULO="articulo,"+ID_ARTICULO;
                         var res = ID_ARTICULO.substring(0, ID_ARTICULO.length-1);
-                        document.getElementById('articulo_array_string').value = res;
+                        document.getElementById('id_string').value = res;
                         document.getElementById("send_articulos").submit();
 
 

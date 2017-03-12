@@ -66,8 +66,8 @@ if ($_SESSION["login_done"] == true){
         <!--ZONA DE CONTENIDO DE ESTA PAGINA, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
         <div class="content2">
             <!--passar los datos a pre_factura_articulos.php-->
-                <form method="POST" id="send_articulos" action="../pre_factura/pre_factura_articulos.php">
-                    <input type="hidden" id="articulo_array_string" name="articulo_string" value="">
+                <form method="POST" id="send_articulos" action="../pre_factura/seleccion_pre_factura.php">
+                    <input type="hidden" id="id_string" name="id_string" value="">
                     <input style="display:none" type="submit" value="submit" id="buttonId"/>
                 </form>
             <div class="container-fluid">

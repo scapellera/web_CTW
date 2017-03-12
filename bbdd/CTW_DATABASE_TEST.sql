@@ -147,7 +147,7 @@ INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `t
 -- Estructura de tabla para la tabla `FACTURA`
 --
 
-CREATE TABLE `FACTURA` (
+CREATE TABLE `PRE_FACTURA` (
   `ID_FACTURA` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
