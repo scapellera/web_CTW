@@ -314,12 +314,58 @@ function id_crear_cabecera_pre_factura($nombre_pre_factura)
 {
     $conn = connect();
     $sql = "SELECT ID_PRE_FACTURA
-    FROM PRE_FACTURA WHERE nombre = '" . $nombre_pre_factura . "'";
+    FROM PRE_FACTURA WHERE nombre = '" . $nombre_pre_factura . "'
+    ORDER BY ID_PRE_FACTURA desc";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
     $id_pre_factura = $row['ID_PRE_FACTURA'];
     close($conn);
     return $id_pre_factura;
+}
+function ciudad_facturacion_crear_cabecera_pre_factura($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT ciudad_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ciudad_facturacion = $row['ciudad_facturacion'];
+    close($conn);
+    return $ciudad_facturacion;
+}
+function codigo_postal_facturacion_crear_cabecera_pre_factura($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT codigo_postal_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $odigo_postal_facturacion = $row['codigo_postal_facturacion'];
+    close($conn);
+    return $odigo_postal_facturacion;
+}
+function calle_facturacion_crear_cabecera_pre_factura($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT calle_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $calle_facturacion = $row['calle_facturacion'];
+    close($conn);
+    return $calle_facturacion;
+}
+
+function numero_facturacion_crear_cabecera_pre_factura($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT numero_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $numero_facturacion = $row['numero_facturacion'];
+    close($conn);
+    return $numero_facturacion;
 }
 
 //////////////////////////////////////////////////////////////////

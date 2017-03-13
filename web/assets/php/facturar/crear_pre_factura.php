@@ -28,6 +28,16 @@ if ($_SESSION["login_done"] == true){
     $id_string = $_POST['submit'];
 
 
+    $id_array = explode(',', $id_string);
+
+    if($id_array[0]=='articulo'){
+        $ruta='articulo.php';
+    }elseif ($id_array[0]=='minutaje'){
+        $ruta='minutaje.php';
+    }
+
+
+
     //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
     $conn = connect();
 
@@ -38,11 +48,20 @@ if ($_SESSION["login_done"] == true){
     if ($conn->query($sql) == TRUE) {
 
         $id_pre_factura = id_crear_cabecera_pre_factura($nombre_pre_factura);
+        $ciudad_facturacion=ciudad_facturacion_crear_cabecera_pre_factura($nif_empresa);
+        $codigo_postal_facturacion=codigo_postal_facturacion_crear_cabecera_pre_factura($nif_empresa);
+        $calle_facturacion=calle_facturacion_crear_cabecera_pre_factura($nif_empresa);
+        $numero_facturacion=numero_facturacion_crear_cabecera_pre_factura($nif_empresa);
 
-        $sql2 = "INSERT INTO CABECERA_PRE_FACTURA (ID_pre_factura, nombre)
-					VALUES ('$id_pre_factura', '$nombre_pre_factura')";
+        $sql2 = "INSERT INTO CABECERA_PRE_FACTURA (ID_pre_factura, nombre, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion)
+					VALUES ('$id_pre_factura', '$nombre_pre_factura', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion')";
         if ($conn->query($sql2) == TRUE) {
             ?>
+
+            <form method="POST" id="send_articulos" action="../../../pre_factura/pre_factura_<?php echo $ruta?>">
+                <input type="hidden" id="id_string" name="id_string" value="<?php echo $id_string?>">
+                <input style="display:none" type="submit" value="submit" id="buttonId"/>
+            </form>
             
             <div id="precargador">
                 <p id="progressnum"></p>
@@ -67,9 +86,9 @@ if ($_SESSION["login_done"] == true){
                     indicador.style.width = actualprogress + "px";
                     progressnum.innerHTML = "Creando pre-factura...";
                     if (actualprogress == 300) {
-                        document.getElementById('id_string').action = "../../../pre_factura/pre_factura_articulo.php";
+
                         document.getElementById("send_articulos").submit();
-                        /*window.location = "../../../pre_factura/seleccion_pre_factura.php";*/
+
                     }
                 }
             </script>
@@ -85,10 +104,7 @@ if ($_SESSION["login_done"] == true){
     ?>
 
 </div>
-<form method="POST" id="send_articulos" action="">
-    <input type="hidden" id="id_string" name="id_string" value="<?php echo $id_string?>">
-    <input style="display:none" type="submit" value="submit" id="buttonId"/>
-</form>
+
 </body>
 </html>
 
