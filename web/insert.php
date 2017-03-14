@@ -41,18 +41,18 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Inserts</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--TITULO DE LA PÁGINA-->
+                    <a class="navbar-brand">Insertar</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
-                        </li>
-                        <li>
-                            <a href="../logout.php">Log out
-                            </a>
-                        </li>
-                    </ul>
+                    <!--USER & LOGOUT-->
+                    <?php include('assets/html/menu/user_logout.html'); ?>
                 </div>
             </div>
         </nav>

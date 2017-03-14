@@ -275,7 +275,12 @@ body {
     font-size: 14px;
     line-height: 1.428571429;
     color: #333;
-    background-color: #fff
+    background-color: white;
+}
+@media (max-width: 600px) {
+    body {
+        background-color: #c5c2c2;
+    }
 }
 
 input,button,select,textarea {

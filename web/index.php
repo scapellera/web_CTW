@@ -3,6 +3,8 @@
 <?php
 session_start();
 include('assets/php/db.php');
+include('assets/php/selects.php');
+include('assets/php/functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -16,7 +18,7 @@ if ($_SESSION["login_done"] == true){
     <meta name="viewport" content="width=device-width"/>
 
     <?php include('assets/librerias/librerias_globales.html'); ?>
-    
+
 
 </head>
 <body>
@@ -72,6 +74,7 @@ if ($_SESSION["login_done"] == true){
 
 
 </body>
+
 </html>
 
 <?php
