@@ -373,20 +373,21 @@ body > .navbar-collapse:before {
   left: 0;
   z-index: 2;
 }
+
+@media (max-width: 600px) {
+  body > .navbar-collapse:before {
+    height: 200%;
+  }
+}
+
+
 .sidebar:before,
 body > .navbar-collapse:before {
   opacity: .33;
-  background: #000000;
 }
 .sidebar:after,
 body > .navbar-collapse:after {
-  background: #787878;
-  background: -moz-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #787878), color-stop(100%, #343434));
-  background: -webkit-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -o-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -ms-linear-gradient(top, #787878 0%, #343434 100%);
-  background: linear-gradient(to bottom, #787878 0%, #343434 100%);
+  background-color: #c5c2c2;
   background-size: 150% 150%;
   z-index: 3;
   opacity: 1;
@@ -398,14 +399,7 @@ body > .navbar-collapse.has-image:after {
 }
 .sidebar[data-color="blue"]:after,
 body > .navbar-collapse[data-color="blue"]:after {
-  background: #1F77D0;
-  background: -moz-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
-  background: -webkit-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-  background: -o-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-  background: -ms-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-  background: linear-gradient(to bottom, #1F77D0 0%, #533ce1 100%);
-  background-size: 150% 150%;
+  background-color: rgba(212, 208, 208, 0.85);
 }
 .sidebar[data-color="azure"]:after,
 body > .navbar-collapse[data-color="azure"]:after {
@@ -2908,7 +2902,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     position: relative;
     z-index: 4;
     overflow-y: scroll;
-    height: calc(100vh - 61px);
+    height: calc(100vh - 131px);
     width: 100%;
   }
   body > .navbar-collapse .nav > li > a {
@@ -3238,7 +3232,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
   }
   .dropdown-menu .divider {
-    background-color: rgba(229, 229, 229, 0.15);
+    background-color: rgba(212, 208, 208, 0.85);
   }
 
   .navbar-nav {
