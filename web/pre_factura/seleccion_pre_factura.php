@@ -76,31 +76,26 @@ if ($_SESSION["login_done"] == true){
                                 <!--variables de minutaje o articulos-->
                                 <?php
                                 $id_string = $_POST['id_string'];
-
-                                /*for($i = 0; $i <= $array_id.count();$i++){
-                                    echo"$array_id[$i]";
-
-                                }*/
-                                echo "$id_string";
+                                $id_array = explode(',', $id_string);
+                                if ($id_array[0] == 'articulo') {
+                                    $ruta = 'articulo.php';
+                                } elseif ($id_array[0] == 'minutaje') {
+                                    $ruta = 'minutaje.php';
+                                }
                                 ?>
 
 
-
-                                <form id="contact" action="../assets/php/post/post_contactos.php" method="post"
-                                      name="f_cliente_sede">
+                                <form id="contact" action="./pre_factura_<?php echo $ruta?>" method="post"
+                                      name="f_cliente_pre_factura">
 
                                     <h3>Pre-facturar</h3>
                                     <h4>Selecciona donde quieres pre-facturar el artículo</h4>
 
                                     <fieldset>
-                                        &nbsp;Nombre del contacto: <input placeholder="Nombre del contacto*"
-                                                                          name="nombre" type="text" required>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Selecciona el cliente y la sede:
+                                        &nbsp;Selecciona el cliente y la pre factura:
                                         <?php $data = select_all_cliente(); ?>
                                         <select id="cliente" name="select_box_nif_empresa" class="select_box"
-                                                onchange="cambia_sede()">
+                                                onchange="cambia_pre_factura()">
                                             <option value="" disabled selected>Selecciona el cliente*</option>
                                             <?php
                                             if ($data->num_rows > 0) {
@@ -116,6 +111,19 @@ if ($_SESSION["login_done"] == true){
                                         </select>
                                     </fieldset>
                                     <fieldset>
+                                        <select id="pre_factura" class="select_box"
+                                                name="select_box_pre_factura_cliente">
+                                            <option value="-">-
+                                        </select>
+                                    </fieldset>
+                                    <fieldset>
+                                        <input type="hidden" id="id_string" name="id_string"
+                                               value="<?php echo $id_string ?>">
+
+                                    </fieldset>
+
+                                    <fieldset>
+
                                         <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit
                                         </button>
@@ -125,7 +133,8 @@ if ($_SESSION["login_done"] == true){
                                 <form id="contact" action="./crear_nueva_pre_factura.php" method="post"
                                       name="f_cliente_sede">
                                     <fieldset>
-                                        <button value="<?php echo $id_string ?>" name="submit" type="submit" id="contact-submit"
+                                        <button value="<?php echo $id_string ?>" name="submit" type="submit"
+                                                id="contact-submit"
                                                 data-submit="...Sending">Crear nueva pre-factura
                                         </button>
                                     </fieldset>

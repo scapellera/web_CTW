@@ -214,6 +214,17 @@ function select_sede_cliente($nif_cliente)
     return $data;
 }
 
+function select_pre_factura_cliente($nif_cliente)
+{
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM PRE_FACTURA PF
+    WHERE PF.NIF_empresa = '" . $nif_cliente . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
 function select_id_sede($nombre)
 {
     $conn = connect();

@@ -35,6 +35,11 @@ if ($_SESSION["login_done"] == true){
 </head>
 
 <body>
+<?php
+$id_string = $_POST['id_string'];
+$nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
+
+?>
 
 <div class="wrapper">
     <div class="sidebar">
@@ -51,13 +56,12 @@ if ($_SESSION["login_done"] == true){
 
         </div>
     </div>
-    <!--BARRA SUPERIOR, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <a class="navbar-brand">Buscador clientes</a>
+                    <a class="navbar-brand"><?php echo "Pre-facturar articulos - $nombre_pre_factura";?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--USER & LOGOUT-->
@@ -74,15 +78,7 @@ if ($_SESSION["login_done"] == true){
                             <div class="container">
 
                                 <!--variables de minutaje o articulos-->
-                                <?php
-                                $id_string = $_POST['id_string'];
 
-                                /*for($i = 0; $i <= $array_id.count();$i++){
-                                    echo"$array_id[$i]";
-
-                                }*/
-                                echo "$id_string";
-                                ?>
 
 
                             </div>

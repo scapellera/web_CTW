@@ -27,6 +27,34 @@
         //marco como seleccionada la opción primera de sede
         document.f_cliente_sede.select_box_sede_cliente.options[0].selected = true
     }
+    function cambia_pre_factura() {
+        //tomo el valor del select del cliente elegido
+        var cliente
+        cliente = document.f_cliente_pre_factura.select_box_nif_empresa[document.f_cliente_pre_factura.select_box_nif_empresa.selectedIndex].value
+        //miro a ver si el cliente está definido
+        if (cliente != "") {
+            //si estaba definido, entonces coloco las opciones de la provincia correspondiente.
+            //selecciono el array de sedes adecuado
+            pre_factura = eval("cliente_" + cliente)
+            //calculo el numero de sedes
+            num_pre_factura = pre_factura.length
+            //marco el número de sedes en el select
+            document.f_cliente_pre_factura.select_box_pre_factura_cliente.length = num_pre_factura
+            //para cada sede del array, la introduzco en el select
+            for (i = 0; i < num_pre_factura; i++) {
+                document.f_cliente_pre_factura.select_box_pre_factura_cliente.options[i].value = pre_factura[i]
+                document.f_cliente_pre_factura.select_box_pre_factura_cliente.options[i].text = pre_factura[i]
+            }
+        } else {
+            //si no había sede seleccionada, elimino las provincias del select
+            document.f_cliente_pre_factura.select_box_pre_factura_cliente.length = 1
+            //coloco un guión en la única opción que he dejado
+            document.f_cliente_pre_factura.select_box_pre_factura_cliente.options[0].value = "-"
+            document.f_cliente_pre_factura.select_box_pre_factura_cliente.options[0].text = "-"
+        }
+        //marco como seleccionada la opción primera de sede
+        document.f_cliente_pre_factura.select_box_pre_factura_cliente.options[0].selected = true
+    }
 
     function borrar_minutaje(pk) {
         if (pk != "0") {
