@@ -379,4 +379,14 @@ function numero_facturacion_crear_cabecera_pre_factura($nif_empresa)
     return $numero_facturacion;
 }
 
+function get_articulo_pre_factura($ID_ARTICULO)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM ARTICULO WHERE ID_ARTICULO = '" . $ID_ARTICULO . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
 //////////////////////////////////////////////////////////////////

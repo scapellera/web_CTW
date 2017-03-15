@@ -61,7 +61,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <a class="navbar-brand"><?php echo "Pre-facturar articulos - $nombre_pre_factura";?></a>
+                    <a class="navbar-brand"><?php echo "Pre-facturar articulos - $nombre_pre_factura"; ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--USER & LOGOUT-->
@@ -72,23 +72,97 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
         <!--ZONA DE CONTENIDO DE ESTA PAGINA, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
         <div class="content">
             <div class="container-fluid">
+
+
+                <?php
+                $id_string = $_POST['id_string'];
+                $id_array = explode(',', $id_string);
+                ?>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="container">
+                            <div class="header">
+                                <h4 class="title"> Selecciona la cantidad de los artículos </h4>
+                            </div>
+                            <div class="content">
+                                <form id="contact" action="../assets/php/facturar/pre_factura_articulo_post.php"
+                                      method="post">
+                                    <?php
+                                    for ($i = 1; $i <= count($id_array) - 1; $i++) {
+                                        $data = get_articulo_pre_factura($id_array[$i]);
+                                        if ($data->num_rows > 0) {
+                                            // output data of each row
+                                            ($row = $data->fetch_assoc())
 
-                                <!--variables de minutaje o articulos-->
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label> Artículo(disabled)</label>
+                                                        <input type="text" name="nombre"
+                                                               class="form-control" disabled
 
+                                                               value="<?php echo $row['nombre'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label> Descripción(disabled)</label>
+                                                        <input type="text" name="descripcion"
+                                                               class="form-control" disabled
+                                                               value="<?php echo $row['descripcion'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label> Precio(disabled)</label>
+                                                        <input type="text" name="precio"
+                                                               class="form-control" disabled
+                                                               value="<?php echo $row['precio'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label> Cantidad (Entre 1 y <?php echo $row['cantidad'] ?>
+                                                            )</label>
+                                                        <input type="number" name="cantidad_<?php echo $i ?>"
+                                                               class="form-control"
+                                                               value="<?php echo $row['cantidad'] ?>"
+                                                               min="1" max="<?php echo $row['cantidad'] ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
 
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                    }
+
+                                    ?>
+                                    <center>
+                                        <button style="width: 25%" name="submit" value="<?php echo $id_string ?>" type="submit"> Pre - facturar
+                                        </button>
+                                    </center>
+                                    <div class="clearfix"></div>
+                                </form>
 
                             </div>
                         </div>
                     </div>
+
+
                 </div>
+
+
             </div>
+
+
         </div>
     </div>
 </div>
+</div >
 </body>
 </html>
 <!--SI NO HA PASSADO POR EL LOGIN LO MANDAMOS PARA QUE SE AUTENTIFIQUE-->
