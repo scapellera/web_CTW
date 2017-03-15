@@ -44,9 +44,22 @@ if ($_SESSION["login_done"] == true){
             include('../assets/html/menu/menu_buscador.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_articulos").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_articulos {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_articulos1 {
+                        margin-left: 10%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -71,6 +84,7 @@ if ($_SESSION["login_done"] == true){
         </nav>
 
         <!--ZONA DE CONTENIDO DE ESTA PAGINA, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
+
         <div class="content2">
             <!--passar los datos a pre_factura_articulos.php-->
                 <form method="POST" id="send_articulos" action="../pre_factura/seleccion_pre_factura.php">

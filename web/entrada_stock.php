@@ -4,6 +4,7 @@
 session_start();
 include('assets/php/db.php');
 include('./assets/php/selects.php');
+include('assets/php/functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -33,9 +34,20 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/menu/menu_principal.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_entrada_stock").className = "active";
-                });</script>
+            <style>
+                #menu_entrada_stock {
+                    background-color: #ef9448;
+                    margin-left: 12%;
+                    border-top-left-radius: 50px;
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    border-bottom-left-radius: 50px;
+                }
+
+                #menu_entrada_stock1{
+                    margin-left: 2%;
+                }
+            </style>
         </div>
     </div>
 
@@ -43,6 +55,12 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Entrada de artículo</a>
                 </div>
@@ -63,7 +81,7 @@ if ($_SESSION["login_done"] == true){
                                     <h3>Añadir Artículo</h3>
                                     <h4>Rellene el formulario para añadir el artículo al stock</h4>
                                     <fieldset>
-                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" value="hola" required>
+                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" value="" required>
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Descripción: <input placeholder="Descripción" name="descripcion"

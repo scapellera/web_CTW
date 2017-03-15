@@ -34,10 +34,22 @@ if($_SESSION["login_done"]==true){
             include('../assets/html/menu/menu_insert.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_sedes").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_sedes {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_sedes1 {
+                        margin-left: 22%;
+                    }
+                }
+            </style>
         </div>
     </div>
 

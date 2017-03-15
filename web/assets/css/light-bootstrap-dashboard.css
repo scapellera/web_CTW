@@ -1,3 +1,102 @@
+@media (max-width: 600px) {
+
+  #menu_inicio1{
+    margin-left: 32%;
+  }
+
+  #menu_buscador1{
+    margin-left: 25%;
+  }
+
+  #menu_entrada_stock1{
+    margin-left: 14%;
+  }
+
+  #menu_insert1{
+    margin-left: 30%;
+  }
+
+  #menu_minutaje_manual1{
+    margin-left: 12%;
+  }
+
+  #menu_minutaje_automatico1{
+    margin-left: 5%;
+  }
+
+  #menu_clientes1{
+    margin-left: 26%;
+  }
+
+  #menu_servicios1{
+    margin-left: 24%;
+  }
+
+  #menu_usuarios1{
+    margin-left: 27%;
+  }
+
+  #menu_contactos1{
+    margin-left: 23%;
+  }
+
+  #menu_sedes1{
+    margin-left: 30%;
+  }
+
+  #menuinicio1{
+    margin-left: 15%;
+  }
+
+  #menu_mayoristas1{
+    margin-left: 21%;
+  }
+
+  #menu_articulos1{
+    margin-left: 24%;
+  }
+
+  #menu_stock1{
+    margin-left: 29%;
+  }
+
+  #menu_minutaje1{
+    margin-left: 24%;
+  }
+
+  .button_buscador{
+    font-size: 16px;
+    width: 45%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .button_insert{
+    font-size: 16px;
+    width: 45%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+}
+
+@media (min-width: 600px) {
+  .button_buscador{
+    font-size: 25px;
+    width: 30%;
+  }
+
+  .button_insert{
+    font-size: 25px;
+    width: 30%;
+  }
+
+}
+
 /*      light colors         */
 @keyframes spin {
   from {
@@ -376,7 +475,7 @@ body > .navbar-collapse:before {
 
 @media (max-width: 600px) {
   body > .navbar-collapse:before {
-    height: 200%;
+    height: 500%;
   }
 }
 
@@ -1836,6 +1935,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   margin-bottom: 30px;
   padding: 15px;
 }
+
 .card .image {
   width: 100%;
   overflow: hidden;
@@ -2732,7 +2832,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   left: 0;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 600px) {
   .navbar-form {
     margin-top: 21px;
     margin-bottom: 21px;
@@ -2817,7 +2917,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   }
 }
 /*          Changes for small display      */
-@media (max-width: 991px) {
+@media (max-width: 600px) {
   .sidebar {
     display: none;
   }
@@ -3386,7 +3486,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-right: 10px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 600px) {
   .table-full-width {
     margin-left: -15px;
     margin-right: -15px;
@@ -3396,7 +3496,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     overflow: visible;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 600px) {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;

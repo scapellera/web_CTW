@@ -35,9 +35,22 @@ if ($_SESSION["login_done"] == true){
             include('../assets/html/menu/menu_insert.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_usuarios").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_usuarios {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_usuarios1 {
+                        margin-left: 15%;
+                    }
+                }
+            </style>
         </div>
     </div>
 

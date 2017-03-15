@@ -43,10 +43,22 @@ if ($_SESSION["login_done"] == true){
             include('../assets/html/menu/menu_buscador.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_stock").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_stock {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_stock1 {
+                        margin-left: 20%;
+                    }
+                }
+            </style>
         </div>
     </div>
 

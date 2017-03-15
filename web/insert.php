@@ -30,10 +30,22 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/menu/menu_principal.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_insert").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_insert {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_insert1 {
+                        margin-left: 17%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -62,7 +74,7 @@ if ($_SESSION["login_done"] == true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div>
                         <center>
                             <a href="insert/insert_clientes.php" class="button_insert">Añadir<br>cliente</a>
                             <a href="insert/insert_sedes.php" class="button_insert">Añadir<br>sede</a>

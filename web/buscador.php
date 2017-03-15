@@ -29,9 +29,22 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/menu/menu_principal.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
-            <script>$(function () {
-                    document.getElementById("menu_buscador").className = "active";
-                });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_buscador {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_buscador1 {
+                        margin-left: 15%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -60,7 +73,7 @@ if ($_SESSION["login_done"] == true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div>
                         <center>
                             <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar<br>cliente</a>
                             <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar<br>sede</a>

@@ -30,6 +30,17 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/logo/logo.html');
             include('assets/html/menu/menu_principal.html');
             ?>
+            <style>
+                @media (max-width: 600px) {
+                    #x {
+                        background-color: #ef9448;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+                }
+            </style>
         </div>
     </div>
 

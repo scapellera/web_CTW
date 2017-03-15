@@ -25,6 +25,11 @@ div.dt-button-info>div {
     padding: 1em
 }
 
+.dataTables_filter{
+    float:left;
+    margin-left: 15px;
+}
+
 button.dt-button, div.dt-button, a.dt-button {
     position: relative;
     display: inline-block;
@@ -35,7 +40,9 @@ button.dt-button, div.dt-button, a.dt-button {
     border-radius: 2px;
     cursor: pointer;
     font-size: 0.88em;
+    float:left;
     color: white;
+    margin-bottom:10px;
     white-space: nowrap;
     overflow: hidden;
     background-color: #e98e42;
