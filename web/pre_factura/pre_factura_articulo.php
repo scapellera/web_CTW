@@ -93,7 +93,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                         $data = get_articulo_pre_factura($id_array[$i]);
                                         if ($data->num_rows > 0) {
                                             // output data of each row
-                                            ($row = $data->fetch_assoc())
+                                            $row = $data->fetch_assoc();
 
                                             ?>
                                             <div class="row">
@@ -142,7 +142,8 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
 
                                     ?>
                                     <center>
-                                        <button style="width: 25%" name="submit" value="<?php echo $id_string ?>" type="submit"> Pre - facturar
+                                        <button style="width: 25%" name="submit" value="<?php echo $id_string ?>"
+                                                type="submit"> Pre - facturar
                                         </button>
                                     </center>
                                     <div class="clearfix"></div>
