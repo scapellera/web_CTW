@@ -42,6 +42,9 @@ if ($_SESSION["login_done"] == true){
             include('../assets/html/menu/menu_buscador.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
+            <script>$(function () {
+                    document.getElementById("menu_clientes").className = "active";
+                });</script>
             <style>
                 @media (max-width: 600px) {
                     #menu_clientes {
@@ -52,7 +55,6 @@ if ($_SESSION["login_done"] == true){
                         border-bottom-right-radius: 50px;
                         border-bottom-left-radius: 50px;
                     }
-
                     #menu_clientes1 {
                         margin-left: 16%;
                     }

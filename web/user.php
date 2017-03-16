@@ -30,6 +30,9 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/logo/logo.html');
             include('assets/html/menu/menu_principal.html');
             ?>
+            <script>$(function () {
+                    document.getElementById("x").className = "active";
+                });</script>
             <style>
                 @media (max-width: 600px) {
                     #x {

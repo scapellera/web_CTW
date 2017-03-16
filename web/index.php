@@ -31,6 +31,9 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/menu/menu_principal.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
+            <script>$(function () {
+                    document.getElementById("menu_inicio").className = "active";
+                });</script>
             <style>
                 @media (max-width: 600px) {
                     #menu_inicio {

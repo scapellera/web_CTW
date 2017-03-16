@@ -34,18 +34,23 @@ if ($_SESSION["login_done"] == true){
             include('assets/html/menu/menu_principal.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
+            <script>$(function () {
+                    document.getElementById("menu_entrada_stock").className = "active";
+                });</script>
             <style>
-                #menu_entrada_stock {
-                    background-color: #ef9448;
-                    margin-left: 12%;
-                    border-top-left-radius: 50px;
-                    border-top-right-radius: 50px;
-                    border-bottom-right-radius: 50px;
-                    border-bottom-left-radius: 50px;
-                }
+                @media (max-width: 600px) {
+                    #menu_entrada_stock {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
-                #menu_entrada_stock1{
-                    margin-left: 2%;
+                    #menu_entrada_stock1 {
+                        margin-left: 2%;
+                    }
                 }
             </style>
         </div>
