@@ -64,6 +64,35 @@
     cursor: pointer;
 }
 
+.button_subir_imagen {
+    background-color: #E97C24;
+    border: 2px solid #CE6611;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button_enviar_imagen {
+    background-color: #E97C24;
+    border: 2px solid #CE6611;
+    color: white;
+    padding: 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
 
 .button_buscador:hover {
     background-color: #E9A36A;

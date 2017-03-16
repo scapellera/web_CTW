@@ -40,7 +40,7 @@ if ($_SESSION["login_done"] == true){
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_usuarios").className = "active";
+                    document.getElementById("menu_minutaje_automatico").className = "active";
                 });</script>
             <style>
                 @media (max-width: 600px) {

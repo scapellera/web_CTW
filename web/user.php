@@ -146,7 +146,7 @@ if ($_SESSION["login_done"] == true){
 
                                     <input type="hidden" name="password_anterior" value="<?php echo $row['password']?>">
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Actualizar perfil</button>
                                     <div class="clearfix"></div>
                                 </form>
 
@@ -174,11 +174,12 @@ if ($_SESSION["login_done"] == true){
                                         </h4>
                                     </a>
                                 </div>
+                                <center>
                                 <form action="assets/php/post/uploadImageProfile.php" method="post" enctype="multipart/form-data">
-                                    Select image to upload:
-                                    <input type="file" name="fileToUpload">
-                                    <input type="submit" value="Upload Image" name="submit">
+                                    <input type="file" class="button_subir_imagen" value="Subir imagen"/>
+                                    <button type="submit" class="button_enviar_imagen" value="Upload Image" name="submit">Enviar imagen</button>
                                 </form>
+                                </center>
                                 <p class="description text-center"></p>
                             </div>
                             
