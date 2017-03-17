@@ -76,6 +76,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
 
                 <?php
                 $id_string = $_POST['id_string'];
+                $cliente = $_POST['select_box_nif_empresa'];
                 $id_array = explode(',', $id_string);
                 ?>
 
@@ -141,6 +142,11 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                     }
 
                                     ?>
+                                    <fieldset>
+                                        <input type="hidden" id="cliente" name="cliente"
+                                               value="<?php echo $cliente ?>">
+
+                                    </fieldset>
                                     <center>
                                         <button style="width: 25%" name="submit" value="<?php echo $id_string ?>"
                                                 type="submit"> Pre - facturar
