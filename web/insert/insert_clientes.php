@@ -101,7 +101,7 @@ if ($_SESSION["login_done"] == true){
                                                                            name="nombre_completo" type="text" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Teléfono: <input placeholder="Teléfono*" name="telefono" type="text"
+                                        &nbsp;Teléfono: </br><input placeholder="Teléfono*" name="telefono" type="number"
                                                                required>
                                     </fieldset>
                                     <fieldset>
@@ -114,9 +114,9 @@ if ($_SESSION["login_done"] == true){
                                             type="text" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Código postal para la facturación: <input
+                                        &nbsp;Código postal para la facturación: </br><input
                                             placeholder="Código postal para la facturación*"
-                                            name="codigo_postal_facturacion" type="text" required>
+                                            name="codigo_postal_facturacion" type="number" required>
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Calle para la facturación: <input placeholder="Calle para la facturación*"

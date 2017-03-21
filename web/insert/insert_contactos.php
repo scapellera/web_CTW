@@ -127,7 +127,7 @@ if ($_SESSION["login_done"] == true){
                                                                          type="email" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Teléfono: <input placeholder="Teléfono*" name="telefono" type="text"
+                                        &nbsp;Teléfono: </br><input placeholder="Teléfono*" name="telefono" type="number"
                                                                required>
                                     </fieldset>
                                     <fieldset>

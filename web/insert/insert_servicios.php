@@ -97,7 +97,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Descripción:  <input placeholder="Descripción" name="descripcion" type="text">
                             </fieldset>
                             <fieldset>
-                            &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text"  required>
+                            &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number"  required>
                             </fieldset>
                             <fieldset>&nbsp;Selecciona el NIF del cliente(En el caso que sea necesario):
                             <?php $data = select_all_cliente(); ?>

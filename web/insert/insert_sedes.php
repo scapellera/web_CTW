@@ -111,7 +111,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Ciudad de la sede: <input placeholder="Ciudad de la sede*" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                            &nbsp;Código postal de la sede:  <input placeholder="Código postal de la sede*" name="codigo_postal" type="text"  required>
+                            &nbsp;Código postal de la sede:  </br><input placeholder="Código postal de la sede*" name="codigo_postal" type="number"  required>
                             </fieldset>
                             <fieldset>
                             &nbsp;Calle de la sede:  <input placeholder="Calle de la sede*" name="calle" type="text"  required>
@@ -123,7 +123,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Ubicacion de la sede:  <input placeholder="Ubicacion de la sede" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>
-                            &nbsp;Teléfono de la sede:  <input placeholder="Teléfono de la sede*" name="telefono" type="text"  required>
+                            &nbsp;Teléfono de la sede:  </br><input placeholder="Teléfono de la sede*" name="telefono" type="number"  required>
                             </fieldset>
                             <fieldset> &nbsp;Selecciona el país:
                             <?php $data = select_all_pais(); ?>

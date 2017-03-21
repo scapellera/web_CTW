@@ -99,10 +99,10 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Nombre del comercial:  <input placeholder="Nombre del comercial" name="nombre_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                            &nbsp;Teléfono de la empresa:  <input placeholder="Teléfono de la empresa*" name="telefono_empresa" type="text"  required>
+                            &nbsp;Teléfono de la empresa:  </br><input placeholder="Teléfono de la empresa*" name="telefono_empresa" type="number"  required>
                             </fieldset>
                             <fieldset>
-                            &nbsp;Teléfono del comercial:  <input placeholder="Teléfono del comercial" name="telefono_comercial" type="text">
+                            &nbsp;Teléfono del comercial:  </br><input placeholder="Teléfono del comercial" name="telefono_comercial" type="number">
                             </fieldset>
                             <fieldset>
                             &nbsp;Extensión teléfono del comercial:  <input placeholder="Extensión teléfono del comercial" name="extension_telefono_comercial" type="text">

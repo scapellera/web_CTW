@@ -124,10 +124,10 @@ if ($_SESSION["login_done"] == true){
                                                                       name="numero_de_serie" type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text" required>
+                                        &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Cantidad: <input placeholder="Cantidad*" name="cantidad" type="text"
+                                        &nbsp;Cantidad: </br><input placeholder="Cantidad*" name="cantidad" type="number"
                                                                required>
                                     </fieldset>
                                     <fieldset>
