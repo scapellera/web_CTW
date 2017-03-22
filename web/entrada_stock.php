@@ -100,7 +100,7 @@ if ($_SESSION["login_done"] == true){
                                     <fieldset>&nbsp;Selecciona el NIF del mayorista:
                                         <?php $data = select_all_mayorista(); ?>
                                         <select name="select_box_nif_mayorista" class="select_box">
-                                            <option value="" disabled selected>Selecciona el NIF del mayorista*</option>
+                                            <option value="" selected>Selecciona el NIF del mayorista</option>
                                             <?php
                                             if ($data->num_rows > 0) {
                                                 // output data of each row

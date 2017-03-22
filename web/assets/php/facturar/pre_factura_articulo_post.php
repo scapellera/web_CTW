@@ -20,7 +20,7 @@ if ($_SESSION["login_done"] == true){
 <div>
     <?php
     //DEFINIR VARIABLES
-    $contador=0;
+    $contador = 0;
     $cliente = $_POST['cliente'];
     $id_string = $_POST['submit'];
     $id_array = explode(',', $id_string);
@@ -45,29 +45,84 @@ if ($_SESSION["login_done"] == true){
         if ($data->num_rows > 0) {
             // output data of each row
             $row = $data->fetch_assoc();
+            
+            //filtrado de nulls
+            $sql_descripcion = $row['descripcion'];
+            $sql_descripcion = "\"$sql_descripcion\"";
+
+            $sql_NIF_mayorista = $row['NIF_mayorista'];
+            $sql_NIF_mayorista = "\"$sql_NIF_mayorista\"";
+
+            $sql_codigo_producto_mayorista = $row['codigo_producto_mayorista'];
+            $sql_codigo_producto_mayorista = "\"$sql_codigo_producto_mayorista\"";
+
+            $sql_numero_de_serie = $row['numero_de_serie'];
+            $sql_numero_de_serie = "\"$sql_numero_de_serie\"";
+
+            $sql_ubicacion = $row['ubicacion'];
+            $sql_ubicacion = "\"$sql_ubicacion\"";
+
+
+            if ($sql_codigo_producto_mayorista == "\"\"") {
+                $sql_codigo_producto_mayorista = 'null';
+            }
+            if ($sql_descripcion == "\"\"") {
+                $sql_descripcion = 'null';
+            }
+            if ($sql_NIF_mayorista == "\"\"") {
+                $sql_NIF_mayorista = 'null';
+            }
+            if ($sql_numero_de_serie == "\"\"") {
+                $sql_numero_de_serie = 'null';
+            }
+            if ($sql_ubicacion == "\"\"") {
+                $sql_ubicacion = 'null';
+            }
+
+
             //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
             $conn = connect();
             $sql = "INSERT INTO ARTICULO_FACTURADO (ID_ARTICULO, nombre, descripcion, NIF_mayorista, codigo_de_barras, codigo_producto_mayorista, 	numero_de_serie, precio, cantidad, 	numero_factura, ubicacion, fecha_de_alta, cliente_facturado)
-					VALUES (".$row['ID_ARTICULO'].",'". $row['nombre']."','". $row['descripcion']."','".$row['NIF_mayorista']."','". $row['codigo_de_barras']."','".$row['codigo_producto_mayorista']."','". $row['numero_de_serie']."',". $row['precio'].",". $row['cantidad'].",'". $row['numero_factura']."','". $row['ubicacion']."','". $row['fecha_de_alta']."','$cliente')";
+					VALUES (" . $row['ID_ARTICULO'] . ",'" . $row['nombre'] . "',$sql_descripcion,$sql_NIF_mayorista,'" . $row['codigo_de_barras'] . "',$sql_codigo_producto_mayorista,'" . $row['numero_de_serie'] . "'," . $row['precio'] . ",$cantidad_seleccionada[$i],'" . $row['numero_factura'] . "',$sql_ubicacion,'" . $row['fecha_de_alta'] . "','$cliente')";
 
             if ($conn->query($sql) === TRUE) {
 
-            }else{
+                //comparar la contidad que queda de este mismo articulo
+                $cantidad_restante_articulo = $cantidad_total[$i]-$cantidad_seleccionada[$i];
+                if($cantidad_restante_articulo==0){//si la cantidad restante es 0 lo eliminaremos de la tabla articulos
+
+                    $delete_tabla_articulo = "DELETE FROM ARTICULO WHERE ID_ARTICULO = ". $row['ID_ARTICULO'];
+                    $conn->query($delete_tabla_articulo);
+                }else{//Si quedan unidades acutalizaremos esa cantidad
+                    $update_tabla_articulo = "UPDATE ARTICULO SET cantidad = $cantidad_restante_articulo  WHERE  ID_ARTICULO = ". $row['ID_ARTICULO'];
+                    $conn->query($update_tabla_articulo);
+                }
+
+                //comparar la contidad que queda del stock
+                $cantidad_restante_stock = select_cantidad_stock($row['codigo_de_barras']);
+                $cantidad_restante_stock = $cantidad_restante_stock-$cantidad_seleccionada[$i];
+                if($cantidad_restante_stock==0){//si la cantidad restante de stock es 0 lo eliminaremos de la tabla stock
+
+                    $delete_tabla_stock = "DELETE FROM STOCK WHERE CODIGO_DE_BARRAS =" .$row['codigo_de_barras'];
+                    $conn->query($delete_tabla_stock);
+                }else{//Si quedan unidades acutalizaremos esa cantidad de la tabla stock
+                    $update_tabla_stock = "UPDATE STOCK SET cantidad_total = $cantidad_restante_stock  WHERE  CODIGO_DE_BARRAS = " .$row['codigo_de_barras'];
+                    $conn->query($update_tabla_stock);
+                }
+
+            } else {
                 $contador++;
             }
 
 
-           /* $sql="INSERT INTO tabla1 SELECT *FROM tabla2 WHERE condicion";*/
+            /* $sql="INSERT INTO tabla1 SELECT *FROM tabla2 WHERE condicion";*/
         } else {
             echo "0 results";
         }
     }
 
 
-
-
-
-    if ($contador==0) {
+    if ($contador == 0) {
         ?>
 
         <div id="precargador">
@@ -93,7 +148,7 @@ if ($_SESSION["login_done"] == true){
                 indicador.style.width = actualprogress + "px";
                 progressnum.innerHTML = "Añadiendo cliente...";
                 if (actualprogress == 300) {
-                    window.location = "../../../insert/insert_clientes.php";
+                    window.location = "../../../buscador/buscador_articulos.php";
                 }
             }
         </script>

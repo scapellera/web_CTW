@@ -54,6 +54,8 @@ if($_SESSION["login_done"]==true){
                         //Si hay algun campo opcional no rellenado lo transforma en null
                         if($descripcion == "\"\""){
                             $descripcion = 'null';
+                        }if($nif_mayorista == "\"\""){
+                            $nif_mayorista = 'null';
                         }if($codigo_producto_mayorista == "\"\""){
                             $codigo_producto_mayorista = 'null';
                         }if($ubicacion == "\"\""){
