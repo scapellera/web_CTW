@@ -5,6 +5,7 @@ session_start();
 include('../assets/php/db.php');
 include('../assets/php/selects.php');
 include('../assets/php/functions.php');
+include('../assets/php/functions_array_sede.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
