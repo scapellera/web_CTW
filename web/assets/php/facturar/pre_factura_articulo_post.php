@@ -101,13 +101,13 @@ if ($_SESSION["login_done"] == true){
                 //comparar la contidad que queda del stock
                 $cantidad_restante_stock = select_cantidad_stock($row['codigo_de_barras']);
                 $cantidad_restante_stock = $cantidad_restante_stock-$cantidad_seleccionada[$i];
+                $codigo_de_barras= $row['codigo_de_barras'];
                 if($cantidad_restante_stock==0){//si la cantidad restante de stock es 0 lo eliminaremos de la tabla stock
 
-                    $delete_tabla_stock = "DELETE FROM STOCK WHERE CODIGO_DE_BARRAS =" .$row['codigo_de_barras'];
+                    $delete_tabla_stock = "DELETE FROM STOCK WHERE CODIGO_DE_BARRAS ='$codigo_de_barras'";
                     $conn->query($delete_tabla_stock);
                 }else{//Si quedan unidades acutalizaremos esa cantidad de la tabla stock
-                    $update_tabla_stock = "UPDATE STOCK SET cantidad_total = $cantidad_restante_stock  WHERE  CODIGO_DE_BARRAS = " .$row['codigo_de_barras'];
-                    $conn->query($update_tabla_stock);
+                    $update_tabla_stock = "UPDATE STOCK SET cantidad_total = $cantidad_restante_stock  WHERE  CODIGO_DE_BARRAS = '$codigo_de_barras'";                 $conn->query($update_tabla_stock);
                 }
 
             } else {
