@@ -83,6 +83,7 @@ if ($_SESSION["login_done"] == true){
                                 } elseif ($id_array[0] == 'minutaje') {
                                     $ruta = 'minutaje.php';
                                 }
+                                echo "$id_string";
                                 ?>
 
 

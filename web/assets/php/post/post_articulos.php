@@ -105,7 +105,6 @@ if($_SESSION["login_done"]==true){
 
                                 }
                                     if ($conn->query($sql2) === TRUE) {
-                                        echo "Stock modificado";
 
                                     }else{
                                     echo "Error en Stock: <br><br>" . $sql . "<br><br><br>" . $conn->error;

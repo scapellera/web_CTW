@@ -5,6 +5,7 @@ session_start();
 include('assets/php/db.php');
 include('assets/php/selects.php');
 include('assets/php/functions.php');
+include('assets/php/functions_array_sede.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -134,7 +135,7 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         <?php $data = select_all_usuario(); ?>
-                                        <select name="select_box_usuario" class="select_box">
+                                        <select name="select_box_usuario" class="select_box" required>
                                             <option value="" disabled selected>Selecciona el usuario que realiza el
                                                 servicio*
                                             </option>

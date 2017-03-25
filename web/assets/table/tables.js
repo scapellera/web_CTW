@@ -159,6 +159,7 @@ $(document).ready(function () {
 
     $('#buscador_minutaje').DataTable({
         dom: 'Bfrtip',
+        "order": [[5, "desc"],[1, "asc"], [6, "asc"]],
 
         "pagingType": "full_numbers",
         lengthMenu: [
@@ -167,7 +168,30 @@ $(document).ready(function () {
         ],
         buttons: [
             'pdf',
-            'pageLength'
+            'pageLength',
+            {
+                text: 'Facturar',
+                action: function () {
+                    var x = document.getElementById("buscador_minutaje").rows.length;
+                    var ID_MINUTAJE = ""
+                    for (var $i = 0; $i <= x - 1; $i++) {
+                        var div = "#div" + $i;
+                        if ($(div).hasClass("selected")) {
+                            ID_MINUTAJE = ID_MINUTAJE + ($(div).attr('value')) + ",";
+                        }
+                    }
+                    if (ID_MINUTAJE.length > 0) {
+                        ID_MINUTAJE="minutaje,"+ID_MINUTAJE;
+                        var res = ID_MINUTAJE.substring(0, ID_MINUTAJE.length-1);
+                        document.getElementById('id_string').value = res;
+                        document.getElementById("send_minutaje").submit();
+
+
+                    }
+                }
+
+
+            }
         ]
     });
 

@@ -30,6 +30,7 @@ if ($_SESSION["login_done"] == true){
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
     <script type="text/javascript" src="../assets/js/functions.js"></script>
+    <script type="text/javascript" src="../assets/js/selected_row.js"></script>
 
 </head>
 <body>
@@ -87,6 +88,11 @@ if ($_SESSION["login_done"] == true){
 
 
         <div class="content">
+            <!--passar los datos a pre_factura_articulos.php-->
+            <form method="POST" id="send_minutaje" action="../pre_factura/seleccion_pre_factura.php">
+                <input type="hidden" id="id_string" name="id_string" value="">
+                <input style="display:none" type="submit" value="submit" id="buttonId"/>
+            </form>
             <div class="container-fluid">
                 <div class="row">
                     <div>
@@ -116,12 +122,15 @@ if ($_SESSION["login_done"] == true){
                                 $data = select_all_minutaje();
 
                                 if ($data->num_rows > 0) {
+                                $i = 0;
                                 // output data of each row
                                 while ($row = $data->fetch_assoc()) {
                                 $pk = $row['ID_MINUTAJE'];
+                                $i++;
+                                $div = "div" . $i;
 
                                 ?>
-                                <tr>
+                                <tr id="<?php echo "$div"; ?>" value="<?php echo "$pk"; ?>">
                                     <td><label style="width: 100%"><center><button style="width: 100%"class="btn btn-danger" onclick="borrar_minutaje(<?php echo "$pk"; ?>)"><span class="glyphicon glyphicon-trash "></span></button></center></label></td>
                                     <td><label style="margin-top: 11px;">
                                             <a href="#" data-pk=<?php echo "\"$pk\""; ?>>

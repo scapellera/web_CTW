@@ -388,5 +388,34 @@ function get_articulo_pre_factura($ID_ARTICULO)
     close($conn);
     return $data;
 }
+function get_minutaje_pre_factura($ID_MINUTAJE)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM MINUTAJE WHERE ID_MINUTAJE = '" . $ID_MINUTAJE . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_sede_id_sede($id_sede)
+{
+    $conn = connect();
+    $sql = "SELECT nombre FROM SEDE WHERE ID_SEDE = '" . $id_sede . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $sede = $row['nombre'];
+    close($conn);
+    return $sede;
+}
+function get_servicio_id_servicio($id_servicio)
+{
+    $conn = connect();
+    $sql = "SELECT nombre FROM SERVICIO WHERE ID_SERVICIO = '" . $id_servicio . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $servicio = $row['nombre'];
+    close($conn);
+    return $servicio;
+}
 
 //////////////////////////////////////////////////////////////////
