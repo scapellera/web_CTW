@@ -22,6 +22,7 @@ if ($_SESSION["login_done"] == true){
     //DEFINIR VARIABLES
     $contador = 0;
     $cliente = $_POST['cliente'];
+    $nombre_pre_factura = $_POST['nombre_pre_factura'];
     $id_string = $_POST['submit'];
     $id_array = explode(',', $id_string);
     $cantidad_seleccionada = array("cantidad");
@@ -40,12 +41,14 @@ if ($_SESSION["login_done"] == true){
     }
 
     //Passar el articulo a articulo_articulo facturado
-    for ($i = 1; $i <= count($id_array) - 1; $i++) {
+    for ($i = 1;
+         $i <= count($id_array) - 1;
+         $i++) {
         $data = get_articulo_pre_factura($id_array[$i]);
         if ($data->num_rows > 0) {
             // output data of each row
             $row = $data->fetch_assoc();
-            
+
             //filtrado de nulls
             $sql_descripcion = $row['descripcion'];
             $sql_descripcion = "\"$sql_descripcion\"";
@@ -83,7 +86,7 @@ if ($_SESSION["login_done"] == true){
             //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
             $conn = connect();
             $sql = "INSERT INTO ARTICULO_FACTURADO (ID_ARTICULO, nombre, descripcion, NIF_mayorista, codigo_de_barras, codigo_producto_mayorista, 	numero_de_serie, precio, cantidad, 	numero_factura, ubicacion, fecha_de_alta, cliente_facturado)
-					VALUES (" . $row['ID_ARTICULO'] . ",'" . $row['nombre'] . "',$sql_descripcion,$sql_NIF_mayorista,'" . $row['codigo_de_barras'] . "',$sql_codigo_producto_mayorista,'" . $row['numero_de_serie'] . "'," . $row['precio'] . ",$cantidad_seleccionada[$i],'" . $row['numero_factura'] . "',$sql_ubicacion,'" . $row['fecha_de_alta'] . "','$cliente')";
+					VALUES (" . $row['ID_ARTICULO'] . ",'" . $row['nombre'] . "',$sql_descripcion,$sql_NIF_mayorista,'" . $row['codigo_de_barras'] . "',$sql_codigo_producto_mayorista, $sql_numero_de_serie ," . $row['precio'] . ",$cantidad_seleccionada[$i],'" . $row['numero_factura'] . "',$sql_ubicacion,'" . $row['fecha_de_alta'] . "','$cliente')";
 
             if ($conn->query($sql) === TRUE) {
 
@@ -114,8 +117,19 @@ if ($_SESSION["login_done"] == true){
                 $contador++;
             }
 
+            //añadimos los articulos en la tabla tronco_pre_factura_articulos
+            $id_pre_factura = get_id_pre_factura($cliente, $nombre_pre_factura);
+            $suma_precio = $row['precio'] * $cantidad_seleccionada[$i];
+            $insert_tronco_pre_factura_articulo = "INSERT INTO TRONCO_PRE_FACTURA_ARTICULO(ID_pre_factura, ID_articulo, numero_de_serie, cantidad, precio, suma_precio)
+			VALUES (" . $id_pre_factura . "," . $row['ID_ARTICULO'] . ",$sql_numero_de_serie,$cantidad_seleccionada[$i],'" . $row['precio'] . "',$suma_precio)";
 
-            /* $sql="INSERT INTO tabla1 SELECT *FROM tabla2 WHERE condicion";*/
+            if($conn->query($insert_tronco_pre_factura_articulo) === TRUE){
+
+            }else {
+                $contador++;
+                echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
+            }
+
         } else {
             echo "0 results";
         }
@@ -146,7 +160,7 @@ if ($_SESSION["login_done"] == true){
                 var indicador = document.getElementById("indicador");
                 actualprogress += 2;
                 indicador.style.width = actualprogress + "px";
-                progressnum.innerHTML = "Añadiendo cliente...";
+                progressnum.innerHTML = "Pre_facturando ...";
                 if (actualprogress == 300) {
                     window.location = "../../../buscador/buscador_articulos.php";
                 }

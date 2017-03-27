@@ -87,7 +87,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                 <h4 class="title"> Selecciona la cantidad de los artículos </h4>
                             </div>
                             <div class="content">
-                                <form id="contact" action="../assets/php/facturar/pre_factura_articulo_post.php"
+                                <form id="contact" action="../assets/php/facturar/pre_factura_minutaje_post.php"
                                       method="post">
                                     <?php
                                     echo "$id_string";
@@ -98,6 +98,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                             $row = $data->fetch_assoc();
                                             $sede=get_sede_id_sede($row['ID_sede']);
                                             $servicio= get_servicio_id_servicio($row['ID_servicio'])
+
 
                                             ?>
                                             <div class="row">
@@ -123,7 +124,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                                         <label> FECHA(disabled)</label>
                                                         <input type="text" name="descripcion"
                                                                class="form-control" disabled
-                                                               value="<?php echo "$servicio"; ?>">
+                                                               value="<?php echo $row['fecha']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -131,7 +132,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                                         <label> ENTRADA(disabled)</label>
                                                         <input type="text" name="descripcion"
                                                                class="form-control" disabled
-                                                               value="<?php echo "$servicio"; ?>">
+                                                               value="<?php echo $row['hora_entrada']; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -139,7 +140,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                                         <label> SALIDA(disabled)</label>
                                                         <input type="text" name="descripcion"
                                                                class="form-control" disabled
-                                                               value="<?php echo "$servicio"; ?>">
+                                                               value="<?php echo $row['hora_salida']; ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,6 +155,11 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                     <fieldset>
                                         <input type="hidden" id="cliente" name="cliente"
                                                value="<?php echo $cliente ?>">
+
+                                    </fieldset>
+                                    <fieldset>
+                                        <input type="hidden" id="nombre_pre_factura" name="nombre_pre_factura"
+                                               value="<?php echo $nombre_pre_factura ?>">
 
                                     </fieldset>
                                     <center>

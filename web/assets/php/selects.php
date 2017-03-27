@@ -321,6 +321,23 @@ function select_nombre_mayorista($NIF_mayorista)
 }
 
 //PRE_FACTURAS//////////////////////
+
+function get_id_pre_factura($cliente, $nombre_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM PRE_FACTURA 
+    WHERE NIF_empresa = '" . $cliente . "'
+    AND nombre='".$nombre_pre_factura."'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ID_PRE_FACTURA = $row['ID_PRE_FACTURA'];
+    close($conn);
+    return $ID_PRE_FACTURA;
+}
+
+
+//PRE_FACTURA_ARTICULO//////////////////////
 function id_crear_cabecera_pre_factura($nombre_pre_factura)
 {
     $conn = connect();
@@ -388,15 +405,6 @@ function get_articulo_pre_factura($ID_ARTICULO)
     close($conn);
     return $data;
 }
-function get_minutaje_pre_factura($ID_MINUTAJE)
-{
-    $conn = connect();
-    $sql = "SELECT *
-    FROM MINUTAJE WHERE ID_MINUTAJE = '" . $ID_MINUTAJE . "'";
-    $data = $conn->query($sql);
-    close($conn);
-    return $data;
-}
 function get_sede_id_sede($id_sede)
 {
     $conn = connect();
@@ -416,6 +424,28 @@ function get_servicio_id_servicio($id_servicio)
     $servicio = $row['nombre'];
     close($conn);
     return $servicio;
+}
+
+//PRE_FACTURA_MINUTAJE//////////////////////
+function get_minutaje_pre_factura($ID_MINUTAJE)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM MINUTAJE WHERE ID_MINUTAJE = '" . $ID_MINUTAJE . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_precio_servicio($ID_servicio)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO WHERE ID_SERVICIO = '" . $ID_servicio . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $precio = $row['precio'];
+    close($conn);
+    return $precio;
 }
 
 //////////////////////////////////////////////////////////////////

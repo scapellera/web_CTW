@@ -59,6 +59,7 @@ if ($_SESSION["login_done"] == true){
             ?>
 
             <form method="POST" id="send_articulos" action="../../../pre_factura/pre_factura_<?php echo $ruta?>">
+                <input type="hidden" id="select_box_nif_empresa" name="select_box_nif_empresa" value="<?php echo $nif_empresa?>">
                 <input type="hidden" id="id_string" name="id_string" value="<?php echo $id_string?>">
                 <input type="hidden" id="id_string" name="select_box_pre_factura_cliente" value="<?php echo $nombre_pre_factura?>">
                 <input style="display:none" type="submit" value="submit" id="buttonId"/>
