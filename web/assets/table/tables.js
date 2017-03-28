@@ -114,7 +114,30 @@ $(document).ready(function () {
         ],
         buttons: [
             'excel',
-            'pageLength'
+            'pageLength',
+            {
+                text: 'Facturar',
+                action: function () {
+                    var x = document.getElementById("buscador_servicio").rows.length;
+                    var ID_ARTICULO = "";
+                    for (var $i = 0; $i <= x - 1; $i++) {
+                        var div = "#div" + $i;
+                        if ($(div).hasClass("selected")) {
+                            ID_ARTICULO = ID_ARTICULO + ($(div).attr('value')) + ",";
+                        }
+                    }
+                    if (ID_ARTICULO.length > 0) {
+                        ID_ARTICULO="articulo,"+ID_ARTICULO;
+                        var res = ID_ARTICULO.substring(0, ID_ARTICULO.length-1);
+                        document.getElementById('id_string').value = res;
+                        document.getElementById("send_articulos").submit();
+
+
+                    }
+                }
+
+
+            }
         ]
     });
 
@@ -134,7 +157,7 @@ $(document).ready(function () {
                 text: 'Facturar',
                 action: function () {
                     var x = document.getElementById("buscador_articulo").rows.length;
-                    var ID_ARTICULO = ""
+                    var ID_ARTICULO = "";
                     for (var $i = 0; $i <= x - 1; $i++) {
                         var div = "#div" + $i;
                         if ($(div).hasClass("selected")) {
@@ -173,7 +196,7 @@ $(document).ready(function () {
                 text: 'Facturar',
                 action: function () {
                     var x = document.getElementById("buscador_minutaje").rows.length;
-                    var ID_MINUTAJE = ""
+                    var ID_MINUTAJE = "";
                     for (var $i = 0; $i <= x - 1; $i++) {
                         var div = "#div" + $i;
                         if ($(div).hasClass("selected")) {

@@ -38,7 +38,7 @@ if ($_SESSION["login_done"] == true){
 
             //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
             $conn = connect();
-            /*
+            
             $sql = "INSERT INTO MINUTAJE_FACTURADO (ID_MINUTAJE, fecha, hora_entrada, hora_salida, ID_SERVICIO, ID_USUARIO, ID_SEDE, NIF_cliente)
 					VALUES (" . $row['ID_MINUTAJE'] . ",'" . $row['fecha'] . "','" . $row['hora_entrada'] . "','" . $row['hora_salida'] . "'," . $row['ID_servicio'] . "," . $row['ID_usuario'] . "," . $row['ID_sede'] . ", $sql_NIF_cliente)";
 
@@ -54,7 +54,7 @@ if ($_SESSION["login_done"] == true){
             } else {
                 $contador++;
                 echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
-            }*/
+            }
 
             //AÑADIMOS EL MINUTAJE EN LA TABLA TRONCO_PRE_FACTURA_MINUTAJE
             $id_pre_factura = get_id_pre_factura($cliente, $nombre_pre_factura);
@@ -64,12 +64,19 @@ if ($_SESSION["login_done"] == true){
             $dteStart = new DateTime($row['hora_entrada']);
             $dteEnd   = new DateTime($row['hora_salida']);
             $dteDiff  = $dteStart->diff($dteEnd);
-            $dteDiff->format("%H:%I:%S");
+            //minutaje total
+            $hora= $dteDiff->format("%H%I%S");
+            echo $hora."<br>";
 
+            //calcular precio total
+            $horas =  $dteDiff->format("%H");
+            $horas= $horas*60;
+            $min =$dteDiff->format("%I");
+            $precio_total= ((($min+$horas)*$precio_servicio)/60);
+            echo $precio_total;
 
-            $precio_servicio=$precio_servicio*$dteDiff;
-            $insert_tronco_pre_factura_minutaje = "INSERT INTO TRONCO_PRE_FACTURA_MINUTAJE(ID_pre_factura, ID_minutaje, ID_servicio, horas, precio)
-			VALUES (" . $id_pre_factura . "," . $row['ID_MINUTAJE'] . ",".$row['ID_servicio'].",'$dteDiff','$precio_servicio')";
+            $insert_tronco_pre_factura_minutaje = "INSERT INTO TRONCO_PRE_FACTURA_MINUTAJE(ID_pre_factura, ID_minutaje, ID_servicio, horas, precio_servicio, precio_total)
+			VALUES (" . $id_pre_factura . "," . $row['ID_MINUTAJE'] . ",".$row['ID_servicio'].",$hora, $precio_servicio, $precio_total)";
 
             if($conn->query($insert_tronco_pre_factura_minutaje) === TRUE){
 
