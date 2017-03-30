@@ -447,5 +447,14 @@ function get_precio_servicio($ID_servicio)
     close($conn);
     return $precio;
 }
-
+//PRE_FACTURA_SERVICIO//////////////////////
+function get_servicio_pre_factura($ID_SERVICIO)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO WHERE ID_SERVICIO = " . $ID_SERVICIO ;
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 //////////////////////////////////////////////////////////////////

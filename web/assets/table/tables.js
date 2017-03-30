@@ -119,18 +119,18 @@ $(document).ready(function () {
                 text: 'Facturar',
                 action: function () {
                     var x = document.getElementById("buscador_servicio").rows.length;
-                    var ID_ARTICULO = "";
+                    var ID_SERVICIO = "";
                     for (var $i = 0; $i <= x - 1; $i++) {
                         var div = "#div" + $i;
                         if ($(div).hasClass("selected")) {
-                            ID_ARTICULO = ID_ARTICULO + ($(div).attr('value')) + ",";
+                            ID_SERVICIO = ID_SERVICIO + ($(div).attr('value')) + ",";
                         }
                     }
-                    if (ID_ARTICULO.length > 0) {
-                        ID_ARTICULO="articulo,"+ID_ARTICULO;
-                        var res = ID_ARTICULO.substring(0, ID_ARTICULO.length-1);
+                    if (ID_SERVICIO.length > 0) {
+                        ID_SERVICIO="servicio,"+ID_SERVICIO;
+                        var res = ID_SERVICIO.substring(0, ID_SERVICIO.length-1);
                         document.getElementById('id_string').value = res;
-                        document.getElementById("send_articulos").submit();
+                        document.getElementById("send_servicios").submit();
 
 
                     }
