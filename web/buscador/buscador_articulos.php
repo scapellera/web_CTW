@@ -29,7 +29,9 @@ if ($_SESSION["login_done"] == true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
-    
+    <script type="text/javascript" src="../assets/js/selected_row.js"></script>
+
+
 
 </head>
 <body>
