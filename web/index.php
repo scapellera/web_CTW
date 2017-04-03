@@ -53,22 +53,6 @@ if ($_SESSION["login_done"] == true){
         </div>
     </div>
 
-    <div class="stickyfloat_element">
-        <div id="dock-container">
-            <div id="dock">
-                <ul>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/email.png"/></a></li>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/twitter.png"/></a></li>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/user.png"/></a></li>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/facebook.png"/></a></li>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/herramientas.png"/></a></li>
-                    <li><a href="http://android.com"><img src="assets/img/iconos_menu/logout.png"/></a></li>
-                </ul>
-                <div class="base"></div>
-            </div>
-        </div>
-    </div>
-
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
@@ -100,15 +84,6 @@ if ($_SESSION["login_done"] == true){
                 </div>
             </div>
         </div>
-
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-        <h1>sdfsd</h1>
-
 
     </div>
 </div>

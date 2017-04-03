@@ -82,4 +82,9 @@
             alert('Error, solo se puede eliminar en local siendo el admin');
         }
     }
+    
+    
+
+    
+
 
