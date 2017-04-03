@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 08-03-2017 a las 16:20:26
--- Versión del servidor: 5.5.53-MariaDB
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-04-2017 a las 20:03:36
+-- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -38,16 +38,50 @@ CREATE TABLE `ARTICULO` (
   `cantidad` int(3) NOT NULL,
   `numero_factura` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `fecha_de_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha_de_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `NIF_cliente_articulo` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ARTICULO`
 --
 
-INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`) VALUES
-(1, 'Cargador portatil HP', 'Cargador para portatil HP rojo perfecto para cargas rapidas, muy muy bieno', 'WDUUT0BDD9PE5U', '23456672J', NULL, NULL, 30, 3, '1234', NULL, '2017-03-08 13:33:03'),
-(2, 'Cargador portatil HP', 'Cargador para portatil HP rojo perfecto para cargas rapidas, muy muy bieno', 'WDUUT0BDD9PE5U', '23456672J', NULL, NULL, 30, 2, '12345', NULL, '2017-03-08 13:38:06');
+INSERT INTO `ARTICULO` (`ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`, `NIF_cliente_articulo`) VALUES
+(2, 'Samsung galaxy A5', 'Smartphone', '12312324132132342312', '23456672J', NULL, '344', 300, 5, '1234', NULL, '2017-03-28 12:41:51', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ARTICULO_FACTURADO`
+--
+
+CREATE TABLE `ARTICULO_FACTURADO` (
+  `ID_ARTICULO_FACTURADO` int(5) NOT NULL,
+  `ID_ARTICULO` int(5) NOT NULL,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci,
+  `codigo_de_barras` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `NIF_mayorista` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `codigo_producto_mayorista` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `numero_de_serie` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `precio` double NOT NULL,
+  `cantidad` int(3) NOT NULL,
+  `numero_factura` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `ubicacion` varchar(40) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_de_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cliente_facturado` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ARTICULO_FACTURADO`
+--
+
+INSERT INTO `ARTICULO_FACTURADO` (`ID_ARTICULO_FACTURADO`, `ID_ARTICULO`, `nombre`, `descripcion`, `codigo_de_barras`, `NIF_mayorista`, `codigo_producto_mayorista`, `numero_de_serie`, `precio`, `cantidad`, `numero_factura`, `ubicacion`, `fecha_de_alta`, `cliente_facturado`) VALUES
+(1, 1, 'Samsung galaxy A5', 'Smartphone', 'WDUUT0BDD9PE5U', '23456672J', NULL, '123', 200, 4, '123', NULL, '2017-03-25 11:01:50', '23815820G'),
+(2, 2, 'Samsung galaxy A5', 'Smartphone', 'WDUUT0BDD9PE5U', NULL, NULL, '456', 200, 3, '456', NULL, '2017-03-25 11:02:33', '23815820G'),
+(3, 2, 'Samsung galaxy A5', 'Smartphone', 'WDUUT0BDD9PE5U', NULL, NULL, '456', 200, 1, '456', NULL, '2017-03-25 11:02:33', '23815820G'),
+(4, 1, 'Samsung galaxy A5', 'Smartphone', 'WDUUT0BDD9PE5U', '23456672J', NULL, '2132123', 300, 1, '1234', NULL, '2017-03-26 12:52:20', '34562345L'),
+(5, 1, 'Samsung galaxy A5', 'Smartphone', 'WDUUT0BDD9PE5U', '23456672J', NULL, '2132123', 300, 1, '1234', NULL, '2017-03-26 12:52:20', '34562345L');
 
 -- --------------------------------------------------------
 
@@ -72,6 +106,43 @@ CREATE TABLE `CABECERA_FACTURA` (
   `ID_factura` int(5) DEFAULT NULL,
   `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `CABECERA_PRE_FACTURA`
+--
+
+CREATE TABLE `CABECERA_PRE_FACTURA` (
+  `ID_CABECERA_PRE_FACTURA` int(5) NOT NULL,
+  `ID_pre_factura` int(5) DEFAULT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `ciudad_facturacion` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `codigo_postal_facturacion` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `calle_facturacion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `numero_facturacion` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_de_pre_factura` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `CABECERA_PRE_FACTURA`
+--
+
+INSERT INTO `CABECERA_PRE_FACTURA` (`ID_CABECERA_PRE_FACTURA`, `ID_pre_factura`, `nombre`, `ciudad_facturacion`, `codigo_postal_facturacion`, `calle_facturacion`, `numero_facturacion`, `fecha_de_pre_factura`) VALUES
+(1, 1, 'betarq marzo articulos', 'barcelona', '', 'balmes', '145', '2017-03-13 16:19:04'),
+(2, 2, 'soria global marzo', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-13 16:20:35'),
+(3, 2, 'soria global marzo', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-13 16:21:03'),
+(4, 4, 'soria global marzo', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-13 16:23:53'),
+(5, 5, 'the arkhe marzo', 'Barcelona', '08025', 'Diagonal', '433', '2017-03-14 12:48:30'),
+(6, 6, 'the arkhe abril', 'Barcelona', '08025', 'Diagonal', '433', '2017-03-14 12:51:20'),
+(7, 7, 'soria abriiil', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-26 12:50:13'),
+(8, 8, 'soria cerral', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-26 12:52:51'),
+(9, 9, 'abrilll', 'Barcelona', '08025', 'Diagonal', '433 bis', '2017-03-26 18:13:15'),
+(10, 10, 'LIU-JO articulos abril', 'Milan', '92351', 'provenza', '35', '2017-03-27 09:21:55'),
+(11, 11, 'PPPP', 'Barcelona', '08025', 'Diagonal', '433', '2017-03-27 10:48:38'),
+(12, 12, 'articulos abril', 'barcelona', '08013', 'balmes', '145', '2017-03-28 11:22:36'),
+(13, 13, 'cerralllll', 'Barcelona', '08025', 'Diagonal', '433', '2017-03-28 11:23:43'),
+(14, 14, 'patata', 'Barcelona', '08025', 'Diagonal', '433', '2017-03-30 09:16:45');
 
 -- --------------------------------------------------------
 
@@ -147,7 +218,7 @@ INSERT INTO `CONTACTO` (`ID_CONTACTO`, `nombre`, `ID_sede`, `cargo`, `email`, `t
 -- Estructura de tabla para la tabla `FACTURA`
 --
 
-CREATE TABLE `PRE_FACTURA` (
+CREATE TABLE `FACTURA` (
   `ID_FACTURA` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -187,7 +258,7 @@ CREATE TABLE `MAYORISTA` (
 --
 
 INSERT INTO `MAYORISTA` (`NIF_MAYORISTA`, `nombre_empresa`, `nombre_comercial`, `telefono_empresa`, `telefono_comercial`, `extension_telefono_comercial`, `email_empresa`, `email_comercial`, `ubicacion`, `pais`, `prefijo`, `activo`) VALUES
-('23456672J', 'Mediamarkt S.Ls', '', 931459345, 0, NULL, 'mayorista@mediamarkt.es', NULL, NULL, 'Bahamas', 1242, 1),
+('23456672J', 'Mediamarkt S.Ls', 'pepe', 931459345, 0, NULL, 'mayorista@mediamarkt.es', NULL, NULL, 'Bahamas', 1242, 1),
 ('34567836P', 'Fnac', 'Antonio', 931234512, 637482746, NULL, 'mayorista@fnac.es', 'alamela@fnac.es', NULL, 'Argentina', 54, 1);
 
 -- --------------------------------------------------------
@@ -205,27 +276,45 @@ CREATE TABLE `MINUTAJE` (
   `ID_usuario` int(4) DEFAULT NULL,
   `ID_sede` int(5) DEFAULT NULL,
   `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `facturado` tinyint(1) NOT NULL
+  `facturado` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MINUTAJE_FACTURADO`
+--
+
+CREATE TABLE `MINUTAJE_FACTURADO` (
+  `ID_MINUTAJE_FACTURADO` int(4) NOT NULL,
+  `ID_MINUTAJE` int(4) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_entrada` time NOT NULL,
+  `hora_salida` time NOT NULL,
+  `ID_SERVICIO` int(4) NOT NULL,
+  `ID_USUARIO` int(4) NOT NULL,
+  `ID_SEDE` int(5) NOT NULL,
+  `NIF_cliente` varchar(9) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `MINUTAJE`
+-- Volcado de datos para la tabla `MINUTAJE_FACTURADO`
 --
 
-INSERT INTO `MINUTAJE` (`ID_MINUTAJE`, `fecha`, `hora_entrada`, `hora_salida`, `ID_servicio`, `ID_usuario`, `ID_sede`, `NIF_cliente`, `facturado`) VALUES
-(1, '2017-03-08', '15:28:00', '15:32:00', 3, 12, 3, '23456784y', 0),
-(3, '2017-03-08', '15:35:00', '15:36:00', 3, 12, 2, '34562345L', 0),
-(4, '2017-03-08', '15:35:00', '15:36:00', 3, 12, 2, '34562345L', 0),
-(5, '2017-03-08', '15:36:00', '15:36:00', 3, 12, 2, '34562345L', 0),
-(7, '2017-03-08', '15:41:00', '15:42:00', 3, 12, 2, '34562345L', 0),
-(8, '2017-03-08', '15:42:00', '15:43:00', 3, 12, 2, '34562345L', 0),
-(14, '2017-03-08', '15:49:00', '15:49:00', 3, 12, 2, '34562345L', 0),
-(15, '2017-03-08', '15:59:00', '15:59:00', 3, 12, 2, '34562345L', 1),
-(16, '2017-03-08', '16:13:00', '16:15:00', 2, 12, 2, '34562345L', 0),
-(17, '2017-03-08', '16:15:00', '16:16:00', 3, 12, 2, '34562345L', 0),
-(18, '2017-03-08', '16:17:00', '16:17:00', 3, 12, 2, '34562345L', 0),
-(19, '2017-03-08', '16:17:00', '16:17:00', 3, 12, 2, '34562345L', 0),
-(20, '2017-03-08', '16:18:00', '16:18:00', 2, 12, 2, '34562345L', 0);
+INSERT INTO `MINUTAJE_FACTURADO` (`ID_MINUTAJE_FACTURADO`, `ID_MINUTAJE`, `fecha`, `hora_entrada`, `hora_salida`, `ID_SERVICIO`, `ID_USUARIO`, `ID_SEDE`, `NIF_cliente`) VALUES
+(1, 6, '2017-03-25', '18:23:10', '18:23:00', 1, 26, 2, '34562345L'),
+(2, 7, '2017-03-25', '18:24:00', '18:24:00', 3, 26, 3, '23456784y'),
+(3, 6, '2017-03-25', '18:23:10', '18:23:00', 1, 26, 2, '34562345L'),
+(4, 2, '2017-03-24', '03:00:00', '04:15:00', 3, 26, 1, '23815820G'),
+(5, 3, '2017-03-22', '10:00:00', '15:00:00', 3, 26, 1, '23815820G'),
+(6, 4, '2017-03-25', '18:21:00', '18:21:00', 1, 26, 1, '23815820G'),
+(7, 5, '2017-03-25', '18:23:00', '18:23:00', 1, 26, 1, '23815820G'),
+(8, 8, '2017-03-25', '18:24:00', '18:24:00', 1, 26, 1, '23815820G'),
+(9, 10, '2017-03-25', '18:24:00', '18:24:00', 1, 26, 1, '23815820G'),
+(10, 11, '2017-03-25', '18:24:00', '18:24:00', 3, 26, 1, '23815820G'),
+(11, 7, '2017-03-25', '16:24:00', '18:24:00', 3, 26, 3, '23456784y'),
+(12, 9, '2017-03-25', '18:24:00', '18:24:00', 1, 26, 3, '23456784y'),
+(13, 12, '2017-03-25', '18:30:00', '19:00:00', 1, 26, 3, '23456784y');
 
 -- --------------------------------------------------------
 
@@ -502,6 +591,52 @@ CREATE TABLE `PIE_FACTURA` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `PIE_PRE_FACTURA`
+--
+
+CREATE TABLE `PIE_PRE_FACTURA` (
+  `ID_PIE_PER_FACTURA` int(5) NOT NULL,
+  `ID_pre_factura` int(5) DEFAULT NULL,
+  `total_facturado` float NOT NULL,
+  `IVA` int(5) DEFAULT NULL,
+  `total_neto` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `PRE_FACTURA`
+--
+
+CREATE TABLE `PRE_FACTURA` (
+  `ID_PRE_FACTURA` int(5) NOT NULL,
+  `NIF_empresa` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `PRE_FACTURA`
+--
+
+INSERT INTO `PRE_FACTURA` (`ID_PRE_FACTURA`, `NIF_empresa`, `nombre`) VALUES
+(1, '34562345L', 'betarq marzo articulos'),
+(2, '45243523Z', 'soria global marzo'),
+(3, '45243523Z', 'soria global marzo'),
+(4, '45243523Z', 'soria global marzo'),
+(5, '23815820G', 'the arkhe marzo'),
+(6, '23815820G', 'the arkhe abril'),
+(7, '45243523Z', 'soria abriiil'),
+(8, '45243523Z', 'soria cerral'),
+(9, '45243523Z', 'abrilll'),
+(10, '23456784y', 'LIU-JO articulos abril'),
+(11, '23815820G', 'PPPP'),
+(12, '34562345L', 'articulos abril'),
+(13, '23815820G', 'cerralllll'),
+(14, '23815820G', 'patata');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ROL`
 --
 
@@ -596,6 +731,32 @@ INSERT INTO `SERVICIO` (`ID_SERVICIO`, `nombre`, `descripcion`, `precio`, `NIF_e
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `SERVICIO_FACTURADO`
+--
+
+CREATE TABLE `SERVICIO_FACTURADO` (
+  `ID_SERVICIO_FACTURADO` int(11) NOT NULL,
+  `ID_servicio` int(11) NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `precio` float NOT NULL,
+  `NIF_cliente` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `SERVICIO_FACTURADO`
+--
+
+INSERT INTO `SERVICIO_FACTURADO` (`ID_SERVICIO_FACTURADO`, `ID_servicio`, `nombre`, `descripcion`, `precio`, `NIF_cliente`) VALUES
+(1, 1, '', 'reparar hardware', 30, '23815820G'),
+(2, 1, '', 'reparar hardware', 30, '34562345L'),
+(3, 1, '', 'reparar hardware', 30, '34562345L'),
+(4, 3, 'instalar LIU-JO', 'instalar maquinas pero solo a LIU-JO', 50, '23456784y'),
+(5, 1, 'Reparar', 'reparar hardware', 30, '23456784y');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `STOCK`
 --
 
@@ -609,7 +770,7 @@ CREATE TABLE `STOCK` (
 --
 
 INSERT INTO `STOCK` (`CODIGO_DE_BARRAS`, `cantidad_total`) VALUES
-('WDUUT0BDD9PE5U', 5);
+('12312324132132342312', 5);
 
 -- --------------------------------------------------------
 
@@ -640,6 +801,81 @@ CREATE TABLE `TRONCO_FACTURA_SERVICIO` (
   `horas` float NOT NULL,
   `precio` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TRONCO_PRE_FACTURA_ARTICULO`
+--
+
+CREATE TABLE `TRONCO_PRE_FACTURA_ARTICULO` (
+  `ID_TRONCO_PRE_FACTURA_ARTICULO` int(5) NOT NULL,
+  `ID_pre_factura` int(5) DEFAULT NULL,
+  `ID_articulo` int(5) DEFAULT NULL,
+  `numero_de_serie` int(30) NOT NULL,
+  `cantidad` int(5) NOT NULL,
+  `precio` float NOT NULL,
+  `suma_precio` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `TRONCO_PRE_FACTURA_ARTICULO`
+--
+
+INSERT INTO `TRONCO_PRE_FACTURA_ARTICULO` (`ID_TRONCO_PRE_FACTURA_ARTICULO`, `ID_pre_factura`, `ID_articulo`, `numero_de_serie`, `cantidad`, `precio`, `suma_precio`) VALUES
+(1, 1, 1, 2132123, 1, 300, 300),
+(2, 12, 1, 2132123, 1, 300, 300);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TRONCO_PRE_FACTURA_MINUTAJE`
+--
+
+CREATE TABLE `TRONCO_PRE_FACTURA_MINUTAJE` (
+  `ID_TRONCO_PRE_FACTURA_MINUTAJE` int(4) NOT NULL,
+  `ID_pre_factura` int(5) NOT NULL,
+  `ID_minutaje` varchar(4) COLLATE utf8_spanish_ci NOT NULL,
+  `ID_servicio` int(4) NOT NULL,
+  `horas` time NOT NULL,
+  `precio_servicio` float NOT NULL,
+  `precio_total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `TRONCO_PRE_FACTURA_MINUTAJE`
+--
+
+INSERT INTO `TRONCO_PRE_FACTURA_MINUTAJE` (`ID_TRONCO_PRE_FACTURA_MINUTAJE`, `ID_pre_factura`, `ID_minutaje`, `ID_servicio`, `horas`, `precio_servicio`, `precio_total`) VALUES
+(1, 1, '7', 3, '02:00:00', 50, 100),
+(2, 13, '9', 1, '00:00:00', 30, 0),
+(3, 13, '12', 1, '00:30:00', 30, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TRONCO_PRE_FACTURA_SERVICIO`
+--
+
+CREATE TABLE `TRONCO_PRE_FACTURA_SERVICIO` (
+  `ID_TRONCO_PRE_FACTURA_MINUTAJE` int(11) NOT NULL,
+  `ID_pre_factura` int(11) NOT NULL,
+  `ID_servicio` int(11) NOT NULL,
+  `precio` float NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `TRONCO_PRE_FACTURA_SERVICIO`
+--
+
+INSERT INTO `TRONCO_PRE_FACTURA_SERVICIO` (`ID_TRONCO_PRE_FACTURA_MINUTAJE`, `ID_pre_factura`, `ID_servicio`, `precio`, `cantidad`, `precio_total`) VALUES
+(1, 5, 1, 30, 2, 60),
+(2, 1, 1, 30, 5, 150),
+(3, 1, 1, 30, 2, 60),
+(4, 10, 3, 50, 10, 500),
+(5, 10, 1, 30, 10, 300);
 
 -- --------------------------------------------------------
 
@@ -680,7 +916,14 @@ INSERT INTO `USUARIO` (`ID_USUARIO`, `nombre`, `apellido`, `correo`, `telefono`,
 ALTER TABLE `ARTICULO`
   ADD PRIMARY KEY (`ID_ARTICULO`),
   ADD KEY `fk_NIF_mayorista_articulo` (`NIF_mayorista`),
-  ADD KEY `fk_codigo_de_barras_articulo` (`codigo_de_barras`);
+  ADD KEY `fk_codigo_de_barras_articulo` (`codigo_de_barras`),
+  ADD KEY `NIF_cliente_articulo` (`NIF_cliente_articulo`);
+
+--
+-- Indices de la tabla `ARTICULO_FACTURADO`
+--
+ALTER TABLE `ARTICULO_FACTURADO`
+  ADD PRIMARY KEY (`ID_ARTICULO_FACTURADO`);
 
 --
 -- Indices de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
@@ -697,6 +940,13 @@ ALTER TABLE `CABECERA_FACTURA`
   ADD PRIMARY KEY (`ID_CABECERA_FACTURA`),
   ADD KEY `fk_ID_factura_cabecera_factura` (`ID_factura`),
   ADD KEY `fk_NIF_cliente_cabecera_factura` (`NIF_cliente`);
+
+--
+-- Indices de la tabla `CABECERA_PRE_FACTURA`
+--
+ALTER TABLE `CABECERA_PRE_FACTURA`
+  ADD PRIMARY KEY (`ID_CABECERA_PRE_FACTURA`),
+  ADD KEY `ID_pre_factura` (`ID_pre_factura`);
 
 --
 -- Indices de la tabla `CLIENTE`
@@ -744,6 +994,12 @@ ALTER TABLE `MINUTAJE`
   ADD KEY `fk_ID_usuario_fecha` (`ID_usuario`);
 
 --
+-- Indices de la tabla `MINUTAJE_FACTURADO`
+--
+ALTER TABLE `MINUTAJE_FACTURADO`
+  ADD PRIMARY KEY (`ID_MINUTAJE_FACTURADO`);
+
+--
 -- Indices de la tabla `PAIS`
 --
 ALTER TABLE `PAIS`
@@ -756,6 +1012,13 @@ ALTER TABLE `PIE_FACTURA`
   ADD PRIMARY KEY (`ID_PIE_FACTURA`),
   ADD KEY `fk_ID_factura_pie_factura` (`ID_factura`),
   ADD KEY `fk_ID_IVA` (`IVA`);
+
+--
+-- Indices de la tabla `PRE_FACTURA`
+--
+ALTER TABLE `PRE_FACTURA`
+  ADD PRIMARY KEY (`ID_PRE_FACTURA`),
+  ADD KEY `NIF_empresa` (`NIF_empresa`);
 
 --
 -- Indices de la tabla `ROL`
@@ -787,6 +1050,12 @@ ALTER TABLE `SERVICIO`
   ADD KEY `NIF_empresa` (`NIF_empresa`);
 
 --
+-- Indices de la tabla `SERVICIO_FACTURADO`
+--
+ALTER TABLE `SERVICIO_FACTURADO`
+  ADD PRIMARY KEY (`ID_SERVICIO_FACTURADO`);
+
+--
 -- Indices de la tabla `STOCK`
 --
 ALTER TABLE `STOCK`
@@ -810,6 +1079,26 @@ ALTER TABLE `TRONCO_FACTURA_SERVICIO`
   ADD KEY `fk_ID_factura_tronco_factura_servicios` (`ID_factura`);
 
 --
+-- Indices de la tabla `TRONCO_PRE_FACTURA_ARTICULO`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_ARTICULO`
+  ADD PRIMARY KEY (`ID_TRONCO_PRE_FACTURA_ARTICULO`),
+  ADD KEY `ID_pre_factura` (`ID_pre_factura`),
+  ADD KEY `ID_articulo` (`ID_articulo`);
+
+--
+-- Indices de la tabla `TRONCO_PRE_FACTURA_MINUTAJE`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_MINUTAJE`
+  ADD PRIMARY KEY (`ID_TRONCO_PRE_FACTURA_MINUTAJE`);
+
+--
+-- Indices de la tabla `TRONCO_PRE_FACTURA_SERVICIO`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_SERVICIO`
+  ADD PRIMARY KEY (`ID_TRONCO_PRE_FACTURA_MINUTAJE`);
+
+--
 -- Indices de la tabla `USUARIO`
 --
 ALTER TABLE `USUARIO`
@@ -826,6 +1115,11 @@ ALTER TABLE `USUARIO`
 ALTER TABLE `ARTICULO`
   MODIFY `ID_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `ARTICULO_FACTURADO`
+--
+ALTER TABLE `ARTICULO_FACTURADO`
+  MODIFY `ID_ARTICULO_FACTURADO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT de la tabla `ASIGNAR_USUARIO_PROVEEDOR`
 --
 ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
@@ -835,6 +1129,11 @@ ALTER TABLE `ASIGNAR_USUARIO_PROVEEDOR`
 --
 ALTER TABLE `CABECERA_FACTURA`
   MODIFY `ID_CABECERA_FACTURA` int(5) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `CABECERA_PRE_FACTURA`
+--
+ALTER TABLE `CABECERA_PRE_FACTURA`
+  MODIFY `ID_CABECERA_PRE_FACTURA` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `CONTACTO`
 --
@@ -849,12 +1148,22 @@ ALTER TABLE `FACTURA`
 -- AUTO_INCREMENT de la tabla `MINUTAJE`
 --
 ALTER TABLE `MINUTAJE`
-  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `MINUTAJE_FACTURADO`
+--
+ALTER TABLE `MINUTAJE_FACTURADO`
+  MODIFY `ID_MINUTAJE_FACTURADO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `PIE_FACTURA`
 --
 ALTER TABLE `PIE_FACTURA`
   MODIFY `ID_PIE_FACTURA` int(5) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `PRE_FACTURA`
+--
+ALTER TABLE `PRE_FACTURA`
+  MODIFY `ID_PRE_FACTURA` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `SEDE`
 --
@@ -866,6 +1175,11 @@ ALTER TABLE `SEDE`
 ALTER TABLE `SERVICIO`
   MODIFY `ID_SERVICIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT de la tabla `SERVICIO_FACTURADO`
+--
+ALTER TABLE `SERVICIO_FACTURADO`
+  MODIFY `ID_SERVICIO_FACTURADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT de la tabla `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_ARTICULO`
@@ -875,6 +1189,21 @@ ALTER TABLE `TRONCO_FACTURA_ARTICULO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
   MODIFY `ID_TRONCO_FACTURA_SERVICIO` int(5) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `TRONCO_PRE_FACTURA_ARTICULO`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_ARTICULO`
+  MODIFY `ID_TRONCO_PRE_FACTURA_ARTICULO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `TRONCO_PRE_FACTURA_MINUTAJE`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_MINUTAJE`
+  MODIFY `ID_TRONCO_PRE_FACTURA_MINUTAJE` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `TRONCO_PRE_FACTURA_SERVICIO`
+--
+ALTER TABLE `TRONCO_PRE_FACTURA_SERVICIO`
+  MODIFY `ID_TRONCO_PRE_FACTURA_MINUTAJE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `USUARIO`
 --
@@ -888,6 +1217,7 @@ ALTER TABLE `USUARIO`
 -- Filtros para la tabla `ARTICULO`
 --
 ALTER TABLE `ARTICULO`
+  ADD CONSTRAINT `fk_NIF_cliente_articulo` FOREIGN KEY (`NIF_cliente_articulo`) REFERENCES `CLIENTE` (`NIF_EMPRESA`),
   ADD CONSTRAINT `fk_NIF_mayorista_articulo` FOREIGN KEY (`NIF_mayorista`) REFERENCES `MAYORISTA` (`NIF_MAYORISTA`) ON DELETE SET NULL;
 
 --
@@ -954,24 +1284,10 @@ ALTER TABLE `SERVICIO`
   ADD CONSTRAINT `FK_NIF_empresa_servicio` FOREIGN KEY (`NIF_empresa`) REFERENCES `CLIENTE` (`NIF_EMPRESA`) ON DELETE SET NULL;
 
 --
--- Filtros para la tabla `STOCK`
---
-ALTER TABLE `STOCK`
-  ADD CONSTRAINT `fk_codigo_de_barras_articulo` FOREIGN KEY (`CODIGO_DE_BARRAS`) REFERENCES `ARTICULO` (`codigo_de_barras`);
-
---
--- Filtros para la tabla `TRONCO_FACTURA_ARTICULO`
---
-ALTER TABLE `TRONCO_FACTURA_ARTICULO`
-  ADD CONSTRAINT `fk_ID_articulo_tronco_factura_articulos` FOREIGN KEY (`ID_articulo`) REFERENCES `ARTICULO` (`ID_ARTICULO`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_articulos` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
-
---
 -- Filtros para la tabla `TRONCO_FACTURA_SERVICIO`
 --
 ALTER TABLE `TRONCO_FACTURA_SERVICIO`
-  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL,
-  ADD CONSTRAINT `fk_ID_minutaje_tronco_factura_servicios` FOREIGN KEY (`ID_minutaje`) REFERENCES `MINUTAJE` (`ID_MINUTAJE`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_ID_factura_tronco_factura_servicios` FOREIGN KEY (`ID_factura`) REFERENCES `FACTURA` (`ID_FACTURA`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `USUARIO`
