@@ -1,3 +1,28 @@
+/*MENU DE ABAJO*/
+#dock li {display:inline-block}
+
+#dock li img {
+    width: 64px;
+    height: 64px;
+    -webkit-box-reflect: below 2px
+    -webkit-gradient(linear, left top, left bottom, from(transparent),
+            color-stop(0.7, transparent), to(rgba(255,255,255,.5))); /* reflection is supported by webkit only */
+    -webkit-transition: all 0.3s;
+    -webkit-transform-origin: 50% 100%;
+}
+#dock li:hover img {
+    -webkit-transform: scale(2);
+    margin: 0 2em;
+}
+
+.stickyfloat_element {
+    z-index: 5;
+    margin-left: 35%;
+    position: absolute;
+    -webkit-transition: top 0.8s ease-in-out;
+    transition: top 0.8s ease-in-out;
+}
+
 /*http://www.bestcssbuttongenerator.com/#/2*/
 
 .myButton:hover {
