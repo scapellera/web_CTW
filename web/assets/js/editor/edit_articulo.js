@@ -1,9 +1,22 @@
 $(document).ready(function() {
   $.fn.editable.defaults.mode = 'inline'
+  $.fn.editable.defaults.toggle = 'dblclick'
   $('.nombre').editable({
     type: 'text',
     url: '../assets/php/update_table/update_articulo.php',
     name: 'nombre'
+
+  })
+  $('.descripcion').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'descripcion'
+
+  })
+  $('.NIF_mayorista').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'NIF_mayorista'
 
   })
   $('.descripcion').editable({
@@ -30,12 +43,7 @@ $(document).ready(function() {
     name: 'precio'
 
   })
-  $('.cantidad').editable({
-    type: 'text',
-    url: '../assets/php/update_table/update_articulo.php',
-    name: 'cantidad'
-
-  })
+  
   $('.numero_de_factura').editable({
     type: 'text',
     url: '../assets/php/update_table/update_articulo.php',
@@ -48,5 +56,12 @@ $(document).ready(function() {
     name: 'ubicacion'
 
   })
+  $('.NIF_cliente_articulo').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_articulo.php',
+    name: 'NIF_cliente_articulo'
+
+  })
+
   
 })

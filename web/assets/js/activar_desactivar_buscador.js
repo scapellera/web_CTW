@@ -174,3 +174,5 @@ function onchange_minutaje_facturado($pk, $facturado) {
         });
     }
 }
+
+

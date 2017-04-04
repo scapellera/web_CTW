@@ -20,13 +20,15 @@ if ($_SESSION["login_done"] == true){
     <!--LIBRERIAS-->
     <!--LIBRERIA - GLOBAL-->
     <?php include('../assets/librerias/librerias_globales_buscador.html'); ?>
-    <!--EDITOR DE TABLAS-->
+    <!--EDITOR DE TABLA-->
+
     <?php
     if ($_SESSION["user_rol"] <= 1) {
         //<!--COLUMNAS QUE PUEDEN SER MODIFICADAS-->
-        echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_stock.js\"></script>";
+       /* echo "<script type=\"text/javascript\" src=\"../assets/js/editor/edit_stock.js\"></script>";*/
     }
     ?>
+
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
 </head>
@@ -44,7 +46,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_stock").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_stock {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_stock1 {
+                        margin-left: 20%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -52,14 +69,20 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador stock</a>
-                </div>
-                <div class="collapse navbar-collapse">
-
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador stock</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 

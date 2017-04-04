@@ -14,49 +14,52 @@ table tfoot {
 }
 
 table tr.even {
-  background-color: rgba(233, 142, 66, 0.11);;
+  background-color: rgba(233, 142, 66, 0.11);
+}
+table.dataTable tbody>tr.odd.selected,
+table.dataTable tbody>tr.odd.selected>.sorting_1 {
+  background-color: #706f6e;
+  transition: all 0.2s ease;
+}
+
+table.dataTable tbody>tr.even.selected,
+table.dataTable tbody>tr.even.selected>.sorting_1 {
+  background-color: #505050;
+  transition: all 0.2s ease;
+}
+
+table.dataTable tbody>tr.odd.selected:hover,
+table.dataTable tbody>tr.odd.selected:focus,
+table.dataTable tbody>tr.odd.selected:hover>.sorting_1,
+table.dataTable tbody>tr.odd.selected:focus>.sorting_1 {
+  background-color: #706f6e;
+}
+
+table.dataTable tbody>tr.even.selected:hover,
+table.dataTable tbody>tr.even.selected:focus,
+table.dataTable tbody>tr.even.selected:hover>.sorting_1,
+table.dataTable tbody>tr.even.selected:focus>.sorting_1 {
+  background-color: #505050;
+}
+
+table.dataTable tbody tr.selected td a {
+  color: #fff;
 }
 
 table tr.odd,
 table tr.even {
   transition: all .2s ease;
 }
-
+/*
 table tr.odd:hover,
 table tr.odd:focus {
   background-color: #fcf8ff;
 }
-/*
+
 table tr.even:hover,
 table tr.even:focus {
   background-color: #f4e4ff;
 }*/
-
-table.dataTable.display tbody>tr.odd.selected,
-table.dataTable.display tbody>tr.odd.selected>.sorting_1 {
-  background-color: #6200a9;
-  transition: all 0.2s ease;
-}
-
-table.dataTable.display tbody>tr.even.selected,
-table.dataTable.display tbody>tr.even.selected>.sorting_1 {
-  background-color: #560096;
-  transition: all 0.2s ease;
-}
-
-table.dataTable.display tbody>tr.odd.selected:hover,
-table.dataTable.display tbody>tr.odd.selected:focus,
-table.dataTable.display tbody>tr.odd.selected:hover>.sorting_1,
-table.dataTable.display tbody>tr.odd.selected:focus>.sorting_1 {
-  background-color: #4b0082;
-}
-
-table.dataTable.display tbody>tr.even.selected:hover,
-table.dataTable.display tbody>tr.even.selected:focus,
-table.dataTable.display tbody>tr.even.selected:hover>.sorting_1,
-table.dataTable.display tbody>tr.even.selected:focus>.sorting_1 {
-  background-color: #40006e;
-}
 
 /* botons */
 div.dt-buttons.button-group {
@@ -77,7 +80,7 @@ a.button.small {
   border-radius: 8px;
   background-color: #4b0082;
   color: #fff;
-  transition: all .1 ease;
+  transition: all .1s ease;
 }
 
 a.button.small:hover,

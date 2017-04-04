@@ -4,6 +4,7 @@
 session_start();
 include('assets/php/db.php');
 include('./assets/php/selects.php');
+include('assets/php/functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -36,6 +37,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_entrada_stock").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_entrada_stock {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_entrada_stock1 {
+                        margin-left: 2%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -43,21 +60,18 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Entrada de artículo</a>
                 </div>
                 <div class="collapse navbar-collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li>
-                            <a href="./user.php"> <?php echo $_SESSION["username"]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a>
-                        </li>
-                        <li>
-                            <a href="../logout.php">Log out
-                            </a>
-                        </li>
-                    </ul>
+                    <!--USER & LOGOUT-->
+                    <?php include('assets/html/menu/user_logout.html'); ?>
                 </div>
             </div>
         </nav>
@@ -72,7 +86,7 @@ if ($_SESSION["login_done"] == true){
                                     <h3>Añadir Artículo</h3>
                                     <h4>Rellene el formulario para añadir el artículo al stock</h4>
                                     <fieldset>
-                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" required>
+                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" value="" required>
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Descripción: <input placeholder="Descripción" name="descripcion"
@@ -86,7 +100,7 @@ if ($_SESSION["login_done"] == true){
                                     <fieldset>&nbsp;Selecciona el NIF del mayorista:
                                         <?php $data = select_all_mayorista(); ?>
                                         <select name="select_box_nif_mayorista" class="select_box">
-                                            <option value="" disabled selected>Selecciona el NIF del mayorista*</option>
+                                            <option value="" selected>Selecciona el NIF del mayorista</option>
                                             <?php
                                             if ($data->num_rows > 0) {
                                                 // output data of each row
@@ -106,14 +120,14 @@ if ($_SESSION["login_done"] == true){
                                             type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número de serie: <input placeholder="Número de serie*"
-                                                                      name="numero_de_serie" type="text" required>
+                                        &nbsp;Número de serie: <input placeholder="Número de serie"
+                                                                      name="numero_de_serie" type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Precio: <input placeholder="Precio*" name="precio" type="text" required>
+                                        &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Cantidad: <input placeholder="Cantidad*" name="cantidad" type="text"
+                                        &nbsp;Cantidad: </br><input placeholder="Cantidad*" name="cantidad" type="number"
                                                                required>
                                     </fieldset>
                                     <fieldset>
@@ -122,6 +136,22 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Ubicación: <input placeholder="Ubicación" name="ubicacion" type="text">
+                                    </fieldset>
+                                    <fieldset>&nbsp;Selecciona el NIF del cliente(En el caso que sea necesario):
+                                        <?php $data = select_all_cliente(); ?>
+                                        <select name="select_box_nif_empresa" class="select_box">
+                                            <option value="">Selecciona el NIF del cliente...</option>
+                                            <?php
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </fieldset>
                                     <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"

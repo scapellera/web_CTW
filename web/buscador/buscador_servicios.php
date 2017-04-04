@@ -29,6 +29,8 @@ if ($_SESSION["login_done"] == true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+    <script type="text/javascript" src="../assets/js/functions.js"></script>
+    <script type="text/javascript" src="../assets/js/selected_row.js"></script>
 </head>
 <body>
 
@@ -44,21 +46,47 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_servicios").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_servicios {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_servicios1 {
+                        margin-left: 12%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
+            <form method="POST" id="send_servicios" action="../pre_factura/seleccion_pre_factura.php">
+                <input type="hidden" id="id_string" name="id_string" value="">
+                <input style="display:none" type="submit" value="submit" id="buttonId"/>
+            </form>
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador servicios</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador servicios</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 
@@ -74,7 +102,7 @@ if ($_SESSION["login_done"] == true){
                                     <th>Nombre</th>
                                     <th>Descripción</th>
                                     <th>Precio</th>
-                                    <th>NIF empresa</th>
+                                    <th>Cliente</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -83,12 +111,15 @@ if ($_SESSION["login_done"] == true){
                                 $data = select_all_servicio();
                                 
                                 if ($data->num_rows > 0) {
+                                    $i = 0;
                                     // output data of each row
                                     while ($row = $data->fetch_assoc()) {
                                         $pk = $row['ID_SERVICIO'];
+                                        $i++;
+                                        $div = "div" . $i;
 
                                         ?>
-                                        <tr>
+                                        <tr id="<?php echo "$div"; ?>" value="<?php echo "$pk"; ?>">
                                             <?php checkbox_servicios($row['activo'],$row['ID_SERVICIO']  )?>
                                             <td><label style="margin-top: 11px;"><a href="#" class="nombre"
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre'] ?> </a></label>

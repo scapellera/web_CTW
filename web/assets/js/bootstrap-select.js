@@ -291,15 +291,15 @@
         
         setDisabled:function(index, disabled) {
             if(disabled) {
-                this.$newElement.find('li').eq(index).addClass('disabled');
+                this.$newElement.find('li').eq(index).addClass('enabled');
             } else {
-                this.$newElement.find('li').eq(index).removeClass('disabled');
+                this.$newElement.find('li').eq(index).removeClass('enabled');
             }
         },
        
         checkDisabled: function() {
-            if (this.$element.is(':disabled')) {
-                this.button.addClass('disabled');
+            if (this.$element.is(':enabled')) {
+                this.button.addClass('enabled');
                 this.button.click(function(e) {
                     e.preventDefault();
                 });
@@ -334,7 +334,7 @@
                 e.preventDefault();
                 
                 //Dont run if we have been disabled
-                if ($select.prev('select').not(':disabled') && !$(this).parent().hasClass('disabled')){
+                if ($select.prev('select').not(':-->') && !$(this).parent().hasClass('-->')){
                     //Deselect all others if not multi select box
                     if (!_this.multiple) {
                         $select.prev('select').find('option').removeAttr('selected');

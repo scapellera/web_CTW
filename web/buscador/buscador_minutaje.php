@@ -29,6 +29,8 @@ if ($_SESSION["login_done"] == true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+    <script type="text/javascript" src="../assets/js/functions.js"></script>
+    <script type="text/javascript" src="../assets/js/selected_row.js"></script>
 
 </head>
 <body>
@@ -45,26 +47,52 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_minutaje").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_minutaje {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_minutaje1 {
+                        margin-left: 13%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador minutaje</a>
-                </div>
-                <div class="collapse navbar-collapse">
-
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador minutajes</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 
-        <div class="content2">
+        <div class="content">
+            <!--passar los datos a pre_factura_articulos.php-->
+            <form method="POST" id="send_minutaje" action="../pre_factura/seleccion_pre_factura.php">
+                <input type="hidden" id="id_string" name="id_string" value="">
+                <input style="display:none" type="submit" value="submit" id="buttonId"/>
+            </form>
             <div class="container-fluid">
                 <div class="row">
                     <div>
@@ -74,7 +102,7 @@ if ($_SESSION["login_done"] == true){
                             <table id="buscador_minutaje" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th style="background-color: #39AF33; width: 3px;">Facturado</th>
+                                    <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                     <th>Cliente</th>
                                     <th>Sede</th>
                                     <th>Servicio</th>
@@ -94,15 +122,18 @@ if ($_SESSION["login_done"] == true){
                                 $data = select_all_minutaje();
 
                                 if ($data->num_rows > 0) {
+                                $i = 0;
                                 // output data of each row
                                 while ($row = $data->fetch_assoc()) {
                                 $pk = $row['ID_MINUTAJE'];
+                                $i++;
+                                $div = "div" . $i;
 
                                 ?>
-                                <tr>
-                                    <?php checkbox_minutaje_facturado($row['facturado'], $row['ID_MINUTAJE']) ?>
+                                <tr id="<?php echo "$div"; ?>" value="<?php echo "$pk"; ?>">
+                                    <td><label style="width: 100%"><center><button style="width: 100%"class="btn btn-danger" onclick="borrar_minutaje(<?php echo "$pk"; ?>)"><span class="glyphicon glyphicon-trash "></span></button></center></label></td>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="NIF_cliente" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $nif_cliente = $row['NIF_cliente'];
                                                 $nombreCliente = select_nombre_cliente($nif_cliente);
@@ -112,7 +143,7 @@ if ($_SESSION["login_done"] == true){
                                         </label>
                                     </td>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="ID_sede" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $id_sede = $row['ID_sede'];
                                                 $nombreSede = select_nombre_sede($id_sede);
@@ -132,7 +163,7 @@ if ($_SESSION["login_done"] == true){
                                         </label>
                                     </td>
                                     <td><label style="margin-top: 11px;">
-                                            <a href="#" class="ID_usuario" data-pk=<?php echo "\"$pk\""; ?>>
+                                            <a href="#" data-pk=<?php echo "\"$pk\""; ?>>
                                                 <?php
                                                 $id_usuario = $row['ID_usuario'];
                                                 $nombreUsuario = select_nombre_usuario($id_usuario);

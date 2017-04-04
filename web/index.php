@@ -3,6 +3,8 @@
 <?php
 session_start();
 include('assets/php/db.php');
+include('assets/php/selects.php');
+include('assets/php/functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -16,7 +18,7 @@ if ($_SESSION["login_done"] == true){
     <meta name="viewport" content="width=device-width"/>
 
     <?php include('assets/librerias/librerias_globales.html'); ?>
-    
+
 
 </head>
 <body>
@@ -32,6 +34,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_inicio").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_inicio {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_inicio1 {
+                        margin-left: 22%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -39,6 +57,12 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Página de inicio</a>
                 </div>
@@ -66,6 +90,7 @@ if ($_SESSION["login_done"] == true){
 
 
 </body>
+
 </html>
 
 <?php

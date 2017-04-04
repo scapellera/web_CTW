@@ -5,6 +5,7 @@ session_start();
 include('assets/php/db.php');
 include('assets/php/selects.php');
 include('assets/php/functions.php');
+include('assets/php/functions_array_sede.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -42,6 +43,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_minutaje_automatico").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_minutaje_automatico {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_minutaje_automatico1 {
+                        margin-left: -11%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -49,8 +66,14 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
-                    <a class="navbar-brand">Minutaje (automático)</a>
+                    <a class="navbar-brand">Minutaje (automatico)</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <!--USER & LOGOUT-->
@@ -92,15 +115,23 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
 
                                     <fieldset>
-                                        <a id="fecha_print"></a>
+                                        <a id="fecha_print" style="display:none;"></a>
                                         <input type="hidden" id="fecha" name="fecha" value="" required/>
                                     </fieldset>
                                     <fieldset>
-                                        <a id="hora_entrada_print"></a>
+                                        <a id="hora_entrada_print" style="display:none;"></a>
                                         <input type="hidden" id="hora_entrada" name="hora_entrada" value="" required/>
                                     </fieldset>
                                 </form>
                             </div>
+
+                        </div>
+                        <div id="botonentrar">
+                        <center>
+                            <button id="entrar" data-submit="...Sending" class="button_horas"
+                                    onclick="myFunction1()">Presione este boton al entrar
+                            </button>
+                        </center>
                         </div>
                         <!--FORMULARIO DE SALIDA-->
                         <div id="panelSalir" class="card">
@@ -117,7 +148,7 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         <?php $data = select_all_servicio(); ?>
-                                        <select id="servicio" name="select_box_servicio" class="select_box">
+                                        <select id="servicio" name="select_box_servicio" class="select_box" required>
                                             <option value="" disabled selected>Selecciona el servicio*</option>
                                             <?php
                                             if ($data->num_rows > 0) {
@@ -133,35 +164,25 @@ if ($_SESSION["login_done"] == true){
                                         </select>
                                     </fieldset>
                                     <fieldset>
-                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;" class='switcha'><input name="facturado_minutaje" type="checkbox">
-                                            <div class='slider rounda'></div>
-                                        </label>
-                                    </fieldset>
-                                    <fieldset>
                                         <input type="hidden" name="fecha_minutaje" value="">
                                     </fieldset>
                                     <fieldset>
                                         <input type="hidden" name="hora_entrada_minutaje" value="">
                                     </fieldset>
                                     <fieldset>
-                                        <a id="hora_salida_print"></a>
+                                        <a id="hora_salida_print" style="display:none;"></a>
                                         <input type="hidden" id="hora_salida" name="hora_salida_minutaje" value=""
                                                required/>
                                     </fieldset>
-                                    <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton
-                                        al salir.
+                                    <center>
+                                    <button id="salir" class="button_horas" onclick="myFunction2()">Presione este boton al salir
                                     </button>
+                                    </center>
                                 </form>
 
                             </div>
                         </div>
-                        <div>
-                            <center>
-                                <button id="entrar" data-submit="...Sending" class="button_horas"
-                                        onclick="myFunction1()">Presione este boton al entrar.
-                                </button>
-                            </center>
-                        </div>
+
                         <!--FUNCIONES JAVASCRIPT - MINUTAJE AUTOMATICO-->
                             <script src="assets/js/minutaje_automatico.js"></script>
                     </div>

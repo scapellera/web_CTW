@@ -45,15 +45,35 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_clientes").className = "active";
                 });</script>
-
+            <style>
+                @media (max-width: 600px) {
+                    #menu_clientes {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+                    #menu_clientes1 {
+                        margin-left: 16%;
+                    }
+                }
+            </style>
         </div>
     </div>
     <!--BARRA SUPERIOR, PONE 2 POR QUE ES UNA VARIACION DE LA QUE VIENE POR DEFECTO-->
     <div class="main-panel">
-        <nav class="navbar2 navbar-default navbar-fixed">
+        <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Buscador clientes</a>
                 </div>
                 <div class="collapse navbar-collapse">

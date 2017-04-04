@@ -5,6 +5,7 @@ session_start();
 include('assets/php/db.php');
 include('assets/php/selects.php');
 include('assets/php/functions.php');
+include('assets/php/functions_array_sede.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -41,6 +42,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_minutaje_manual").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_minutaje_manual {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_minutaje_manual1 {
+                        margin-left: -5%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -48,6 +65,12 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Minutaje (manual)</a>
                 </div>
@@ -57,6 +80,7 @@ if ($_SESSION["login_done"] == true){
                 </div>
             </div>
         </nav>
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -111,7 +135,7 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         <?php $data = select_all_usuario(); ?>
-                                        <select name="select_box_usuario" class="select_box">
+                                        <select name="select_box_usuario" class="select_box" required>
                                             <option value="" disabled selected>Selecciona el usuario que realiza el
                                                 servicio*
                                             </option>
@@ -136,13 +160,6 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         <input placeholder="Hora salida*" name="hora_salida" type="time" required>
-                                    </fieldset>
-                                    <fieldset>
-                                        Facturado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="margin-bottom:-6px;"
-                                                                                             class='switcha'><input
-                                                name="facturado" type="checkbox">
-                                            <div class='slider rounda'></div>
-                                        </label>
                                     </fieldset>
                                     <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"

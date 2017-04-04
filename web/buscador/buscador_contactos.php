@@ -11,6 +11,7 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -29,6 +30,7 @@ if($_SESSION["login_done"]==true){
     ?>
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_buscador.html'); ?>
+
 </head>
 <body>
 
@@ -44,6 +46,22 @@ if($_SESSION["login_done"]==true){
             <script>$(function () {
                     document.getElementById("menu_contactos").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_contactos {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_contactos1 {
+                        margin-left: 13%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -51,13 +69,20 @@ if($_SESSION["login_done"]==true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador contactos</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador contactos</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 
@@ -66,6 +91,7 @@ if($_SESSION["login_done"]==true){
                 <div class="row">
                     <div >
                         <div >
+                            
                             <table id="buscador_contacto" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -89,11 +115,11 @@ if($_SESSION["login_done"]==true){
                                         while ($row = $data->fetch_assoc()) {
                                             $pk = $row['ID_CONTACTO'];
                                             ?>
-                                                    <tr>
+                                                    <tr id="<?php echo $row['ID_CONTACTO']; ?>">
                                                         <?php checkbox_contacto($row['activo'],$row['ID_CONTACTO']  )?>
                                                         <td><label style="margin-top: 11px;"><a href="#" class="nombre" data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['nombre']?> </a></label></td>
                                                         <td><label style="margin-top: 11px;">
-                                                        <a data-pk=<?php echo "\"$pk\""; ?>>
+                                                        <a href="#" class="sede" data-pk=<?php echo "\"$pk\""; ?>>
                                                         <?php 
                                                         $id_sede = $row['ID_sede'];
                                                         $nombreSede = select_nombre_sede($id_sede);
@@ -126,6 +152,7 @@ if($_SESSION["login_done"]==true){
     </div>
 </div>
 </body>
+
 </html>
 
 <?php 

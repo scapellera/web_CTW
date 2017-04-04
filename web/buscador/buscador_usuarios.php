@@ -50,7 +50,22 @@ if($_SESSION["login_done"]==true){
             <script>$(function () {
                     document.getElementById("menu_usuarios").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_usuarios {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
 
+                    #menu_usuarios1 {
+                        margin-left: 15%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -58,14 +73,20 @@ if($_SESSION["login_done"]==true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador usuario</a>
-                </div>
-                <div class="collapse navbar-collapse">
-
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador usuarios</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 

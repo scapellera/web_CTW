@@ -43,6 +43,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_sedes").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_sedes {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_sedes1 {
+                        margin-left: 22%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -50,13 +66,20 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Buscador sedes</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <!--USER & LOGOUT-->
-                    <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
-                </div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <!--TITULO DE LA PÁGINA-->
+                <a class="navbar-brand">Buscador sedes</a>
             </div>
+            <div class="collapse navbar-collapse">
+                <!--USER & LOGOUT-->
+                <?php include('../assets/html/menu/user_logout_buscador.html'); ?>
+            </div>
+        </div>
         </nav>
 
 
@@ -71,7 +94,6 @@ if ($_SESSION["login_done"] == true){
 
                                 <tr>
                                     <th style="background-color: #39AF33; width: 3px;">Activos</th>
-                                    <!--<th style="background-color: #F26842; width: 3px;">Borrar</th>-->
                                     <th>Cliente</th>
                                     <th>Nombre</th>
                                     <th>Ubicación</th>
@@ -87,7 +109,6 @@ if ($_SESSION["login_done"] == true){
                                 <tbody>
 
                                 <?php
-
                                 $data = select_all_sede_activo();
 
                                 if ($data->num_rows > 0) {
@@ -127,7 +148,7 @@ if ($_SESSION["login_done"] == true){
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['numero'] ?> </a></label>
                                             </td>
                                             <td><label style="margin-top: 11px;"><a href="#" class="telefono"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['telefono'] ?> </a></label>
+                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['s_telefono'] ?> </a></label>
                                             </td>
                                             <td><label style="margin-top: 11px;"><a href="#" class="pais"
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais'] ?> </a></label>

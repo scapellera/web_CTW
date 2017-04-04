@@ -32,6 +32,22 @@ if ($_SESSION["login_done"] == true){
             <script>$(function () {
                     document.getElementById("menu_buscador").className = "active";
                 });</script>
+            <style>
+                @media (max-width: 600px) {
+                    #menu_buscador {
+                        background-color: #ef9448;
+                        margin-left: 12%;
+                        border-top-left-radius: 50px;
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    }
+
+                    #menu_buscador1 {
+                        margin-left: 15%;
+                    }
+                }
+            </style>
         </div>
     </div>
 
@@ -39,6 +55,12 @@ if ($_SESSION["login_done"] == true){
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!--TITULO DE LA PÁGINA-->
                     <a class="navbar-brand">Buscador</a>
                 </div>
@@ -54,8 +76,18 @@ if ($_SESSION["login_done"] == true){
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-
+                        <div>
+                        <center>
+                            <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar<br>cliente</a>
+                            <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar<br>sede</a>
+                            <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar<br>contacto</a>
+                            <a href="./buscador/buscador_mayoristas.php" class="button_buscador">Buscar<br>mayorista</a>
+                            <a href="./buscador/buscador_usuarios.php" class="button_buscador">Buscar<br>usuario</a>
+                            <a href="./buscador/buscador_servicios.php" class="button_buscador">Buscar<br>servicio</a>
+                            <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar<br>artículo</a>
+                            <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar<br>stock</a>
+                            <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar<br>minutaje</a>
+                            <!--
                             <a href="./buscador/buscador_clientes.php" class="button_buscador">Buscar cliente</a>
                             <a href="./buscador/buscador_sedes.php" class="button_buscador">Buscar <br> sede</a>
                             <a href="./buscador/buscador_contactos.php" class="button_buscador">Buscar contacto</a>
@@ -65,7 +97,8 @@ if ($_SESSION["login_done"] == true){
                             <a href="./buscador/buscador_articulos.php" class="button_buscador">Buscar artículo</a>
                             <a href="./buscador/buscador_stock.php" class="button_buscador">Buscar stock</a>
                             <a href="./buscador/buscador_minutaje.php" class="button_buscador">Buscar minutaje</a>
-
+                            -->
+                        </center>
                         </div>
                     </div>
                 </div>
