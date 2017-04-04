@@ -28,8 +28,7 @@ if ($_SESSION["login_done"] == true){
     }
     ?>
     <!--LIBRERIAS - BUSCADOR-->
-    <?php include('../assets/librerias/librerias_buscador.html'); ?><!--LIBRERIA - INSERT-->
-    <?php include('../assets/librerias/librerias_insert.html'); ?>
+    <?php include('../assets/librerias/librerias_pre_factura.html'); ?>
     <!--Funciones javascript-->
     <script src="../assets/js/functions.js"></script>
 
@@ -42,12 +41,12 @@ if ($_SESSION["login_done"] == true){
         <div class="sidebar-wrapper">
             <!--MENU Y LOGO-->
             <?php
-            include('../assets/html/logo/logo_buscador.html');
-            include('../assets/html/menu/menu_buscador.html');
+            include('../assets/html/logo/logo_pre_factura.html');
+            include('../assets/html/menu/menu_pre_factura.html');
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_clientes").className = "active";
+                    document.getElementById("menu_pre_factura").className = "active";
                 });</script>
 
         </div>

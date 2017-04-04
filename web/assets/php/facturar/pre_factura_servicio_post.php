@@ -47,8 +47,8 @@ if ($_SESSION["login_done"] == true){
             //Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
             $conn = connect();
 
-            $sql = "INSERT INTO SERVICIO_FACTURADO (ID_servicio, nombre, descripcion, precio, NIF_cliente)
-					VALUES (" . $row['ID_SERVICIO'] . ",$sql_nombre,$sql_descripcion," . $row['precio'] . ",'$cliente')";
+            $sql = "INSERT INTO SERVICIO_FACTURADO (ID_servicio, nombre, descripcion, precio, cantidad, NIF_cliente)
+					VALUES (" . $row['ID_SERVICIO'] . ",$sql_nombre,$sql_descripcion," . $row['precio'] . ",$cantidad_seleccionada[$i],'$cliente')";
 
             if ($conn->query($sql) === TRUE) {
             } else {

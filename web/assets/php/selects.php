@@ -457,4 +457,16 @@ function get_servicio_pre_factura($ID_SERVICIO)
     close($conn);
     return $data;
 }
+function get_datos_cliente($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+
+
 //////////////////////////////////////////////////////////////////

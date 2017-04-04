@@ -23,7 +23,7 @@ if ($cliente->num_rows > 0) {
                 ?>
                 <script>
 
-                    cliente_<?php echo"".$row['NIF_EMPRESA']; ?>.push(<?php echo "\"" . $row2['nombre'] . "\""; ?>);
+                    cliente_<?php echo"".$row['NIF_EMPRESA']; ?>.push(<?php echo "\"" . $row2['ID_PRE_FACTURA'] ." - ".$row2['nombre']. "\""; ?>);
                 </script>
 
                 <?php
