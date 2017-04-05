@@ -49,15 +49,17 @@ if ($_SESSION["login_done"] == true){
 
     if ($conn->query($sql) == TRUE) {
 
-        $id_pre_factura = id_crear_cabecera_pre_factura($nombre_pre_factura);
+        $id_pre_factura = id_crear_cabecera_pre_factura($nombre_pre_factura, $nif_empresa);
         $ciudad_facturacion=ciudad_facturacion_crear_cabecera_pre_factura($nif_empresa);
         $codigo_postal_facturacion=codigo_postal_facturacion_crear_cabecera_pre_factura($nif_empresa);
         $calle_facturacion=calle_facturacion_crear_cabecera_pre_factura($nif_empresa);
         $numero_facturacion=numero_facturacion_crear_cabecera_pre_factura($nif_empresa);
+        $nombre_pre_factura="$id_pre_factura - "."$nombre_pre_factura";
 
         $sql2 = "INSERT INTO CABECERA_PRE_FACTURA (ID_pre_factura, nombre, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion)
 					VALUES ('$id_pre_factura', '$nombre_pre_factura', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion')";
         if ($conn->query($sql2) == TRUE) {
+            
             ?>
 
             <form method="POST" id="send_articulos" action="../../../pre_factura/pre_factura_<?php echo $ruta?>">

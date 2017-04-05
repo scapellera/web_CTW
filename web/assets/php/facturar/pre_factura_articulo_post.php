@@ -23,6 +23,8 @@ if ($_SESSION["login_done"] == true){
     $contador = 0;
     $cliente = $_POST['cliente'];
     $nombre_pre_factura = $_POST['nombre_pre_factura'];
+    $nombre_pre_factura_array = explode('-', $nombre_pre_factura);
+    $id_pre_factura=$nombre_pre_factura_array[0];
     $id_string = $_POST['submit'];
     $id_array = explode(',', $id_string);
     $cantidad_seleccionada = array("cantidad");
@@ -118,7 +120,6 @@ if ($_SESSION["login_done"] == true){
             }
 
             //añadimos los articulos en la tabla tronco_pre_factura_articulos
-            $id_pre_factura = get_id_pre_factura($cliente, $nombre_pre_factura);
             $suma_precio = $row['precio'] * $cantidad_seleccionada[$i];
             $insert_tronco_pre_factura_articulo = "INSERT INTO TRONCO_PRE_FACTURA_ARTICULO(ID_pre_factura, ID_articulo, numero_de_serie, cantidad, precio, suma_precio)
 			VALUES (" . $id_pre_factura . "," . $row['ID_ARTICULO'] . ",$sql_numero_de_serie,$cantidad_seleccionada[$i],'" . $row['precio'] . "',$suma_precio)";

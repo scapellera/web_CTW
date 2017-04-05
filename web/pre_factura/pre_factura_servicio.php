@@ -127,7 +127,7 @@ $nombre_pre_factura = $_POST['select_box_pre_factura_cliente'];
                                                     <div class="form-group">
                                                         <label> Cantidad</label>
                                                         <input type="number" name="cantidad_<?php echo $i ?>"
-                                                               class="form-control">
+                                                               class="form-control" value="1" required>
                                                     </div>
                                                 </div>
                                             </div>

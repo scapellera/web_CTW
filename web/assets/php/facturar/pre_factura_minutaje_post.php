@@ -23,6 +23,8 @@ if ($_SESSION["login_done"] == true){
     $contador = 0;
     $cliente = $_POST['cliente'];
     $nombre_pre_factura = $_POST['nombre_pre_factura'];
+    $nombre_pre_factura_array = explode('-', $nombre_pre_factura);
+    $id_pre_factura=$nombre_pre_factura_array[0];
     $id_string = $_POST['submit'];
     $id_array = explode(',', $id_string);
 
@@ -57,7 +59,6 @@ if ($_SESSION["login_done"] == true){
             }
 
             //AÑADIMOS EL MINUTAJE EN LA TABLA TRONCO_PRE_FACTURA_MINUTAJE
-            $id_pre_factura = get_id_pre_factura($cliente, $nombre_pre_factura);
             $precio_servicio= get_precio_servicio($row['ID_servicio']);
 
             //calculamos las horas

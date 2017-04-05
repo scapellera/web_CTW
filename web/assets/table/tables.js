@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#buscador_cliente').DataTable({
         dom: 'Bfrtip',
         "order": [[0, "desc"], [1, "asc"]],
@@ -215,6 +216,26 @@ $(document).ready(function () {
 
 
             }
+        ]
+    });
+    $('#ver_pre_factura_articulos').DataTable({
+        "bFilter": false,
+        "sDom": 'rt',
+        "order": [[0, "asc"]],
+
+        "pagingType": "full_numbers",
+        buttons: [
+
+        ]
+    });
+    $('#ver_pre_factura_servicios').DataTable({
+        "bFilter": false,
+        "sDom": 'rt',
+        "order": [[0, "asc"]],
+
+        "pagingType": "full_numbers",
+        buttons: [
+
         ]
     });
 

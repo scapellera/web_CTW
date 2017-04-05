@@ -65,6 +65,7 @@ if ($_SESSION["login_done"] == true){
         $nif_empresa = $_POST['select_box_nif_empresa'];
         $pre_factura = $_POST['select_box_pre_factura_cliente'];
         $pre_facrura_array = explode('-', $pre_factura);
+        $id_pre_factura = $pre_facrura_array[0];
         ?>
         <nav class="navbar navbar-default navbar-fixed">
             <form method="POST" id="send_servicios" action="../pre_factura/seleccion_pre_factura.php">
@@ -151,31 +152,187 @@ if ($_SESSION["login_done"] == true){
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="header">
-                                <h4 class="title"> Artículos </h4>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="header">
+                                        <h4 class="title"> Artículos </h4>
+                                    </div>
+                                    <div class="row">
+                                        <table id="ver_pre_factura_articulos"
+                                               class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Artículo</th>
+                                                <th>Número de serie</th>
+                                                <th>Precio</th>
+                                                <th>Unidades</th>
+                                                <th>Precio total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <?php
+                                            $data = get_ver_pre_factura_articulos($id_pre_factura);
+
+                                            if ($data->num_rows > 0) {
+                                                $i = 0;
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
+                                                    ?>
+                                                    <tr>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="precio"><?php echo $row['precio'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="suma_precio"><?php echo $row['suma_precio'] ?></a></label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                            ?>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="header">
-                                <h4 class="title"> Minutaje </h4>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="header">
+                                        <h4 class="title"> Minutaje </h4>
+                                    </div>
+                                    <div class="row">
+                                        <table id="ver_pre_factura_articulos"
+                                               class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Artículo</th>
+                                                <th>Número de serie</th>
+                                                <th>Precio</th>
+                                                <th>Unidades</th>
+                                                <th>Precio total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <?php
+                                            $data = get_ver_pre_factura_articulos($id_pre_factura);
+
+                                            if ($data->num_rows > 0) {
+                                                $i = 0;
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
+                                                    ?>
+                                                    <tr>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="precio"><?php echo $row['precio'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="suma_precio"><?php echo $row['suma_precio'] ?></a></label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                            ?>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="header">
-                                <h4 class="title"> Servicios </h4>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="header">
+                                        <h4 class="title"> Servicios </h4>
+                                    </div>
+                                    <div class="row">
+                                        <table id="ver_pre_factura_servicios"
+                                               class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Pack</th>
+                                                <th>Precio</th>
+                                                <th>Unidades</th>
+                                                <th>Precio total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <?php
+                                            $data = get_ver_pre_factura_servicios($id_pre_factura);
+
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    $nombre_pack = get_nombre_servicio($row['ID_servicio']);
+                                                    ?>
+                                                    <tr>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="nombre_articulo"><?php echo $nombre_pack ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="numero_de_serie"><?php echo $row['precio'] ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="suma_precio"><?php echo $row['precio_total'] ?></a></label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                            ?>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
 
 
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 

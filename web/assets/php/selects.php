@@ -338,11 +338,13 @@ function get_id_pre_factura($cliente, $nombre_pre_factura)
 
 
 //PRE_FACTURA_ARTICULO//////////////////////
-function id_crear_cabecera_pre_factura($nombre_pre_factura)
+function id_crear_cabecera_pre_factura($nombre_pre_factura, $nif_cliente)
 {
     $conn = connect();
     $sql = "SELECT ID_PRE_FACTURA
-    FROM PRE_FACTURA WHERE nombre = '" . $nombre_pre_factura . "'
+    FROM PRE_FACTURA 
+    WHERE nombre = '" . $nombre_pre_factura . "'
+    and NIF_empresa = '".$nif_cliente."'
     ORDER BY ID_PRE_FACTURA desc";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
@@ -465,6 +467,49 @@ function get_datos_cliente($nif_empresa)
     $data = $conn->query($sql);
     close($conn);
     return $data;
+}
+
+//VER PRE_FACTURA//////////////////////
+//////////////////////////////////////////////////////////////////
+function get_ver_pre_factura_articulos($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_ARTICULO WHERE ID_pre_factura = " . $id_pre_factura;
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_ver_pre_factura_servicios($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_SERVICIO WHERE ID_pre_factura = " . $id_pre_factura;
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_nombre_articulo($ID_articulo)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM ARTICULO_FACTURADO WHERE ID_ARTICULO = '" . $ID_articulo . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre = $row['nombre'];
+    close($conn);
+    return $nombre;
+}
+function get_nombre_servicio($ID_servicio)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO WHERE ID_SERVICIO = '" . $ID_servicio . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre = $row['nombre'];
+    close($conn);
+    return $nombre;
 }
 
 

@@ -23,6 +23,8 @@ if ($_SESSION["login_done"] == true){
     $contador = 0;
     $cliente = $_POST['cliente'];
     $nombre_pre_factura = $_POST['nombre_pre_factura'];
+    $nombre_pre_factura_array = explode('-', $nombre_pre_factura);
+    $id_pre_factura=$nombre_pre_factura_array[0];
     $id_string = $_POST['submit'];
     $id_array = explode(',', $id_string);
     $cantidad_seleccionada = array("cantidad");
@@ -58,7 +60,6 @@ if ($_SESSION["login_done"] == true){
 
 
             //AÑADIMOS EL SERVICIO EN LA TABLA TRONCO_PRE_FACTURA_SERVICIO
-            $id_pre_factura = get_id_pre_factura($cliente, $nombre_pre_factura);
             $precio_total=$row['precio']*$cantidad_seleccionada[$i];
 
             $insert_tronco_pre_factura_servicio = "INSERT INTO TRONCO_PRE_FACTURA_SERVICIO(ID_pre_factura, ID_servicio, precio, cantidad, precio_total)
