@@ -489,6 +489,15 @@ function get_ver_pre_factura_servicios($id_pre_factura)
     close($conn);
     return $data;
 }
+function get_ver_pre_factura_minutajes($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_MINUTAJE WHERE ID_pre_factura = " . $id_pre_factura;
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 function get_nombre_articulo($ID_articulo)
 {
     $conn = connect();

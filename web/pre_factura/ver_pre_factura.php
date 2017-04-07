@@ -52,7 +52,7 @@ if ($_SESSION["login_done"] == true){
                     }
 
                     #menu_pre_factura1 {
-                        margin-left: 12%;
+                        /*margin-left: 12%;*/
                     }
                 }
             </style>
@@ -99,6 +99,7 @@ if ($_SESSION["login_done"] == true){
                         <div>
                             <!--CABECERA PRE-FACTURA-->
                             <?php
+                            $suma_precio_total = 0;
                             $cabecera_pre_factura = get_datos_cliente($nif_empresa);
                             // output data of each row
                             $row = $cabecera_pre_factura->fetch_assoc();
@@ -142,16 +143,6 @@ if ($_SESSION["login_done"] == true){
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Dirección envio</label>
-                                        <input type="text" name="NIF"
-                                               class="form-control" disabled
-                                               value="<?php echo $row['calle_envio'] . " " . $row['numero_envio'] . ", " . $row['codigo_postal_envio'] . " " . $row['ciudad_envio'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="header">
                                         <h4 class="title"> Artículos </h4>
@@ -178,6 +169,8 @@ if ($_SESSION["login_done"] == true){
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
                                                     $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
+                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
                                                     ?>
                                                     <tr>
                                                         <td><label style="margin-top: 11px;"><a href="#"
@@ -193,73 +186,14 @@ if ($_SESSION["login_done"] == true){
                                                                                                 class="cantidad"><?php echo $row['cantidad'] ?></a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="suma_precio"><?php echo $row['suma_precio'] ?></a></label>
+                                                                                                class="suma_precio"><?php echo $row['precio_total'] ?></a></label>
                                                         </td>
                                                     </tr>
 
                                                     <?php
                                                 }
                                             } else {
-                                                echo "0 results";
-                                            }
-                                            ?>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="header">
-                                        <h4 class="title"> Minutaje </h4>
-                                    </div>
-                                    <div class="row">
-                                        <table id="ver_pre_factura_articulos"
-                                               class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Artículo</th>
-                                                <th>Número de serie</th>
-                                                <th>Precio</th>
-                                                <th>Unidades</th>
-                                                <th>Precio total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <?php
-                                            $data = get_ver_pre_factura_articulos($id_pre_factura);
-
-                                            if ($data->num_rows > 0) {
-                                                $i = 0;
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
-                                                    ?>
-                                                    <tr>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="precio"><?php echo $row['precio'] ?></a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="suma_precio"><?php echo $row['suma_precio'] ?></a></label>
-                                                        </td>
-                                                    </tr>
-
-                                                    <?php
-                                                }
-                                            } else {
-                                                echo "0 results";
+                                                echo "No hay nada pre-facturado";
                                             }
                                             ?>
 
@@ -294,6 +228,8 @@ if ($_SESSION["login_done"] == true){
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
                                                     $nombre_pack = get_nombre_servicio($row['ID_servicio']);
+                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
                                                     ?>
                                                     <tr>
                                                         <td><label style="margin-top: 11px;"><a href="#"
@@ -313,13 +249,86 @@ if ($_SESSION["login_done"] == true){
                                                     <?php
                                                 }
                                             } else {
-                                                echo "0 results";
+                                                echo "No hay nada pre-facturado";
                                             }
                                             ?>
 
 
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="header">
+                                        <h4 class="title"> Minutaje </h4>
+                                    </div>
+                                    <div class="row">
+                                        <table id="ver_pre_factura_minutajes"
+                                               class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Servicio</th>
+                                                <th>Precio/h del servicio</th>
+                                                <th>Fecha</th>
+                                                <th>Horas</th>
+                                                <th>Precio total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <?php
+                                            $data = get_ver_pre_factura_minutajes($id_pre_factura);
+
+                                            if ($data->num_rows > 0) {
+                                                $i = 0;
+                                                // output data of each row
+                                                while ($row = $data->fetch_assoc()) {
+                                                    $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
+                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
+                                                    ?>
+                                                    <tr>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="precio_h_servicio"><?php echo $row['precio_servicio'] ?> </a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="fecha"><?php echo $row['fecha'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="horas"><?php echo $row['horas'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                class="precio_total"><?php echo $row['precio_total'] ?></a></label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "No hay nada pre-facturado";
+                                            }
+                                            ?>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" name="nombre"
+                                                       class="form-control" disabled
+                                                       value="<?php echo $suma_precio_total?>">
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>

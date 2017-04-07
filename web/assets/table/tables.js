@@ -238,5 +238,15 @@ $(document).ready(function () {
 
         ]
     });
+    $('#ver_pre_factura_minutajes').DataTable({
+        "bFilter": false,
+        "sDom": 'rt',
+        "order": [[0, "asc"]],
+
+        "pagingType": "full_numbers",
+        buttons: [
+
+        ]
+    });
 
 });

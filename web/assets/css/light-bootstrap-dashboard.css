@@ -1,5 +1,5 @@
 @media (max-width: 600px) {
-
+/*
   #menu_inicio1{
     margin-left: 32%;
   }
@@ -63,7 +63,7 @@
   #menu_minutaje1{
     margin-left: 24%;
   }
-
+*/
   .button_buscador{
     font-size: 16px;
     width: 45%;
@@ -392,7 +392,7 @@ input:focus {
 }
 .sidebar .nav li > a {
   color: #FFFFFF;
-  margin: 5px 15px;
+  /*margin: 5px 15px;*/
   opacity: .86;
   border-radius: 4px;
 }
@@ -414,7 +414,7 @@ input:focus {
 .sidebar .nav i {
   font-size: 28px;
   float: left;
-  margin-right: 15px;
+  margin-right: 20px;
   line-height: 30px;
   width: 30px;
   text-align: center;
@@ -1348,9 +1348,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   -o-user-select: none;
   user-select: none;
   /*   this code is for fixing safari bug with hidden overflow for border-radius   */
-  -webkit-mask: url("../img/mask.png") 0 0 no-repeat;
   -webkit-mask-size: 60px 24px;
-  mask: url("../img/mask.png") 0 0 no-repeat;
 }
 
 .has-switch.deactivate {
@@ -1529,7 +1527,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   font-size: 16px;
 }
 .navbar.fixed {
-  width: calc(100% - $sidebar-width);
+  width: calc(100% - 20px);
   right: 0;
   left: auto;
   border-radius: 0;
@@ -2140,7 +2138,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   display: -webkit-flex;
   display: flex;
 }
-
+/*
 .ct-label.ct-horizontal.ct-start {
   -webkit-box-align: flex-end;
   -webkit-align-items: flex-end;
@@ -2270,7 +2268,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   text-align: left;
   text-anchor: end;
 }
-
+*/
 .ct-grid {
   stroke: rgba(0, 0, 0, 0.2);
   stroke-width: 1px;
@@ -3006,7 +3004,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     width: 100%;
   }
   body > .navbar-collapse .nav > li > a {
-    padding: 30px 25px;
+    /*padding: 30px 25px;*/
   }
   body > .navbar-collapse::before {
     top: 0;
@@ -3176,7 +3174,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       top: 0px;
-      transform: rotate(0);
+      transform: rotate(0deg);
     }
   }
   @-webkit-keyframes topbar-back {
@@ -3192,7 +3190,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       top: 0px;
-      -webkit-transform: rotate(0);
+      -webkit-transform: rotate(0deg);
     }
   }
   @-moz-keyframes topbar-back {
@@ -3208,7 +3206,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       top: 0px;
-      -moz-transform: rotate(0);
+      -moz-transform: rotate(0deg);
     }
   }
   @keyframes bottombar-x {
@@ -3272,7 +3270,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       bottom: 0px;
-      transform: rotate(0);
+      transform: rotate(0deg);
     }
   }
   @-webkit-keyframes bottombar-back {
@@ -3288,7 +3286,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       bottom: 0px;
-      -webkit-transform: rotate(0);
+      -webkit-transform: rotate(0deg);
     }
   }
   @-moz-keyframes bottombar-back {
@@ -3304,7 +3302,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     }
     100% {
       bottom: 0px;
-      -moz-transform: rotate(0);
+      -moz-transform: rotate(0deg);
     }
   }
   @-webkit-keyframes fadeIn {
