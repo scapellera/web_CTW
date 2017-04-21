@@ -156,7 +156,7 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Número de serie</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
-                                                <th>Precio total</th>
+                                                <th style=" width: 1000px;" >Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -214,6 +214,7 @@ if ($_SESSION["login_done"] == true){
                                             <thead>
                                             <tr>
                                                 <th>Pack</th>
+                                                <th>Descripción</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
                                                 <th>Precio total</th>
@@ -228,21 +229,25 @@ if ($_SESSION["login_done"] == true){
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
                                                     $nombre_pack = get_nombre_servicio($row['ID_servicio']);
+                                                    $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
                                                     $suma_precio_total = $suma_precio_total + $row['precio_total'];
 
                                                     ?>
                                                     <tr>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="nombre_articulo"><?php echo $nombre_pack ?> </a></label>
+                                                        <td><label style="margin-top: 11px;"><a
+                                                                    href="#"><?php echo $nombre_pack ?> </a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="numero_de_serie"><?php echo $row['precio'] ?> </a></label>
+                                                        <td><label style="margin-top: 11px;"><a
+                                                                    href="#"><?php echo $descripcion_servicio ?> </a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a
+                                                                    href="#"><?php echo $row['precio'] ?> </a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="suma_precio"><?php echo $row['precio_total'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a
+                                                                    href="#"><?php echo $row['cantidad'] ?></a></label>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a
+                                                                    href="#"><?php echo $row['precio_total'] ?></a></label>
                                                         </td>
                                                     </tr>
 
@@ -319,12 +324,32 @@ if ($_SESSION["login_done"] == true){
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3 col-md-offset-9">
                                             <div class="form-group">
-                                                <label>Nombre</label>
+                                                <label>Precio sin IVA</label>
                                                 <input type="text" name="nombre"
                                                        class="form-control" disabled
-                                                       value="<?php echo $suma_precio_total?>">
+                                                       value="<?php echo $suma_precio_total ?>">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 col-md-offset-6">
+                                            <div class="form-group">
+                                                <label>IVA</label>
+                                                <input type="text" name="nombre"
+                                                       class="form-control" disabled
+                                                       value="<?php echo $suma_precio_total ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 ">
+                                            <div class="form-group">
+                                                <label>Precio con IVA</label>
+                                                <input type="text" name="nombre"
+                                                       class="form-control" disabled
+                                                       value="<?php echo $suma_precio_total ?>">
                                             </div>
                                         </div>
 

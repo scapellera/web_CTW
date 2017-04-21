@@ -520,6 +520,17 @@ function get_nombre_servicio($ID_servicio)
     close($conn);
     return $nombre;
 }
+function get_descripcion_servicio($ID_servicio)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO WHERE ID_SERVICIO = '" . $ID_servicio . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $descripcion = $row['descripcion'];
+    close($conn);
+    return $descripcion;
+}
 
 
 
