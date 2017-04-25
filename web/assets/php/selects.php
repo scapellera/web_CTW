@@ -118,6 +118,15 @@ function select_all_rol()
     close($conn);
     return $data;
 }
+function select_all_iva()
+{
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM IVA";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 function select_all_sede()
 {
@@ -209,6 +218,16 @@ function select_sede_cliente($nif_cliente)
     $sql = "SELECT * 
     FROM SEDE S
     WHERE S.NIF_cliente = '" . $nif_cliente . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_articulo_with_codigo_de_barras($codigo_de_barras)
+{
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM ARTICULO
+    WHERE codigo_de_barras = '" . $codigo_de_barras . "'";
     $data = $conn->query($sql);
     close($conn);
     return $data;

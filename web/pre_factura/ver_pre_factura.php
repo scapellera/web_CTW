@@ -156,7 +156,7 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Número de serie</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
-                                                <th style=" width: 1000px;" >Precio total</th>
+                                                <th style=" width: 150px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -217,7 +217,7 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Descripción</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
-                                                <th>Precio total</th>
+                                                <th style=" width: 150px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -278,7 +278,7 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Precio/h del servicio</th>
                                                 <th>Fecha</th>
                                                 <th>Horas</th>
-                                                <th>Precio total</th>
+                                                <th style=" width: 150px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -327,8 +327,8 @@ if ($_SESSION["login_done"] == true){
                                         <div class="col-md-3 col-md-offset-9">
                                             <div class="form-group">
                                                 <label>Precio sin IVA</label>
-                                                <input type="text" name="nombre"
-                                                       class="form-control" disabled
+                                                <input name="precio_sin_iva"
+                                                       class="form-control precio_sin_iva" disabled
                                                        value="<?php echo $suma_precio_total ?>">
                                             </div>
                                         </div>
@@ -339,17 +339,31 @@ if ($_SESSION["login_done"] == true){
                                         <div class="col-md-3 col-md-offset-6">
                                             <div class="form-group">
                                                 <label>IVA</label>
-                                                <input type="text" name="nombre"
-                                                       class="form-control" disabled
-                                                       value="<?php echo $suma_precio_total ?>">
+                                                <?php $data = select_all_iva(); ?>
+                                                <select name="select_box_iva" class="form-control select_iva" required>
+                                                    <option value="" disabled selected>Seleccionar IVA
+                                                    </option>
+                                                    <?php
+                                                    if ($data->num_rows > 0) {
+                                                        // output data of each row
+                                                        while ($row = $data->fetch_assoc()) {
+                                                            ?>
+                                                            <option
+                                                                value="<?php echo $row['IVA'] ?>"><?php echo "$row[IVA]"; ?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+
                                             </div>
                                         </div>
                                         <div class="col-md-3 ">
                                             <div class="form-group">
                                                 <label>Precio con IVA</label>
-                                                <input type="text" name="nombre"
-                                                       class="form-control" disabled
-                                                       value="<?php echo $suma_precio_total ?>">
+                                                <input name="precio_con_iva"
+                                                       class="form-control precio_con_iva_value" disabled
+                                                       value="" required>
                                             </div>
                                         </div>
 
@@ -368,8 +382,21 @@ if ($_SESSION["login_done"] == true){
 
     </div>
 </div>
+<script>
+    $('.select_iva').on('change', function () {
+        var iva = ( this.value );
+        var precio_sin_iva =$('.precio_sin_iva').val();
+        precio_sin_iva=precio_sin_iva;
+        var iva_aplicado =((iva/100)* precio_sin_iva);
+        iva_aplicado = iva_aplicado.toFixed(1);
 
+        var float_iva_aplicado=(parseFloat(iva_aplicado));
+        var float_pecio_sin_iva= (parseFloat(precio_sin_iva));
+        var precio_con_iva= float_iva_aplicado + float_pecio_sin_iva;
 
+        $('.precio_con_iva_value').val(precio_con_iva);
+    })
+</script>
 </body>
 
 </html>

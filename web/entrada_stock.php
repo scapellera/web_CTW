@@ -82,77 +82,15 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="container">
-                                <form id="contact" action="./assets/php/post/post_articulos.php" method="post">
+                                <form id="contact" action="./assets/php/post/select_entrada_stock.php" method="post">
                                     <h3>Añadir Artículo</h3>
-                                    <h4>Rellene el formulario para añadir el artículo al stock</h4>
-                                    <fieldset>
-                                        &nbsp;Nombre: <input placeholder="Nombre*" name="nombre" type="text" value="" required>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Descripción: <input placeholder="Descripción" name="descripcion"
-                                                                  type="text">
-                                    </fieldset>
+                                    <h4>Rellene los formularios para añadir el artículo al stock</h4>
+                                    
                                     <fieldset>
                                         &nbsp;Código de barras: <input placeholder="Código de barras*"
                                                                        name="codigo_de_barras" type="text" required>
                                     </fieldset>
 
-                                    <fieldset>&nbsp;Selecciona el NIF del mayorista:
-                                        <?php $data = select_all_mayorista(); ?>
-                                        <select name="select_box_nif_mayorista" class="select_box">
-                                            <option value="" selected>Selecciona el NIF del mayorista</option>
-                                            <?php
-                                            if ($data->num_rows > 0) {
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    ?>
-                                                    <option
-                                                        value="<?php echo $row['NIF_MAYORISTA'] ?>"><?php echo "$row[nombre_empresa] - $row[NIF_MAYORISTA]"; ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Código producto del mayorista: <input
-                                            placeholder="Código producto del mayorista" name="codigo_producto_mayorista"
-                                            type="text">
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Número de serie: <input placeholder="Número de serie"
-                                                                      name="numero_de_serie" type="text">
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number" required>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Cantidad: </br><input placeholder="Cantidad*" name="cantidad" type="number"
-                                                               required>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Número de factura: <input placeholder="Número de factura*"
-                                                                        name="numero_factura" type="text" required>
-                                    </fieldset>
-                                    <fieldset>
-                                        &nbsp;Ubicación: <input placeholder="Ubicación" name="ubicacion" type="text">
-                                    </fieldset>
-                                    <fieldset>&nbsp;Selecciona el NIF del cliente(En el caso que sea necesario):
-                                        <?php $data = select_all_cliente(); ?>
-                                        <select name="select_box_nif_empresa" class="select_box">
-                                            <option value="">Selecciona el NIF del cliente...</option>
-                                            <?php
-                                            if ($data->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $data->fetch_assoc()) {
-                                                    ?>
-                                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </fieldset>
                                     <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit
