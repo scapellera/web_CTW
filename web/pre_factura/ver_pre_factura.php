@@ -156,6 +156,7 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Número de serie</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
+                                                <th>Margen</th>
                                                 <th style=" width: 150px ;">Precio total</th>
                                             </tr>
                                             </thead>
@@ -185,6 +186,31 @@ if ($_SESSION["login_done"] == true){
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="cantidad"><?php echo $row['cantidad'] ?></a></label>
                                                         </td>
+                                                        <?php
+                                                        $margenes = get_margenes();
+                                                        $margen_name=1;
+                                                        ?>
+                                                        <td>
+                                                            <select name="select_box_margenes"
+                                                                    class="form-control select_margen" required>
+                                                                <option value="" disabled selected>Margen
+                                                                    actual = <?php echo $row['margen'] ?>
+                                                                </option>
+                                                                <?php
+                                                                if ($margenes->num_rows > 0) {
+                                                                    // output data of each row
+                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                        ?>
+                                                                        <option
+                                                                             value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                        <?php
+                                                                        $margen_name++;
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </td>
+
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="suma_precio"><?php echo $row['precio_total'] ?></a></label>
                                                         </td>
@@ -385,14 +411,28 @@ if ($_SESSION["login_done"] == true){
 <script>
     $('.select_iva').on('change', function () {
         var iva = ( this.value );
-        var precio_sin_iva =$('.precio_sin_iva').val();
-        precio_sin_iva=precio_sin_iva;
-        var iva_aplicado =((iva/100)* precio_sin_iva);
+        var precio_sin_iva = $('.precio_sin_iva').val();
+        precio_sin_iva = precio_sin_iva;
+        var iva_aplicado = ((iva / 100) * precio_sin_iva);
         iva_aplicado = iva_aplicado.toFixed(1);
 
-        var float_iva_aplicado=(parseFloat(iva_aplicado));
-        var float_pecio_sin_iva= (parseFloat(precio_sin_iva));
-        var precio_con_iva= float_iva_aplicado + float_pecio_sin_iva;
+        var float_iva_aplicado = (parseFloat(iva_aplicado));
+        var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
+        var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
+
+        $('.precio_con_iva_value').val(precio_con_iva);
+    })
+
+    $('.select_margen').on('change', function () {
+        var margen = ( this.value );
+        var precio_sin_iva = $('.precio_sin_iva').val();
+        precio_sin_iva = precio_sin_iva;
+        var iva_aplicado = ((iva / 100) * precio_sin_iva);
+        iva_aplicado = iva_aplicado.toFixed(1);
+
+        var float_iva_aplicado = (parseFloat(iva_aplicado));
+        var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
+        var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
 
         $('.precio_con_iva_value').val(precio_con_iva);
     })

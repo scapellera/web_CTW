@@ -211,6 +211,15 @@ function select_all_minutaje()
     close($conn);
     return $data;
 }
+function get_margenes()
+{
+    $conn = connect();
+    $sql = "SELECT margen as m_margen 
+    FROM MARGEN";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 function select_sede_cliente($nif_cliente)
 {
