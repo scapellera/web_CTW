@@ -192,27 +192,31 @@ if ($_SESSION["login_done"] == true){
                                                         ?>
                                                         <td>
                                                             <select name="select_box_margenes"
-                                                                    class="form-control select_margen" required>
+                                                                    class="form-control select_margen" value="test" required>
                                                                 <option value="" disabled selected>Margen
                                                                     actual = <?php echo $row['margen'] ?>
                                                                 </option>
                                                                 <?php
                                                                 if ($margenes->num_rows > 0) {
+                                                                    $val=0;
                                                                     // output data of each row
                                                                     while ($row_margenes = $margenes->fetch_assoc()) {
                                                                         ?>
-                                                                        <option
+                                                                        <option name="<?php echo $val?>"
                                                                              value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
                                                                         <?php
-                                                                        $margen_name++;
+                                                                        $val++;
                                                                     }
                                                                 }
                                                                 ?>
                                                             </select>
                                                         </td>
 
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="suma_precio"><?php echo $row['precio_total'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;">
+                                                                <a href="#" class="suma_precio">
+                                                                    <?php echo $row['precio_total'] ?>
+                                                                </a>
+                                                            </label>
                                                         </td>
                                                     </tr>
 
@@ -425,7 +429,8 @@ if ($_SESSION["login_done"] == true){
 
     $('.select_margen').on('change', function () {
         var margen = ( this.value );
-        var precio_sin_iva = $('.precio_sin_iva').val();
+        alert(margen);
+        /*var precio_sin_iva = $('.precio_sin_iva').val();
         precio_sin_iva = precio_sin_iva;
         var iva_aplicado = ((iva / 100) * precio_sin_iva);
         iva_aplicado = iva_aplicado.toFixed(1);
@@ -434,7 +439,7 @@ if ($_SESSION["login_done"] == true){
         var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
         var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
 
-        $('.precio_con_iva_value').val(precio_con_iva);
+        $('.precio_con_iva_value').val(precio_con_iva);*/
     })
 </script>
 </body>
