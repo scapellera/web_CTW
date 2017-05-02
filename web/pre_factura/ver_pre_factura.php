@@ -166,14 +166,15 @@ if ($_SESSION["login_done"] == true){
                                             $data = get_ver_pre_factura_articulos($id_pre_factura);
 
                                             if ($data->num_rows > 0) {
-                                                $i = 0;
+                                                $val=0;
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
+                                                    $val++;
                                                     $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
                                                     $suma_precio_total = $suma_precio_total + $row['precio_total'];
 
                                                     ?>
-                                                    <tr>
+                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO']?>" id="<?php echo $val?>">
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
                                                         </td>
@@ -198,14 +199,14 @@ if ($_SESSION["login_done"] == true){
                                                                 </option>
                                                                 <?php
                                                                 if ($margenes->num_rows > 0) {
-                                                                    $val=0;
+
                                                                     // output data of each row
                                                                     while ($row_margenes = $margenes->fetch_assoc()) {
                                                                         ?>
-                                                                        <option name="<?php echo $val?>"
+                                                                        <option
                                                                              value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
                                                                         <?php
-                                                                        $val++;
+
                                                                     }
                                                                 }
                                                                 ?>
@@ -213,7 +214,7 @@ if ($_SESSION["login_done"] == true){
                                                         </td>
 
                                                         <td><label style="margin-top: 11px;">
-                                                                <a href="#" class="suma_precio">
+                                                                <a href="#" name="<?php echo $row['precio_total'] ?>" class="margen_id_<?php echo $val?> suma_precio">
                                                                     <?php echo $row['precio_total'] ?>
                                                                 </a>
                                                             </label>
@@ -413,34 +414,46 @@ if ($_SESSION["login_done"] == true){
     </div>
 </div>
 <script>
-    $('.select_iva').on('change', function () {
-        var iva = ( this.value );
-        var precio_sin_iva = $('.precio_sin_iva').val();
-        precio_sin_iva = precio_sin_iva;
-        var iva_aplicado = ((iva / 100) * precio_sin_iva);
-        iva_aplicado = iva_aplicado.toFixed(1);
+    $( document ).ready(function() {
+        $('.select_iva').on('change', function () {
+            var iva = ( this.value );
+            var precio_sin_iva = $('.precio_sin_iva').val();
+            precio_sin_iva = precio_sin_iva;
+            var iva_aplicado = ((iva / 100) * precio_sin_iva);
+            iva_aplicado = iva_aplicado.toFixed(1);
 
-        var float_iva_aplicado = (parseFloat(iva_aplicado));
-        var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
-        var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
+            var float_iva_aplicado = (parseFloat(iva_aplicado));
+            var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
+            var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
 
-        $('.precio_con_iva_value').val(precio_con_iva);
-    })
+            $('.precio_con_iva_value').val(precio_con_iva);
+        })
 
-    $('.select_margen').on('change', function () {
-        var margen = ( this.value );
-        alert(margen);
-        /*var precio_sin_iva = $('.precio_sin_iva').val();
-        precio_sin_iva = precio_sin_iva;
-        var iva_aplicado = ((iva / 100) * precio_sin_iva);
-        iva_aplicado = iva_aplicado.toFixed(1);
+        $('.select_margen').on('change', function () {
+            var margen = ( this.value );
+            var relacion = $(this).closest('tr').attr('id');
+            var id_tronco_pre_factura_articulo =$(this).closest('tr').attr('content');
+            var classe= "margen_id_"+relacion;
+            var precio_margen = $('.'+classe).attr('name');
+            var precio_con_margen = margen * precio_margen;
+            $('.'+classe).text(precio_con_margen);
 
-        var float_iva_aplicado = (parseFloat(iva_aplicado));
-        var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
-        var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
+            $.ajax({
+                type: 'post',
+                url: '../assets/php/update_table/aplicar_margen.php',
+                data: {
+                    id_tronco_pre_factura_articulo: id_tronco_pre_factura_articulo,
+                    precio_con_margen: precio_con_margen,
+                    margen: margen,
+                }
+            });
 
-        $('.precio_con_iva_value').val(precio_con_iva);*/
-    })
+
+
+
+        })
+    });
+
 </script>
 </body>
 
