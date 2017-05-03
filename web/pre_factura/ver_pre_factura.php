@@ -181,11 +181,11 @@ if ($_SESSION["login_done"] == true){
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="precio"><?php echo $row['precio'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio']?>"
+                                                                                                class="precio precio_val_<?php echo $val?>"><?php echo $row['precio'] ?></a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="cantidad"><?php echo $row['cantidad'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['cantidad']?>"
+                                                                                                class="cantidad precio cantidad_val_<?php echo $val?>"><?php echo $row['cantidad'] ?></a></label>
                                                         </td>
                                                         <?php
                                                         $margenes = get_margenes();
@@ -214,7 +214,7 @@ if ($_SESSION["login_done"] == true){
                                                         </td>
 
                                                         <td><label style="margin-top: 11px;">
-                                                                <a href="#" name="<?php echo $row['precio_total'] ?>" class="margen_id_<?php echo $val?> suma_precio">
+                                                                <a href="#" name="<?php echo $row['precio_total'] ?>" class="precio_total_<?php echo $val?> suma_precio">
                                                                     <?php echo $row['precio_total'] ?>
                                                                 </a>
                                                             </label>
@@ -372,7 +372,7 @@ if ($_SESSION["login_done"] == true){
                                                 <label>IVA</label>
                                                 <?php $data = select_all_iva(); ?>
                                                 <select name="select_box_iva" class="form-control select_iva" required>
-                                                    <option value="" disabled selected>Seleccionar IVA
+                                                    <option value="0"  disabled selected>Seleccionar IVA
                                                     </option>
                                                     <?php
                                                     if ($data->num_rows > 0) {
@@ -415,6 +415,8 @@ if ($_SESSION["login_done"] == true){
 </div>
 <script>
     $( document ).ready(function() {
+
+
         $('.select_iva').on('change', function () {
             var iva = ( this.value );
             var precio_sin_iva = $('.precio_sin_iva').val();
@@ -433,10 +435,23 @@ if ($_SESSION["login_done"] == true){
             var margen = ( this.value );
             var relacion = $(this).closest('tr').attr('id');
             var id_tronco_pre_factura_articulo =$(this).closest('tr').attr('content');
-            var classe= "margen_id_"+relacion;
-            var precio_margen = $('.'+classe).attr('name');
-            var precio_con_margen = margen * precio_margen;
-            $('.'+classe).text(precio_con_margen);
+            var classe_precio= "precio_val_"+relacion;
+            var classe_cantidad= "cantidad_val_"+relacion;
+            var classe_precio_total= "precio_total_"+relacion;
+            var val_precio = $('.'+classe_precio).attr('name');
+            var val_cantidad = $('.'+classe_cantidad).attr('name');
+            var val_precio_anterior = $('.'+classe_precio_total).attr('name');
+            var precio_con_margen = margen*(val_precio * val_cantidad);
+            $('.'+classe_precio_total).attr('name', precio_con_margen);
+            $('.'+classe_precio_total).text(precio_con_margen);
+            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
+            var precio_sin_iva = $('.precio_sin_iva').val();
+            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva)+(parseFloat(diferencia_de_precio)));
+            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
+            /*ACTUALIZAMOS EL PRECIO CON IVA*/
+            var iva = $('.select_iva').val();
+            alert(iva);
+
 
             $.ajax({
                 type: 'post',
