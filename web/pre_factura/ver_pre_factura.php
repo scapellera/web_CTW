@@ -372,7 +372,7 @@ if ($_SESSION["login_done"] == true){
                                                 <label>IVA</label>
                                                 <?php $data = select_all_iva(); ?>
                                                 <select name="select_box_iva" class="form-control select_iva" required>
-                                                    <option value="0"  disabled selected>Seleccionar IVA
+                                                    <option value="100"  disabled selected>Seleccionar IVA
                                                     </option>
                                                     <?php
                                                     if ($data->num_rows > 0) {
@@ -394,7 +394,7 @@ if ($_SESSION["login_done"] == true){
                                                 <label>Precio con IVA</label>
                                                 <input name="precio_con_iva"
                                                        class="form-control precio_con_iva_value" disabled
-                                                       value="" required>
+                                                       value="<?php echo $suma_precio_total ?>" required>
                                             </div>
                                         </div>
 
@@ -415,6 +415,8 @@ if ($_SESSION["login_done"] == true){
 </div>
 <script>
     $( document ).ready(function() {
+
+
 
 
         $('.select_iva').on('change', function () {
@@ -449,8 +451,10 @@ if ($_SESSION["login_done"] == true){
             var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva)+(parseFloat(diferencia_de_precio)));
             $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
             /*ACTUALIZAMOS EL PRECIO CON IVA*/
-            var iva = $('.select_iva').val();
-            alert(iva);
+            var iva = $( ".select_iva option:selected" ).val();
+            iva=parseFloat(iva)/100;
+            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva)+(parseFloat(diferencia_de_precio)))*iva);
+            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
 
 
             $.ajax({
@@ -462,10 +466,6 @@ if ($_SESSION["login_done"] == true){
                     margen: margen,
                 }
             });
-
-
-
-
         })
     });
 
