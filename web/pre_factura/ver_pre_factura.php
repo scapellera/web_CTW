@@ -156,8 +156,8 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Número de serie</th>
                                                 <th>Precio</th>
                                                 <th>Unidades</th>
-                                                <th>Margen</th>
-                                                <th style=" width: 150px ;">Precio total</th>
+                                                <th style=" width: 150px ;">Margen</th>
+                                                <th style=" width: 50px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -166,7 +166,7 @@ if ($_SESSION["login_done"] == true){
                                             $data = get_ver_pre_factura_articulos($id_pre_factura);
 
                                             if ($data->num_rows > 0) {
-                                                $val=0;
+                                                $val = 0;
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
                                                     $val++;
@@ -174,26 +174,31 @@ if ($_SESSION["login_done"] == true){
                                                     $suma_precio_total = $suma_precio_total + $row['precio_total'];
 
                                                     ?>
-                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO']?>" id="<?php echo $val?>">
+                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO'] ?>"
+                                                        id="<?php echo $val ?>">
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio']?>"
-                                                                                                class="precio precio_val_<?php echo $val?>"><?php echo $row['precio'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                name="<?php echo $row['precio'] ?>"
+                                                                                                class="precio articulo_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?></a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['cantidad']?>"
-                                                                                                class="cantidad precio cantidad_val_<?php echo $val?>"><?php echo $row['cantidad'] ?></a></label>
+                                                        <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                name="<?php echo $row['cantidad'] ?>"
+                                                                                                class="cantidad precio articulo_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
                                                         </td>
                                                         <?php
                                                         $margenes = get_margenes();
-                                                        $margen_name=1;
+                                                        $margen_name = 1;
                                                         ?>
                                                         <td>
                                                             <select name="select_box_margenes"
-                                                                    class="form-control select_margen" value="test" required>
+                                                                    class="form-control articulo_select_margen"
+                                                                    value="test"
+                                                                    required>
                                                                 <option value="" disabled selected>Margen
                                                                     actual = <?php echo $row['margen'] ?>
                                                                 </option>
@@ -204,7 +209,7 @@ if ($_SESSION["login_done"] == true){
                                                                     while ($row_margenes = $margenes->fetch_assoc()) {
                                                                         ?>
                                                                         <option
-                                                                             value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
                                                                         <?php
 
                                                                     }
@@ -214,7 +219,8 @@ if ($_SESSION["login_done"] == true){
                                                         </td>
 
                                                         <td><label style="margin-top: 11px;">
-                                                                <a href="#" name="<?php echo $row['precio_total'] ?>" class="precio_total_<?php echo $val?> suma_precio">
+                                                                <a href="#" name="<?php echo $row['precio_total'] ?>"
+                                                                   class="articulo_precio_total_<?php echo $val ?> suma_precio">
                                                                     <?php echo $row['precio_total'] ?>
                                                                 </a>
                                                             </label>
@@ -247,8 +253,9 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Pack</th>
                                                 <th>Descripción</th>
                                                 <th>Precio</th>
-                                                <th>Unidades</th>
-                                                <th style=" width: 150px ;">Precio total</th>
+                                                <th>Cantidad</th>
+                                                <th style=" width: 150px ;">Margen</th>
+                                                <th style=" width: 50px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -257,14 +264,17 @@ if ($_SESSION["login_done"] == true){
                                             $data = get_ver_pre_factura_servicios($id_pre_factura);
 
                                             if ($data->num_rows > 0) {
+                                                $val = 0;
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
+                                                    $val++;
                                                     $nombre_pack = get_nombre_servicio($row['ID_servicio']);
                                                     $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
                                                     $suma_precio_total = $suma_precio_total + $row['precio_total'];
 
                                                     ?>
-                                                    <tr>
+                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_SERVICIO'] ?>"
+                                                        id="<?php echo $val ?>">
                                                         <td><label style="margin-top: 11px;"><a
                                                                     href="#"><?php echo $nombre_pack ?> </a></label>
                                                         </td>
@@ -272,13 +282,43 @@ if ($_SESSION["login_done"] == true){
                                                                     href="#"><?php echo $descripcion_servicio ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a
-                                                                    href="#"><?php echo $row['precio'] ?> </a></label>
+                                                                    href="#" name="<?php echo $row['precio'] ?>"
+                                                                    class="servicio_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a
-                                                                    href="#"><?php echo $row['cantidad'] ?></a></label>
+                                                                    href="#" name="<?php echo $row['cantidad'] ?>"
+                                                                    class="servicio_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
+                                                        </td>
+                                                        <?php
+                                                        $margenes = get_margenes();
+                                                        $margen_name = 1;
+                                                        ?>
+                                                        <td>
+                                                            <select name="select_box_margenes"
+                                                                    class="form-control servicio_select_margen"
+                                                                    value="test"
+                                                                    required>
+                                                                <option value="" disabled selected>Margen
+                                                                    actual = <?php echo $row['margen'] ?>
+                                                                </option>
+                                                                <?php
+                                                                if ($margenes->num_rows > 0) {
+
+                                                                    // output data of each row
+                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                        ?>
+                                                                        <option
+                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                        <?php
+
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a
-                                                                    href="#"><?php echo $row['precio_total'] ?></a></label>
+                                                                    href="#" name="<?php echo $row['precio_total'] ?>"
+                                                                    class="servicio_precio_total_<?php echo $val ?>"><?php echo $row['precio_total'] ?></a></label>
                                                         </td>
                                                     </tr>
 
@@ -309,7 +349,8 @@ if ($_SESSION["login_done"] == true){
                                                 <th>Precio/h del servicio</th>
                                                 <th>Fecha</th>
                                                 <th>Horas</th>
-                                                <th style=" width: 150px ;">Precio total</th>
+                                                <th style=" width: 150px ;">Margen</th>
+                                                <th style=" width: 50px ;">Precio total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -318,14 +359,17 @@ if ($_SESSION["login_done"] == true){
                                             $data = get_ver_pre_factura_minutajes($id_pre_factura);
 
                                             if ($data->num_rows > 0) {
+                                                $val = 0;
                                                 $i = 0;
                                                 // output data of each row
                                                 while ($row = $data->fetch_assoc()) {
+                                                    $val++;
                                                     $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
                                                     $suma_precio_total = $suma_precio_total + $row['precio_total'];
 
                                                     ?>
-                                                    <tr>
+                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] ?>"
+                                                        id="<?php echo $val ?>">
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
                                                         </td>
@@ -338,8 +382,35 @@ if ($_SESSION["login_done"] == true){
                                                         <td><label style="margin-top: 11px;"><a href="#"
                                                                                                 class="horas"><?php echo $row['horas'] ?></a></label>
                                                         </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="precio_total"><?php echo $row['precio_total'] ?></a></label>
+                                                        <?php
+                                                        $margenes = get_margenes();
+                                                        $margen_name = 1;
+                                                        ?>
+                                                        <td>
+                                                            <select name="select_box_margenes"
+                                                                    class="form-control minutaje_select_margen"
+                                                                    value="test"
+                                                                    required>
+                                                                <option value="" disabled selected>Margen
+                                                                    actual = <?php echo $row['margen'] ?>
+                                                                </option>
+                                                                <?php
+                                                                if ($margenes->num_rows > 0) {
+
+                                                                    // output data of each row
+                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                        ?>
+                                                                        <option
+                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                        <?php
+
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </td>
+                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio_total'] ?>" class="precio_total minutaje_precio_total_<?php echo $val ?>"
+                                                                ><?php echo $row['precio_total'] ?></a></label>
                                                         </td>
                                                     </tr>
 
@@ -372,7 +443,7 @@ if ($_SESSION["login_done"] == true){
                                                 <label>IVA</label>
                                                 <?php $data = select_all_iva(); ?>
                                                 <select name="select_box_iva" class="form-control select_iva" required>
-                                                    <option value="100"  disabled selected>Seleccionar IVA
+                                                    <option value="100" disabled selected>Seleccionar IVA
                                                     </option>
                                                     <?php
                                                     if ($data->num_rows > 0) {
@@ -414,9 +485,7 @@ if ($_SESSION["login_done"] == true){
     </div>
 </div>
 <script>
-    $( document ).ready(function() {
-
-
+    $(document).ready(function () {
 
 
         $('.select_iva').on('change', function () {
@@ -432,28 +501,26 @@ if ($_SESSION["login_done"] == true){
 
             $('.precio_con_iva_value').val(precio_con_iva);
         })
-
-        $('.select_margen').on('change', function () {
+        $('.minutaje_select_margen').on('change', function () {
             var margen = ( this.value );
             var relacion = $(this).closest('tr').attr('id');
-            var id_tronco_pre_factura_articulo =$(this).closest('tr').attr('content');
-            var classe_precio= "precio_val_"+relacion;
-            var classe_cantidad= "cantidad_val_"+relacion;
-            var classe_precio_total= "precio_total_"+relacion;
-            var val_precio = $('.'+classe_precio).attr('name');
-            var val_cantidad = $('.'+classe_cantidad).attr('name');
-            var val_precio_anterior = $('.'+classe_precio_total).attr('name');
-            var precio_con_margen = margen*(val_precio * val_cantidad);
-            $('.'+classe_precio_total).attr('name', precio_con_margen);
-            $('.'+classe_precio_total).text(precio_con_margen);
+
+            var id_tronco_pre_factura_minutaje = $(this).closest('tr').attr('content');
+            var classe_precio_total = "minutaje_precio_total_" + relacion;
+            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
+            var precio_con_margen = margen * val_precio_anterior;
+            alert (precio_con_margen);
+
+            $('.' + classe_precio_total).attr('name', precio_con_margen);
+            $('.' + classe_precio_total).text(precio_con_margen);
             var diferencia_de_precio = precio_con_margen - val_precio_anterior;
             var precio_sin_iva = $('.precio_sin_iva').val();
-            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva)+(parseFloat(diferencia_de_precio)));
+            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
             $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
             /*ACTUALIZAMOS EL PRECIO CON IVA*/
-            var iva = $( ".select_iva option:selected" ).val();
-            iva=parseFloat(iva)/100;
-            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva)+(parseFloat(diferencia_de_precio)))*iva);
+            var iva = $(".select_iva option:selected").val();
+            iva = parseFloat(iva) / 100;
+            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
             $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
 
 
@@ -461,9 +528,83 @@ if ($_SESSION["login_done"] == true){
                 type: 'post',
                 url: '../assets/php/update_table/aplicar_margen.php',
                 data: {
-                    id_tronco_pre_factura_articulo: id_tronco_pre_factura_articulo,
+                    id_tronco_pre_factura: id_tronco_pre_factura_minutaje,
                     precio_con_margen: precio_con_margen,
                     margen: margen,
+                    para: "minutaje ",
+                }
+            });
+        })
+
+        $('.articulo_select_margen').on('change', function () {
+            var margen = ( this.value );
+            var relacion = $(this).closest('tr').attr('id');
+            var id_tronco_pre_factura_articulo = $(this).closest('tr').attr('content');
+            var classe_precio = "articulo_precio_val_" + relacion;
+            var classe_cantidad = "articulo_cantidad_val_" + relacion;
+            var classe_precio_total = "articulo_precio_total_" + relacion;
+            var val_precio = $('.' + classe_precio).attr('name');
+            var val_cantidad = $('.' + classe_cantidad).attr('name');
+            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
+            var precio_con_margen = margen * (val_precio * val_cantidad);
+            $('.' + classe_precio_total).attr('name', precio_con_margen);
+            $('.' + classe_precio_total).text(precio_con_margen);
+            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
+            var precio_sin_iva = $('.precio_sin_iva').val();
+            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
+            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
+            /*ACTUALIZAMOS EL PRECIO CON IVA*/
+            var iva = $(".select_iva option:selected").val();
+            iva = parseFloat(iva) / 100;
+            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
+            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
+
+
+            $.ajax({
+                type: 'post',
+                url: '../assets/php/update_table/aplicar_margen.php',
+                data: {
+                    id_tronco_pre_factura: id_tronco_pre_factura_articulo,
+                    precio_con_margen: precio_con_margen,
+                    margen: margen,
+                    para: "articulo",
+                }
+            });
+        })
+
+
+        $('.servicio_select_margen').on('change', function () {
+            var margen = ( this.value );
+            var relacion = $(this).closest('tr').attr('id');
+            var id_tronco_pre_factura_servicio = $(this).closest('tr').attr('content');
+            var classe_precio = "servicio_precio_val_" + relacion;
+            var classe_cantidad = "servicio_cantidad_val_" + relacion;
+            var classe_precio_total = "servicio_precio_total_" + relacion;
+            var val_precio = $('.' + classe_precio).attr('name');
+            var val_cantidad = $('.' + classe_cantidad).attr('name');
+            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
+            var precio_con_margen = margen * (val_precio * val_cantidad);
+            $('.' + classe_precio_total).attr('name', precio_con_margen);
+            $('.' + classe_precio_total).text(precio_con_margen);
+            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
+            var precio_sin_iva = $('.precio_sin_iva').val();
+            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
+            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
+            /*ACTUALIZAMOS EL PRECIO CON IVA*/
+            var iva = $(".select_iva option:selected").val();
+            iva = parseFloat(iva) / 100;
+            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
+            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
+
+
+            $.ajax({
+                type: 'post',
+                url: '../assets/php/update_table/aplicar_margen.php',
+                data: {
+                    id_tronco_pre_factura: id_tronco_pre_factura_servicio,
+                    precio_con_margen: precio_con_margen,
+                    margen: margen,
+                    para: "servicio",
                 }
             });
         })
