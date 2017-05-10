@@ -25,6 +25,8 @@ if ($_SESSION["login_done"] == true){
     <!--LIBRERIAS - BUSCADOR-->
     <?php include('../assets/librerias/librerias_pre_factura.html'); ?>
     <script type="text/javascript" src="../assets/js/functions.js"></script>
+    <script type="text/javascript" src="../assets/js/aplicar_margenes.js"></script>
+    <link href="../assets/css/insert.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -54,6 +56,24 @@ if ($_SESSION["login_done"] == true){
                     #menu_pre_factura1 {
                         /*margin-left: 12%;*/
                     }
+                }
+
+                .factura_pre_factura {
+                    cursor: pointer;
+                    width: 100%;
+                    border: none;
+                    background: #ea8f43;
+                    color: #FFF;
+                    margin: 0 0 5px;
+                    padding: 10px;
+                    font-size: 15px;
+                }
+
+                .factura_pre_factura:hover {
+                    background: #d5672b;
+                    -webkit-transition: background 0.3s ease-in-out;
+                    -moz-transition: background 0.3s ease-in-out;
+                    transition: background-color 0.3s ease-in-out;
                 }
             </style>
         </div>
@@ -94,523 +114,414 @@ if ($_SESSION["login_done"] == true){
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="card">
-                        <div>
-                            <!--CABECERA PRE-FACTURA-->
-                            <?php
-                            $suma_precio_total = 0;
-                            $cabecera_pre_factura = get_datos_cliente($nif_empresa);
-                            // output data of each row
-                            $row = $cabecera_pre_factura->fetch_assoc();
+                <form id="crear_factura" action="../assets/php/facturar/crear_factura.php" method="post">
+                    <input type="hidden" name="id_pre_factura" value="<?php echo $pre_facrura_array[0] ?>">
+                    <div class="row">
+                        <div class="card">
+                            <div>
+                                <!--CABECERA PRE-FACTURA-->
+                                <?php
+                                $suma_precio_total = 0;
+                                $cabecera_pre_factura = get_datos_cliente($nif_empresa);
+                                // output data of each row
+                                $row = $cabecera_pre_factura->fetch_assoc();
 
-                            ?>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Nº pre-factura</label>
-                                        <input type="text" name="num_pre_factura"
-                                               class="form-control" disabled
-                                               value="<?php echo $pre_facrura_array[0] ?>">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nombre</label>
-                                        <input type="text" name="nombre"
-                                               class="form-control" disabled
-                                               value="<?php echo $row['nombre_completo'] ?>">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>NIF</label>
-                                        <input type="text" name="NIF"
-                                               class="form-control" disabled
-                                               value="<?php echo $row['NIF_EMPRESA'] ?>">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Dirección facturación</label>
-                                        <input type="text" name="NIF"
-                                               class="form-control" disabled
-                                               value="<?php echo $row['calle_facturacion'] . " " . $row['numero_facturacion'] . ", " . $row['codigo_postal_facturacion'] . " " . $row['ciudad_facturacion'] ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="header">
-                                        <h4 class="title"> Artículos </h4>
-                                    </div>
-                                    <div class="row">
-                                        <table id="ver_pre_factura_articulos"
-                                               class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Artículo</th>
-                                                <th>Número de serie</th>
-                                                <th>Precio</th>
-                                                <th>Unidades</th>
-                                                <th style=" width: 150px ;">Margen</th>
-                                                <th style=" width: 50px ;">Precio total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <?php
-                                            $data = get_ver_pre_factura_articulos($id_pre_factura);
-
-                                            if ($data->num_rows > 0) {
-                                                $val = 0;
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    $val++;
-                                                    $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
-                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
-
-                                                    ?>
-                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO'] ?>"
-                                                        id="<?php echo $val ?>">
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                name="<?php echo $row['precio'] ?>"
-                                                                                                class="precio articulo_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?></a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                name="<?php echo $row['cantidad'] ?>"
-                                                                                                class="cantidad precio articulo_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
-                                                        </td>
-                                                        <?php
-                                                        $margenes = get_margenes();
-                                                        $margen_name = 1;
-                                                        ?>
-                                                        <td>
-                                                            <select name="select_box_margenes"
-                                                                    class="form-control articulo_select_margen"
-                                                                    value="test"
-                                                                    required>
-                                                                <option value="" disabled selected>Margen
-                                                                    actual = <?php echo $row['margen'] ?>
-                                                                </option>
-                                                                <?php
-                                                                if ($margenes->num_rows > 0) {
-
-                                                                    // output data of each row
-                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
-                                                                        ?>
-                                                                        <option
-                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
-                                                                        <?php
-
-                                                                    }
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                        </td>
-
-                                                        <td><label style="margin-top: 11px;">
-                                                                <a href="#" name="<?php echo $row['precio_total'] ?>"
-                                                                   class="articulo_precio_total_<?php echo $val ?> suma_precio">
-                                                                    <?php echo $row['precio_total'] ?>
-                                                                </a>
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-
-                                                    <?php
-                                                }
-                                            } else {
-                                                echo "No hay nada pre-facturado";
-                                            }
-                                            ?>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="header">
-                                        <h4 class="title"> Servicios </h4>
-                                    </div>
-                                    <div class="row">
-                                        <table id="ver_pre_factura_servicios"
-                                               class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Pack</th>
-                                                <th>Descripción</th>
-                                                <th>Precio</th>
-                                                <th>Cantidad</th>
-                                                <th style=" width: 150px ;">Margen</th>
-                                                <th style=" width: 50px ;">Precio total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <?php
-                                            $data = get_ver_pre_factura_servicios($id_pre_factura);
-
-                                            if ($data->num_rows > 0) {
-                                                $val = 0;
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    $val++;
-                                                    $nombre_pack = get_nombre_servicio($row['ID_servicio']);
-                                                    $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
-                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
-
-                                                    ?>
-                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_SERVICIO'] ?>"
-                                                        id="<?php echo $val ?>">
-                                                        <td><label style="margin-top: 11px;"><a
-                                                                    href="#"><?php echo $nombre_pack ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a
-                                                                    href="#"><?php echo $descripcion_servicio ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a
-                                                                    href="#" name="<?php echo $row['precio'] ?>"
-                                                                    class="servicio_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a
-                                                                    href="#" name="<?php echo $row['cantidad'] ?>"
-                                                                    class="servicio_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
-                                                        </td>
-                                                        <?php
-                                                        $margenes = get_margenes();
-                                                        $margen_name = 1;
-                                                        ?>
-                                                        <td>
-                                                            <select name="select_box_margenes"
-                                                                    class="form-control servicio_select_margen"
-                                                                    value="test"
-                                                                    required>
-                                                                <option value="" disabled selected>Margen
-                                                                    actual = <?php echo $row['margen'] ?>
-                                                                </option>
-                                                                <?php
-                                                                if ($margenes->num_rows > 0) {
-
-                                                                    // output data of each row
-                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
-                                                                        ?>
-                                                                        <option
-                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
-                                                                        <?php
-
-                                                                    }
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a
-                                                                    href="#" name="<?php echo $row['precio_total'] ?>"
-                                                                    class="servicio_precio_total_<?php echo $val ?>"><?php echo $row['precio_total'] ?></a></label>
-                                                        </td>
-                                                    </tr>
-
-                                                    <?php
-                                                }
-                                            } else {
-                                                echo "No hay nada pre-facturado";
-                                            }
-                                            ?>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="header">
-                                        <h4 class="title"> Minutaje </h4>
-                                    </div>
-                                    <div class="row">
-                                        <table id="ver_pre_factura_minutajes"
-                                               class="table table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Servicio</th>
-                                                <th>Precio/h del servicio</th>
-                                                <th>Fecha</th>
-                                                <th>Horas</th>
-                                                <th style=" width: 150px ;">Margen</th>
-                                                <th style=" width: 50px ;">Precio total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <?php
-                                            $data = get_ver_pre_factura_minutajes($id_pre_factura);
-
-                                            if ($data->num_rows > 0) {
-                                                $val = 0;
-                                                $i = 0;
-                                                // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
-                                                    $val++;
-                                                    $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
-                                                    $suma_precio_total = $suma_precio_total + $row['precio_total'];
-
-                                                    ?>
-                                                    <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] ?>"
-                                                        id="<?php echo $val ?>">
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="precio_h_servicio"><?php echo $row['precio_servicio'] ?> </a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="fecha"><?php echo $row['fecha'] ?></a></label>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                class="horas"><?php echo $row['horas'] ?></a></label>
-                                                        </td>
-                                                        <?php
-                                                        $margenes = get_margenes();
-                                                        $margen_name = 1;
-                                                        ?>
-                                                        <td>
-                                                            <select name="select_box_margenes"
-                                                                    class="form-control minutaje_select_margen"
-                                                                    value="test"
-                                                                    required>
-                                                                <option value="" disabled selected>Margen
-                                                                    actual = <?php echo $row['margen'] ?>
-                                                                </option>
-                                                                <?php
-                                                                if ($margenes->num_rows > 0) {
-
-                                                                    // output data of each row
-                                                                    while ($row_margenes = $margenes->fetch_assoc()) {
-                                                                        ?>
-                                                                        <option
-                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
-                                                                        <?php
-
-                                                                    }
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                        </td>
-                                                        <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio_total'] ?>" class="precio_total minutaje_precio_total_<?php echo $val ?>"
-                                                                ><?php echo $row['precio_total'] ?></a></label>
-                                                        </td>
-                                                    </tr>
-
-                                                    <?php
-                                                }
-                                            } else {
-                                                echo "No hay nada pre-facturado";
-                                            }
-                                            ?>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 col-md-offset-9">
-                                            <div class="form-group">
-                                                <label>Precio sin IVA</label>
-                                                <input name="precio_sin_iva"
-                                                       class="form-control precio_sin_iva" disabled
-                                                       value="<?php echo $suma_precio_total ?>">
-                                            </div>
+                                ?>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Nº pre-factura</label>
+                                            <input type="text" name="num_pre_factura"
+                                                   class="form-control" disabled
+                                                   value="<?php echo $pre_facrura_array[0] ?>">
                                         </div>
-
-
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3 col-md-offset-6">
-                                            <div class="form-group">
-                                                <label>IVA</label>
-                                                <?php $data = select_all_iva(); ?>
-                                                <select name="select_box_iva" class="form-control select_iva" required>
-                                                    <option value="100" disabled selected>Seleccionar IVA
-                                                    </option>
-                                                    <?php
-                                                    if ($data->num_rows > 0) {
-                                                        // output data of each row
-                                                        while ($row = $data->fetch_assoc()) {
-                                                            ?>
-                                                            <option
-                                                                value="<?php echo $row['IVA'] ?>"><?php echo "$row[IVA]"; ?></option>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nombre</label>
+                                            <input type="text" name="nombre"
+                                                   class="form-control" disabled
+                                                   value="<?php echo $row['nombre_completo'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>NIF</label>
+                                            <input type="text" name="NIF"
+                                                   class="form-control" disabled
+                                                   value="<?php echo $row['NIF_EMPRESA'] ?>">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Dirección facturación</label>
+                                            <input type="text" name="NIF"
+                                                   class="form-control" disabled
+                                                   value="<?php echo $row['calle_facturacion'] . " " . $row['numero_facturacion'] . ", " . $row['codigo_postal_facturacion'] . " " . $row['ciudad_facturacion'] ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="header">
+                                            <h4 class="title"> Artículos </h4>
+                                        </div>
+                                        <div class="row">
+                                            <table id="ver_pre_factura_articulos"
+                                                   class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Artículo</th>
+                                                    <th>Número de serie</th>
+                                                    <th>Precio</th>
+                                                    <th>Unidades</th>
+                                                    <th style=" width: 150px ;">Margen</th>
+                                                    <th style=" width: 50px ;">Precio total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <?php
+                                                $data = get_ver_pre_factura_articulos($id_pre_factura);
+
+                                                if ($data->num_rows > 0) {
+                                                    $val = 0;
+                                                    // output data of each row
+                                                    while ($row = $data->fetch_assoc()) {
+                                                        $val++;
+                                                        $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
+                                                        $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
+                                                        ?>
+                                                        <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO'] ?>"
+                                                            id="<?php echo $val ?>">
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    class="nombre_articulo"><?php echo $nombre_articulo ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['precio'] ?>"
+                                                                                                    class="precio articulo_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?></a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['cantidad'] ?>"
+                                                                                                    class="cantidad precio articulo_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
+                                                            </td>
                                                             <?php
-                                                        }
+                                                            $margenes = get_margenes();
+                                                            $margen_name = 1;
+                                                            ?>
+                                                            <td>
+                                                                <select name="select_box_margenes"
+                                                                        class="form-control articulo_select_margen"
+                                                                        value="test"
+                                                                        >
+                                                                    <option value="" disabled selected>Margen
+                                                                        actual = <?php echo $row['margen'] ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    if ($margenes->num_rows > 0) {
+
+                                                                        // output data of each row
+                                                                        while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                            ?>
+                                                                            <option
+                                                                                value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                            <?php
+
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </td>
+
+                                                            <td><label style="margin-top: 11px;">
+                                                                    <a href="#"
+                                                                       name="<?php echo $row['precio_total'] ?>"
+                                                                       class="articulo_precio_total_<?php echo $val ?> suma_precio">
+                                                                        <?php echo $row['precio_total'] ?>
+                                                                    </a>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+
+                                                        <?php
                                                     }
-                                                    ?>
-                                                </select>
+                                                } else {
+                                                    echo "No hay nada pre-facturado";
+                                                }
+                                                ?>
 
-                                            </div>
+
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="col-md-3 ">
-                                            <div class="form-group">
-                                                <label>Precio con IVA</label>
-                                                <input name="precio_con_iva"
-                                                       class="form-control precio_con_iva_value" disabled
-                                                       value="<?php echo $suma_precio_total ?>" required>
-                                            </div>
-                                        </div>
-
-
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="header">
+                                            <h4 class="title"> Servicios </h4>
+                                        </div>
+                                        <div class="row">
+                                            <table id="ver_pre_factura_servicios"
+                                                   class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Pack</th>
+                                                    <th>Descripción</th>
+                                                    <th>Precio</th>
+                                                    <th>Cantidad</th>
+                                                    <th style=" width: 150px ;">Margen</th>
+                                                    <th style=" width: 50px ;">Precio total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <?php
+                                                $data = get_ver_pre_factura_servicios($id_pre_factura);
+
+                                                if ($data->num_rows > 0) {
+                                                    $val = 0;
+                                                    // output data of each row
+                                                    while ($row = $data->fetch_assoc()) {
+                                                        $val++;
+                                                        $nombre_pack = get_nombre_servicio($row['ID_servicio']);
+                                                        $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
+                                                        $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
+                                                        ?>
+                                                        <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_SERVICIO'] ?>"
+                                                            id="<?php echo $val ?>">
+                                                            <td><label style="margin-top: 11px;"><a
+                                                                        href="#"><?php echo $nombre_pack ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a
+                                                                        href="#"><?php echo $descripcion_servicio ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a
+                                                                        href="#" name="<?php echo $row['precio'] ?>"
+                                                                        class="servicio_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a
+                                                                        href="#" name="<?php echo $row['cantidad'] ?>"
+                                                                        class="servicio_cantidad_val_<?php echo $val ?>"><?php echo $row['cantidad'] ?></a></label>
+                                                            </td>
+                                                            <?php
+                                                            $margenes = get_margenes();
+                                                            $margen_name = 1;
+                                                            ?>
+                                                            <td>
+                                                                <select name="select_box_margenes"
+                                                                        class="form-control servicio_select_margen"
+                                                                        value="test"
+                                                                        >
+                                                                    <option value="" disabled selected>Margen
+                                                                        actual = <?php echo $row['margen'] ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    if ($margenes->num_rows > 0) {
+
+                                                                        // output data of each row
+                                                                        while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                            ?>
+                                                                            <option
+                                                                                value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                            <?php
+
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a
+                                                                        href="#"
+                                                                        name="<?php echo $row['precio_total'] ?>"
+                                                                        class="servicio_precio_total_<?php echo $val ?>"><?php echo $row['precio_total'] ?></a></label>
+                                                            </td>
+                                                        </tr>
+
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "No hay nada pre-facturado";
+                                                }
+                                                ?>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="header">
+                                            <h4 class="title"> Minutaje </h4>
+                                        </div>
+                                        <div class="row">
+                                            <table id="ver_pre_factura_minutajes"
+                                                   class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Servicio</th>
+                                                    <th>Precio/h del servicio</th>
+                                                    <th>Fecha</th>
+                                                    <th>Horas</th>
+                                                    <th style=" width: 150px ;">Margen</th>
+                                                    <th style=" width: 50px ;">Precio total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                <?php
+                                                $data = get_ver_pre_factura_minutajes($id_pre_factura);
+
+                                                if ($data->num_rows > 0) {
+                                                    $val = 0;
+                                                    $i = 0;
+                                                    // output data of each row
+                                                    while ($row = $data->fetch_assoc()) {
+                                                        $val++;
+                                                        $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
+                                                        $suma_precio_total = $suma_precio_total + $row['precio_total'];
+
+                                                        ?>
+                                                        <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] ?>"
+                                                            id="<?php echo $val ?>">
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['precio_total'] ?>"
+                                                                                                    class="precio_h_servicio minutaje_precio_val_<?php echo $val ?>"><?php echo $row['precio_servicio'] ?> </a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    class="fecha"><?php echo $row['fecha'] ?></a></label>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    class="horas"><?php echo $row['horas'] ?></a></label>
+                                                            </td>
+                                                            <?php
+                                                            $margenes = get_margenes();
+                                                            $margen_name = 1;
+                                                            ?>
+                                                            <td>
+                                                                <select name="select_box_margenes"
+                                                                        class="form-control minutaje_select_margen"
+                                                                        value="test"
+                                                                        >
+                                                                    <option value="" disabled selected>Margen
+                                                                        actual = <?php echo $row['margen'] ?>
+                                                                    </option>
+                                                                    <?php
+                                                                    if ($margenes->num_rows > 0) {
+
+                                                                        // output data of each row
+                                                                        while ($row_margenes = $margenes->fetch_assoc()) {
+                                                                            ?>
+                                                                            <option
+                                                                                value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                            <?php
+
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </td>
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['precio_total'] ?>"
+                                                                                                    class="precio_total minutaje_precio_total_<?php echo $val ?>"
+                                                                    ><?php echo $row['precio_total'] ?></a></label>
+                                                            </td>
+                                                        </tr>
+
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "No hay nada pre-facturado";
+                                                }
+                                                ?>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 col-md-offset-9">
+                                                <div class="form-group">
+                                                    <label>Precio sin IVA</label>
+                                                    <input name="precio_sin_iva"
+                                                           class="form-control precio_sin_iva" disabled
+                                                           value="<?php echo $suma_precio_total ?>">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-3 col-md-offset-3">
+                                                <div class="form-group">
+                                                    <label>IVA</label>
+                                                    <?php $data = select_all_iva(); ?>
+                                                    <select name="select_box_iva" class="form-control select_iva"
+                                                            required>
+                                                        <option value="0" disabled selected>Seleccionar IVA
+                                                        </option>
+                                                        <?php
+                                                        if ($data->num_rows > 0) {
+                                                            // output data of each row
+                                                            while ($row = $data->fetch_assoc()) {
+                                                                ?>
+                                                                <option
+                                                                    value="<?php echo $row['IVA'] ?>"><?php echo "$row[IVA]"; ?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="form-group">
+                                                    <label>Precio con IVA</label>
+                                                    <input name="precio_con_iva"
+                                                           class="form-control precio_con_iva_value" disabled
+                                                           value="<?php echo $suma_precio_total ?>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="form-group">
+                                                    <button name="submit" class="factura_pre_factura" type="submit">
+                                                        Facturar la pre-factura
+                                                    </button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-
-
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
 
     </div>
 </div>
-<script>
-    $(document).ready(function () {
 
-
-        $('.select_iva').on('change', function () {
-            var iva = ( this.value );
-            var precio_sin_iva = $('.precio_sin_iva').val();
-            precio_sin_iva = precio_sin_iva;
-            var iva_aplicado = ((iva / 100) * precio_sin_iva);
-            iva_aplicado = iva_aplicado.toFixed(1);
-
-            var float_iva_aplicado = (parseFloat(iva_aplicado));
-            var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
-            var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
-
-            $('.precio_con_iva_value').val(precio_con_iva);
-        })
-        $('.minutaje_select_margen').on('change', function () {
-            var margen = ( this.value );
-            var relacion = $(this).closest('tr').attr('id');
-
-            var id_tronco_pre_factura_minutaje = $(this).closest('tr').attr('content');
-            var classe_precio_total = "minutaje_precio_total_" + relacion;
-            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
-            var precio_con_margen = margen * val_precio_anterior;
-            alert (precio_con_margen);
-
-            $('.' + classe_precio_total).attr('name', precio_con_margen);
-            $('.' + classe_precio_total).text(precio_con_margen);
-            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
-            var precio_sin_iva = $('.precio_sin_iva').val();
-            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
-            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
-            /*ACTUALIZAMOS EL PRECIO CON IVA*/
-            var iva = $(".select_iva option:selected").val();
-            iva = parseFloat(iva) / 100;
-            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
-            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
-
-
-            $.ajax({
-                type: 'post',
-                url: '../assets/php/update_table/aplicar_margen.php',
-                data: {
-                    id_tronco_pre_factura: id_tronco_pre_factura_minutaje,
-                    precio_con_margen: precio_con_margen,
-                    margen: margen,
-                    para: "minutaje ",
-                }
-            });
-        })
-
-        $('.articulo_select_margen').on('change', function () {
-            var margen = ( this.value );
-            var relacion = $(this).closest('tr').attr('id');
-            var id_tronco_pre_factura_articulo = $(this).closest('tr').attr('content');
-            var classe_precio = "articulo_precio_val_" + relacion;
-            var classe_cantidad = "articulo_cantidad_val_" + relacion;
-            var classe_precio_total = "articulo_precio_total_" + relacion;
-            var val_precio = $('.' + classe_precio).attr('name');
-            var val_cantidad = $('.' + classe_cantidad).attr('name');
-            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
-            var precio_con_margen = margen * (val_precio * val_cantidad);
-            $('.' + classe_precio_total).attr('name', precio_con_margen);
-            $('.' + classe_precio_total).text(precio_con_margen);
-            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
-            var precio_sin_iva = $('.precio_sin_iva').val();
-            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
-            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
-            /*ACTUALIZAMOS EL PRECIO CON IVA*/
-            var iva = $(".select_iva option:selected").val();
-            iva = parseFloat(iva) / 100;
-            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
-            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
-
-
-            $.ajax({
-                type: 'post',
-                url: '../assets/php/update_table/aplicar_margen.php',
-                data: {
-                    id_tronco_pre_factura: id_tronco_pre_factura_articulo,
-                    precio_con_margen: precio_con_margen,
-                    margen: margen,
-                    para: "articulo",
-                }
-            });
-        })
-
-
-        $('.servicio_select_margen').on('change', function () {
-            var margen = ( this.value );
-            var relacion = $(this).closest('tr').attr('id');
-            var id_tronco_pre_factura_servicio = $(this).closest('tr').attr('content');
-            var classe_precio = "servicio_precio_val_" + relacion;
-            var classe_cantidad = "servicio_cantidad_val_" + relacion;
-            var classe_precio_total = "servicio_precio_total_" + relacion;
-            var val_precio = $('.' + classe_precio).attr('name');
-            var val_cantidad = $('.' + classe_cantidad).attr('name');
-            var val_precio_anterior = $('.' + classe_precio_total).attr('name');
-            var precio_con_margen = margen * (val_precio * val_cantidad);
-            $('.' + classe_precio_total).attr('name', precio_con_margen);
-            $('.' + classe_precio_total).text(precio_con_margen);
-            var diferencia_de_precio = precio_con_margen - val_precio_anterior;
-            var precio_sin_iva = $('.precio_sin_iva').val();
-            var precio_total_pre_factura_sin_iva = (parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio)));
-            $('.precio_sin_iva').val(precio_total_pre_factura_sin_iva);
-            /*ACTUALIZAMOS EL PRECIO CON IVA*/
-            var iva = $(".select_iva option:selected").val();
-            iva = parseFloat(iva) / 100;
-            var precio_total_pre_factura_con_iva = ((parseFloat(precio_sin_iva) + (parseFloat(diferencia_de_precio))) * iva);
-            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
-
-
-            $.ajax({
-                type: 'post',
-                url: '../assets/php/update_table/aplicar_margen.php',
-                data: {
-                    id_tronco_pre_factura: id_tronco_pre_factura_servicio,
-                    precio_con_margen: precio_con_margen,
-                    margen: margen,
-                    para: "servicio",
-                }
-            });
-        })
-    });
-
-</script>
 </body>
 
 </html>

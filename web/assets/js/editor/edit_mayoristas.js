@@ -53,6 +53,12 @@ $(document).ready(function() {
     name: 'email_empresa'
 
   })
+  $('.IBAN').editable({
+    type: 'text',
+    url: '../assets/php/update_table/update_mayorista.php',
+    name: 'IBAN'
+
+  })
 
   
 })

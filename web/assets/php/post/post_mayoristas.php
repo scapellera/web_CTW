@@ -36,6 +36,8 @@ if($_SESSION["login_done"]==true){
 					$pais = $_POST['select_box_pais'];
 					$prefijo = select_prefijo_pais($pais);
                     $activo = $_POST['activo'];
+					$IBAN = $_POST['IBAN'];
+
 
                     if($activo==''){
                         $activo2 = 0;
@@ -51,6 +53,8 @@ if($_SESSION["login_done"]==true){
 					$email_comercial="\"$email_comercial\"";
                     $ubicacion="\"$ubicacion\"";
 					$pais="\"$pais\"";
+					$IBAN="\"$IBAN\"";
+
 
 					//Si hay algun campo opcional no rellenado lo transforma en null
 					if($nombre_comercial == "\"\""){
@@ -63,14 +67,16 @@ if($_SESSION["login_done"]==true){
 						$email_comercial ='null';
 					}if($ubicacion == "\"\""){
                         $ubicacion ='null';
-                    }
+                    }if($IBAN == "\"\""){
+						$IBAN ='null';
+					}
 
 
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo, activo)
-					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo, $activo2)";
+					$sql = "INSERT INTO MAYORISTA (NIF_MAYORISTA, nombre_empresa, nombre_comercial, telefono_empresa, telefono_comercial, extension_telefono_comercial, email_empresa, email_comercial, ubicacion, pais, prefijo, IBAN,activo)
+					VALUES ($NIF_mayorista, $nombre_empresa, $nombre_comercial, $telefono_empresa, $telefono_comercial, $extension_telefono_comercial, $email_empresa, $email_comercial, $ubicacion, $pais, $prefijo, $IBAN,$activo2)";
 					    
 
 

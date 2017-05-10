@@ -132,6 +132,9 @@ if($_SESSION["login_done"]==true){
                              ?>       
                             </select>
                             </fieldset>
+                              <fieldset>
+                                  &nbsp;IBAN <input placeholder="IBAN" name="IBAN" type="text">
+                              </fieldset>
                             <fieldset>
                             <input style="visibility:hidden" name="activo" type="checkbox" checked>
                             </fieldset>

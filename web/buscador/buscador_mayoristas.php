@@ -103,6 +103,7 @@ if ($_SESSION["login_done"] == true){
                                     <th>Ubicación</th>
                                     <th>País</th>
                                     <th>Prefijo</th>
+                                    <th>IBAN</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -150,7 +151,10 @@ if ($_SESSION["login_done"] == true){
                                                                                     data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['pais'] ?> </a></label>
                                             </td>
                                             <td><label style="margin-top: 11px;"><a href="#" class="prefijo"
-                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo'] ?> </a></label>
+                                                                                         data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['prefijo'] ?> </a></label>
+                                            </td>
+                                            <td><label style="margin-top: 11px;"><a href="#" class="IBAN"
+                                                                                    data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['IBAN'] ?> </a></label>
                                             </td>
                                         </tr>
 
