@@ -11,7 +11,7 @@ $(document).ready(function () {
         var float_iva_aplicado = (parseFloat(iva_aplicado));
         var float_pecio_sin_iva = (parseFloat(precio_sin_iva));
         var precio_con_iva = float_iva_aplicado + float_pecio_sin_iva;
-
+        var precio_con_iva=precio_con_iva.toFixed(2);
         $('.precio_con_iva_value').val(precio_con_iva);
     })
     $('.minutaje_select_margen').on('change', function () {
@@ -19,11 +19,20 @@ $(document).ready(function () {
         var relacion = $(this).closest('tr').attr('id');
         var id_tronco_pre_factura_minutaje = $(this).closest('tr').attr('content');
         var classe_precio = "minutaje_precio_val_" + relacion;
+        var classe_horas = "minutaje_horas_val_" + relacion;        
         var classe_precio_total = "minutaje_precio_total_" + relacion;
         var val_precio = $('.' + classe_precio).attr('name');
-        var val_cantidad = 1;
+        var val_horas = $('.' + classe_horas).attr('name');
         var val_precio_anterior = $('.' + classe_precio_total).attr('name');
-        var precio_con_margen = margen * (val_precio * val_cantidad);
+
+        //array horas
+        var array_horas = new Array();
+        var array_horas = val_horas.split(":");
+        var horas= array_horas[0];
+        var horas= horas*60;
+        var minutos = array_horas[1];
+        var precio_sin_margen=(((parseFloat(minutos)+parseFloat(horas))*val_precio)/60);
+        var precio_con_margen = margen * precio_sin_margen;
         $('.' + classe_precio_total).attr('name', precio_con_margen);
         $('.' + classe_precio_total).text(precio_con_margen);
         var diferencia_de_precio = precio_con_margen - val_precio_anterior;
@@ -34,6 +43,7 @@ $(document).ready(function () {
         var iva = $(".select_iva option:selected").val();
         iva = parseFloat(iva) / 100;
         var precio_total_pre_factura_con_iva = (parseFloat(precio_total_pre_factura_sin_iva) + (parseFloat(precio_total_pre_factura_sin_iva) * iva));
+        var precio_total_pre_factura_con_iva=precio_total_pre_factura_con_iva.toFixed(2);
         $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
 
 
@@ -47,6 +57,7 @@ $(document).ready(function () {
                 para: "minutaje",
             }
         });
+
     })
 
     $('.articulo_select_margen').on('change', function () {
@@ -70,6 +81,7 @@ $(document).ready(function () {
         var iva = $(".select_iva option:selected").val();
         iva = parseFloat(iva) / 100;
         var precio_total_pre_factura_con_iva = (parseFloat(precio_total_pre_factura_sin_iva) + (parseFloat(precio_total_pre_factura_sin_iva) * iva));
+        var precio_total_pre_factura_con_iva=precio_total_pre_factura_con_iva.toFixed(2);
         $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
 
 
@@ -107,7 +119,8 @@ $(document).ready(function () {
         var iva = $(".select_iva option:selected").val();
         iva = parseFloat(iva) / 100;
         var precio_total_pre_factura_con_iva = (parseFloat(precio_total_pre_factura_sin_iva) + (parseFloat(precio_total_pre_factura_sin_iva) * iva));
-        $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
+        var precio_total_pre_factura_con_iva = precio_total_pre_factura_con_iva.toFixed(2);
+            $('.precio_con_iva_value').val(precio_total_pre_factura_con_iva);
 
 
 

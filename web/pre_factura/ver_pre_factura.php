@@ -185,12 +185,15 @@ if ($_SESSION["login_done"] == true){
                                                 <tbody>
 
                                                 <?php
+                                                $id_articulos = array();
                                                 $data = get_ver_pre_factura_articulos($id_pre_factura);
 
                                                 if ($data->num_rows > 0) {
                                                     $val = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
+                                                        array_push($id_articulos,$row['ID_TRONCO_PRE_FACTURA_ARTICULO'] );
+                                                        $_SESSION['id_articulos'] = $id_articulos;
                                                         $val++;
                                                         $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
@@ -220,7 +223,7 @@ if ($_SESSION["login_done"] == true){
                                                                 <select name="select_box_margenes"
                                                                         class="form-control articulo_select_margen"
                                                                         value="test"
-                                                                        >
+                                                                >
                                                                     <option value="" disabled selected>Margen
                                                                         actual = <?php echo $row['margen'] ?>
                                                                     </option>
@@ -287,9 +290,12 @@ if ($_SESSION["login_done"] == true){
                                                 $data = get_ver_pre_factura_servicios($id_pre_factura);
 
                                                 if ($data->num_rows > 0) {
+                                                    $id_servicios = array();
                                                     $val = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
+                                                        array_push($id_servicios,$row['ID_TRONCO_PRE_FACTURA_SERVICIO'] );
+                                                        $_SESSION['id_servicios'] = $id_servicios;
                                                         $val++;
                                                         $nombre_pack = get_nombre_servicio($row['ID_servicio']);
                                                         $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
@@ -320,7 +326,7 @@ if ($_SESSION["login_done"] == true){
                                                                 <select name="select_box_margenes"
                                                                         class="form-control servicio_select_margen"
                                                                         value="test"
-                                                                        >
+                                                                >
                                                                     <option value="" disabled selected>Margen
                                                                         actual = <?php echo $row['margen'] ?>
                                                                     </option>
@@ -383,10 +389,14 @@ if ($_SESSION["login_done"] == true){
                                                 $data = get_ver_pre_factura_minutajes($id_pre_factura);
 
                                                 if ($data->num_rows > 0) {
+                                                    $id_minutaje = array();
+
                                                     $val = 0;
                                                     $i = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
+                                                        array_push($id_minutaje,$row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] );
+                                                        $_SESSION['id_minutaje'] = $id_minutaje;
                                                         $val++;
                                                         $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
@@ -397,15 +407,15 @@ if ($_SESSION["login_done"] == true){
                                                             <td><label style="margin-top: 11px;"><a href="#"
                                                                                                     class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
                                                             </td>
-                                                            <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                    name="<?php echo $row['precio_total'] ?>"
+                                                            <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio_servicio'] ?>"
+                                                                                                    
                                                                                                     class="precio_h_servicio minutaje_precio_val_<?php echo $val ?>"><?php echo $row['precio_servicio'] ?> </a></label>
                                                             </td>
                                                             <td><label style="margin-top: 11px;"><a href="#"
                                                                                                     class="fecha"><?php echo $row['fecha'] ?></a></label>
                                                             </td>
-                                                            <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                    class="horas"><?php echo $row['horas'] ?></a></label>
+                                                            <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['horas'] ?>"
+                                                                                                    class="horas minutaje_horas_val_<?php echo $val ?>"><?php echo $row['horas'] ?></a></label>
                                                             </td>
                                                             <?php
                                                             $margenes = get_margenes();
@@ -415,7 +425,7 @@ if ($_SESSION["login_done"] == true){
                                                                 <select name="select_box_margenes"
                                                                         class="form-control minutaje_select_margen"
                                                                         value="test"
-                                                                        >
+                                                                >
                                                                     <option value="" disabled selected>Margen
                                                                         actual = <?php echo $row['margen'] ?>
                                                                     </option>
@@ -466,14 +476,13 @@ if ($_SESSION["login_done"] == true){
                                         </div>
                                         <div class="row">
 
-                                            <div class="col-md-3 col-md-offset-3">
+                                            <div class="col-md-3 col-md-offset-6">
                                                 <div class="form-group">
                                                     <label>IVA</label>
                                                     <?php $data = select_all_iva(); ?>
                                                     <select name="select_box_iva" class="form-control select_iva"
                                                             required>
-                                                        <option value="0" disabled selected>Seleccionar IVA
-                                                        </option>
+                                                        
                                                         <?php
                                                         if ($data->num_rows > 0) {
                                                             // output data of each row
@@ -497,11 +506,14 @@ if ($_SESSION["login_done"] == true){
                                                            value="<?php echo $suma_precio_total ?>" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 ">
-                                                <div class="form-group">
-                                                    <button name="submit" class="factura_pre_factura" type="submit">
-                                                        Facturar la pre-factura
-                                                    </button>
+
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <button name="submit" class="factura_pre_factura" type="submit">
+                                                            Facturar la pre-factura
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
 
