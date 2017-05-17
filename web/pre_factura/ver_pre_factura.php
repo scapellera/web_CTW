@@ -116,6 +116,8 @@ if ($_SESSION["login_done"] == true){
             <div class="container-fluid">
                 <form id="crear_factura" action="../assets/php/facturar/crear_factura.php" method="post">
                     <input type="hidden" name="id_pre_factura" value="<?php echo $pre_facrura_array[0] ?>">
+                    <input type="hidden" name="NIF_empresa" value="<?php echo $nif_empresa ?>">
+
                     <div class="row">
                         <div class="card">
                             <div>
@@ -187,6 +189,7 @@ if ($_SESSION["login_done"] == true){
                                                 <?php
                                                 $id_articulos = array();
                                                 $data = get_ver_pre_factura_articulos($id_pre_factura);
+                                                $_SESSION['id_articulos'] = $id_articulos;
 
                                                 if ($data->num_rows > 0) {
                                                     $val = 0;
@@ -246,7 +249,7 @@ if ($_SESSION["login_done"] == true){
                                                             <td><label style="margin-top: 11px;">
                                                                     <a href="#"
                                                                        name="<?php echo $row['precio_total'] ?>"
-                                                                       class="articulo_precio_total_<?php echo $val ?> suma_precio">
+                                                                       class="articulo_precio_total_<?php echo $val ?> suma_precio ">
                                                                         <?php echo $row['precio_total'] ?>
                                                                     </a>
                                                                 </label>
@@ -288,9 +291,12 @@ if ($_SESSION["login_done"] == true){
 
                                                 <?php
                                                 $data = get_ver_pre_factura_servicios($id_pre_factura);
+                                                $id_servicios = array();
+                                                $_SESSION['id_servicios'] = $id_servicios;
 
                                                 if ($data->num_rows > 0) {
-                                                    $id_servicios = array();
+
+
                                                     $val = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
@@ -387,9 +393,10 @@ if ($_SESSION["login_done"] == true){
 
                                                 <?php
                                                 $data = get_ver_pre_factura_minutajes($id_pre_factura);
-
+                                                $id_minutaje = array();
+                                                $_SESSION['id_minutaje'] = $id_minutaje;
                                                 if ($data->num_rows > 0) {
-                                                    $id_minutaje = array();
+
 
                                                     $val = 0;
                                                     $i = 0;
@@ -506,6 +513,15 @@ if ($_SESSION["login_done"] == true){
                                                            value="<?php echo $suma_precio_total ?>" required>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                <label>Descripción para la factura</label>
+                                                <input name="descripcion_factura"
+                                                       class="form-control " 
+                                                       required>
+                                            </div>
+                                            </div>
+                                            <br>
 
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">

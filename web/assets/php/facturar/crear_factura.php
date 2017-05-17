@@ -15,7 +15,7 @@ if ($_SESSION["login_done"] == true){
     <link href="../../css/cargarinsert.css" rel="stylesheet"/>
 
 </head>
-<body onload="itv = setInterval(prog, 10)">
+<body <!--onload="itv = setInterval(prog, 10)"-->>
 
 
 <div>
@@ -23,23 +23,41 @@ if ($_SESSION["login_done"] == true){
     <?php
     #Declaramos las variables del formulario
     $id_pre_factura = $_POST['id_pre_factura'];
-    $array_length= count($_SESSION['id_articulos']);
+    $descripcion_factura = $_POST['descripcion_factura'];
+    $NIF_empresa = $_POST['NIF_empresa'];
+
+    $conn = connect();
+    /*PER_FACTURA --> FACTURA*/
+    $sql = "INSERT INTO FACTURA ( NIF_empresa, descripcion_factura)
+        VALUES(\"".$NIF_empresa."\", \"".$descripcion_factura."\")";
+        $conn->query($sql);
+
+    /*CABECERA_PER_FACTURA --> CABECERA_FACTURA*/
+    $sql = "INSERT INTO CABECERA_FACTURA (ID_FACTURA, NIF_empresa, descripcion_factura)
+        SELECT ID_PRE_FACTURA, Nif_empresa, nombre
+        FROM   PRE_FACTURA
+        WHERE  ID_PRE_FACTURA =".$id_pre_factura;
+    $conn->query($sql);
 
 
-    echo $id_pre_factura;
-    for($i=0;$i<$array_length;$i++ ) {
-        echo $_SESSION['id_articulos'][$i].",";
+    $array_length = count($_SESSION['id_articulos']);
+    for ($i = 0; $i < $array_length; $i++) {
+        echo $_SESSION['id_articulos'][$i] . ",";
+        /*PASAMOS LAS FILAS DE ARTICULOS PRE FACTURADOS A ARTICULOS FACTURADOS*/
+        /*$sql = "INSERT INTO courses (name, location, gid)
+        SELECT name, location, 1
+        FROM   courses
+        WHERE  cid = 2";
+        $conn->query($sql);*/
     }
-    $array_length= count($_SESSION['id_servicios']);
-    for($i=0;$i<$array_length;$i++ ) {
-        echo $_SESSION['id_servicios'][$i]."-";
+    $array_length = count($_SESSION['id_servicios']);
+    for ($i = 0; $i < $array_length; $i++) {
+        echo $_SESSION['id_servicios'][$i] . "-";
     }
-    $array_length= count($_SESSION['id_minutaje']);
-    for($i=0;$i<$array_length;$i++ ) {
-        echo $_SESSION['id_minutaje'][$i]."*";
+    $array_length = count($_SESSION['id_minutaje']);
+    for ($i = 0; $i < $array_length; $i++) {
+        echo $_SESSION['id_minutaje'][$i] . "*";
     }
-
-
 
 
     /*
@@ -107,9 +125,9 @@ if ($_SESSION["login_done"] == true){
         } else {
             echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
         }
-
+*/
         close($conn);
-    */
+
     ?>
 
 </div>

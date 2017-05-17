@@ -1,6 +1,15 @@
 $(document).ready(function () {
 
 
+    var iva = $('.select_iva').val();
+    var precio_sin_iva = $('.precio_sin_iva').val();
+    var iva_aplicado = ((parseFloat(iva)* parseFloat(precio_sin_iva))/100);
+    var precio_con_iva= parseFloat(precio_sin_iva)+ parseFloat(iva_aplicado);
+    $('.precio_con_iva_value').val(precio_con_iva);
+
+
+
+
     $('.select_iva').on('change', function () {
         var iva = ( this.value );
         var precio_sin_iva = $('.precio_sin_iva').val();
