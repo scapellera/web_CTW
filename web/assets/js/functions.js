@@ -58,7 +58,7 @@
 
     function borrar_minutaje(pk) {
         if (pk != "0") {
-            eliminar = confirm("¿Deseas eliminar este cliente?");
+            eliminar = confirm("¿Deseas eliminar este minutaje?");
             if (eliminar)
             //Redireccionamos si das a aceptar
                 window.location.href = "../assets/php/delete/delete_minutaje.php?id=" + pk; //página web a la que te redirecciona si confirmas la eliminación
@@ -69,6 +69,20 @@
             alert('Error, solo se puede eliminar en local siendo el admin');
         }
     }
+    function borrar_articulo(pk) {
+        if (pk != "0") {
+            eliminar = confirm("¿Deseas eliminar este artículo?");
+            if (eliminar)
+            //Redireccionamos si das a aceptar
+                window.location.href = "../assets/php/delete/delete_articulo.php?id=" + pk; //página web a la que te redirecciona si confirmas la eliminación
+            else
+            //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                alert('No se ha podido eliminar el cliente...')
+        } else {
+            alert('Error, solo se puede eliminar en local siendo el admin');
+        }
+    }
+
     function borrar_articulo(pk) {
         if (pk != "0") {
             eliminar = confirm("¿Deseas eliminar este cliente?");
@@ -82,6 +96,20 @@
             alert('Error, solo se puede eliminar en local siendo el admin');
         }
     }
+    function quitar_articulo_pre_factura(pk) {
+        if (pk != "0") {
+            eliminar = confirm("¿Deseas eliminar este artículo de la pre_factura?");
+            if (eliminar)
+            //Redireccionamos si das a aceptar
+                window.location.href = "../assets/php/delete/delete_articulo_pre_factura.php?id=" + pk; //página web a la que te redirecciona si confirmas la eliminación
+            else
+            //Y aquí pon cualquier cosa que quieras que salga si le diste al boton de cancelar
+                alert('No se ha podido eliminar el cliente...')
+        } else {
+            alert('Error, solo se puede eliminar en local siendo el admin');
+        }
+    }
+
     
     
 

@@ -31,6 +31,16 @@ function codigo_de_barras_articulo($id_articulo)
     close($conn);
     return $codigo_de_barras;
 }
+function codigo_de_barras_articulo_pre_facturado($id_articulo)
+{
+    $conn = connect();
+    $sql = "SELECT codigo_de_barras FROM ARTICULO_FACTURADO WHERE ID_ARTICULO= '" . $id_articulo . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $codigo_de_barras = $row['codigo_de_barras'];
+    close($conn);
+    return $codigo_de_barras;
+}
 
 function cantidad_articulo($id_articulo)
 {
