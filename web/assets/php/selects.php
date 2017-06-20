@@ -376,6 +376,18 @@ function get_id_pre_factura($cliente, $nombre_pre_factura)
 
 
 //PRE_FACTURA_ARTICULO//////////////////////
+function last_id_articulo_facturado()
+{
+    $conn = connect();
+    $sql = "SELECT 	ID_ARTICULO_FACTURADO
+    FROM ARTICULO_FACTURADO
+    ORDER BY ID_ARTICULO_FACTURADO desc";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $id_articulo_facturado = $row['ID_ARTICULO_FACTURADO'];
+    close($conn);
+    return $id_articulo_facturado;
+}
 function id_crear_cabecera_pre_factura($nombre_pre_factura, $nif_cliente)
 {
     $conn = connect();

@@ -121,8 +121,9 @@ if ($_SESSION["login_done"] == true){
 
             //añadimos los articulos en la tabla tronco_pre_factura_articulos
             $suma_precio = $row['precio'] * $cantidad_seleccionada[$i];
-            $insert_tronco_pre_factura_articulo = "INSERT INTO TRONCO_PRE_FACTURA_ARTICULO(ID_pre_factura, ID_articulo, numero_de_serie, cantidad, precio, precio_total)
-			VALUES (" . $id_pre_factura . "," . $row['ID_ARTICULO'] . ",$sql_numero_de_serie,$cantidad_seleccionada[$i],'" . $row['precio'] . "',$suma_precio)";
+            $last_id_articulo_facturado=last_id_articulo_facturado();
+            $insert_tronco_pre_factura_articulo = "INSERT INTO TRONCO_PRE_FACTURA_ARTICULO(ID_pre_factura, ID_articulo, numero_de_serie, cantidad, precio, precio_total, id_articulo_facturado)
+			VALUES (" . $id_pre_factura . "," . $row['ID_ARTICULO'] . ",$sql_numero_de_serie,$cantidad_seleccionada[$i],'" . $row['precio'] . "',$suma_precio, $last_id_articulo_facturado )";
 
             if($conn->query($insert_tronco_pre_factura_articulo) === TRUE){
 
