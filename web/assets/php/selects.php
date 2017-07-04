@@ -581,6 +581,24 @@ function get_descripcion_servicio($ID_servicio)
     close($conn);
     return $descripcion;
 }
+function get_articulo_facturado($id_articulo_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM ARTICULO_FACTURADO WHERE ID_ARTICULO_FACTURADO = '" . $id_articulo_facturado . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_row_stock($codigo_de_barras)
+{
+    $conn = connect();
+    $sql = "SELECT count *
+    FROM STOCK WHERE CODIGO_DE_BARRRAS = '" . $codigo_de_barras . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 
 

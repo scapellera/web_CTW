@@ -200,6 +200,7 @@ if ($_SESSION["login_done"] == true){
                                                         $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
                                                         $pk=$row['ID_articulo'];
+                                                        $id_articulo_facturado=$row['id_articulo_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO'] ?>"
@@ -207,7 +208,7 @@ if ($_SESSION["login_done"] == true){
                                                             <td><label style="width: 100%">
                                                                     <center>
                                                                         <button style="width: 100%" class="btn btn-danger"
-                                                                                onclick="quitar_articulo_pre_factura(<?php echo "$pk"; ?>)"><span
+                                                                                onclick="quitar_articulo_pre_factura(<?php echo "$id_articulo_facturado"; ?>)"><span
                                                                                 class="glyphicon glyphicon-trash "></span></button>
                                                                     </center>
                                                                 </label></td>
