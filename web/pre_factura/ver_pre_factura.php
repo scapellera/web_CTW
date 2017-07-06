@@ -287,6 +287,7 @@ if ($_SESSION["login_done"] == true){
                                                    class="table table-striped table-bordered">
                                                 <thead>
                                                 <tr>
+                                                    <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                                     <th>Pack</th>
                                                     <th>Descripción</th>
                                                     <th>Precio</th>
@@ -314,10 +315,18 @@ if ($_SESSION["login_done"] == true){
                                                         $nombre_pack = get_nombre_servicio($row['ID_servicio']);
                                                         $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
+                                                        $id_servicio_facturado=$row['id_servicio_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_SERVICIO'] ?>"
                                                             id="<?php echo $val ?>">
+                                                            <td><label style="width: 100%">
+                                                                    <center>
+                                                                        <button style="width: 100%" class="btn btn-danger"
+                                                                                onclick="quitar_servicio_pre_factura(<?php echo "$id_servicio_facturado"; ?>)"><span
+                                                                                class="glyphicon glyphicon-trash "></span></button>
+                                                                    </center>
+                                                                </label></td>
                                                             <td><label style="margin-top: 11px;"><a
                                                                         href="#"><?php echo $nombre_pack ?> </a></label>
                                                             </td>

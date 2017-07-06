@@ -593,13 +593,27 @@ function get_articulo_facturado($id_articulo_facturado)
 function get_row_stock($codigo_de_barras)
 {
     $conn = connect();
-    $sql = "SELECT count *
-    FROM STOCK WHERE CODIGO_DE_BARRRAS = '" . $codigo_de_barras . "'";
+    $sql = "SELECT count(*)
+    FROM STOCK where CODIGO_DE_BARRAS = '".$codigo_de_barras."'";
     $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $total = $row['count(*)'];
     close($conn);
-    return $data;
+    return $total;
 }
 
+function last_id_servicio_facturado()
+{
+    $conn = connect();
+    $sql = "SELECT 	ID_SERVICIO_FACTURADO
+    FROM SERVICIO_FACTURADO
+    ORDER BY ID_SERVICIO_FACTURADO desc";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $id_servicio_facturado = $row['ID_SERVICIO_FACTURADO'];
+    close($conn);
+    return $id_servicio_facturado;
+}
 
 
 //////////////////////////////////////////////////////////////////

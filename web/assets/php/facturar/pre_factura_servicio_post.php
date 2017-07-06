@@ -61,9 +61,9 @@ if ($_SESSION["login_done"] == true){
 
             //AÑADIMOS EL SERVICIO EN LA TABLA TRONCO_PRE_FACTURA_SERVICIO
             $precio_total=$row['precio']*$cantidad_seleccionada[$i];
-
-            $insert_tronco_pre_factura_servicio = "INSERT INTO TRONCO_PRE_FACTURA_SERVICIO(ID_pre_factura, ID_servicio, precio, cantidad, precio_total)
-			VALUES (" . $id_pre_factura . "," . $row['ID_SERVICIO'] . ",".$row['precio'].",$cantidad_seleccionada[$i], $precio_total)";
+            $last_id_articulo_facturado=last_id_servicio_facturado();
+            $insert_tronco_pre_factura_servicio = "INSERT INTO TRONCO_PRE_FACTURA_SERVICIO(ID_pre_factura, ID_servicio, precio, cantidad, precio_total, id_servicio_facturado)
+			VALUES (" . $id_pre_factura . "," . $row['ID_SERVICIO'] . ",".$row['precio'].",$cantidad_seleccionada[$i], $precio_total, $last_id_articulo_facturado)";
 
             if($conn->query($insert_tronco_pre_factura_servicio) === TRUE){
 
