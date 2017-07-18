@@ -138,7 +138,7 @@ if ($_SESSION["login_done"] == true){
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nombre</label>
+                                            <label>Nombre Cliente</label>
                                             <input type="text" name="nombre"
                                                    class="form-control" disabled
                                                    value="<?php echo $row['nombre_completo'] ?>">
@@ -388,7 +388,7 @@ if ($_SESSION["login_done"] == true){
                                         </div>
                                     </div>
                                 </div>
-                                <form id="crear_factura" action="../assets/php/facturar/crear_factura.php" method="post">
+                                <form id="crear_factura" action="seleccionar_fecha_factura.php" method="post">
                                     <input type="hidden" name="id_pre_factura" value="<?php echo $pre_facrura_array[0] ?>">
                                     <input type="hidden" name="NIF_empresa" value="<?php echo $nif_empresa ?>">
                                 <div class="row">
@@ -401,6 +401,7 @@ if ($_SESSION["login_done"] == true){
                                                    class="table table-striped table-bordered">
                                                 <thead>
                                                 <tr>
+                                                    <th style="background-color: #F26842; width: 3px;">Borrar</th>
                                                     <th>Servicio</th>
                                                     <th>Precio/h del servicio</th>
                                                     <th>Fecha</th>
@@ -427,10 +428,18 @@ if ($_SESSION["login_done"] == true){
                                                         $val++;
                                                         $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
+                                                        $id_minutaje_facturado=$row['id_minutaje_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] ?>"
                                                             id="<?php echo $val ?>">
+                                                            <td><label style="width: 100%">
+                                                                    <center>
+                                                                        <button style="width: 100%" class="btn btn-danger"
+                                                                                onclick="quitar_minutaje_pre_factura(<?php echo "$id_minutaje_facturado"; ?>)"><span
+                                                                                class="glyphicon glyphicon-trash "></span></button>
+                                                                    </center>
+                                                                </label></td>
                                                             <td><label style="margin-top: 11px;"><a href="#"
                                                                                                     class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
                                                             </td>
@@ -533,14 +542,7 @@ if ($_SESSION["login_done"] == true){
                                                            value="<?php echo $suma_precio_total ?>" required>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                <label>Descripción para la factura</label>
-                                                <input name="descripcion_factura"
-                                                       class="form-control " 
-                                                       required>
-                                            </div>
-                                            </div>
+
                                             <br>
 
                                             <div class="row">

@@ -23,7 +23,6 @@ if ($_SESSION["login_done"] == true){
     <?php
     #Declaramos las variables del formulario
     $id_pre_factura = $_POST['id_pre_factura'];
-    $descripcion_factura = $_POST['descripcion_factura'];
     $NIF_empresa = $_POST['NIF_empresa'];
 
     $conn = connect();

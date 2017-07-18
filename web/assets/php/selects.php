@@ -615,5 +615,26 @@ function last_id_servicio_facturado()
     return $id_servicio_facturado;
 }
 
+function last_id_minutaje_facturado()
+{
+    $conn = connect();
+    $sql = "SELECT 	ID_MINUTAJE_FACTURADO
+    FROM MINUTAJE_FACTURADO
+    ORDER BY ID_MINUTAJE_FACTURADO desc";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $id_minutaje_facturado = $row['ID_MINUTAJE_FACTURADO'];
+    close($conn);
+    return $id_minutaje_facturado;
+}
+function get_minutaje_facturado($id_minutaje_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM MINUTAJE_FACTURADO WHERE ID_MINUTAJE_FACTURADO = '" . $id_minutaje_facturado . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 //////////////////////////////////////////////////////////////////

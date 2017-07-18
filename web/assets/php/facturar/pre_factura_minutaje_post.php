@@ -75,9 +75,11 @@ if ($_SESSION["login_done"] == true){
             $min =$dteDiff->format("%I");
             $precio_total= ((($min+$horas)*$precio_servicio)/60);
             echo $precio_total;
+            $last_id_minutaje_facturado=last_id_minutaje_facturado();
 
-            $insert_tronco_pre_factura_minutaje = "INSERT INTO TRONCO_PRE_FACTURA_MINUTAJE(ID_pre_factura, ID_minutaje, ID_servicio,fecha, horas, precio_servicio, precio_total)
-			VALUES (" . $id_pre_factura . "," . $row['ID_MINUTAJE'] . ",".$row['ID_servicio'].",'".$row['fecha']."',$hora, $precio_servicio, $precio_total)";
+
+            $insert_tronco_pre_factura_minutaje = "INSERT INTO TRONCO_PRE_FACTURA_MINUTAJE(ID_pre_factura, ID_minutaje, ID_servicio,fecha, horas, precio_servicio, precio_total, id_minutaje_facturado)
+			VALUES (" . $id_pre_factura . "," . $row['ID_MINUTAJE'] . ",".$row['ID_servicio'].",'".$row['fecha']."',$hora, $precio_servicio, $precio_total, $last_id_minutaje_facturado)";
 
             if($conn->query($insert_tronco_pre_factura_minutaje) === TRUE){
 

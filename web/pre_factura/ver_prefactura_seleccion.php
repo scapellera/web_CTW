@@ -100,7 +100,7 @@ if ($_SESSION["login_done"] == true){
                                     &nbsp;Selecciona el cliente y la pre factura:
                                     <?php $data = select_all_cliente(); ?>
                                     <select id="cliente" name="select_box_nif_empresa" class="select_box"
-                                            onchange="cambia_pre_factura()">
+                                            onchange="cambia_pre_factura()" required>
                                         <option value="" disabled selected>Selecciona el cliente*</option>
                                         <?php
                                         if ($data->num_rows > 0) {
