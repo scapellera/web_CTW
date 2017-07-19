@@ -1,1 +1,0 @@
-- hover de los cuadrados de buscador (hacerlo en assets/css/micss.css)

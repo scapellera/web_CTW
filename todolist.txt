@@ -1,2 +1,0 @@
-﻿- Editar usuario
-- crear tabla de soporte de roles en la bbdd y añadirlos en los inserts de usuario (hablar con manel para definir loss roles)
