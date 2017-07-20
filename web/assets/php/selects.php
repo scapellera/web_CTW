@@ -637,4 +637,85 @@ function get_minutaje_facturado($id_minutaje_facturado)
     return $data;
 }
 
+function get_last_fecha_factura()
+{
+    $conn = connect();
+    $sql = "SELECT	fecha_factura
+    FROM CABECERA_FACTURA
+    ORDER BY fecha_factura desc";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $timestamp = strtotime($row['fecha_factura']);
+    close($conn);
+    return $timestamp;
+}
+
+function get_cliente_pre_factura($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT NIF_empresa
+    FROM PRE_FACTURA WHERE ID_PRE_FACTURA = '" . $id_pre_factura . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $NIF_cliente = $row['NIF_empresa'];
+    close($conn);
+    return $NIF_cliente;
+}
+function get_ciudad_facturacion($NIF_EMPRESA)
+{
+    $conn = connect();
+    $sql = "SELECT ciudad_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $NIF_EMPRESA . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ciudad_facturacion = $row['ciudad_facturacion'];
+    close($conn);
+    return $ciudad_facturacion;
+}
+function get_codigo_postal_facturacion($NIF_EMPRESA)
+{
+    $conn = connect();
+    $sql = "SELECT codigo_postal_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $NIF_EMPRESA . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ciudad_facturacion = $row['codigo_postal_facturacion'];
+    close($conn);
+    return $ciudad_facturacion;
+}
+function get_calle_facturacion($NIF_EMPRESA)
+{
+    $conn = connect();
+    $sql = "SELECT calle_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $NIF_EMPRESA . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $calle_facturacion = $row['calle_facturacion'];
+    close($conn);
+    return $calle_facturacion;
+}
+function get_numero_facturacion($NIF_EMPRESA)
+{
+    $conn = connect();
+    $sql = "SELECT numero_facturacion
+    FROM CLIENTE WHERE NIF_EMPRESA = '" . $NIF_EMPRESA . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $numero_facturacion = $row['numero_facturacion'];
+    close($conn);
+    return $numero_facturacion;
+}
+function get_last_id_factura()
+{
+    $conn = connect();
+    $sql = "SELECT ID_FACTURA
+    FROM FACTURA
+    ORDER BY ID_FACTURA desc";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ID_FACTURA = $row['ID_FACTURA'];
+    close($conn);
+    return $ID_FACTURA;
+}
+
 //////////////////////////////////////////////////////////////////

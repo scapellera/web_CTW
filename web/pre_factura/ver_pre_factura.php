@@ -88,10 +88,7 @@ if ($_SESSION["login_done"] == true){
         $id_pre_factura = $pre_facrura_array[0];
         ?>
         <nav class="navbar navbar-default navbar-fixed">
-            <form method="POST" id="send_servicios" action="../pre_factura/seleccion_pre_factura.php">
-                <input type="hidden" id="id_string" name="id_string" value="">
-                <input style="display:none" type="submit" value="submit" id="buttonId"/>
-            </form>
+
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -116,54 +113,56 @@ if ($_SESSION["login_done"] == true){
             <div class="container-fluid">
 
 
-                    <div class="row">
-                        <div class="card">
-                            <div>
-                                <!--CABECERA PRE-FACTURA-->
-                                <?php
-                                $suma_precio_total = 0;
-                                $cabecera_pre_factura = get_datos_cliente($nif_empresa);
-                                // output data of each row
-                                $row = $cabecera_pre_factura->fetch_assoc();
+                <div class="row">
+                    <div class="card">
+                        <div>
+                            <!--CABECERA PRE-FACTURA-->
+                            <?php
+                            $suma_precio_total = 0;
+                            $cabecera_pre_factura = get_datos_cliente($nif_empresa);
+                            // output data of each row
+                            $row = $cabecera_pre_factura->fetch_assoc();
 
-                                ?>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Nº pre-factura</label>
-                                            <input type="text" name="num_pre_factura"
-                                                   class="form-control" disabled
-                                                   value="<?php echo $pre_facrura_array[0] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Nombre Cliente</label>
-                                            <input type="text" name="nombre"
-                                                   class="form-control" disabled
-                                                   value="<?php echo $row['nombre_completo'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>NIF</label>
-                                            <input type="text" name="NIF"
-                                                   class="form-control" disabled
-                                                   value="<?php echo $row['NIF_EMPRESA'] ?>">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Dirección facturación</label>
-                                            <input type="text" name="NIF"
-                                                   class="form-control" disabled
-                                                   value="<?php echo $row['calle_facturacion'] . " " . $row['numero_facturacion'] . ", " . $row['codigo_postal_facturacion'] . " " . $row['ciudad_facturacion'] ?>">
-                                        </div>
+                            ?>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Nº pre-factura</label>
+                                        <input type="text" name="num_pre_factura"
+                                               class="form-control" disabled
+                                               value="<?php echo $pre_facrura_array[0] ?>">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nombre Cliente</label>
+                                        <input type="text" name="nombre"
+                                               class="form-control" disabled
+                                               value="<?php echo $row['nombre_completo'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>NIF</label>
+                                        <input type="text" name="NIF"
+                                               class="form-control" disabled
+                                               value="<?php echo $row['NIF_EMPRESA'] ?>">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Dirección facturación</label>
+                                        <input type="text" name="NIF"
+                                               class="form-control" disabled
+                                               value="<?php echo $row['calle_facturacion'] . " " . $row['numero_facturacion'] . ", " . $row['codigo_postal_facturacion'] . " " . $row['ciudad_facturacion'] ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="crear_factura" action="seleccionar_fecha_factura.php" method="post">
+                                <input type="hidden" name="id_pre_factura" value="<?php echo $id_pre_factura ?>">
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="header">
@@ -194,22 +193,24 @@ if ($_SESSION["login_done"] == true){
                                                     $val = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
-                                                        array_push($id_articulos,$row['ID_TRONCO_PRE_FACTURA_ARTICULO'] );
+                                                        array_push($id_articulos, $row['ID_TRONCO_PRE_FACTURA_ARTICULO']);
                                                         $_SESSION['id_articulos'] = $id_articulos;
                                                         $val++;
                                                         $nombre_articulo = get_nombre_articulo($row['ID_articulo']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
-                                                        $pk=$row['ID_articulo'];
-                                                        $id_articulo_facturado=$row['id_articulo_facturado'];
+                                                        $pk = $row['ID_articulo'];
+                                                        $id_articulo_facturado = $row['id_articulo_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_ARTICULO'] ?>"
                                                             id="<?php echo $val ?>">
                                                             <td><label style="width: 100%">
                                                                     <center>
-                                                                        <button style="width: 100%" class="btn btn-danger"
+                                                                        <button style="width: 100%"
+                                                                                class="btn btn-danger"
                                                                                 onclick="quitar_articulo_pre_factura(<?php echo "$id_articulo_facturado"; ?>)"><span
-                                                                                class="glyphicon glyphicon-trash "></span></button>
+                                                                                class="glyphicon glyphicon-trash "></span>
+                                                                        </button>
                                                                     </center>
                                                                 </label></td>
                                                             <td><label style="margin-top: 11px;"><a href="#"
@@ -309,22 +310,24 @@ if ($_SESSION["login_done"] == true){
                                                     $val = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
-                                                        array_push($id_servicios,$row['ID_TRONCO_PRE_FACTURA_SERVICIO'] );
+                                                        array_push($id_servicios, $row['ID_TRONCO_PRE_FACTURA_SERVICIO']);
                                                         $_SESSION['id_servicios'] = $id_servicios;
                                                         $val++;
                                                         $nombre_pack = get_nombre_servicio($row['ID_servicio']);
                                                         $descripcion_servicio = get_descripcion_servicio($row['ID_servicio']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
-                                                        $id_servicio_facturado=$row['id_servicio_facturado'];
+                                                        $id_servicio_facturado = $row['id_servicio_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_SERVICIO'] ?>"
                                                             id="<?php echo $val ?>">
                                                             <td><label style="width: 100%">
                                                                     <center>
-                                                                        <button style="width: 100%" class="btn btn-danger"
+                                                                        <button style="width: 100%"
+                                                                                class="btn btn-danger"
                                                                                 onclick="quitar_servicio_pre_factura(<?php echo "$id_servicio_facturado"; ?>)"><span
-                                                                                class="glyphicon glyphicon-trash "></span></button>
+                                                                                class="glyphicon glyphicon-trash "></span>
+                                                                        </button>
                                                                     </center>
                                                                 </label></td>
                                                             <td><label style="margin-top: 11px;"><a
@@ -388,9 +391,7 @@ if ($_SESSION["login_done"] == true){
                                         </div>
                                     </div>
                                 </div>
-                                <form id="crear_factura" action="seleccionar_fecha_factura.php" method="post">
-                                    <input type="hidden" name="id_pre_factura" value="<?php echo $pre_facrura_array[0] ?>">
-                                    <input type="hidden" name="NIF_empresa" value="<?php echo $nif_empresa ?>">
+
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="header">
@@ -423,34 +424,38 @@ if ($_SESSION["login_done"] == true){
                                                     $i = 0;
                                                     // output data of each row
                                                     while ($row = $data->fetch_assoc()) {
-                                                        array_push($id_minutaje,$row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] );
+                                                        array_push($id_minutaje, $row['ID_TRONCO_PRE_FACTURA_MINUTAJE']);
                                                         $_SESSION['id_minutaje'] = $id_minutaje;
                                                         $val++;
                                                         $nombre_servicio = get_nombre_servicio($row['ID_servicio']);
                                                         $suma_precio_total = $suma_precio_total + $row['precio_total'];
-                                                        $id_minutaje_facturado=$row['id_minutaje_facturado'];
+                                                        $id_minutaje_facturado = $row['id_minutaje_facturado'];
 
                                                         ?>
                                                         <tr content="<?php echo $row['ID_TRONCO_PRE_FACTURA_MINUTAJE'] ?>"
                                                             id="<?php echo $val ?>">
                                                             <td><label style="width: 100%">
                                                                     <center>
-                                                                        <button style="width: 100%" class="btn btn-danger"
+                                                                        <button style="width: 100%"
+                                                                                class="btn btn-danger"
                                                                                 onclick="quitar_minutaje_pre_factura(<?php echo "$id_minutaje_facturado"; ?>)"><span
-                                                                                class="glyphicon glyphicon-trash "></span></button>
+                                                                                class="glyphicon glyphicon-trash "></span>
+                                                                        </button>
                                                                     </center>
                                                                 </label></td>
                                                             <td><label style="margin-top: 11px;"><a href="#"
                                                                                                     class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
                                                             </td>
-                                                            <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['precio_servicio'] ?>"
-                                                                                                    
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['precio_servicio'] ?>"
+
                                                                                                     class="precio_h_servicio minutaje_precio_val_<?php echo $val ?>"><?php echo $row['precio_servicio'] ?> </a></label>
                                                             </td>
                                                             <td><label style="margin-top: 11px;"><a href="#"
                                                                                                     class="fecha"><?php echo $row['fecha'] ?></a></label>
                                                             </td>
-                                                            <td><label style="margin-top: 11px;"><a href="#" name="<?php echo $row['horas'] ?>"
+                                                            <td><label style="margin-top: 11px;"><a href="#"
+                                                                                                    name="<?php echo $row['horas'] ?>"
                                                                                                     class="horas minutaje_horas_val_<?php echo $val ?>"><?php echo $row['horas'] ?></a></label>
                                                             </td>
                                                             <?php
@@ -518,7 +523,7 @@ if ($_SESSION["login_done"] == true){
                                                     <?php $data = select_all_iva(); ?>
                                                     <select name="select_box_iva" class="form-control select_iva"
                                                             required>
-                                                        
+
                                                         <?php
                                                         if ($data->num_rows > 0) {
                                                             // output data of each row
@@ -560,10 +565,10 @@ if ($_SESSION["login_done"] == true){
                                     </div>
                                 </div>
 
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
+                </div>
 
             </div>
         </div>

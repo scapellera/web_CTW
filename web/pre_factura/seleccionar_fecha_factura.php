@@ -75,36 +75,35 @@ if ($_SESSION["login_done"] == true){
 
                                 <!--variables de minutaje o articulos-->
                                 <?php
-                                $id_string = $_POST['submit'];
+                                $id_pre_factura = $_POST['id_pre_factura'];
 
-                                /*for($i = 0; $i <= $array_id.count();$i++){
-                                    echo"$array_id[$i]";
-
-                                }*/
-                                echo "$id_string";
+                                $last_factura = get_last_fecha_factura();
+                                $date = date('Y-m-d', $last_factura);
                                 ?>
 
-                                <form id="contact" action="../assets/php/facturar/crear_pre_factura.php" method="post"
+                                <form id="contact" action="../assets/php/facturar/crear_factura.php" method="post"
                                       name="f_cliente_sede">
+                                    <input type="hidden" name="id_pre_factura" value="<?php echo $id_pre_factura ?>">
+
 
                                     <h3>Crear factura</h3>
                                     <h4>Selecciona la fecha de factura</h4>
 
 
                                     <fieldset>
-                                        <input type="radio" name="radio_fecha" value="fecha_sistema" /> Seleccionar la fecha del sistema.
+                                        <input type="radio" name="radio_fecha" value="fecha_sistema" required /> Seleccionar la fecha del sistema.
 
 
                                     </fieldset>
                                     <fieldset>
-                                        <input type="radio" name="radio_fecha" value="fecha_seleccionada" /> Seleccionar fecha manualmente.
+                                        <input type="radio" name="radio_fecha" value="fecha_seleccionada" required/> Seleccionar fecha manualmente.
                                         <br>
-                                        <input placeholder="Fecha*" name="fecha" type="date" min="2017-01-25">
+                                        <input placeholder="Fecha*" name="fecha" type="date" min="<?php echo $date;?>">
 
                                     </fieldset>
 
                                     <fieldset>
-                                        <button value="<?php echo $id_string ?>" name="submit" type="submit" id="contact-submit"
+                                        <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit
                                         </button>
                                     </fieldset>
