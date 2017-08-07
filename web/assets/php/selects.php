@@ -717,5 +717,62 @@ function get_last_id_factura()
     close($conn);
     return $ID_FACTURA;
 }
+function obtener_articulos_factura($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_ARTICULO WHERE ID_pre_factura = '" . $id_pre_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+function obtener_datos_articulo($id_tronco_pre_factura_articulo)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_ARTICULO WHERE ID_TRONCO_PRE_FACTURA_ARTICULO = '" . $id_tronco_pre_factura_articulo . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+function obtener_servicios_factura($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_SERVICIO WHERE ID_pre_factura = '" . $id_pre_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function obtener_datos_servicio($id_tronco_pre_factura_servicio)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_SERVICIO WHERE ID_TRONCO_PRE_FACTURA_SERVICIO = '" . $id_tronco_pre_factura_servicio . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+function obtener_minutaje_factura($id_pre_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_MINUTAJE WHERE ID_pre_factura = '" . $id_pre_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function obtener_datos_minutaje($id_tronco_pre_factura_minutaje)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_PRE_FACTURA_MINUTAJE WHERE ID_TRONCO_PRE_FACTURA_MINUTAJE = '" . $id_tronco_pre_factura_minutaje . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 //////////////////////////////////////////////////////////////////
