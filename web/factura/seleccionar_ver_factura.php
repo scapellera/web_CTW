@@ -46,7 +46,7 @@ if ($_SESSION["login_done"] == true){
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_clientes").className = "active";
+                    document.getElementById("menu_factura").className = "active";
                 });</script>
 
         </div>
@@ -73,41 +73,18 @@ if ($_SESSION["login_done"] == true){
                         <div class="card">
                             <div class="container">
 
-                                <!--variables de minutaje o articulos-->
-                                <?php
-                                $id_pre_factura = $_POST['id_pre_factura'];
-                                $total_neto = $_POST['precio_sin_iva'];
-                                $total_facturado = $_POST['precio_con_iva'];
-                                $iva = $_POST['select_box_iva'];
 
-                                $last_factura = get_last_fecha_factura();
-                                $date = date('Y-m-d', $last_factura);
-                                ?>
-
-                                <form id="contact" action="../assets/php/facturar/crear_factura.php" method="post"
+                                <form id="contact" action="ver_factura.php" method="post"
                                       name="f_cliente_sede">
-                                    <input type="hidden" name="id_pre_factura" value="<?php echo $id_pre_factura ?>">
-                                    <input type="hidden" name="precio_sin_iva" value="<?php echo $total_neto ?>">
-                                    <input type="hidden" name="precio_con_iva" value="<?php echo $total_facturado ?>">
-                                    <input type="hidden" name="select_box_iva" value="<?php echo $iva ?>">
-                                    <input type="hidden" name="fecha_factura" class="fecha_factura" value="">
 
 
-                                    <h3>Crear factura</h3>
-                                    <h4>Selecciona la fecha de factura</h4>
+                                    <h3>Ver factura</h3>
+                                    <h4>Introduzca el número de factura que desea ver</h4>
 
 
                                     <fieldset>
-                                        <input type="radio" name="radio_fecha" class="radio_fecha_automatica" value="fecha_sistema" required/>
-                                        Seleccionar la fecha del sistema.
+                                        <input type="text" name="id_factura"   required/>
 
-
-                                    </fieldset>
-                                    <fieldset>
-                                        <input type="radio" name="radio_fecha" class="radio_fecha_manual" value="fecha_seleccionada" required/>
-                                        Seleccionar fecha manualmente.
-                                        <br>
-                                        <input placeholder="Fecha*" name="fecha" class="seleccionar_fecha_calendario" type="date" min="<?php echo $date; ?>">
 
                                     </fieldset>
 

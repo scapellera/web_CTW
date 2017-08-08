@@ -40,11 +40,11 @@ if ($_SESSION["login_done"] == true){
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_pre_factura").className = "active";
+                    document.getElementById("menu_factura").className = "active";
                 });</script>
             <style>
                 @media (max-width: 600px) {
-                    #menu_pre_factura {
+                    #menu_factura {
                         background-color: #ef9448;
                         margin-left: 12%;
                         border-top-left-radius: 50px;
@@ -53,12 +53,12 @@ if ($_SESSION["login_done"] == true){
                         border-bottom-left-radius: 50px;
                     }
 
-                    #menu_pre_factura1 {
+                    #menu_factura1 {
                         /*margin-left: 12%;*/
                     }
                 }
 
-                .factura_pre_factura {
+                .factura_factura {
                     cursor: pointer;
                     width: 100%;
                     border: none;
@@ -69,7 +69,7 @@ if ($_SESSION["login_done"] == true){
                     font-size: 15px;
                 }
 
-                .factura_pre_factura:hover {
+                .factura_factura:hover {
                     background: #d5672b;
                     -webkit-transition: background 0.3s ease-in-out;
                     -moz-transition: background 0.3s ease-in-out;
