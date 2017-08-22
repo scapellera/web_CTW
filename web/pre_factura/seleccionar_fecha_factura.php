@@ -46,7 +46,7 @@ if ($_SESSION["login_done"] == true){
             ?>
             <!--CAMBIAR COLOR DE LA ENTRADA DE MENU ACTIVA-->
             <script>$(function () {
-                    document.getElementById("menu_clientes").className = "active";
+                    document.getElementById("menu_pre_factura").className = "active";
                 });</script>
 
         </div>
@@ -90,7 +90,9 @@ if ($_SESSION["login_done"] == true){
                                     <input type="hidden" name="precio_sin_iva" value="<?php echo $total_neto ?>">
                                     <input type="hidden" name="precio_con_iva" value="<?php echo $total_facturado ?>">
                                     <input type="hidden" name="select_box_iva" value="<?php echo $iva ?>">
-                                    <input type="hidden" name="fecha_factura" class="fecha_factura" value="">
+                                    <input type="hidden" name="fecha_factura" class="fecha_factura">
+
+
 
 
                                     <h3>Crear factura</h3>

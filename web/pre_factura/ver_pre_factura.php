@@ -503,20 +503,20 @@ if ($_SESSION["login_done"] == true){
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3 col-md-offset-9">
-                                            <div class="form-group">
-                                                <label>Precio sin IVA</label>
-                                                <input name="precio_sin_iva"
-                                                       class="form-control precio_sin_iva" readonly
-                                                       value="<?php echo $suma_precio_total ?>">
+                                    <form id="crear_factura" action="seleccionar_fecha_factura.php" method="post">
+                                        <div class="row">
+                                            <div class="col-md-3 col-md-offset-9">
+                                                <div class="form-group">
+                                                    <label>Precio sin IVA</label>
+                                                    <input name="precio_sin_iva"
+                                                           class="form-control precio_sin_iva" readonly
+                                                           value="<?php echo $suma_precio_total ?>">
+                                                </div>
                                             </div>
+
+
                                         </div>
-
-
-                                    </div>
-                                    <div class="row">
-                                        <form id="crear_factura" action="seleccionar_fecha_factura.php" method="post">
+                                        <div class="row">
                                             <input type="hidden" name="id_pre_factura"
                                                    value="<?php echo $id_pre_factura ?>">
                                             <div class="col-md-3 col-md-offset-6">
@@ -562,21 +562,21 @@ if ($_SESSION["login_done"] == true){
                                                 </div>
                                             </div>
 
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-
-
                         </div>
+
+
                     </div>
                 </div>
-
             </div>
+
         </div>
-
-
     </div>
+
+
+</div>
 </div>
 
 </body>
