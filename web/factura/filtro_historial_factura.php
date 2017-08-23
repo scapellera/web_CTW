@@ -72,22 +72,39 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="container">
+                                <form id="contact" action="mostrar_facturas.php" method="post">
+
+                                    <h3>Historial facturas</h3>
+                                    <h4>Rellena los siguientes campos de busqueda</h4>
 
 
-                                <form id="contact" action="ver_factura.php" method="post"
-                                      name="f_cliente_sede">
-
-
-                                    <h3>Ver factura</h3>
-                                    <h4>Introduzca el número de factura que desea ver</h4>
-
-
-                                    <fieldset>
-                                        <input type="text" name="id_factura"   required/>
-
-
+                                    <fieldset>&nbsp;Selecciona el NIF del cliente:
+                                        <?php $data = select_all_cliente(); ?>
+                                        <select name="select_box_nif_empresa" class="select_box">
+                                            <option value="" selected>Selecciona el NIF del cliente*</option>
+                                            <?php
+                                            if ($data->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $row['NIF_EMPRESA']?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]";?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </fieldset>
 
+                                    <fieldset>
+                                        Número de factura
+                                        <input type="text" name="numero_factura"/>
+                                    </fieldset>
+                                    <fieldset>
+                                        Seleccionar fecha: Desde/Hasta
+                                        <br>
+                                        <input name="fecha_1" type="date">
+                                        <input name="fecha_2" type="date">
+                                    </fieldset>
                                     <fieldset>
                                         <button name="submit" type="submit" id="contact-submit"
                                                 data-submit="...Sending">Submit

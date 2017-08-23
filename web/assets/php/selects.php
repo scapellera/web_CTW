@@ -31,6 +31,7 @@ function codigo_de_barras_articulo($id_articulo)
     close($conn);
     return $codigo_de_barras;
 }
+
 function codigo_de_barras_articulo_pre_facturado($id_articulo)
 {
     $conn = connect();
@@ -83,7 +84,9 @@ function select_all_cliente()
     $data = $conn->query($sql);
     close($conn);
     return $data;
-}function borrar_articulo($id_articulo)
+}
+
+function borrar_articulo($id_articulo)
 {
     $conn = connect();
     $sql = "DELETE FROM 'ARTICULO' WHERE ID_ARTICULO = " . $id_articulo;
@@ -91,18 +94,20 @@ function select_all_cliente()
     close($conn);
     return $data;
 }
+
 function borrar_stock($codigo_de_barras)
 {
     $conn = connect();
-    $sql = "DELETE FROM 'STOCK' WHERE CODIGO_DE_BARRAS = '" . $codigo_de_barras."'";
+    $sql = "DELETE FROM 'STOCK' WHERE CODIGO_DE_BARRAS = '" . $codigo_de_barras . "'";
     $data = $conn->query($sql);
     close($conn);
     return $data;
 }
+
 function update_stock($codigo_de_barras, $cantidad_total)
 {
     $conn = connect();
-    $sql = "UPDATE STOCK SET cantidad_total = $cantidad_total  WHERE  CODIGO_DE_BARRAS = '" . $codigo_de_barras."'";
+    $sql = "UPDATE STOCK SET cantidad_total = $cantidad_total  WHERE  CODIGO_DE_BARRAS = '" . $codigo_de_barras . "'";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -128,6 +133,7 @@ function select_all_rol()
     close($conn);
     return $data;
 }
+
 function select_all_iva()
 {
     $conn = connect();
@@ -221,6 +227,7 @@ function select_all_minutaje()
     close($conn);
     return $data;
 }
+
 function get_margenes()
 {
     $conn = connect();
@@ -241,6 +248,7 @@ function select_sede_cliente($nif_cliente)
     close($conn);
     return $data;
 }
+
 function get_articulo_with_codigo_de_barras($codigo_de_barras)
 {
     $conn = connect();
@@ -366,7 +374,7 @@ function get_id_pre_factura($cliente, $nombre_pre_factura)
     $sql = "SELECT *
     FROM PRE_FACTURA 
     WHERE NIF_empresa = '" . $cliente . "'
-    AND nombre='".$nombre_pre_factura."'";
+    AND nombre='" . $nombre_pre_factura . "'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
     $ID_PRE_FACTURA = $row['ID_PRE_FACTURA'];
@@ -388,13 +396,14 @@ function last_id_articulo_facturado()
     close($conn);
     return $id_articulo_facturado;
 }
+
 function id_crear_cabecera_pre_factura($nombre_pre_factura, $nif_cliente)
 {
     $conn = connect();
     $sql = "SELECT ID_PRE_FACTURA
     FROM PRE_FACTURA 
     WHERE nombre = '" . $nombre_pre_factura . "'
-    and NIF_empresa = '".$nif_cliente."'
+    and NIF_empresa = '" . $nif_cliente . "'
     ORDER BY ID_PRE_FACTURA desc";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
@@ -402,6 +411,7 @@ function id_crear_cabecera_pre_factura($nombre_pre_factura, $nif_cliente)
     close($conn);
     return $id_pre_factura;
 }
+
 function ciudad_facturacion_crear_cabecera_pre_factura($nif_empresa)
 {
     $conn = connect();
@@ -413,6 +423,7 @@ function ciudad_facturacion_crear_cabecera_pre_factura($nif_empresa)
     close($conn);
     return $ciudad_facturacion;
 }
+
 function codigo_postal_facturacion_crear_cabecera_pre_factura($nif_empresa)
 {
     $conn = connect();
@@ -424,6 +435,7 @@ function codigo_postal_facturacion_crear_cabecera_pre_factura($nif_empresa)
     close($conn);
     return $odigo_postal_facturacion;
 }
+
 function calle_facturacion_crear_cabecera_pre_factura($nif_empresa)
 {
     $conn = connect();
@@ -457,6 +469,7 @@ function get_articulo_pre_factura($ID_ARTICULO)
     close($conn);
     return $data;
 }
+
 function get_sede_id_sede($id_sede)
 {
     $conn = connect();
@@ -467,6 +480,7 @@ function get_sede_id_sede($id_sede)
     close($conn);
     return $sede;
 }
+
 function get_servicio_id_servicio($id_servicio)
 {
     $conn = connect();
@@ -488,6 +502,7 @@ function get_minutaje_pre_factura($ID_MINUTAJE)
     close($conn);
     return $data;
 }
+
 function get_precio_servicio($ID_servicio)
 {
     $conn = connect();
@@ -499,16 +514,18 @@ function get_precio_servicio($ID_servicio)
     close($conn);
     return $precio;
 }
+
 //PRE_FACTURA_SERVICIO//////////////////////
 function get_servicio_pre_factura($ID_SERVICIO)
 {
     $conn = connect();
     $sql = "SELECT *
-    FROM SERVICIO WHERE ID_SERVICIO = " . $ID_SERVICIO ;
+    FROM SERVICIO WHERE ID_SERVICIO = " . $ID_SERVICIO;
     $data = $conn->query($sql);
     close($conn);
     return $data;
 }
+
 function get_datos_cliente($nif_empresa)
 {
     $conn = connect();
@@ -530,6 +547,7 @@ function get_ver_pre_factura_articulos($id_pre_factura)
     close($conn);
     return $data;
 }
+
 function get_ver_pre_factura_servicios($id_pre_factura)
 {
     $conn = connect();
@@ -539,6 +557,7 @@ function get_ver_pre_factura_servicios($id_pre_factura)
     close($conn);
     return $data;
 }
+
 function get_ver_pre_factura_minutajes($id_pre_factura)
 {
     $conn = connect();
@@ -548,6 +567,7 @@ function get_ver_pre_factura_minutajes($id_pre_factura)
     close($conn);
     return $data;
 }
+
 function get_nombre_articulo($ID_articulo)
 {
     $conn = connect();
@@ -559,6 +579,7 @@ function get_nombre_articulo($ID_articulo)
     close($conn);
     return $nombre;
 }
+
 function get_nombre_servicio($ID_servicio)
 {
     $conn = connect();
@@ -570,6 +591,7 @@ function get_nombre_servicio($ID_servicio)
     close($conn);
     return $nombre;
 }
+
 function get_descripcion_servicio($ID_servicio)
 {
     $conn = connect();
@@ -581,6 +603,7 @@ function get_descripcion_servicio($ID_servicio)
     close($conn);
     return $descripcion;
 }
+
 function get_articulo_facturado($id_articulo_facturado)
 {
     $conn = connect();
@@ -590,11 +613,12 @@ function get_articulo_facturado($id_articulo_facturado)
     close($conn);
     return $data;
 }
+
 function get_row_stock($codigo_de_barras)
 {
     $conn = connect();
     $sql = "SELECT count(*)
-    FROM STOCK where CODIGO_DE_BARRAS = '".$codigo_de_barras."'";
+    FROM STOCK where CODIGO_DE_BARRAS = '" . $codigo_de_barras . "'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
     $total = $row['count(*)'];
@@ -627,6 +651,7 @@ function last_id_minutaje_facturado()
     close($conn);
     return $id_minutaje_facturado;
 }
+
 function get_minutaje_facturado($id_minutaje_facturado)
 {
     $conn = connect();
@@ -661,6 +686,7 @@ function get_cliente_pre_factura($id_pre_factura)
     close($conn);
     return $NIF_cliente;
 }
+
 function get_ciudad_facturacion($NIF_EMPRESA)
 {
     $conn = connect();
@@ -672,6 +698,7 @@ function get_ciudad_facturacion($NIF_EMPRESA)
     close($conn);
     return $ciudad_facturacion;
 }
+
 function get_codigo_postal_facturacion($NIF_EMPRESA)
 {
     $conn = connect();
@@ -683,6 +710,7 @@ function get_codigo_postal_facturacion($NIF_EMPRESA)
     close($conn);
     return $ciudad_facturacion;
 }
+
 function get_calle_facturacion($NIF_EMPRESA)
 {
     $conn = connect();
@@ -694,6 +722,7 @@ function get_calle_facturacion($NIF_EMPRESA)
     close($conn);
     return $calle_facturacion;
 }
+
 function get_numero_facturacion($NIF_EMPRESA)
 {
     $conn = connect();
@@ -705,6 +734,7 @@ function get_numero_facturacion($NIF_EMPRESA)
     close($conn);
     return $numero_facturacion;
 }
+
 function get_last_id_factura()
 {
     $conn = connect();
@@ -717,6 +747,7 @@ function get_last_id_factura()
     close($conn);
     return $ID_FACTURA;
 }
+
 function obtener_articulos_factura($id_pre_factura)
 {
     $conn = connect();
@@ -746,6 +777,7 @@ function obtener_servicios_factura($id_pre_factura)
     close($conn);
     return $data;
 }
+
 function obtener_datos_servicio($id_tronco_pre_factura_servicio)
 {
     $conn = connect();
@@ -765,6 +797,7 @@ function obtener_minutaje_factura($id_pre_factura)
     close($conn);
     return $data;
 }
+
 function obtener_datos_minutaje($id_tronco_pre_factura_minutaje)
 {
     $conn = connect();
@@ -774,5 +807,102 @@ function obtener_datos_minutaje($id_tronco_pre_factura_minutaje)
     close($conn);
     return $data;
 }
+
+function eliminar_pre_factura($id_pre_factura)
+{
+    $conn = connect();
+    $sql_pre_factura = "DELETE FROM `PRE_FACTURA` WHERE `ID_PRE_FACTURA`='" . $id_pre_factura . "'";
+    $conn->query($sql_pre_factura);
+    $sql_cabecera_pre_factura = "DELETE FROM `CABECERA_PRE_FACTURA` WHERE `ID_pre_factura`='" . $id_pre_factura . "'";
+    $conn->query($sql_cabecera_pre_factura);
+    $sql_tronco_pre_factura_articulo = "DELETE FROM `TRONCO_PRE_FACTURA_ARTICULO` WHERE `ID_pre_factura`='" . $id_pre_factura . "'";
+    $conn->query($sql_tronco_pre_factura_articulo);
+    $sql_tronco_pre_factura_minutaje = "DELETE FROM `TRONCO_PRE_FACTURA_MINUTAJE` WHERE `ID_pre_factura`='" . $id_pre_factura . "'";
+    $conn->query($sql_tronco_pre_factura_minutaje);
+    $sql_tronco_pre_factura_servicio = "DELETE FROM `TRONCO_PRE_FACTURA_SERVICIO` WHERE `ID_pre_factura`='" . $id_pre_factura . "'";
+    $conn->query($sql_tronco_pre_factura_servicio);
+    $sql_pie_pre_factura = "DELETE FROM `PIE_PRE_FACTURA` WHERE `ID_pre_factura`='" . $id_pre_factura . "'";
+    $conn->query($sql_pie_pre_factura);
+
+
+}
+
+function buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fecha_hasta)
+{
+    $conn = connect();
+    $desde = false;
+    $hasta = false;
+    $contador = 0;
+    $fecha = 0;
+    $x_campos_bbdd = array("campos");
+    $y_valor_campos = array("valores");
+
+
+    if ($nif_cliente != "") {
+        $contador++;
+        array_push($x_campos_bbdd, "NIF_cliente");
+        array_push($y_valor_campos, $nif_cliente);
+    }
+    if ($numero_factura != "") {
+        array_push($x_campos_bbdd, "ID_factura");
+        array_push($y_valor_campos, $numero_factura);
+        $contador++;
+    }
+    if ($fecha_desde != "") {
+        $desde = true;
+        $fecha++;
+    }
+    if ($fecha_hasta != "") {
+        $hasta = true;
+        $fecha++;
+    }
+
+    if ($contador == 0) {
+        $sql = "SELECT * FROM CABECERA_FACTURA";
+    } else {
+        $sql = "SELECT * FROM CABECERA_FACTURA WHERE ";
+        for ($i = 1; $i <= $contador; $i++) {
+            if ($i >= 2) {
+                $sql = $sql . " AND $x_campos_bbdd[$i]=\"$y_valor_campos[$i]\" ";
+            } else {
+                $sql = $sql . " $x_campos_bbdd[$i]=\"$y_valor_campos[$i]\" ";
+            }
+
+        }
+
+    }
+
+    //añadimos los campos de fecha
+    if ($fecha ==!0) {
+
+        if ($contador == 0) {//no hay nada
+            $sql = "SELECT * FROM CABECERA_FACTURA WHERE ";
+
+            if ($desde == true && $hasta == true) {
+                $sql = $sql . "fecha_factura BETWEEN '$fecha_desde' and '$fecha_hasta'";
+            } else if ($desde == true && $hasta == false) {
+                $sql = $sql . "fecha_factura BETWEEN '$fecha_desde' and *";
+            } else if ($desde == false && $hasta == true) {
+                $sql = $sql . "fecha_factura BETWEEN * and '$fecha_hasta'";
+
+            }
+
+        } else {//ya hay un campo hay que poner AND
+            if ($desde == true && $hasta == true) {
+                $sql = $sql . " AND fecha_factura BETWEEN '$fecha_desde' and '$fecha_hasta'";
+            } else if ($desde == true && $hasta == false) {
+                $sql = $sql . " AND fecha_factura BETWEEN '$fecha_desde' and *";
+            } else if ($desde == false && $hasta == true) {
+                $sql = $sql . " AND fecha_factura BETWEEN * and '$fecha_hasta'";
+
+            }
+        }
+    }
+
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
 
 //////////////////////////////////////////////////////////////////

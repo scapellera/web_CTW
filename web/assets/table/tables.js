@@ -1,5 +1,19 @@
 $(document).ready(function () {
 
+    $('#buscador_facturas').DataTable({
+        dom: 'Bfrtip',
+        "order": [[0, "asc"], [1, "asc"]],
+
+        "pagingType": "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, -1],
+            ['10 rows', '25 rows', '50 rows', 'Show all']
+        ],
+        buttons: [
+            'excel',
+            'pageLength'
+        ]
+    });
     $('#buscador_cliente').DataTable({
         dom: 'Bfrtip',
         "order": [[0, "desc"], [1, "asc"]],
@@ -248,5 +262,6 @@ $(document).ready(function () {
 
         ]
     });
+
 
 });

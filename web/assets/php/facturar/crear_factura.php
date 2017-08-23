@@ -156,6 +156,7 @@ if ($_SESSION["login_done"] == true){
     if ($conn->query($crear_cabecera_factura) == TRUE) {
 
         //borrar pre_factura
+        eliminar_pre_factura($id_pre_factura);
 
         
 
