@@ -43,20 +43,13 @@ ob_start();
             #leftbar {
                 position: fixed;
                 width: 5%;
+                opacity: .6;
             }
 
             #rightbar {
                 position: fixed;
                 width: 5%;
                 float: right;
-            }
-
-            p {
-                page-break-after: always;
-            }
-
-            p:last-child {
-                page-break-after: never;
             }
 
             #logo {
@@ -77,26 +70,151 @@ ob_start();
                 font-size: 13px;
                 text-align: center;
             }
-            #datos_contacto_factura{
-                font-size: 13px;
+
+            #datos_contacto_factura {
+                font-size: 12px;
                 padding-top: 10%;
                 width: 50%;
-                margin:auto;
+                margin: auto;
                 font-family: Tahoma, Geneva, sans-serif;
                 text-align: center;
             }
+
             #datos_contacto_factura br {
                 display: block;
                 margin: 0px;
             }
-            .negrita{
+
+            .negrita {
                 font-weight: bold;
             }
-            #reg_mercantil{
+
+            #reg_mercantil {
                 height: 50%;
                 margin-top: 33%;
 
             }
+
+            #container {
+                margin-left: 6%;
+                margin-right: 6%;
+                margin-top: 15%;
+                margin-bottom: 15%;
+                /*background-color: red;*/
+                height: 95%;
+
+            }
+
+            #new_page {
+                page-break-after: always;
+            }
+
+            #new_page:last-child {
+                page-break-after: never;
+            }
+
+            #cabecera_facrura {
+                width: 100%;
+                /* background-color: blue;*/
+            }
+
+            #datos_cliente {
+                margin-left: 55%;
+                font-family: Tahoma, Geneva, sans-serif;
+                font-size: 10px;
+            }
+
+            .datos_cliente br {
+                margin: 0px;
+            }
+
+            #id_fecha {
+                margin-top: 4%;
+                margin-left: 5%;
+                margin-right: 5%;
+                width: 90%;
+                border: 2px solid black;
+                background-color: #CACACA;
+                float: left;
+                height: 2%;
+                font-size: 10px;
+            }
+
+            #id_factura {
+                float: left;
+                width: 50%;
+                margin-left: 3%;
+            }
+
+            #fecha_factura {
+                float: right;
+                width: 50%;
+                text-align: right;
+                margin-right: 3%;
+            }
+
+            #tabla_factura {
+                width: 100%;
+            }
+
+            #div_tabla_factura {
+                font-family: Tahoma, Geneva, sans-serif;
+                font-size: 10px;
+                width: 90%;
+                margin-top: 8%;
+                margin-left: 5%;
+            }
+
+            #tabla_factura {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+
+            }
+
+            #tabla_factura td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 4px;
+            }
+
+            #tabla_factura tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+
+            #pie_factura {
+                width: 90%;
+                margin-left:5%;
+            }
+
+            #precio_final {
+                font-family: Tahoma, Geneva, sans-serif;
+                font-size: 10px;
+                margin-left: 60%;
+                width: 40%;
+            }
+
+            #textos_precio_final {
+                margin-left: 20%;
+                width: 50%;
+                float: left;
+            }
+
+            #valores_precio_final {
+                width: 30%;
+                float: right;
+            }
+
+            .text_aling_right {
+                text-align: right;
+            }
+            #tabla_entidades{
+                width: 70%;
+                font-size: 10px;
+                margin-top: 15%;
+            }
+
+
 
         </style>
     </head>
@@ -125,9 +243,307 @@ ob_start();
     <div id="rightbar"></div>
     <main>
 
-        <div id="container">
-            <p>page1</p>
-            <p>page2</p>
+        <div id="new_page">
+            <div id="container">
+                <div id="cabecera_facrura">
+                    <div id="datos_cliente">
+                        <a class="datos_cliente negrita">LIU·JO SUCURSAL EN ESPAÑA</a><br>
+                        <a class="datos_cliente">NIF - W0055163J</a><br>
+                        <a class="datos_cliente">NIF intra - ESW0055163J</a><br>
+                        <a class="datos_cliente">Domicilio Paseo de Gracià, num.51 Local 102</a><br>
+                        <a class="datos_cliente">Boulevard Rosa</a><br>
+                        <a class="datos_cliente">08007 - Barcelona</a><br>
+
+                    </div>
+                </div>
+
+                <div id="tronco_factura">
+                    <div id="id_fecha">
+                        <div id="id_factura">
+                            <a>Nº Fact. 123</a>
+                        </div>
+                        <div id="fecha_factura">
+                            <a>Data: 25 de enero de 2017</a>
+                        </div>
+                    </div>
+
+                    <div id="div_tabla_factura">
+                        <table id="tabla_factura">
+                            <thead>
+                            <tr>
+                                <th>Quantitat</th>
+                                <th>Concepte</th>
+                                <th>Preu unitari</th>
+                                <th>Preu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>Keyboard cherry 7100x</td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Keyboard cherry 7100x</td>
+                                <td>100000</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
+                                        aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
+                                        cccc cccccccccdddddddddddddddd dddddddd
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td>20</td>
+
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Keyboard cherry 7100x</td>
+                                <td>10</td>
+                                <td>2230,454</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+                <div id="pie_factura">
+
+                    <div id="precio_final">
+                        <div id="textos_precio_final">
+                            <p class="text_aling_right">Base imponible:</p>
+                            <p class="text_aling_right">21% IVA:</p>
+                            <p class="negrita">TOTAL:</p>
+                        </div>
+                        <div id="valores_precio_final">
+                            <p class="text_aling_right">2.300,00 E</p>
+                            <p class="text_aling_right">483,00 E</p>
+                            <p class="text_aling_right negrita">2.783,00 E</p>
+                        </div>
+                    </div>
+
+                    <table id="tabla_entidades">
+                        <tr>
+                            <td>La Caixa:</td>
+                            <td>ES56 2100 3031 8222 0075 5280</td>
+                            <td>BIC:</td>
+                            <td>CAIX ESBB</td>
+                        </tr>
+                        <tr>
+                            <td>Banco Sabadell:</td>
+                            <td>ES93 0081 7011 1000 0150 5558</td>
+                            <td>BIC:</td>
+                            <td>BSAB ESBB</td>
+                        </tr>
+                        <tr>
+                            <td>Santander:</td>
+                            <td>ES54 0049 4768 3622 1605 2393</td>
+                            <td>BIC:</td>
+                            <td>BSCH ESMM</td>
+                        </tr>
+                        <tr>
+                            <td class="negrita">Firma:</td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="new_page">
+            <div id="container">
+                page 2
+            </div>
+
+        </div>
+
+        <div id="new_page">
+            <div id="container">
+                page3
+            </div>
+
         </div>
 
     </main>
