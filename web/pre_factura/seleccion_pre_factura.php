@@ -84,7 +84,6 @@ if ($_SESSION["login_done"] == true){
                                 }elseif ($id_array[0] == 'servicio') {
                                     $ruta = 'servicio.php';
                                 }
-                                echo "$id_string";
                                 ?>
 
 

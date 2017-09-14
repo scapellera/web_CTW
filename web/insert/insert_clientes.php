@@ -124,7 +124,7 @@ if ($_SESSION["login_done"] == true){
                                                                                 required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número para la facturación: <input
+                                        &nbsp;Número para la facturación (Especificar aquí si se trata de un local, bis,...): <input
                                             placeholder="Número para la facturación*" name="numero_facturacion"
                                             type="text" required>
                                     </fieldset>
@@ -142,7 +142,7 @@ if ($_SESSION["login_done"] == true){
                                                                           name="calle_envio" type="text" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número para el envio: <input placeholder="Número para el envio*"
+                                        &nbsp;Número para el envio: (Especificar aquí si se trata de un local, bis,...) <input placeholder="Número para el envio*"
                                                                            name="numero_envio" type="text" required>
                                     </fieldset>
                                     <fieldset>

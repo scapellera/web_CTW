@@ -67,14 +67,12 @@ if ($_SESSION["login_done"] == true){
             $dteDiff  = $dteStart->diff($dteEnd);
             //minutaje total
             $hora= $dteDiff->format("%H%I%S");
-            echo $hora."<br>";
 
             //calcular precio total
             $horas =  $dteDiff->format("%H");
             $horas= $horas*60;
             $min =$dteDiff->format("%I");
             $precio_total= ((($min+$horas)*$precio_servicio)/60);
-            echo $precio_total;
             $last_id_minutaje_facturado=last_id_minutaje_facturado();
 
 

@@ -81,7 +81,6 @@ if ($_SESSION["login_done"] == true){
                                     echo"$array_id[$i]";
 
                                 }*/
-                                echo "$id_string";
                                 ?>
 
                                 <form id="contact" action="../assets/php/facturar/crear_pre_factura.php" method="post"
