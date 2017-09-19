@@ -80,6 +80,8 @@ $(document).ready(function () {
         var val_cantidad = $('.' + classe_cantidad).attr('name');
         var val_precio_anterior = $('.' + classe_precio_total).attr('name');
         var precio_con_margen = margen * (val_precio * val_cantidad);
+        var precio_unidad_con_margen = margen * val_precio;
+        $('.' + classe_precio).text(precio_unidad_con_margen);
         $('.' + classe_precio_total).attr('name', precio_con_margen);
         $('.' + classe_precio_total).text(precio_con_margen);
         var diferencia_de_precio = precio_con_margen - val_precio_anterior;
@@ -100,7 +102,9 @@ $(document).ready(function () {
             data: {
                 id_tronco_pre_factura: id_tronco_pre_factura_articulo,
                 precio_con_margen: precio_con_margen,
+                precio_unidad_con_margen:precio_unidad_con_margen,
                 margen: margen,
+
                 para: "articulo",
             }
         });
@@ -118,6 +122,8 @@ $(document).ready(function () {
         var val_cantidad = $('.' + classe_cantidad).attr('name');
         var val_precio_anterior = $('.' + classe_precio_total).attr('name');
         var precio_con_margen = margen * (val_precio * val_cantidad);
+        var precio_unidad_con_margen = margen * val_precio;
+        $('.' + classe_precio).text(precio_unidad_con_margen);
         $('.' + classe_precio_total).attr('name', precio_con_margen);
         $('.' + classe_precio_total).text(precio_con_margen);
         var diferencia_de_precio = precio_con_margen - val_precio_anterior;
@@ -139,6 +145,7 @@ $(document).ready(function () {
             data: {
                 id_tronco_pre_factura: id_tronco_pre_factura_servicio,
                 precio_con_margen: precio_con_margen,
+                precio_unidad_con_margen:precio_unidad_con_margen,
                 margen: margen,
                 para: "servicio",
             }

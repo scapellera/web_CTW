@@ -91,7 +91,7 @@ if ($_SESSION["login_done"] == true){
 
 
                                     <fieldset>&nbsp;Selecciona el cliente:
-                                        <?php $data = select_all_cliente(); ?>
+                                        <?php $data = select_all_cliente_activo(); ?>
                                         <select name="select_box_nif_empresa" class="select_box">
                                             <option value="" disabled selected>Selecciona el NIF del cliente*</option>
                                             <?php

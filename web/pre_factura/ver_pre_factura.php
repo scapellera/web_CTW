@@ -220,7 +220,10 @@ if ($_SESSION["login_done"] == true){
                                                                                                 class="numero_de_serie"><?php echo $row['numero_de_serie'] ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                name="<?php echo $row['precio'] ?>"
+                                                                                                name="<?php
+                                                                                                $precio_unidad= precio_unidad_articulo_facturado($id_articulo_facturado);
+                                                                                                
+                                                                                                echo $precio_unidad ?>"
                                                                                                 class="precio articulo_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?></a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a href="#"
@@ -337,7 +340,9 @@ if ($_SESSION["login_done"] == true){
                                                                     href="#"><?php echo $descripcion_servicio ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a
-                                                                    href="#" name="<?php echo $row['precio'] ?>"
+                                                                    href="#" name="<?php
+                                                                $precio_unidad = precio_unidad_servicio_facturado($id_servicio_facturado); 
+                                                                echo $precio_unidad ?>"
                                                                     class="servicio_precio_val_<?php echo $val ?>"><?php echo $row['precio'] ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a
@@ -447,7 +452,10 @@ if ($_SESSION["login_done"] == true){
                                                                                                 class="nombre_servicio"><?php echo $nombre_servicio ?> </a></label>
                                                         </td>
                                                         <td><label style="margin-top: 11px;"><a href="#"
-                                                                                                name="<?php echo $row['precio_servicio'] ?>"
+                                                                                                name="<?php
+                                                                                                $servicio_id = get_servicio_minutaje($id_minutaje_facturado);
+                                                                                                $precio_unidad = get_precio_servicio($servicio_id);
+                                                                                                echo $precio_unidad ?>"
 
                                                                                                 class="precio_h_servicio minutaje_precio_val_<?php echo $val ?>"><?php echo $row['precio_servicio'] ?> </a></label>
                                                         </td>
@@ -477,7 +485,7 @@ if ($_SESSION["login_done"] == true){
                                                                     while ($row_margenes = $margenes->fetch_assoc()) {
                                                                         ?>
                                                                         <option
-                                                                            value="<?php echo $row_margenes['m_margen'] ?>"><?php echo $row_margenes['m_margen']; ?></option>
+                                                                            value="<?php echo $row_margenes['m_margen'] ?>" disabled><?php echo $row_margenes['m_margen']; ?></option>
                                                                         <?php
 
                                                                     }

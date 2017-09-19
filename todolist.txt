@@ -1,5 +1,4 @@
-- desactivar servicio no funciona
-- en los momentos de crear una prefactura o ver las prefacturas que tnego solo mostrar los clientes activos
-- pre factura aplicar el margen al precio unitario y hacer las operaciones correspondientes
+
 - poder crear facturas pdf
 - filtro para ver facturas a lo tech data
+

@@ -85,6 +85,17 @@ function select_all_cliente()
     close($conn);
     return $data;
 }
+function select_all_cliente_activo()
+{
+    $conn = connect();
+    $sql = "SELECT * 
+    FROM CLIENTE
+    WHERE activo = 1
+    ORDER BY activo desc, nombre_completo asc";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
 function borrar_articulo($id_articulo)
 {
@@ -538,6 +549,42 @@ function get_datos_cliente($nif_empresa)
 
 //VER PRE_FACTURA//////////////////////
 //////////////////////////////////////////////////////////////////
+function precio_unidad_articulo_facturado($id_articulo_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM ARTICULO_FACTURADO
+    WHERE ID_ARTICULO_FACTURADO =$id_articulo_facturado";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $precio = $row['precio'];
+    close($conn);
+    return $precio;
+}
+function precio_unidad_servicio_facturado($id_servicio_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO_FACTURADO
+    WHERE ID_SERVICIO_FACTURADO =$id_servicio_facturado";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $precio = $row['precio'];
+    close($conn);
+    return $precio;
+}
+function get_servicio_minutaje($id_servicio_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM SERVICIO_FACTURADO
+    WHERE ID_SERVICIO_FACTURADO =$id_servicio_facturado";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $ID_SERVICIO = $row['ID_SERVICIO'];
+    close($conn);
+    return $ID_SERVICIO;
+}
 function get_ver_pre_factura_articulos($id_pre_factura)
 {
     $conn = connect();

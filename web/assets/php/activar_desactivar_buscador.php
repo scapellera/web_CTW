@@ -141,7 +141,7 @@ function servicio_activar($pk){
 function servicio_desactivar($pk){
     $conn = connect();
     $sql = "UPDATE SERVICIO
-    SET facturado = 0
+    SET activo = 0
     WHERE ID_SERVICIO = ".$pk;
     $result = $conn->query($sql);
     close($conn);
