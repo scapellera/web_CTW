@@ -951,5 +951,51 @@ function buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fech
     return $data;
 }
 
+function get_cabecera_factura($id_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM CABECERA_FACTURA WHERE ID_factura = '" . $id_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
 
+function get_nombre_empresa($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT nombre_completo
+    FROM CLIENTE
+    WHERE NIF_EMPRESA ='" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nombre_completo = $row['nombre_completo'];
+    close($conn);
+    return $nombre_completo;
+}
+function get_nif_intra($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT nif_intra
+    FROM CLIENTE
+    WHERE NIF_EMPRESA ='" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $nif_intra = $row['nif_intra'];
+    close($conn);
+    return $nif_intra;
+}
+
+function get_fecha_factura($nif_empresa)
+{
+    $conn = connect();
+    $sql = "SELECT fecha_factura
+    FROM CABECERA_FACTURA
+    WHERE NIF_cliente ='" . $nif_empresa . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $fecha_factura = $row['fecha_factura'];
+    close($conn);
+    return $fecha_factura;
+}
 //////////////////////////////////////////////////////////////////

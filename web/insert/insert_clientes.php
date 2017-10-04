@@ -93,6 +93,10 @@ if ($_SESSION["login_done"] == true){
                                                                         name="nif_empresa" type="text" autofocus>
                                     </fieldset>
                                     <fieldset>
+                                        &nbsp;NIF intra: <input placeholder="NIF intra"
+                                                                        name="nif_intra" type="text" autofocus>
+                                    </fieldset>
+                                    <fieldset>
                                         &nbsp;Nombre del comercial: <input placeholder="Nombre del comercial*"
                                                                            name="nombre_comercial" type="text" required>
                                     </fieldset>

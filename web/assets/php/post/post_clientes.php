@@ -23,6 +23,7 @@ if($_SESSION["login_done"]==true){
 					#Declaramos las variables del formulario
 
 					$nif_empresa = $_POST['nif_empresa'];
+					$nif_intra = $_POST['nif_intra'];
 					$nombre_comercial = $_POST['nombre_comercial'];
 					$nombre_completo = $_POST['nombre_completo'];
 					$telefono = $_POST['telefono'];
@@ -48,8 +49,8 @@ if($_SESSION["login_done"]==true){
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
 					$conn = connect();
 
-					$sql = "INSERT INTO CLIENTE (NIF_EMPRESA, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo, activo)
-					VALUES ('$nif_empresa', '$nombre_comercial', '$nombre_completo', $telefono, '$email', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion', '$ciudad_envio', '$codigo_postal_envio', '$calle_envio', '$numero_envio', '$iban', '$sepa', '$pais', $prefijo, $activo)";
+					$sql = "INSERT INTO CLIENTE (NIF_EMPRESA,nif_intra, nombre_comercial, nombre_completo, telefono, email, ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, ciudad_envio, codigo_postal_envio, calle_envio, numero_envio, IBAN, SEPA, pais, prefijo, activo)
+					VALUES ('$nif_empresa','$nif_intra', '$nombre_comercial', '$nombre_completo', $telefono, '$email', '$ciudad_facturacion', '$codigo_postal_facturacion', '$calle_facturacion', '$numero_facturacion', '$ciudad_envio', '$codigo_postal_envio', '$calle_envio', '$numero_envio', '$iban', '$sepa', '$pais', $prefijo, $activo)";
 					    
 
 
