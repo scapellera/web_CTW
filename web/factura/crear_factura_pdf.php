@@ -223,7 +223,7 @@ $id_factura = "4";
 
         </style>
     </head>
-<body>
+    <body>
     <header>
         <div id="logo">
             <div id="img_logo"><img src="../assets/img/logo_factura.JPG" alt="CTW Logo" style="width: 100%;"></div>
@@ -232,13 +232,26 @@ $id_factura = "4";
     </header>
     <footer>
         <div id="datos_contacto_factura">
-            <a class="negrita">www.ctw.es</a><br>
-            <a class="negrita">mcalvetj@ctw.es</a><br>
-            <a>Carrer Bisbe Sivilla 38-40, Atico</a><br>
-            <a>08022 Barcelona</a><br>
-            <a>Tel (34) 93 4181172</a><br>
-            <a>610 246 574</a><br>
+            <?php
+
+            $datos_ctw = get_datos_ctw();
+            if ($datos_ctw->num_rows > 0) {
+            // output data of each row
+            while ($row = $datos_ctw->fetch_assoc()) {
+            ?>
+
+            <a class="negrita"><?php echo $row['dominio'] ?></a><br>
+            <a class="negrita"><?php echo $row['correo_electronico'] ?></a><br>
+            <a><?php echo $row['direccion'] ?></a><br>
+            <a><?php echo $row['codigo_postal']." - ".$row['ciudad'] ?></a><br>
+            <a>Tel <?php echo"(". $row['prefijo'].") ".$row['telefono_fijo'] ?></a><br>
+            <a><?php echo $row['telefono_movil'] ?></a><br>
+                <?php
+            }
+            }
+            ?>
         </div>
+
     </footer>
     <div id="leftbar">
         <div id="reg_mercantil">
@@ -246,552 +259,213 @@ $id_factura = "4";
         </div>
     </div>
     <div id="rightbar"></div>
-<main>
-    <div id="container">
-    <div id="cabecera_facrura">
-    <div id="datos_cliente">
-<?php
-
-$data = get_cabecera_factura($id_factura);
-if ($data->num_rows > 0) {
-    // output data of each row
-    while ($row = $data->fetch_assoc()){
-        $nif_cliente =$row['NIF_cliente'];
-        $nombre_empresa=get_nombre_empresa($row['NIF_cliente']);
-        $nif_intra=get_nif_intra($row['NIF_cliente']);
-
-
-        ?>
-        <a class="datos_cliente negrita"><?php echo $nombre_empresa?></a><br>
-        <a class="datos_cliente">NIF - <?php echo $row['NIF_cliente']?></a><br>
-        <a class="datos_cliente">NIF intra - <?php echo $nif_intra?></a><br>
-        <a class="datos_cliente">Domicilio <?php echo $row['calle_facturacion']." , ".$row['numero_facturacion']?></a><br>
-        <a class="datos_cliente"><?php echo $row['codigo_postal_facturacion']." - ".$row['ciudad_facturacion']?></a><br>
-        <?php
-   }
-}
-        ?>
-        </div>
-        </div>
-
-        <div id="tronco_factura">
-            <div id="id_fecha">
-                <div id="id_factura">
-                    <a>Nº Fact.<?php echo $id_factura?></a>
-                </div>
-                <div id="fecha_factura">
+    <main>
+        <div id="container">
+            <div id="cabecera_facrura">
+                <div id="datos_cliente">
                     <?php
-                    $timestamp=get_fecha_factura($nif_cliente);
-                    $datetime = explode(" ",$timestamp);
-                    $fecha_factura = $datetime[0];
+
+                    $data = get_cabecera_factura($id_factura);
+                    if ($data->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $data->fetch_assoc()) {
+                            $nif_cliente = $row['NIF_cliente'];
+                            $nombre_empresa = get_nombre_empresa($row['NIF_cliente']);
+                            $nif_intra = get_nif_intra($row['NIF_cliente']);
+
+
+                            ?>
+                            <a class="datos_cliente negrita"><?php echo $nombre_empresa ?></a><br>
+                            <a class="datos_cliente">NIF - <?php echo $row['NIF_cliente'] ?></a><br>
+                            <a class="datos_cliente">NIF intra - <?php echo $nif_intra ?></a><br>
+                            <a class="datos_cliente">Domicilio <?php echo $row['calle_facturacion'] . " , " . $row['numero_facturacion'] ?></a>
+                            <br>
+                            <a class="datos_cliente"><?php echo $row['codigo_postal_facturacion'] . " - " . $row['ciudad_facturacion'] ?></a>
+                            <br>
+                            <?php
+                        }
+                    }
                     ?>
-                    <a>Data: <?php echo $fecha_factura?></a>
                 </div>
             </div>
 
-            <div id="div_tabla_factura">
-                <table id="tabla_factura">
-                    <thead>
-                    <tr>
-                        <th>Quantitat</th>
-                        <th>Concepte</th>
-                        <th>Preu unitari</th>
-                        <th>Preu</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Keyboard cherry 7100x</td>
-                        <td>10</td>
-                        <td>20</td>
+            <div id="tronco_factura">
+                <div id="id_fecha">
+                    <div id="id_factura">
+                        <a>Nº Fact.<?php echo $id_factura ?></a>
+                    </div>
+                    <div id="fecha_factura">
+                        <?php
+                        $timestamp = get_fecha_factura($nif_cliente);
+                        $datetime = explode(" ", $timestamp);
+                        $fecha_factura = $datetime[0];
+                        ?>
+                        <a>Data: <?php echo $fecha_factura ?></a>
+                    </div>
+                </div>
 
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Keyboard cherry 7100x</td>
-                        <td>100000</td>
-                        <td>20</td>
+                <div id="div_tabla_factura">
+                    <table id="tabla_factura">
+                        <thead>
+                        <tr>
+                            <th>Quantitat</th>
+                            <th>Concepte</th>
+                            <th>Preu unitari</th>
+                            <th>Preu</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        //FACTURA ARTICULOS
+                        $articulos_facturados = get_articulos_facturados($id_factura);
+                        if ($articulos_facturados->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $articulos_facturados->fetch_assoc()) {
+                                $id_articulo_facturado = $row['id_articulo_facturado'];
+                                $nombre_articulo = get_nombre_articulo_facturado($id_articulo_facturado);
+                                $descripcion_articulo = get_descripcion_articulo_facturado($id_articulo_facturado);
+                                $sn_articulo = get_sn_articulo_facturado($id_articulo_facturado);
 
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
+                                if ($sn_articulo == "") {
+                                    $concepto = $nombre_articulo . " - " . $descripcion_articulo;
+                                } else {
+                                    $concepto = $nombre_articulo . " - " . $descripcion_articulo . "<br>S/N: " . $sn_articulo;
+                                }
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['cantidad'] ?></td>
+                                    <td><?php echo $concepto ?></td>
+                                    <td><?php echo $row['precio'] ?></td>
+                                    <td><?php echo $row['precio_total'] ?></td>
+
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                        <?php
+                        //FACTURA SERVICIOS
+                        $servicios_facturados = get_servicios_facturados($id_factura);
+                        if ($servicios_facturados->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $servicios_facturados->fetch_assoc()) {
+                                $id_servicio_facturado = $row['id_servicio_facturado'];
+                                $nombre_servicio = get_nombre_servicio_facturado($id_servicio_facturado);
+                                $descripcion_servicio = get_descripcion_servicio_facturado($id_servicio_facturado);
+                                $concepto = $nombre_servicio . " - " . $descripcion_servicio;
+
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['cantidad'] ?></td>
+                                    <td><?php echo $concepto ?></td>
+                                    <td><?php echo $row['precio'] ?></td>
+                                    <td><?php echo $row['precio_total'] ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                        <?php
+                        //FACTURA MINUTAJES
+                        $minutajes_facturados = get_minutajes_facturados($id_factura);
+                        if ($minutajes_facturados->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $minutajes_facturados->fetch_assoc()) {
+                                $id_servicio = $row['ID_servicio'];
+                                $nombre_servicio = get_nombre_servicio($id_servicio);
+                                $descripcion_servicio = get_descripcion_servicio($id_servicio);
+                                $concepto = $row['fecha'] . "<br>" . $nombre_servicio . " - " . $descripcion_servicio;
+
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['horas'] ?></td>
+                                    <td><?php echo $concepto ?></td>
+                                    <td><?php echo $row['precio_servicio'] ?></td>
+                                    <td><?php echo $row['precio_total'] ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <div id="pie_factura">
+                <?php
+
+                $data = get_pie_factura($id_factura);
+                if ($data->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $data->fetch_assoc()) {
+                        $importe_iva= $row['total_facturado'] - $row['total_neto'];
+                        ?>
+
+                        <div id="precio_final">
+                            <div id="textos_precio_final">
+                                <p class="text_aling_right">Base imponible:</p>
+                                <p class="text_aling_right"><?php echo $row['IVA']?>% IVA:</p>
+                                <p class="negrita">TOTAL:</p>
                             </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
+                            <div id="valores_precio_final">
+                                <p class="text_aling_right"><?php echo number_format((float)$row['total_neto'], 2, ',', ''); ?> E</p>
+                                <p class="text_aling_right"><?php echo number_format((float)$importe_iva, 2, ',', '');?> E</p>
+                                <p class="text_aling_right negrita"><?php echo number_format((float)$row['total_facturado'], 2, ',', ''); ?> E</p>
                             </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
 
+                <table id="tabla_entidades">
+                    <tr>
+                        <td>La Caixa:</td>
+                        <td>ES56 2100 3031 8222 0075 5280</td>
+                        <td>BIC:</td>
+                        <td>CAIX ESBB</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
+                        <td>Banco Sabadell:</td>
+                        <td>ES93 0081 7011 1000 0150 5558</td>
+                        <td>BIC:</td>
+                        <td>BSAB ESBB</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
+                        <td>Santander:</td>
+                        <td>ES54 0049 4768 3622 1605 2393</td>
+                        <td>BIC:</td>
+                        <td>BSCH ESMM</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
+                        <td class="negrita">Firma:</td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div>Keyboard cherry 7100xxxxxxxxxxxxxxxxx xxxxadaffdad saaaaaaaaaaa aaaaaaaaa
-                                aaaaaa aaaaaaaaaa aaabbbbbbbbbb bbbbbbb bbbbbbbbbbbbb bccc cccccc ccccccc cccc
-                                cccc cccccccccdddddddddddddddd dddddddd
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>20</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Keyboard cherry 7100x</td>
-                        <td>10</td>
-                        <td>2230,454</td>
-
-                    </tr>
-                    </tbody>
                 </table>
 
+
             </div>
 
-
-        </div>
-        <div id="pie_factura">
-
-            <div id="precio_final">
-                <div id="textos_precio_final">
-                    <p class="text_aling_right">Base imponible:</p>
-                    <p class="text_aling_right">21% IVA:</p>
-                    <p class="negrita">TOTAL:</p>
-                </div>
-                <div id="valores_precio_final">
-                    <p class="text_aling_right">2.300,00 E</p>
-                    <p class="text_aling_right">483,00 E</p>
-                    <p class="text_aling_right negrita">2.783,00 E</p>
-                </div>
-            </div>
-
-            <table id="tabla_entidades">
-                <tr>
-                    <td>La Caixa:</td>
-                    <td>ES56 2100 3031 8222 0075 5280</td>
-                    <td>BIC:</td>
-                    <td>CAIX ESBB</td>
-                </tr>
-                <tr>
-                    <td>Banco Sabadell:</td>
-                    <td>ES93 0081 7011 1000 0150 5558</td>
-                    <td>BIC:</td>
-                    <td>BSAB ESBB</td>
-                </tr>
-                <tr>
-                    <td>Santander:</td>
-                    <td>ES54 0049 4768 3622 1605 2393</td>
-                    <td>BIC:</td>
-                    <td>BSCH ESMM</td>
-                </tr>
-                <tr>
-                    <td class="negrita">Firma:</td>
-                </tr>
-            </table>
-
-
-        </div>
-
         </div>
 
 
-        </main>
-        </body>
-        </html>
-        <?php
-        $dompdf = new Dompdf();
-        $dompdf->load_html(ob_get_clean());
-        $dompdf->render();
-        $pdf = $dompdf->output();
-        $filename = "../factura_pdf/ejemplo.pdf";
-        file_put_contents($filename, $pdf);
+    </main>
+    </body>
+    </html>
+<?php
+$dompdf = new Dompdf();
+$dompdf->load_html(ob_get_clean());
+$dompdf->render();
+$pdf = $dompdf->output();
+$filename = "../factura_pdf/ejemplo.pdf";
+file_put_contents($filename, $pdf);
 
 // Output the generated PDF to Browser
 /*$dompdf->stream();*/

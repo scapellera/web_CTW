@@ -99,7 +99,7 @@ if ($_SESSION["login_done"] == true){
                 $sql_precio_total=$row['precio_total'];
                 $sql_id_servicio_facturado=$row['id_servicio_facturado'];
 
-                $crear_tronco_factura_servicio = "INSERT INTO TRONCO_FACTURA_SERVICIO(ID_factura, ID_servicio, precio,cantidad, margen,precio_total,id_servicio_facturado)
+                $crear_tronco_factura_servicio = "INSERT INTO TRONCO_FACTURA_SERVICIO(ID_factura, ID_servicio, cantidad,precio, margen,precio_total,id_servicio_facturado)
                         VALUES ($ID_FACTURA,$sql_ID_servicio, $sql_cantidad, $sql_precio, $sql_margen,$sql_precio_total,$sql_id_servicio_facturado)";
 
                 if ($conn->query($crear_tronco_factura_servicio) == TRUE) {

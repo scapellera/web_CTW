@@ -951,11 +951,31 @@ function buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fech
     return $data;
 }
 
+function get_datos_ctw()
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM DATOS_CTW";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+
 function get_cabecera_factura($id_factura)
 {
     $conn = connect();
     $sql = "SELECT *
     FROM CABECERA_FACTURA WHERE ID_factura = '" . $id_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_pie_factura($id_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM PIE_FACTURA WHERE ID_factura = '" . $id_factura . "'";
     $data = $conn->query($sql);
     close($conn);
     return $data;
@@ -997,5 +1017,95 @@ function get_fecha_factura($nif_empresa)
     $fecha_factura = $row['fecha_factura'];
     close($conn);
     return $fecha_factura;
+}
+
+function get_articulos_facturados($id_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_FACTURA_ARTICULO WHERE ID_factura = '" . $id_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+function get_servicios_facturados($id_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_FACTURA_SERVICIO WHERE ID_factura = '" . $id_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+function get_minutajes_facturados($id_factura)
+{
+    $conn = connect();
+    $sql = "SELECT *
+    FROM TRONCO_FACTURA_MINUTAJE WHERE ID_factura = '" . $id_factura . "'";
+    $data = $conn->query($sql);
+    close($conn);
+    return $data;
+}
+
+function get_nombre_articulo_facturado($id_artuculo_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT nombre
+    FROM ARTICULO_FACTURADO
+    WHERE ID_ARTICULO_FACTURADO ='" . $id_artuculo_facturado . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $valor = $row['nombre'];
+    close($conn);
+    return $valor;
+}
+function get_nombre_servicio_facturado($id_servicio_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT nombre
+    FROM SERVICIO_FACTURADO
+    WHERE ID_SERVICIO_FACTURADO ='" . $id_servicio_facturado . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $valor = $row['nombre'];
+    close($conn);
+    return $valor;
+}
+function get_descripcion_articulo_facturado($id_artuculo_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT descripcion
+    FROM ARTICULO_FACTURADO
+    WHERE ID_ARTICULO_FACTURADO ='" . $id_artuculo_facturado . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $valor = $row['descripcion'];
+    close($conn);
+    return $valor;
+}
+function get_descripcion_servicio_facturado($id_servicio_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT descripcion
+    FROM SERVICIO_FACTURADO
+    WHERE ID_SERVICIO_FACTURADO ='" . $id_servicio_facturado . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $valor = $row['descripcion'];
+    close($conn);
+    return $valor;
+}
+function get_sn_articulo_facturado($id_artuculo_facturado)
+{
+    $conn = connect();
+    $sql = "SELECT numero_de_serie
+    FROM ARTICULO_FACTURADO
+    WHERE ID_ARTICULO_FACTURADO ='" . $id_artuculo_facturado . "'";
+    $data = $conn->query($sql);
+    $row = $data->fetch_assoc();
+    $valor = $row['numero_de_serie'];
+    close($conn);
+    return $valor;
 }
 //////////////////////////////////////////////////////////////////
