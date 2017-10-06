@@ -127,15 +127,15 @@ if ($_SESSION["login_done"] == true){
                                     </td>
                                     <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente"
                                                                             data-pk=<?php echo "\"$pk\""; ?>><?php
+                                                $nombre_empresa=get_nombre_empresa($row['NIF_cliente']);
 
-                                                echo $row['NIF_cliente'] ?> </a></label>
+                                                echo $row['NIF_cliente']." - ".$nombre_empresa ?> </a></label>
                                     </td>
                                     <td><label style="margin-top: 11px;"><a href="#" class="fecha_facturacion"
                                                                             data-pk=<?php echo "\"$pk\""; ?>><?php
-
-                                                $fecha = $row['fecha_factura'];
-                                                /*$fecha = date('d-m-Y', $fecha);*/
-                                                echo $fecha;
+                                                $datetime = explode(" ", $row['fecha_factura']);
+                                                $fecha_factura = $datetime[0];
+                                                echo $fecha_factura;
                                                 ?> </a></label>
                                     </td>
                                     <td><label style="margin-top: 11px;"><a download="" href="../factura_pdf/<?php echo $year."_".$row['ID_factura'].".pdf"?>" class="factura_pdf"

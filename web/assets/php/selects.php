@@ -928,9 +928,9 @@ function buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fech
             if ($desde == true && $hasta == true) {
                 $sql = $sql . "fecha_factura BETWEEN '$fecha_desde' and '$fecha_hasta'";
             } else if ($desde == true && $hasta == false) {
-                $sql = $sql . "fecha_factura BETWEEN '$fecha_desde' and *";
+                $sql = $sql . "fecha_factura BETWEEN '$fecha_desde' and CURRENT_DATE";
             } else if ($desde == false && $hasta == true) {
-                $sql = $sql . "fecha_factura BETWEEN * and '$fecha_hasta'";
+                $sql = $sql . "fecha_factura BETWEEN '*' and '$fecha_hasta'";
 
             }
 
@@ -938,9 +938,9 @@ function buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fech
             if ($desde == true && $hasta == true) {
                 $sql = $sql . " AND fecha_factura BETWEEN '$fecha_desde' and '$fecha_hasta'";
             } else if ($desde == true && $hasta == false) {
-                $sql = $sql . " AND fecha_factura BETWEEN '$fecha_desde' and *";
+                $sql = $sql . " AND fecha_factura BETWEEN '$fecha_desde' and CURRENT_DATE";
             } else if ($desde == false && $hasta == true) {
-                $sql = $sql . " AND fecha_factura BETWEEN * and '$fecha_hasta'";
+                $sql = $sql . " AND fecha_factura BETWEEN '*' and '$fecha_hasta'";
 
             }
         }
