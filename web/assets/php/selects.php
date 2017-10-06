@@ -1006,12 +1006,12 @@ function get_nif_intra($nif_empresa)
     return $nif_intra;
 }
 
-function get_fecha_factura($nif_empresa)
+function get_fecha_factura($id_factura)
 {
     $conn = connect();
     $sql = "SELECT fecha_factura
     FROM CABECERA_FACTURA
-    WHERE NIF_cliente ='" . $nif_empresa . "'";
+    WHERE ID_factura ='" . $id_factura . "'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
     $fecha_factura = $row['fecha_factura'];

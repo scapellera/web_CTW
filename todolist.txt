@@ -1,4 +1,5 @@
 - Montar la estructura para que las facturas se guarden donde tocan
+- base de deatos vacia
 - crear contra facturas
 - filtro para ver facturas a lo tech data
 

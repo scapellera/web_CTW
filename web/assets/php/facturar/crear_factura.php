@@ -6,12 +6,11 @@ include('../../php/db.php');
 include('../../php/selects.php');
 if ($_SESSION["login_done"] == true){
 ?>
-<html lang="en">
+
 <head>
 
-    <!--INSERTS-->
     <link href="../../css/insert.css" rel="stylesheet"/>
-    <!--CARGAR BARRA INSERT-->
+
     <link href="../../css/cargarinsert.css" rel="stylesheet"/>
 
 </head>
@@ -45,8 +44,11 @@ if ($_SESSION["login_done"] == true){
     $ID_FACTURA = get_last_id_factura();
     //cabecera pre-factura
     if($fecha_factura=="auto") {
-        $crear_cabecera_factura = "INSERT INTO CABECERA_FACTURA(ID_factura, NIF_cliente,ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion)
-                        VALUES ($ID_FACTURA,$nif_cliente,$ciudad_facturacion, $codigo_postal_facturacion, $calle_facturacion, $numero_facturacion)";
+        $year=date("Y-m-d 00:00:00");
+        $fecha_sin_hora="\"$year\"";
+
+        $crear_cabecera_factura = "INSERT INTO CABECERA_FACTURA(ID_factura, NIF_cliente,ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion, fecha_factura)
+                        VALUES ($ID_FACTURA,$nif_cliente,$ciudad_facturacion, $codigo_postal_facturacion, $calle_facturacion, $numero_facturacion, $fecha_sin_hora)";
     }else{
         $crear_cabecera_factura = "INSERT INTO CABECERA_FACTURA(ID_factura, NIF_cliente,ciudad_facturacion, codigo_postal_facturacion, calle_facturacion, numero_facturacion,fecha_factura)
                         VALUES ($ID_FACTURA,$nif_cliente,$ciudad_facturacion, $codigo_postal_facturacion, $calle_facturacion, $numero_facturacion,'$fecha_factura')";
@@ -57,30 +59,30 @@ if ($_SESSION["login_done"] == true){
     $articulos_factura = obtener_articulos_factura($id_pre_factura);
     if ($articulos_factura->num_rows > 0) {
         while ($row = $articulos_factura->fetch_assoc()) {
-            $id_tronco_pre_factura_articulo=$row['ID_TRONCO_PRE_FACTURA_ARTICULO'];
+            $id_tronco_pre_factura_articulo = $row['ID_TRONCO_PRE_FACTURA_ARTICULO'];
 
-            $articulo_pre_facturado=obtener_datos_articulo($id_tronco_pre_factura_articulo);
-                while ($row = $articulo_pre_facturado->fetch_assoc()) {
-                    $sql_ID_articulo=$row['ID_articulo'];
-                    $sql_numero_de_serie="\"".$row['numero_de_serie']."\"";
-                    if ($sql_numero_de_serie == "\"\"") {
-                        $sql_numero_de_serie = 'null';
-                    }
-                    $sql_cantidad=$row['cantidad'];
-                    $sql_precio=$row['precio'];
-                    $sql_margen=$row['margen'];
-                    $sql_precio_total=$row['precio_total'];
-                    $sql_id_articulo_facturado=$row['id_articulo_facturado'];
+            $articulo_pre_facturado = obtener_datos_articulo($id_tronco_pre_factura_articulo);
+            while ($row = $articulo_pre_facturado->fetch_assoc()) {
+                $sql_ID_articulo = $row['ID_articulo'];
+                $sql_numero_de_serie = "\"" . $row['numero_de_serie'] . "\"";
+                if ($sql_numero_de_serie == "\"\"") {
+                    $sql_numero_de_serie = 'null';
+                }
+                $sql_cantidad = $row['cantidad'];
+                $sql_precio = $row['precio'];
+                $sql_margen = $row['margen'];
+                $sql_precio_total = $row['precio_total'];
+                $sql_id_articulo_facturado = $row['id_articulo_facturado'];
 
-                    $crear_tronco_factura_articulo = "INSERT INTO TRONCO_FACTURA_ARTICULO(ID_factura, ID_articulo,numero_de_serie, cantidad, precio, margen,precio_total,id_articulo_facturado)
+                $crear_tronco_factura_articulo = "INSERT INTO TRONCO_FACTURA_ARTICULO(ID_factura, ID_articulo,numero_de_serie, cantidad, precio, margen,precio_total,id_articulo_facturado)
                         VALUES ($ID_FACTURA,$sql_ID_articulo,$sql_numero_de_serie, $sql_cantidad, $sql_precio, $sql_margen,$sql_precio_total,$sql_id_articulo_facturado)";
 
-                    if ($conn->query($crear_tronco_factura_articulo) == TRUE) {
+                if ($conn->query($crear_tronco_factura_articulo) == TRUE) {
 
-                    }else{
-                        echo "Error: <br><br>" . $crear_tronco_factura_articulo . "<br><br><br>" . $conn->error;
-                    }
+                } else {
+                    echo "Error: <br><br>" . $crear_tronco_factura_articulo . "<br><br><br>" . $conn->error;
                 }
+            }
         }
     }
 
@@ -158,6 +160,7 @@ if ($_SESSION["login_done"] == true){
         //borrar pre_factura
         eliminar_pre_factura($id_pre_factura);
 
+        include('crear_factura_pdf.php');
         
 
 
@@ -169,6 +172,7 @@ if ($_SESSION["login_done"] == true){
                 <div id="indicador"></div>
             </div>
         </div>
+
 
         <script>
             var maxprogress = 300;
@@ -186,12 +190,13 @@ if ($_SESSION["login_done"] == true){
                 progressnum.innerHTML = "Creando factura...";
 
                 if (actualprogress == 300) {
-                    window.location = "../../../pre_factura/ver_prefactura_seleccion.php";
+                    window.location="../../../index.php";
                 }
             }
         </script>
 
         <?php
+
 
     } else {
         echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
@@ -200,11 +205,6 @@ if ($_SESSION["login_done"] == true){
     close($conn);
 
     ?>
-
-</div>
-
-</body>
-</html>
 
 <?php
 }

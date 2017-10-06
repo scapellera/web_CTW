@@ -117,7 +117,9 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Ubicación:  <input placeholder="Ubicación" name="ubicacion" type="text">
                             </fieldset>
                             <fieldset>&nbsp;Selecciona el país:
-                            <?php $data = select_all_pais(); ?>
+                            <?php
+                            $data = select_all_;
+                            /*$data = select_all_pais();*/ ?>
                             <select name="select_box_pais" class="select_box">
                               <option value="" disabled selected>Selecciona el país*</option>
                               <?php

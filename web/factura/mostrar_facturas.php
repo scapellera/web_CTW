@@ -99,6 +99,8 @@ if ($_SESSION["login_done"] == true){
                         $fecha_desde = $_POST['fecha_1'];
                         $fecha_hasta = $_POST['fecha_2'];
                         $data= buscador_de_facturas($nif_cliente, $numero_factura, $fecha_desde, $fecha_hasta);
+                        $year=date("Y");
+                        $year=substr( $year, -2 );
                         ?>
 
                         <thead>
@@ -124,7 +126,9 @@ if ($_SESSION["login_done"] == true){
                                                                             data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['ID_factura'] ?> </a></label>
                                     </td>
                                     <td><label style="margin-top: 11px;"><a href="#" class="NIF_cliente"
-                                                                            data-pk=<?php echo "\"$pk\""; ?>><?php echo $row['NIF_cliente'] ?> </a></label>
+                                                                            data-pk=<?php echo "\"$pk\""; ?>><?php
+
+                                                echo $row['NIF_cliente'] ?> </a></label>
                                     </td>
                                     <td><label style="margin-top: 11px;"><a href="#" class="fecha_facturacion"
                                                                             data-pk=<?php echo "\"$pk\""; ?>><?php
@@ -134,7 +138,7 @@ if ($_SESSION["login_done"] == true){
                                                 echo $fecha;
                                                 ?> </a></label>
                                     </td>
-                                    <td><label style="margin-top: 11px;"><a href="#" class="factura_pdf"
+                                    <td><label style="margin-top: 11px;"><a download="" href="../factura_pdf/<?php echo $year."_".$row['ID_factura'].".pdf"?>" class="factura_pdf"
                                                                             data-pk=<?php echo "\"$pk\""; ?>>Descargar PDF</a></label>
                                     </td>
 

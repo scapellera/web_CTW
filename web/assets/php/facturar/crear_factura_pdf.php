@@ -1,13 +1,11 @@
 <?php
-include('../assets/php/db.php');
-include('../assets/php/selects.php');
 require_once 'dompdf/autoload.inc.php';
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 
 ob_start();
 
-$id_factura = "4";
+
 
 ?>
     <html>
@@ -226,14 +224,13 @@ $id_factura = "4";
     <body>
     <header>
         <div id="logo">
-            <div id="img_logo"><img src="../assets/img/logo_factura.JPG" alt="CTW Logo" style="width: 100%;"></div>
+            <div id="img_logo"><img src="../../img/logo_factura.JPG" alt="CTW Logo" style="width: 100%;"></div>
             <div id="text_logo">Catalonian Technologie Werke, S.L</div>
         </div>
     </header>
     <footer>
         <div id="datos_contacto_factura">
             <?php
-
             $datos_ctw = get_datos_ctw();
             if ($datos_ctw->num_rows > 0) {
             // output data of each row
@@ -255,7 +252,7 @@ $id_factura = "4";
     </footer>
     <div id="leftbar">
         <div id="reg_mercantil">
-            <img src="../assets/img/ctw_libro.JPG" alt="CTW Logo" style="width: 45%;display:block;margin:auto;">
+            <img src="../../img/ctw_libro.JPG" alt="CTW Logo" style="width: 45%;display:block;margin:auto;">
         </div>
     </div>
     <div id="rightbar"></div>
@@ -264,8 +261,9 @@ $id_factura = "4";
             <div id="cabecera_facrura">
                 <div id="datos_cliente">
                     <?php
-
-                    $data = get_cabecera_factura($id_factura);
+                    $year=date("Y");
+                    $year=substr( $year, -2 );
+                    $data = get_cabecera_factura($ID_FACTURA);
                     if ($data->num_rows > 0) {
                         // output data of each row
                         while ($row = $data->fetch_assoc()) {
@@ -292,11 +290,11 @@ $id_factura = "4";
             <div id="tronco_factura">
                 <div id="id_fecha">
                     <div id="id_factura">
-                        <a>Nº Fact.<?php echo $id_factura ?></a>
+                        <a>Nº Fact.<?php echo $year."_".$ID_FACTURA ?></a>
                     </div>
                     <div id="fecha_factura">
                         <?php
-                        $timestamp = get_fecha_factura($nif_cliente);
+                        $timestamp = get_fecha_factura($ID_FACTURA);
                         $datetime = explode(" ", $timestamp);
                         $fecha_factura = $datetime[0];
                         ?>
@@ -317,7 +315,7 @@ $id_factura = "4";
                         <tbody>
                         <?php
                         //FACTURA ARTICULOS
-                        $articulos_facturados = get_articulos_facturados($id_factura);
+                        $articulos_facturados = get_articulos_facturados($ID_FACTURA);
                         if ($articulos_facturados->num_rows > 0) {
                             // output data of each row
                             while ($row = $articulos_facturados->fetch_assoc()) {
@@ -346,7 +344,7 @@ $id_factura = "4";
 
                         <?php
                         //FACTURA SERVICIOS
-                        $servicios_facturados = get_servicios_facturados($id_factura);
+                        $servicios_facturados = get_servicios_facturados($ID_FACTURA);
                         if ($servicios_facturados->num_rows > 0) {
                             // output data of each row
                             while ($row = $servicios_facturados->fetch_assoc()) {
@@ -370,7 +368,7 @@ $id_factura = "4";
 
                         <?php
                         //FACTURA MINUTAJES
-                        $minutajes_facturados = get_minutajes_facturados($id_factura);
+                        $minutajes_facturados = get_minutajes_facturados($ID_FACTURA);
                         if ($minutajes_facturados->num_rows > 0) {
                             // output data of each row
                             while ($row = $minutajes_facturados->fetch_assoc()) {
@@ -402,7 +400,7 @@ $id_factura = "4";
             <div id="pie_factura">
                 <?php
 
-                $data = get_pie_factura($id_factura);
+                $data = get_pie_factura($ID_FACTURA);
                 if ($data->num_rows > 0) {
                     // output data of each row
                     while ($row = $data->fetch_assoc()) {
@@ -464,7 +462,7 @@ $dompdf = new Dompdf();
 $dompdf->load_html(ob_get_clean());
 $dompdf->render();
 $pdf = $dompdf->output();
-$filename = "../factura_pdf/ejemplo.pdf";
+$filename = "../../../factura_pdf/".$year."_".$ID_FACTURA.".pdf";
 file_put_contents($filename, $pdf);
 
 // Output the generated PDF to Browser
