@@ -1108,4 +1108,16 @@ function get_sn_articulo_facturado($id_artuculo_facturado)
     close($conn);
     return $valor;
 }
+    function get_nif_empresa($id_factura)
+    {
+        $conn = connect();
+        $sql = "SELECT NIF_cliente
+    FROM CABECERA_FACTURA
+    WHERE ID_factura ='" . $id_factura . "'";
+        $data = $conn->query($sql);
+        $row = $data->fetch_assoc();
+        $valor = $row['NIF_cliente'];
+        close($conn);
+        return $valor;
+    }
 //////////////////////////////////////////////////////////////////

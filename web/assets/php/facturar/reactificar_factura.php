@@ -2,9 +2,9 @@
 <!--VERIFICAR QUE LOGIN SE HA REALIZADO-->
 <?php
 session_start();
-include('../assets/php/db.php');
-include('../assets/php/selects.php');
-include('../assets/php/functions.php');
+include('../db.php');
+include('../selects.php');
+include('../functions.php');
 if ($_SESSION["login_done"] == true){
 ?>
 
@@ -72,11 +72,26 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="container">
+                                <?php
+                                $id_factura = $_POST['numero_factura'];
+                                $nif_cliente=get_nif_cliente($id_factura);
+
+                                //creamos factura
+                                $crear_factura = "INSERT INTO FACTURA ()
+                                VALUES ()";
+                                $conn = connect();
+                                if ($conn->query($crear_factura) == TRUE) {
+
+                                    $id_factura_contrafactura = get_last_id_factura();
+                                    $fecha_sin_hora=date("Y-m-d 00:00:00");
+                                    $fecha_sin_hora="\"$fecha_sin_hora\"";
+
+
+                                }
 
 
 
-
-
+                                ?>
 
                             </div>
                         </div>

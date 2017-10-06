@@ -72,7 +72,7 @@ if ($_SESSION["login_done"] == true){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="container">
-                                <form id="contact" action="reactificar_factura.php" method="post">
+                                <form id="contact" action="../assets/php/facturar/reactificar_factura.php" method="post">
 
                                     <h3>Reactificar Factura</h3>
                                     <h4>Escriba el numero de factura que desea reactificar</h4>
