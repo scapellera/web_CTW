@@ -108,7 +108,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Extensión teléfono del comercial:  <input placeholder="Extensión teléfono del comercial" name="extension_telefono_comercial" type="text">
                             </fieldset>
                             <fieldset>
-                            &nbsp;Correo electrónico de la empresa:  <input placeholder="Correo electrónico de la empresa*" name="email_empresa" type="email"  required>
+                            &nbsp;Correo electrónico de la empresa:  <input placeholder="Correo electrónico de la empresa" name="email_empresa" type="email">
                             </fieldset>
                             <fieldset>
                             &nbsp;Correo electrónico del comercial:  <input placeholder="Correo electrónico del comercial" name="email_comercial" type="email">

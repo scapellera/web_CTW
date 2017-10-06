@@ -69,7 +69,9 @@ if($_SESSION["login_done"]==true){
                         $ubicacion ='null';
                     }if($IBAN == "\"\""){
 						$IBAN ='null';
-					}
+					}if($email_empresa == "\"\""){
+                        $email_empresa ='null';
+                    }
 
 
 					//Conectamos con la base de datos, hacemos los inserts y cerramos conexion.
