@@ -2,6 +2,8 @@
 function select_all_pais()
 {
     $conn = connect();
+    $utf=("set names 'utf8'");
+    $conn->query($utf);
     $sql = "SELECT * 
     FROM PAIS
     ORDER BY PAIS asc";
@@ -13,6 +15,8 @@ function select_all_pais()
 function select_prefijo_pais($pais)
 {
     $conn = connect();
+    $utf=("set names 'utf8'");
+    $conn->query($utf);
     $sql = "SELECT prefijo FROM PAIS WHERE PAIS = '" . $pais . "'";
     $data = $conn->query($sql);
     $row = $data->fetch_assoc();
