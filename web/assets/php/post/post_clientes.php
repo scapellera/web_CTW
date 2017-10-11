@@ -22,25 +22,28 @@ if($_SESSION["login_done"]==true){
 					<?php
 					#Declaramos las variables del formulario
 
-					$nif_empresa = $_POST['nif_empresa'];
-					$nif_intra = $_POST['nif_intra'];
-					$nombre_comercial = $_POST['nombre_comercial'];
-					$nombre_completo = $_POST['nombre_completo'];
-					$telefono = $_POST['telefono'];
-					$email = $_POST['email'];
-					$ciudad_facturacion = $_POST['ciudad_facturacion'];
-					$codigo_postal_facturacion = $_POST['codigo_postal_facturacion'];
-					$calle_facturacion = $_POST['calle_facturacion'];
-					$numero_facturacion = $_POST['numero_facturacion'];
-					$ciudad_envio = $_POST['ciudad_envio'];
-					$codigo_postal_envio = $_POST['codigo_postal_envio'];
-					$calle_envio = $_POST['calle_envio'];
-					$numero_envio = $_POST['numero_envio'];
-					$iban = $_POST['iban'];
-					$sepa = $_POST['select_box_sepa'];
-					$pais = $_POST['select_box_pais'];
+                    $nif_empresa = $_POST['nif_empresa'];
+                    $nif_intra = $_POST['nif_intra'];
+                    $nombre_comercial = $_POST['nombre_comercial'];
+                    $nombre_completo = $_POST['nombre_completo'];
+                    $telefono = $_POST['telefono'];
+                    $email = $_POST['email'];
+                    $email = "$email";
+                    $ciudad_facturacion = $_POST['ciudad_facturacion'];
+                    $codigo_postal_facturacion = $_POST['codigo_postal_facturacion'];
+                    $calle_facturacion = $_POST['calle_facturacion'];
+                    $numero_facturacion = $_POST['numero_facturacion'];
+                    $ciudad_envio = $_POST['ciudad_envio'];
+                    $codigo_postal_envio = $_POST['codigo_postal_envio'];
+                    $calle_envio = $_POST['calle_envio'];
+                    $numero_envio = $_POST['numero_envio'];
+                    $iban = $_POST['iban'];
+                    $sepa = $_POST['select_box_sepa'];
+                    $pais = $_POST['select_box_pais'];
                     $activo = 1;
-
+                    if($email == "") {
+                        $email = 'null';
+                    }
 
 
 					$prefijo = select_prefijo_pais($pais);

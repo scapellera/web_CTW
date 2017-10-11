@@ -10,6 +10,7 @@ if ($_SESSION["login_done"] == true){
 
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
 
     <!--INSERTS-->
     <link href="../../css/insert.css" rel="stylesheet"/>

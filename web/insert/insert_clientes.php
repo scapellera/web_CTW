@@ -109,8 +109,8 @@ if ($_SESSION["login_done"] == true){
                                                                required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Correo electrónico: <input placeholder="Correo electrónico*" name="email"
-                                                                         type="email" required>
+                                        &nbsp;Correo electrónico: <input placeholder="Correo electrónico" name="email"
+                                                                         type="email" >
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Ciudad para la facturacion: <input
@@ -152,7 +152,7 @@ if ($_SESSION["login_done"] == true){
                                     <fieldset>
                                         &nbsp;IBAN: <input placeholder="IBAN*" name="iban" type="text" required>
                                     </fieldset>
-                                    <fieldset>&nbsp;SEPA*:
+                                    <fieldset>&nbsp;SEPA:*
                                         <?php $data = select_all_sepa(); ?>
                                         <select name="select_box_sepa" class="select_box" required>
                                             <option value="" disabled selected>NO/SI</option>

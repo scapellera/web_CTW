@@ -10,6 +10,8 @@ if($_SESSION["login_done"]==true){
 
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="../../img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />

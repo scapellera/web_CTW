@@ -79,7 +79,7 @@ if ($_SESSION["login_done"] == true){
                         <div>
                         <center>
                             <a href="./factura/filtro_historial_factura.php" class="button_buscador">Historial<br>Facturas</a>
-                            <a href="./factura/seleccionar_reactificar_factura.php" class="button_buscador">Factura<br>Reactificativa</a>
+                            <!--<a href="./factura/seleccionar_reactificar_factura.php" class="button_buscador">Factura<br>Reactificativa</a>-->
 
                         </center>
                         </div>

@@ -8,6 +8,8 @@ if ($_SESSION["login_done"] == true){
 ?>
 
 <head>
+    <meta charset="UTF-8">
+
 
     <link href="../../css/insert.css" rel="stylesheet"/>
 

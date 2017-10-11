@@ -10,6 +10,8 @@ ob_start();
 ?>
     <html>
     <head>
+        <meta charset="UTF-8">
+
         <style>
             @font-face {
                 font-family: "AgfaRotisSemiSerif";
