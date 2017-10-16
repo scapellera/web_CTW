@@ -25,6 +25,44 @@ if ($_SESSION["login_done"] == true){
 </head>
 
 <body>
+
+<?php
+if($_GET['ok']=='altaArticulo'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de articulo completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'entrada_stock.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaArticulo'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El articulo no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'entrada_stock.php';
+            });
+    </script>
+    <?php
+}
+?>
+
 <div class="wrapper">
     <div class="sidebar">
         <div class="sidebar-wrapper">

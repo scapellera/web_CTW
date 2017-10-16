@@ -112,41 +112,9 @@ if($_SESSION["login_done"]==true){
 
                                     }
 
-                        ?>
-                            
-                            <div id="precargador">
-                                  <p id="progressnum"></p> 
-                                  <div id="progressbar">
-                                     <div id="indicador"></div>
-                                  </div>
-                            </div>
-                                
-                                <script>
-                                //document.body.style.background = "#ea7f33";
-                                var maxprogress = 300;
-                                    var actualprogress = 0;
-                                    var itv = 0;
-                                    function prog()
-                                    {
-                                      if(actualprogress >= maxprogress) 
-                                      {
-                                        clearInterval(itv);     
-                                        return;
-                                      } 
-                                      var progressnum = document.getElementById("progressnum");
-                                      var indicador = document.getElementById("indicador");
-                                      actualprogress +=2;  
-                                      indicador.style.width=actualprogress + "px";
-                                      progressnum.innerHTML = "Añadiendo artículo...";
-                                      if (actualprogress==300){
-                                        window.location="../../../entrada_stock.php";
-                                      }
-                                    }
-                                </script>
-
-                        <?php
+                            header('Location: ../../../entrada_stock.php?ok=altaArticulo');
                         } else {
-                            echo "Error en artículo: <br><br>" . $sql . "<br><br><br>" . $conn->error;
+                            header('Location: ../../../entrada_stock.php?ok=altaArticulo');
                         }
 
                         close($conn); 

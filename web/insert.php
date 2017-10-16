@@ -21,6 +21,214 @@ if ($_SESSION["login_done"] == true){
 
 </head>
 <body>
+
+<?php
+if($_GET['ok']=='altaCliente'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de cliente completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaCliente'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El cliente no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['ok']=='altaSede'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de sede completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaSede'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "La sede no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['ok']=='altaContacto'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de contacto completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaContacto'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El contacto no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['ok']=='altaMayorista'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de mayorista completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaMayorista'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El mayorista no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['ok']=='altaUsuario'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de usuario completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaUsuario'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El usuario no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['ok']=='altaServicio'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de servicio completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaServicio'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El servicio no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'insert.php';
+            });
+    </script>
+    <?php
+}
+?>
+
 <div class="wrapper">
     <div class="sidebar">
         <div class="sidebar-wrapper">

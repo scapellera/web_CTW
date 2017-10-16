@@ -51,7 +51,7 @@ if($_SESSION["login_done"]==true){
 
 						if ($conn->query($sql) === TRUE) {
 						?>
-							
+							<!--
 						<div id="precargador">
 							  <p id="progressnum"></p> 
 							  <div id="progressbar">
@@ -80,11 +80,12 @@ if($_SESSION["login_done"]==true){
 									window.location="../../../insert/insert_contactos.php";
 								  }
 								}
-							</script>
+							</script>-->
 
 						<?php
+                            header('Location: ../../../insert.php?ok=altaContacto');
 						} else {
-						    echo "Error: <br><br>" . $sql . "<br><br><br>" . $conn->error;
+                            header('Location: ../../../insert.php?ok=altaContacto');
 						}
 
 						close($conn); 
