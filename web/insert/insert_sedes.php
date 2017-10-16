@@ -111,7 +111,7 @@ if($_SESSION["login_done"]==true){
                             &nbsp;Ciudad de la sede: <input placeholder="Ciudad de la sede*" name="ciudad" type="text"  required>
                             </fieldset>
                             <fieldset>
-                            &nbsp;Código postal de la sede:  </br><input placeholder="Código postal de la sede*" name="codigo_postal" type="number"  required>
+                            &nbsp;Código postal de la sede:  </br><input placeholder="Código postal de la sede*" name="codigo_postal" type="text"  required>
                             </fieldset>
                             <fieldset>
                             &nbsp;Calle de la sede:  <input placeholder="Calle de la sede*" name="calle" type="text"  required>

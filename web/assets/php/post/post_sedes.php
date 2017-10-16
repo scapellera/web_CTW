@@ -33,15 +33,8 @@ if($_SESSION["login_done"]==true){
 					$ubicacion = $_POST['ubicacion'];
 					$telefono = $_POST['telefono'];
 					$pais = $_POST['select_box_pais'];
-                    $activo = $_POST['activo'];
-                    
-                    
+                    $activo = 1;
 
-                    if($activo==''){
-                        $activo2 = 0;
-                    }else{
-                        $activo2 = 1;
-                    }
 
 
 					$prefijo = select_prefijo_pais($pais);
@@ -51,7 +44,7 @@ if($_SESSION["login_done"]==true){
 					$conn = connect();
 
 					$sql = "INSERT INTO SEDE (NIF_cliente, nombre, ubicacion, ciudad, codigo_postal, calle, numero, telefono, pais, prefijo, activo)
-					VALUES ('$NIF_cliente', '$nombre', '$ubicacion', '$ciudad', '$codigo_postal', '$calle', '$numero', $telefono, '$pais', $prefijo, $activo2)";
+					VALUES ('$NIF_cliente', '$nombre', '$ubicacion', '$ciudad', '$codigo_postal', '$calle', '$numero', $telefono, '$pais', $prefijo, $activo)";
 					    
 
 

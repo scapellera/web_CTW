@@ -93,7 +93,6 @@ if ($_SESSION["login_done"] == true){
 
 
                                 <tr>
-                                    <th style="background-color: #39AF33; width: 3px;">Activos</th>
                                     <th>Cliente</th>
                                     <th>Nombre</th>
                                     <th>Ubicación</th>
@@ -120,7 +119,6 @@ if ($_SESSION["login_done"] == true){
                                         ?>
 
                                         <tr>
-                                            <?php checkbox_sede($row['s_activo'], $row['ID_SEDE']) ?>
                                             <td><label style="margin-top: 11px;">
                                                     <a data-pk=<?php echo "\"$pk\""; ?>>
                                                         <?php

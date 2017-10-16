@@ -131,7 +131,7 @@ function update_stock($codigo_de_barras, $cantidad_total)
 function select_all_sede_activo()
 {
     $conn = connect();
-    $sql = "SELECT *,s.activo as s_activo, s.telefono as s_telefono
+    $sql = "SELECT *,s.activo as s_activo, s.telefono as s_telefono, s.pais as s_pais
     FROM SEDE S, CLIENTE C
     WHERE S.NIF_cliente = C.NIF_EMPRESA";
     $data = $conn->query($sql);
