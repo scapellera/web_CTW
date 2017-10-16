@@ -29,6 +29,44 @@ if ($_SESSION["login_done"] == true){
 </head>
 
 <body>
+
+<?php
+if($_GET['ok']=='altaMinutajeManual'){
+    ?>
+    <script>
+        swal({
+                title: "Alta de minutaje completada!",
+                text: "",
+                type: "success",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'minutaje_manual.php';
+            });
+    </script>
+    <?php
+}
+if($_GET['error']=='altaMinutajeManual'){
+    ?>
+    <script>
+        swal({
+                title: "Error",
+                text: "El minutaje no se ha podido dar de alta",
+                type: "error",
+                confirmButtonColor: "#dddcd2",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+            },
+            function(){
+                window.location.href = 'minutaje_manual.php';
+            });
+    </script>
+    <?php
+}
+?>
+
 <div class="wrapper">
     <div class="sidebar">
         <div class="sidebar-wrapper">
