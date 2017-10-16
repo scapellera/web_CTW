@@ -105,16 +105,16 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
 
                                     <fieldset>&nbsp;Selecciona el NIF del mayorista:
-                                        <?php $data = select_all_mayorista(); ?>
+                                        <?php $data2 = select_all_mayorista(); ?>
                                         <select name="select_box_nif_mayorista" class="select_box">
-                                            <option value="" selected>Selecciona el NIF del mayorista</option>
+                                            <option value="<?php echo $row['NIF_mayorista'] ?>" selected><?php echo $row['NIF_mayorista'] ?></option>
                                             <?php
-                                            if ($data->num_rows > 0) {
+                                            if ($data2->num_rows > 0) {
                                                 // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
+                                                while ($row2 = $data->fetch_assoc()) {
                                                     ?>
                                                     <option
-                                                        value="<?php echo $row['NIF_MAYORISTA'] ?>"><?php echo "$row[nombre_empresa] - $row[NIF_MAYORISTA]"; ?></option>
+                                                        value="<?php echo $row2['NIF_MAYORISTA'] ?>"><?php echo "$row2[nombre_empresa] - $row2[NIF_MAYORISTA]"; ?></option>
                                                     <?php
                                                 }
                                             }
@@ -123,15 +123,15 @@ if ($_SESSION["login_done"] == true){
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Código producto del mayorista: <input
-                                            placeholder="Código producto del mayorista" name="codigo_producto_mayorista"
+                                            placeholder="Código producto del mayorista" name="codigo_producto_mayorista" value="<?php echo $row['codigo_producto_mayorista']?>"
                                             type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número de serie: <input placeholder="Número de serie"
+                                        &nbsp;Número de serie: <input placeholder="Número de serie" value="<?php echo $row['numero_de_serie']?>"
                                                                       name="numero_de_serie" type="text">
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number"
+                                        &nbsp;Precio: </br><input placeholder="Precio*" name="precio" type="number" value="<?php echo $row['precio']?>"
                                                                   required>
                                     </fieldset>
                                     <fieldset>
@@ -140,23 +140,23 @@ if ($_SESSION["login_done"] == true){
                                                                     required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Número de factura: <input placeholder="Número de factura*"
+                                        &nbsp;Número de factura: <input placeholder="Número de factura*" value="<?php echo $row['numero_factura']?>"
                                                                         name="numero_factura" type="text" required>
                                     </fieldset>
                                     <fieldset>
-                                        &nbsp;Ubicación: <input placeholder="Ubicación" name="ubicacion" type="text">
+                                        &nbsp;Ubicación: <input placeholder="Ubicación" name="ubicacion" value="<?php echo $row['ubicacion']?>" type="text">
                                     </fieldset>
                                     <fieldset>&nbsp;Selecciona el NIF del cliente(En el caso que sea necesario):
-                                        <?php $data = select_all_cliente(); ?>
+                                        <?php $data3 = select_all_cliente(); ?>
                                         <select name="select_box_nif_empresa" class="select_box">
-                                            <option value="">Selecciona el NIF del cliente...</option>
+                                            <option value="<?php echo $row['NIF_cliente_articulo']?>"><?php echo $row['NIF_cliente_articulo']?></option>
                                             <?php
-                                            if ($data->num_rows > 0) {
+                                            if ($data3->num_rows > 0) {
                                                 // output data of each row
-                                                while ($row = $data->fetch_assoc()) {
+                                                while ($row3 = $data3->fetch_assoc()) {
                                                     ?>
                                                     <option
-                                                        value="<?php echo $row['NIF_EMPRESA'] ?>"><?php echo "$row[nombre_completo] - $row[NIF_EMPRESA]"; ?></option>
+                                                        value="<?php echo $row3['NIF_EMPRESA'] ?>"><?php echo "$row3[nombre_completo] - $row3[NIF_EMPRESA]"; ?></option>
                                                     <?php
                                                 }
                                             }
