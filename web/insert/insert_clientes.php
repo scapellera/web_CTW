@@ -119,7 +119,7 @@ if ($_SESSION["login_done"] == true){
                                     <fieldset>
                                         &nbsp;Código postal para la facturación: </br><input
                                             placeholder="Código postal para la facturación*"
-                                            name="codigo_postal_facturacion" type="number" required>
+                                            name="codigo_postal_facturacion" type="text" required>
                                     </fieldset>
                                     <fieldset>
                                         &nbsp;Calle para la facturación: <input placeholder="Calle para la facturación*"

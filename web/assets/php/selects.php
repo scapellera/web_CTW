@@ -82,8 +82,6 @@ function select_cantidad_stock($codigo_de_barras)
 function select_all_cliente()
 {
     $conn = connect();
-    $utf=("set names 'utf8'");
-    $conn->query($utf);
     $sql = "SELECT * 
     FROM CLIENTE
     ORDER BY activo desc, nombre_completo asc";
